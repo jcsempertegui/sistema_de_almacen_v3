@@ -1,5 +1,7 @@
 # Sprint 1 — Acceso y personas
 
+Este documento describe la implementación existente. La [validación del 12 de octubre de 2026](sprint-1-validation.md) determinó que HU-03 está parcialmente cumplida: existen tres roles fijos, pero el requisito original contempla roles y permisos configurables. El correctivo está propuesto, sin implementar.
+
 ## HU-01 — Autenticación segura
 
 - Correo normalizado y contraseña; solo usuarios activos.

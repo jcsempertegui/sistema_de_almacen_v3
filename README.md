@@ -21,6 +21,18 @@ Orden implementado: HU-01 (autenticación), HU-03 (roles), HU-02 (usuarios), HU-
 
 Los roles son un catálogo fijo. No hay registro público ni rutas de eliminación. Los trabajadores son independientes de las cuentas de usuario.
 
+La validación del 12 de octubre de 2026 confirmó una brecha de HU-03: el requisito original exige roles y permisos configurables. Esa corrección y el Sprint 2 aún no están implementados ni aprobados para programación.
+
+## Diagnóstico y planificación
+
+- [Validación del Sprint 1](docs/sprint-1-validation.md): estado verificado, resultados de pruebas y diferencias con los requerimientos.
+- [Propuesta del Sprint 2](docs/sprint-2.md): historias, permisos, interfaces, tareas y entregables.
+- [Diccionario de datos propuesto](docs/data-dictionary-sprint-2.md): esquema físico, relaciones e invariantes.
+- [Matriz de pruebas del Sprint 2](docs/sprint-2-test-matrix.md): casos previstos, pendientes de ejecución.
+- [Planificación global de cinco sprints](docs/global-plan.md): distribución provisional y dependencias.
+
+Publicar estos documentos no autoriza cambiar la arquitectura de permisos ni implementar el catálogo. La asociación `product_locations`, el correctivo de HU-03 y los criterios de equivalencia técnica siguen pendientes de aprobación.
+
 ## Arranque local
 
 Desde la raíz con PHP 8.3 de Laragon:
