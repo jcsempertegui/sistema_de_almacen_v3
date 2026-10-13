@@ -32,6 +32,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function signIn(User $user): static
     {
-        return $this->actingAs($user)->withSession(['auth_version' => $user->session_version]);
+        return $this->actingAs($user)->withSession(['auth_version' => $user->session_version, 'auth_role_id' => $user->role_id, 'auth_role_version' => $user->role->permissions_version]);
     }
 }

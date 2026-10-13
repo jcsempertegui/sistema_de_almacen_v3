@@ -8,14 +8,14 @@
         <select name="status" aria-label="Filtrar por estado"><option value="">Todos los estados</option><option value="active" @selected(request('status') === 'active')>Activos</option><option value="inactive" @selected(request('status') === 'inactive')>Inactivos</option></select>
         <button type="submit">Buscar</button>
     </form>
-    <a class="button" href="{{ route('users.create') }}">Nuevo usuario</a>
+    @can('create', \App\Models\User::class)<a class="button" href="{{ route('users.create') }}">Nuevo usuario</a>@endcan
 </div>
 <div class="card table-wrap">
     <table><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>
     @forelse($users as $user)
         <tr><td>{{ $user->name }}</td><td>{{ $user->email }}</td><td>{{ $user->role->name }}</td><td><span class="badge {{ $user->is_active ? '' : 'inactive' }}">{{ $user->is_active ? 'Activo' : 'Inactivo' }}</span></td><td>
-            <div class="actions"><a href="{{ route('users.edit', $user) }}">Editar</a>
-            <form method="POST" action="{{ route('users.status', $user) }}">@csrf @method('PATCH')<input type="hidden" name="is_active" value="{{ $user->is_active ? 0 : 1 }}"><button class="secondary" type="submit">{{ $user->is_active ? 'Desactivar' : 'Activar' }}</button></form></div>
+            <div class="actions">@can('update', $user)<a href="{{ route('users.edit', $user) }}">Editar</a>@endcan
+            @can('changeStatus', $user)<form method="POST" action="{{ route('users.status', $user) }}">@csrf @method('PATCH')<input type="hidden" name="is_active" value="{{ $user->is_active ? 0 : 1 }}"><button class="secondary" type="submit">{{ $user->is_active ? 'Desactivar' : 'Activar' }}</button></form>@endcan</div>
         </td></tr>
     @empty<tr><td colspan="5" class="empty">No se encontraron usuarios.</td></tr>@endforelse
     </tbody></table>

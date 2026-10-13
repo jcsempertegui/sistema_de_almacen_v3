@@ -8,7 +8,7 @@ Fecha: 12 de octubre de 2026, America/La_Paz.
 
 Gestionar categorías, unidades de medida, atributos por categoría, productos, ubicaciones físicas y unidades individualizadas de un único almacén en Río Grande.
 
-La revisión del Sprint 1 identificó que HU-03 solo implementa roles fijos. El usuario confirmó que el requisito original es roles y permisos configurables. Se propone completar ese correctivo antes de construir las autorizaciones del catálogo; consultar [el informe de validación](sprint-1-validation.md).
+La revisión inicial del Sprint 1 identificó la brecha de roles fijos. El correctivo HU-03 se aprobó posteriormente y su implementación, pruebas y migración principal autorizada del 13 de octubre de 2026 se describen en [el informe del correctivo](sprint-1-hu03-corrective.md). Los permisos del catálogo de este Sprint aún no existen ni se conceden automáticamente.
 
 Se conservan Laravel 13, PHP 8.3, MariaDB 10.4.32, las vistas Blade y el CSS existente. No se necesitan paquetes nuevos, compilación con Vite ni actualización de Node 18.8.0.
 
@@ -36,9 +36,9 @@ Las reglas sobre retiros, saldos y documentos se implementarán en sprints poste
 
 | Decisión | Estado |
 |---|---|
-| Roles y permisos configurables son el requisito original | Confirmado por el usuario; correctivo aún no aprobado para programación. |
+| Roles y permisos configurables son el requisito original | Confirmado; correctivo implementado y probado, con migración principal autorizada aplicada. |
 | El Encargado también gestiona unidades de medida | Confirmado por el usuario. |
-| Conservar un rol por usuario inicialmente | Supuesto de diseño pendiente; no se especificaron varios roles simultáneos. |
+| Conservar un rol por usuario inicialmente | Confirmado en el alcance del correctivo HU-03. |
 | Añadir `product_locations` para la relación muchos a muchos | Propuesto; pendiente de aprobación. |
 | Aviso de posibles equivalentes con revisión humana | Propuesto; falta acordar características de identificación y tolerancias técnicas. |
 | Numeración HU-05 a HU-10 | Provisional; contrastar con backlog académico. |
@@ -177,7 +177,7 @@ No se crean saldos, remitos, entregas, devoluciones, movimientos o ajustes. No h
 
 ## Orden recomendado
 
-1. Aprobar y completar el correctivo de HU-03 y su regresión.
+1. Revisar y aceptar el correctivo HU-03 ya implementado, probado y migrado con autorización; consultar su informe de resultados y completar la configuración del primer administrador.
 2. Categorías y unidades de medida.
 3. Atributos y asociaciones por categoría.
 4. Ubicaciones con protección de jerarquía.

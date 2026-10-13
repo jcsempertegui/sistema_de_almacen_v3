@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Workers\SaveWorker;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\WorkerRequest;
 use App\Http\Requests\WorkerStatusRequest;
 use App\Models\Worker;
-use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class WorkerController extends Controller
@@ -42,11 +41,9 @@ class WorkerController extends Controller
         return view('workers.form', ['worker' => new Worker(['is_active' => true])]);
     }
 
-    public function store(WorkerRequest $request): RedirectResponse
+    public function store(WorkerRequest $request, SaveWorker $action): RedirectResponse
     {
-        $worker = new Worker($request->validated());
-        $worker->created_by = $worker->updated_by = $request->user()->id;
-        $this->save($worker);
+        $worker = $action->handle($request->user(), null, $request->validated());
 
         return redirect()->route('workers.show', $worker)->with('status', 'Trabajador registrado.');
     }
@@ -65,32 +62,17 @@ class WorkerController extends Controller
         return view('workers.form', ['worker' => $worker]);
     }
 
-    public function update(WorkerRequest $request, Worker $worker): RedirectResponse
+    public function update(WorkerRequest $request, Worker $worker, SaveWorker $action): RedirectResponse
     {
-        $worker->fill($request->validated());
-        $worker->updated_by = $request->user()->id;
-        $this->save($worker);
+        $worker = $action->handle($request->user(), $worker, $request->validated());
 
         return redirect()->route('workers.show', $worker)->with('status', 'Trabajador actualizado.');
     }
 
-    public function status(WorkerStatusRequest $request, Worker $worker): RedirectResponse
+    public function status(WorkerStatusRequest $request, Worker $worker, SaveWorker $action): RedirectResponse
     {
-        $worker->fill($request->validated());
-        $worker->updated_by = $request->user()->id;
-        $this->save($worker);
+        $action->handle($request->user(), $worker, $request->validated(), statusOnly: true);
 
         return redirect()->route('workers.index')->with('status', 'Estado del trabajador actualizado.');
-    }
-
-    private function save(Worker $worker): void
-    {
-        try {
-            $worker->save();
-        } catch (UniqueConstraintViolationException) {
-            $duplicateCode = Worker::where('codigo', $worker->codigo)->when($worker->exists, fn ($query) => $query->whereKeyNot($worker->id))->exists();
-            $field = $duplicateCode ? 'codigo' : 'documento_identidad';
-            throw ValidationException::withMessages([$field => 'El código o documento de identidad ya está registrado.']);
-        }
     }
 }

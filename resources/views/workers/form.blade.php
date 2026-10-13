@@ -12,7 +12,7 @@
             <div class="field"><label for="apellidos">Apellidos</label><input id="apellidos" name="apellidos" value="{{ old('apellidos', $worker->apellidos) }}" maxlength="100" required></div>
             <div class="field"><label for="cargo">Cargo (opcional)</label><input id="cargo" name="cargo" value="{{ old('cargo', $worker->cargo) }}" maxlength="100"></div>
             <div class="field"><label for="area">Área (opcional)</label><input id="area" name="area" value="{{ old('area', $worker->area) }}" maxlength="100"></div>
-            <div class="field"><label for="is_active">Estado</label><select id="is_active" name="is_active"><option value="1" @selected((string) old('is_active', (int) $worker->is_active) === '1')>Activo</option><option value="0" @selected((string) old('is_active', (int) $worker->is_active) === '0')>Inactivo</option></select></div>
+            <div class="field"><label for="is_active">Estado</label>@if($worker->exists && ! auth()->user()->can('changeStatus', $worker))<input value="{{ $worker->is_active ? 'Activo' : 'Inactivo' }}" disabled><input type="hidden" name="is_active" value="{{ (int) $worker->is_active }}">@else<select id="is_active" name="is_active"><option value="1" @selected((string) old('is_active', (int) $worker->is_active) === '1')>Activo</option><option value="0" @selected((string) old('is_active', (int) $worker->is_active) === '0')>Inactivo</option></select>@endif</div>
         </div>
         <div class="actions"><button type="submit">Guardar trabajador</button><a href="{{ route('workers.index') }}">Cancelar</a></div>
     </form>

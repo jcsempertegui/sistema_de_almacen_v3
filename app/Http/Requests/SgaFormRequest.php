@@ -9,6 +9,11 @@ abstract class SgaFormRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'in' => 'Selecciona un valor válido para :attribute.',
+            'array' => 'El campo :attribute debe ser una lista.',
+            'distinct' => 'El campo :attribute contiene valores repetidos.',
+            'prohibited' => 'No se permite modificar el campo :attribute.',
+            'regex' => 'El formato de :attribute no es válido.',
             'required' => 'El campo :attribute es obligatorio.',
             'string' => 'El campo :attribute debe ser texto.',
             'email' => 'Ingresa un correo electrónico válido.',

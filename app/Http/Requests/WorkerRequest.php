@@ -37,4 +37,11 @@ class WorkerRequest extends SgaFormRequest
             'is_active' => ['required', 'boolean'],
         ];
     }
+
+    protected function passedValidation(): void
+    {
+        if (($worker = $this->route('worker')) && (bool) $this->validated('is_active') !== $worker->is_active) {
+            abort_unless($this->user()->can('changeStatus', $worker), 403, 'No tienes permiso para cambiar el estado.');
+        }
+    }
 }

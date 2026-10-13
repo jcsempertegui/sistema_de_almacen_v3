@@ -203,3 +203,14 @@ dt {
 dd {
     margin: 4px 0 0;
 }
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 11px 12px;
+    border: 1px solid #9eb0c1;
+    border-radius: 6px;
+    font: inherit;
+}
+input[type="checkbox"] { width: auto; }
+fieldset { margin: 16px 0; border: 1px solid #dce5ee; border-radius: 6px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; max-width: 480px; }

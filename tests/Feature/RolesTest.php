@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class RolesTest extends TestCase
 {
-    public function test_catalog_is_fixed_and_seeding_does_not_create_users(): void
+    public function test_initial_catalog_and_seeding_do_not_create_users(): void
     {
         $this->seed(DatabaseSeeder::class);
         $this->seed(DatabaseSeeder::class);

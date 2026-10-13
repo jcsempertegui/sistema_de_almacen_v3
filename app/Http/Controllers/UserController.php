@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Users\CreateUser;
 use App\Actions\Users\UpdateUser;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserStatusRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\SecurityMutation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\RedirectResponse;
@@ -41,10 +43,10 @@ class UserController extends Controller
         return view('users.form', ['user' => new User(['is_active' => true]), 'roles' => $this->roles()]);
     }
 
-    public function store(UserRequest $request): RedirectResponse
+    public function store(UserRequest $request, CreateUser $action): RedirectResponse
     {
         try {
-            User::create($request->validated());
+            $action->handle($request->user(), $request->validated());
         } catch (UniqueConstraintViolationException) {
             throw ValidationException::withMessages(['email' => 'El correo electrónico ya está registrado.']);
         }
@@ -56,7 +58,7 @@ class UserController extends Controller
     {
         Gate::authorize('update', $user);
 
-        return view('users.form', ['user' => $user, 'roles' => $this->roles()]);
+        return view('users.form', ['user' => $user, 'roles' => $this->roles($user)]);
     }
 
     public function update(UserRequest $request, User $user, UpdateUser $action): RedirectResponse
@@ -77,8 +79,8 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('status', 'Estado del usuario actualizado.');
     }
 
-    private function roles(): Collection
+    private function roles(?User $target = null): Collection
     {
-        return Role::whereIn('code', array_keys(Role::LABELS))->orderBy('id')->get();
+        return Role::where(fn ($query) => $query->where('is_active', true)->orWhere('id', $target?->role_id ?? 0))->orderBy('name')->get()->filter(fn (Role $role) => app(SecurityMutation::class)->canManageRole(auth()->user(), $role));
     }
 }

@@ -11,7 +11,9 @@
     <div class="brand"><strong>SGA CONFIPETROL</strong><span>Planta Separadora de Líquidos Río Grande</span></div>
     @auth
         <nav aria-label="Navegación principal">
-            <a href="{{ route('dashboard') }}">Panel</a>
+            @can('access-panel')<a href="{{ route('dashboard') }}">Panel</a>@endcan
+            @can('viewAny', \App\Models\Role::class)<a href="{{ route('roles.index') }}">Roles y permisos</a>@endcan
+            @can('viewAny', \App\Models\AdministrativeAuditLog::class)<a href="{{ route('audit.index') }}">Auditoría</a>@endcan
             @can('viewAny', \App\Models\User::class)<a href="{{ route('users.index') }}">Usuarios</a>@endcan
             @can('viewAny', \App\Models\Worker::class)<a href="{{ route('workers.index') }}">Trabajadores</a>@endcan
             <span>{{ auth()->user()->name }}</span>

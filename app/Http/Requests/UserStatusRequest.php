@@ -6,7 +6,7 @@ class UserStatusRequest extends SgaFormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()->can('update', $this->route('user'));
+        return $this->user()->can('changeStatus', $this->route('user'));
     }
 
     public function rules(): array

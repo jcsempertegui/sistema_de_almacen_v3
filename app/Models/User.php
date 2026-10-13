@@ -34,9 +34,19 @@ class User extends Authenticatable
         return $this->hasMany(Worker::class, 'updated_by');
     }
 
-    public function hasRole(string ...$codes): bool
+    public function permissionCodes(): array
     {
-        return $this->is_active && in_array($this->role?->code, $codes, true);
+        return $this->is_active && $this->role?->is_active ? $this->role->assignedPermissionCodes() : [];
+    }
+
+    public function hasPermission(string $code): bool
+    {
+        return in_array($code, $this->permissionCodes(), true);
+    }
+
+    public function hasAllPermissions(array $codes): bool
+    {
+        return array_diff($codes, $this->permissionCodes()) === [];
     }
 
     /**

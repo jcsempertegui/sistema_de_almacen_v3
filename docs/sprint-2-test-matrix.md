@@ -80,7 +80,7 @@ Fecha: 12 de octubre de 2026, America/La_Paz.
 | RBAC-06 | Dos cambios administrativos concurrentes | No dejar el sistema sin acceso administrativo. |
 | RBAC-07 | Migrar desde los tres roles actuales | Identificadores y usuarios asociados conservados, sin privilegios inesperados. |
 
-Estos casos requieren aprobación del correctivo antes de implementarse. Se conserva provisionalmente un rol por usuario; no se añaden permisos arbitrarios ejecutables desde datos.
+El correctivo se aprobó y estos comportamientos se verificaron dentro de la suite del Sprint 1: consulta la [trazabilidad y los resultados actuales](sprint-1-hu03-corrective.md). Se conserva un rol por usuario; no se añaden permisos arbitrarios ejecutables desde datos. La migración principal del correctivo se aplicó con autorización y respaldo el 13 de octubre de 2026; los casos del catálogo del Sprint 2 permanecen sin ejecutar.
 
 ## Registro de resultados
 

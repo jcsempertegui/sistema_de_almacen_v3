@@ -8,7 +8,7 @@ Estado: propuesta para aprobación. No se encontró un backlog global anterior d
 
 | Sprint | Objetivo | Alcance | Estado |
 |---|---|---|---|
-| 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Implementación disponible; HU-03 parcialmente cumplida y aceptación visual pendiente. |
+| 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Correctivo HU-03 implementado, probado y migrado con autorización; primer administrador y aceptación visual pendientes. |
 | 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | Especificación propuesta; sin implementar. |
 | 3 | Recepción y existencias | Recepción, remitos y existencias por ubicación, con movimientos únicos por documento confirmado. | Planificación general; sin especificación detallada ni implementación. |
 | 4 | Entregas y préstamos | Entregas, préstamos y devoluciones; retiro por ubicaciones seleccionadas manualmente. | Planificación general; sin implementar. |
@@ -48,7 +48,7 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 
 ## Decisiones pendientes
 
-1. Aprobar el correctivo de HU-03 y confirmar si se conserva un único rol por usuario.
+1. Revisar los [resultados del correctivo HU-03](sprint-1-hu03-corrective.md), cuya migración principal ya se aplicó con autorización, y configurar el primer administrador. Se conserva un único rol por usuario según el alcance aprobado.
 2. Aprobar el Sprint 2 y la asociación `product_locations`.
 3. Acordar criterios técnicos para comparar productos equivalentes y tratamiento de coincidencias.
 4. Confirmar la numeración provisional HU-05 a HU-10 con el backlog académico.

@@ -21,4 +21,7 @@ if (($_ENV['APP_ENV'] ?? '') !== 'testing' || ($_ENV['DB_DATABASE'] ?? '') !== '
     throw new RuntimeException('Se rechazó una configuración de pruebas que no está aislada.');
 }
 $pdo = new PDO('mysql:host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-$pdo->exec('CREATE DATABASE IF NOT EXISTS `sga_rio_grande_testing` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+$exists = $pdo->query("SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'sga_rio_grande_testing'")->fetchColumn();
+if (! $exists) {
+    throw new RuntimeException('La base exclusiva de pruebas debe existir antes de ejecutar la suite.');
+}

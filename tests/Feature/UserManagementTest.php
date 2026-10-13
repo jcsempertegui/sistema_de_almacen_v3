@@ -53,7 +53,7 @@ class UserManagementTest extends TestCase
     {
         $admin = $this->account();
         $this->signIn($admin);
-        $unexpected = Role::create(['code' => 'unexpected', 'name' => 'No permitido']);
+        $unexpected = Role::create(['code' => 'unexpected', 'name' => 'No permitido', 'is_active' => false]);
         foreach ([['email' => strtoupper($admin->email)], ['role_id' => 999999], ['role_id' => $unexpected->id], ['password' => 'weak', 'password_confirmation' => 'weak'], ['password_confirmation' => 'different'], ['is_active' => 'invalid'], ['name' => '']] as $changes) {
             $this->post(route('users.store'), $this->payload($changes))->assertSessionHasErrors();
         }

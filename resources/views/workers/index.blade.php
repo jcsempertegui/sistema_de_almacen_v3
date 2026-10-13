@@ -17,6 +17,8 @@
         <div class="actions"><a href="{{ route('workers.show', $worker) }}">Ver</a>
         @can('update', $worker)
             <a href="{{ route('workers.edit', $worker) }}">Editar</a>
+        @endcan
+        @can('changeStatus', $worker)
             <form method="POST" action="{{ route('workers.status', $worker) }}">@csrf @method('PATCH')<input type="hidden" name="is_active" value="{{ $worker->is_active ? 0 : 1 }}"><button class="secondary" type="submit">{{ $worker->is_active ? 'Desactivar' : 'Activar' }}</button></form>
         @endcan</div>
     </td></tr>

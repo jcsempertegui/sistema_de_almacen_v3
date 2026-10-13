@@ -4,42 +4,64 @@ namespace App\Actions\Users;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
+use App\Services\AdministrativeAudit;
+use App\Services\SecurityMutation;
 use Illuminate\Validation\ValidationException;
 
 class UpdateUser
 {
+    public function __construct(private SecurityMutation $security, private AdministrativeAudit $audit) {}
+
     public function handle(User $actor, User $target, array $attributes): User
     {
-        return DB::transaction(function () use ($actor, $target, $attributes) {
-            $adminRoleId = Role::where('code', Role::ADMINISTRATOR)->value('id');
-            // All account changes acquire the same locks in ID order. Concurrent
-            // demotions cannot both see the other administrator as available.
-            $admins = User::where('role_id', $adminRoleId)->where('is_active', true)->orderBy('id')->lockForUpdate()->get();
-            $currentActor = User::whereKey($actor->id)->lockForUpdate()->firstOrFail();
+        return $this->security->run($actor, function (User $operator) use ($target, $attributes) {
             $user = User::whereKey($target->id)->lockForUpdate()->firstOrFail();
-            Gate::forUser($currentActor)->authorize('update', $user);
-            if ($currentActor->session_version !== $actor->session_version) {
-                throw new AuthorizationException('El acceso del operador cambió durante la solicitud.');
+            $this->security->requireManageRole($operator, $user->role);
+            $before = $this->audit->userSnapshot($user);
+            $data = array_intersect_key($attributes, array_flip(['name', 'email', 'password', 'role_id', 'is_active']));
+            if (empty($data['password'])) {
+                unset($data['password']);
             }
-            $wasActiveAdmin = $user->is_active && $user->role_id === $adminRoleId;
-            $newRoleId = (int) ($attributes['role_id'] ?? $user->role_id);
-            $newActive = (bool) ($attributes['is_active'] ?? $user->is_active);
-            if ($wasActiveAdmin && (! $newActive || $newRoleId !== $adminRoleId) && $admins->count() <= 1) {
-                throw ValidationException::withMessages(['is_active' => 'Debe permanecer al menos un administrador activo.']);
+            if (! $operator->hasPermission('users.update') && ! $operator->hasPermission('users.change_status')) {
+                $this->security->requirePermissions($operator, 'users.update');
             }
-            if (empty($attributes['password'])) {
-                unset($attributes['password']);
+            if (array_key_exists('role_id', $data) && (int) $data['role_id'] !== $user->role_id) {
+                $this->security->requirePermissions($operator, 'users.assign_role');
+                $newRole = Role::whereKey($data['role_id'])->lockForUpdate()->firstOrFail();
+                if (! $newRole->is_active) {
+                    throw ValidationException::withMessages(['role_id' => 'Selecciona un rol activo.']);
+                }
+                $this->security->requireManageRole($operator, $newRole);
             }
-            $user->fill($attributes);
+            if (isset($data['password'])) {
+                $this->security->requirePermissions($operator, 'users.change_password');
+            }
+            $user->fill($data);
+            if ($user->isDirty(['name', 'email'])) {
+                $this->security->requirePermissions($operator, 'users.update');
+            }
+            $statusChanged = $user->isDirty('is_active');
+            if ($statusChanged) {
+                $this->security->requirePermissions($operator, 'users.change_status');
+            }
+            $user->unsetRelation('role');
+            if ($statusChanged && $user->is_active && ! $user->role->is_active) {
+                throw ValidationException::withMessages(['role_id' => 'No puedes activar una cuenta con un rol desactivado.']);
+            }
+            if (! $user->isDirty()) {
+                return $user;
+            }
             if ($user->isDirty(['password', 'role_id', 'is_active', 'email'])) {
                 $user->session_version++;
             }
             $user->save();
+            $after = $this->audit->userSnapshot($user);
+            if (isset($data['password'])) {
+                $after['password_changed'] = true;
+            }
+            $this->audit->record($operator, $statusChanged ? 'users.status_changed' : 'users.updated', $user, $before, $after);
 
             return $user;
-        }, attempts: 3);
+        });
     }
 }

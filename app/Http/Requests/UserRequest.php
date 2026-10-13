@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -34,7 +33,7 @@ class UserRequest extends SgaFormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->route('user'))],
             'password' => [$this->route('user') ? 'nullable' : 'required', ...self::passwordRules()],
-            'role_id' => ['required', 'integer', Rule::exists('roles', 'id')->whereIn('code', array_keys(Role::LABELS))],
+            'role_id' => ['required', 'integer', Rule::exists('roles', 'id')->where(fn ($query) => $query->where('is_active', true)->orWhere('id', $this->route('user')?->role_id ?? 0))],
             'is_active' => ['required', 'boolean'],
         ];
     }

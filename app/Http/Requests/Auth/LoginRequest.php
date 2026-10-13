@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\SgaFormRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -33,7 +34,7 @@ class LoginRequest extends SgaFormRequest
         if (RateLimiter::tooManyAttempts($key, 5)) {
             throw ValidationException::withMessages(['email' => 'Demasiados intentos. Intenta nuevamente en '.RateLimiter::availableIn($key).' segundos.']);
         }
-        if (! Auth::attempt([...$this->only('email', 'password'), 'is_active' => true])) {
+        if (! Auth::attemptWhen([...$this->only('email', 'password'), 'is_active' => true], fn (User $user) => (bool) $user->role?->is_active)) {
             RateLimiter::hit($key, 60);
             throw ValidationException::withMessages(['email' => 'Las credenciales no son válidas o la cuenta está desactivada.']);
         }

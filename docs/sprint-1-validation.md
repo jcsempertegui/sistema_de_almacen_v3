@@ -1,5 +1,7 @@
 # Validación del Sprint 1
 
+**Informe histórico de la implementación anterior al correctivo.** La brecha de HU-03 descrita aquí motivó el correctivo que el usuario aprobó posteriormente. Consulta [el estado actual, código y resultados](sprint-1-hu03-corrective.md); este informe conserva la evidencia de las 38 pruebas originales y no representa el código actual.
+
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
 Implementación examinada: `3a0045b83060fea8d7b85e72aa077996306d4224`, rama `main` de `jcsempertegui/sistema_de_almacen_v3`.
