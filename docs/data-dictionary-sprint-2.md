@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: diseño pendiente de aprobación, sin migraciones ejecutadas ni código implementado.** La relación adicional `product_locations` debe aprobarse explícitamente. Este documento corresponde al [plan del Sprint 2](sprint-2.md).
+**Estado: `categories` y `measurement_units` autorizadas e implementadas en la Etapa 1; sus migraciones se ejecutan exclusivamente en la base de pruebas y quedan pendientes en la principal.** Las demás tablas siguen siendo diseño pendiente, sin código implementado. La relación adicional `product_locations` debe aprobarse explícitamente. Este documento corresponde al [plan del Sprint 2](sprint-2.md); el [informe de Etapa 1](sprint-2-stage-1.md) distingue evidencia real y validaciones futuras.
 
 ## Convenciones comunes
 
@@ -33,7 +33,7 @@ Modelo: `Category`.
 
 Restricciones: `UNIQUE(code)`, `UNIQUE(name)`. Índice de listado `(is_active,name)`.
 
-Relaciones: `hasMany(Product)` y `hasMany(CategoryAttribute)`. La relación con atributos puede exponerse además como `belongsToMany` explícito a través de `category_attributes`.
+Relaciones futuras: `hasMany(Product)` y `hasMany(CategoryAttribute)`. La relación con atributos podrá exponerse como `belongsToMany` explícito a través de `category_attributes`. En Etapa 1 solo se implementan las relaciones de autoría a `User`; `CatalogReferences` prepara verificaciones de solo lectura para dependencias futuras, sin crear sus tablas o modelos.
 
 Validación: longitud, contenido no vacío, unicidad y permisos. Desactivar se bloquea cuando hay productos activos; productos históricos mantienen su referencia.
 
@@ -49,13 +49,13 @@ Modelo: `MeasurementUnit`.
 | `dimension` | VARCHAR(20) | Obligatoria, de catálogo validado. |
 | `decimal_places` | TINYINT UNSIGNED | Obligatorio, DEFAULT 0, rango 0–6. |
 
-Dimensiones iniciales propuestas: `count`, `length`, `mass`, `volume`, `time`, `other`; confirmar necesidades antes de poblar el catálogo. No implican un motor de conversiones.
+Dimensiones implementadas para Etapa 1: `count`, `length`, `mass`, `volume`, `time`, `other`, mostradas en español. No se pueblan unidades automáticamente ni se implementa un motor de conversiones. Código normalizado a mayúsculas; símbolo recortado en sus extremos y conservado en su capitalización.
 
 Restricciones: `UNIQUE(code)`, `UNIQUE(symbol)`, `CHECK(decimal_places BETWEEN 0 AND 6)` y validación del conjunto de dimensiones. Índice `(is_active,name)`.
 
-Relaciones: `hasMany(Product)` y `hasMany(CatalogAttribute)` por su unidad técnica.
+Relaciones futuras: `hasMany(Product)` y `hasMany(CatalogAttribute)` por su unidad técnica. En Etapa 1 solo se implementan `creator`/`updater` hacia `User` y las verificaciones de `CatalogReferences`.
 
-Validación: símbolo y dimensión válidos, precisión compatible con datos existentes. Desactivar se bloquea si la utilizan productos o atributos activos. Cambiar dimensión/precisión no debe reinterpretar ni truncar información ya guardada.
+Validación: símbolo y dimensión válidos, precisión compatible con datos existentes. Desactivar se bloquea si la utilizan productos o atributos activos. Con cualquier referencia, incluso inactiva, no se modifican código, símbolo, dimensión o precisión; el nombre puede corregirse. Actualmente esos módulos no existen: se verifica el guard con referencias simuladas y queda pendiente su integración con datos reales cuando se implementen las historias correspondientes.
 
 ## 3. `attributes`
 
@@ -253,7 +253,7 @@ Las referencias de autoría a `users` se omiten del diagrama para legibilidad, p
 - CHECK mediante SQL explícito dentro de nuevas migraciones; verificar su aplicación en pruebas sobre MariaDB.
 - Usar nombres de restricciones únicos en el esquema y dentro de los límites de longitud del servidor.
 - No depender de consultas sobre JSON ni de paquetes adicionales para el esquema.
-- Verificar índices, rangos y límites de precisión al implementar; el diseño todavía no fue probado creando estas tablas.
+- Categorías y unidades tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva; el resto del diseño permanece sin pruebas de implementación.
 - Guardar códigos y valores técnicos de forma consistente, sin FLOAT ni certificación automática de equivalencias.
 - Historial y saldos posteriores deberán respetar las identidades, FKs y desactivaciones de este catálogo.
 
@@ -261,4 +261,4 @@ Referencias oficiales: [restricciones MariaDB](https://mariadb.com/docs/server/r
 
 ## Pruebas asociadas
 
-Los casos de cada tabla, las operaciones de interfaz y la matriz de autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Son pruebas previstas, no resultados de ejecución.
+Los casos de cada tabla, las operaciones de interfaz y la matriz de autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). El informe de Etapa 1 registra los casos efectivamente ejecutados; las pruebas de HU-07 a HU-10, integración con dependencias reales y aceptación visual permanecen previstas.

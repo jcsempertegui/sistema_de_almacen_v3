@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Services\AdministrativeAudit;
 use App\Services\SecurityMutation;
 use App\Support\PermissionCatalog;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class RbacManagementTest extends TestCase
@@ -50,6 +51,7 @@ class RbacManagementTest extends TestCase
 
     public function test_permissions_are_granted_revoked_and_links_preserved(): void
     {
+        $initialLinks = DB::table('permission_role')->count();
         $role = $this->custom(['panel.view', 'workers.view']);
         $this->signIn($this->admin());
         $this->put(route('roles.update', $role), ['permissions' => $this->ids(['panel.view', 'workers.view', 'workers.create'])])->assertRedirect();
@@ -63,7 +65,7 @@ class RbacManagementTest extends TestCase
         $this->put(route('roles.update', $role), ['permissions_selection' => 1])->assertRedirect();
         $this->assertSame([], $role->fresh()->assignedPermissionCodes());
         $this->put(route('roles.update', $role), ['permissions' => $this->ids(['workers.create'])])->assertRedirect();
-        $this->assertDatabaseCount('permission_role', 28); // Initial 25 links plus three preserved custom links.
+        $this->assertDatabaseCount('permission_role', $initialLinks + 3);
     }
 
     public function test_invalid_roles_and_permissions_have_spanish_messages(): void
@@ -94,6 +96,7 @@ class RbacManagementTest extends TestCase
     public function test_last_full_administrative_role_cannot_be_disabled_or_lose_any_core_permission(): void
     {
         $admin = $this->admin();
+        $version = $admin->role->permissions_version;
         $this->signIn($admin);
         $before = AdministrativeAuditLog::count();
         $this->patch(route('roles.status', $admin->role), ['is_active' => 0])->assertSessionHasErrors('is_active');
@@ -102,9 +105,9 @@ class RbacManagementTest extends TestCase
             $this->put(route('roles.update', $admin->role), ['permissions' => $this->ids($codes)])->assertSessionHasErrors('is_active');
         }
         $this->assertTrue($admin->role->fresh()->is_active);
-        $this->assertSame(1, $admin->role->fresh()->permissions_version);
+        $this->assertSame($version, $admin->role->fresh()->permissions_version);
         $this->assertSame($before, AdministrativeAuditLog::count());
-        $this->assertCount(17, $admin->role->fresh()->assignedPermissionCodes());
+        $this->assertCount(count(PermissionCatalog::LABELS), $admin->role->fresh()->assignedPermissionCodes());
     }
 
     public function test_two_administrators_in_same_role_do_not_bypass_last_role_guard(): void

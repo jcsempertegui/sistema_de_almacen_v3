@@ -9,7 +9,7 @@ Estado: propuesta para aprobación. No se encontró un backlog global anterior d
 | Sprint | Objetivo | Alcance | Estado |
 |---|---|---|---|
 | 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Correctivo HU-03 implementado, probado y migrado con autorización; primer administrador y aceptación visual pendientes. |
-| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | Especificación propuesta; sin implementar. |
+| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06 implementadas y probadas; publicación autorizada, migración principal pendiente. HU-07 a HU-10 sin implementar. |
 | 3 | Recepción y existencias | Recepción, remitos y existencias por ubicación, con movimientos únicos por documento confirmado. | Planificación general; sin especificación detallada ni implementación. |
 | 4 | Entregas y préstamos | Entregas, préstamos y devoluciones; retiro por ubicaciones seleccionadas manualmente. | Planificación general; sin implementar. |
 | 5 | Control y cierre | Ajustes/anulaciones autorizadas, reportes, auditoría, regresión y documentación académica final. | Planificación general; sin implementar. |

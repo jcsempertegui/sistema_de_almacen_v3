@@ -16,6 +16,8 @@
             @can('viewAny', \App\Models\AdministrativeAuditLog::class)<a href="{{ route('audit.index') }}">Auditoría</a>@endcan
             @can('viewAny', \App\Models\User::class)<a href="{{ route('users.index') }}">Usuarios</a>@endcan
             @can('viewAny', \App\Models\Worker::class)<a href="{{ route('workers.index') }}">Trabajadores</a>@endcan
+            @can('viewAny', \App\Models\Category::class)<a href="{{ route('categories.index') }}">Categorías</a>@endcan
+            @can('viewAny', \App\Models\MeasurementUnit::class)<a href="{{ route('measurement-units.index') }}">Unidades de medida</a>@endcan
             <span>{{ auth()->user()->name }}</span>
             <form method="POST" action="{{ route('logout') }}">@csrf<button class="secondary" type="submit">Cerrar sesión</button></form>
         </nav>

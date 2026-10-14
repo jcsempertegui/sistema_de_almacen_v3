@@ -22,6 +22,14 @@ final class PermissionCatalog
         'workers.update' => 'Editar trabajadores',
         'workers.change_status' => 'Cambiar estado de trabajadores',
         'audit.view' => 'Consultar auditoría administrativa',
+        'categories.view' => 'Consultar categorías',
+        'categories.create' => 'Crear categorías',
+        'categories.update' => 'Editar categorías',
+        'categories.change_status' => 'Cambiar estado de categorías',
+        'measurement_units.view' => 'Consultar unidades de medida',
+        'measurement_units.create' => 'Crear unidades de medida',
+        'measurement_units.update' => 'Editar unidades de medida',
+        'measurement_units.change_status' => 'Cambiar estado de unidades de medida',
     ];
 
     public const ADMINISTRATIVE_ACCESS = [

@@ -23,7 +23,7 @@ Orden implementado: HU-01 (autenticación), HU-03 (roles), HU-02 (usuarios), HU-
 
 La tabla muestra la configuración inicial. Los roles y sus permisos son configurables, manteniendo un rol por usuario. No hay registro público ni rutas de eliminación. Los trabajadores son independientes de las cuentas de usuario.
 
-El [correctivo aprobado de HU-03](docs/sprint-1-hu03-corrective.md) está implementado y probado en la base exclusiva de pruebas. Sus cinco migraciones se aplicaron a la base principal el 13 de octubre de 2026 con autorización y respaldo previo, conservando los datos. El Sprint 2 continúa pendiente de aprobación para programación.
+El [correctivo aprobado de HU-03](docs/sprint-1-hu03-corrective.md) está implementado y probado en la base exclusiva de pruebas. Sus cinco migraciones se aplicaron a la base principal el 13 de octubre de 2026 con autorización y respaldo previo, conservando los datos. La [Etapa 1 del Sprint 2: categorías y unidades de medida](docs/sprint-2-stage-1.md) se desarrolló y probó en `sprint-2/hu05-hu06`, con integración y publicación en `main` autorizadas tras revisar los resultados. Sus migraciones principales siguen pendientes de aprobación específica. Las historias siguientes no están implementadas.
 
 ## Diagnóstico y planificación
 
@@ -34,6 +34,8 @@ El [correctivo aprobado de HU-03](docs/sprint-1-hu03-corrective.md) está implem
 - [Planificación global de cinco sprints](docs/global-plan.md): distribución provisional y dependencias.
 
 La asociación `product_locations` y los criterios de equivalencia técnica del Sprint 2 siguen pendientes de aprobación. El correctivo de HU-03 tiene autorización independiente y no inicia ese Sprint.
+
+La autorización posterior de Etapa 1 permite únicamente HU-05/HU-06. Las rutas nuevas `/categorias` y `/unidades-de-medida` requieren las tres migraciones nuevas de esta rama; no se deben ejecutar en `sga_rio_grande` sin autorización específica. La base principal conserva el esquema del Sprint 1 durante la validación de esta etapa.
 
 ## Arranque local
 

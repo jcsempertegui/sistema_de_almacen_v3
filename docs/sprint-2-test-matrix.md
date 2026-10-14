@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado de todos los casos de este documento: pendiente de implementación y ejecución.** No son evidencia de funcionalidades existentes. La evidencia real del Sprint 1 es [38 pruebas y 251 verificaciones aprobadas](sprint-1-validation.md).
+**Estado: HU-05 y HU-06 tienen implementación y pruebas de Etapa 1; los casos de HU-07 a HU-10 continúan planificados y sin ejecutar.** Consulta [la evidencia actual de Etapa 1](sprint-2-stage-1.md). La regresión del Sprint 1 incluye el [correctivo HU-03: 74 pruebas y 475 verificaciones de su validación original](sprint-1-hu03-corrective.md), además de la ejecución conjunta de esta etapa.
 
 ## Condiciones de ejecución
 
@@ -83,6 +83,8 @@ Fecha: 12 de octubre de 2026, America/La_Paz.
 El correctivo se aprobó y estos comportamientos se verificaron dentro de la suite del Sprint 1: consulta la [trazabilidad y los resultados actuales](sprint-1-hu03-corrective.md). Se conserva un rol por usuario; no se añaden permisos arbitrarios ejecutables desde datos. La migración principal del correctivo se aplicó con autorización y respaldo el 13 de octubre de 2026; los casos del catálogo del Sprint 2 permanecen sin ejecutar.
 
 ## Registro de resultados
+
+La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md), relacionando requerimiento, historia, código y pruebas. CAT-03 y MED-04 verifican bloqueo y rollback con referencias simuladas; su integración con productos y atributos reales sigue pendiente. SEC-01 a SEC-04 y REG-01 se aplican únicamente a los módulos implementados. UI-01/UI-02 permanecen pendientes de aceptación en navegador.
 
 Al ejecutar, cada caso debe registrar versión/commit, precondiciones, entrada, resultado esperado, resultado obtenido, estado, fecha, responsable y evidencia. Solo los casos realmente ejecutados se contabilizarán como aprobados.
 
