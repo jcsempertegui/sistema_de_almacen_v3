@@ -23,7 +23,7 @@ Orden implementado: HU-01 (autenticación), HU-03 (roles), HU-02 (usuarios), HU-
 
 La tabla muestra la configuración inicial. Los roles y sus permisos son configurables, manteniendo un rol por usuario. No hay registro público ni rutas de eliminación. Los trabajadores son independientes de las cuentas de usuario.
 
-El [correctivo aprobado de HU-03](docs/sprint-1-hu03-corrective.md) está implementado y probado en la base exclusiva de pruebas. Sus cinco migraciones se aplicaron a la base principal el 13 de octubre de 2026 con autorización y respaldo previo, conservando los datos. La [Etapa 1 del Sprint 2: categorías y unidades de medida](docs/sprint-2-stage-1.md) se desarrolló y probó en `sprint-2/hu05-hu06`, con integración y publicación en `main` autorizadas tras revisar los resultados. Sus migraciones principales siguen pendientes de aprobación específica. Las historias siguientes no están implementadas.
+El [correctivo aprobado de HU-03](docs/sprint-1-hu03-corrective.md) está implementado y probado en la base exclusiva de pruebas. Sus cinco migraciones se aplicaron a la base principal el 13 de octubre de 2026 con autorización y respaldo previo, conservando los datos. La [Etapa 1 del Sprint 2: categorías y unidades de medida](docs/sprint-2-stage-1.md) se desarrolló y probó en `sprint-2/hu05-hu06`, con integración en `main` y tres migraciones principales aplicadas bajo autorización y respaldo el 13 de octubre de 2026. Las historias siguientes no están implementadas.
 
 ## Diagnóstico y planificación
 
@@ -35,7 +35,7 @@ El [correctivo aprobado de HU-03](docs/sprint-1-hu03-corrective.md) está implem
 
 La asociación `product_locations` y los criterios de equivalencia técnica del Sprint 2 siguen pendientes de aprobación. El correctivo de HU-03 tiene autorización independiente y no inicia ese Sprint.
 
-La autorización posterior de Etapa 1 permite únicamente HU-05/HU-06. Las rutas nuevas `/categorias` y `/unidades-de-medida` requieren las tres migraciones nuevas de esta rama; no se deben ejecutar en `sga_rio_grande` sin autorización específica. La base principal conserva el esquema del Sprint 1 durante la validación de esta etapa.
+La autorización de Etapa 1 comprende únicamente HU-05/HU-06. Las rutas `/categorias` y `/unidades-de-medida` ya tienen sus tablas y permisos en la base principal local. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`.
 
 ## Arranque local
 
@@ -47,9 +47,9 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local ya tiene las doce migraciones aplicadas, incluidas las cinco del correctivo HU-03. En otros entornos deben aplicarse las migraciones normales con autorización del responsable. El comando solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local tiene las quince migraciones aplicadas, incluidas las cinco del correctivo HU-03 y las tres de HU-05/HU-06. En otros entornos deben aplicarse las migraciones normales con autorización del responsable. El comando solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
 
-Abre `http://127.0.0.1:8000/login`. Apartados: `/panel`, `/usuarios`, `/roles`, `/trabajadores` y `/auditoria`, según permisos.
+Abre `http://127.0.0.1:8000/login`. Apartados: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias` y `/unidades-de-medida`, según permisos.
 
 **Configuración local:** `APP_KEY` se generó con autorización específica y se verificó que fuera el único cambio en `.env`. Laravel utiliza esa clave para cifrar las cookies de sesión. No regeneres una clave existente sin autorización. Las pruebas usan una clave temporal independiente.
 

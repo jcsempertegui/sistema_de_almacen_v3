@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: `categories` y `measurement_units` autorizadas e implementadas en la Etapa 1; sus migraciones se ejecutan exclusivamente en la base de pruebas y quedan pendientes en la principal.** Las demás tablas siguen siendo diseño pendiente, sin código implementado. La relación adicional `product_locations` debe aprobarse explícitamente. Este documento corresponde al [plan del Sprint 2](sprint-2.md); el [informe de Etapa 1](sprint-2-stage-1.md) distingue evidencia real y validaciones futuras.
+**Estado: `categories` y `measurement_units` implementadas y probadas en la Etapa 1; sus migraciones principales se aplicaron con autorización y respaldo el 13 de octubre de 2026.** Las pruebas automatizadas se ejecutan exclusivamente en la base de pruebas. Las demás tablas siguen siendo diseño pendiente, sin código implementado. La relación adicional `product_locations` debe aprobarse explícitamente. Este documento corresponde al [plan del Sprint 2](sprint-2.md); el [informe de Etapa 1](sprint-2-stage-1.md) distingue evidencia real y validaciones futuras.
 
 ## Convenciones comunes
 

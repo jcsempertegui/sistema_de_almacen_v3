@@ -2,13 +2,13 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: Etapa 1 implementada y probada, con integración y publicación en `main` autorizadas después de revisar sus resultados.** HU-05 y HU-06 se desarrollaron en `sprint-2/hu05-hu06`; las migraciones principales siguen pendientes de autorización específica. HU-07 a HU-10 continúan como propuesta sin implementar. Consulta [el avance y la evidencia de esta etapa](sprint-2-stage-1.md).
+**Estado: Etapa 1 implementada, probada e integrada en `main`, con las tres migraciones principales aplicadas bajo autorización y respaldo el 13 de octubre de 2026.** HU-05 y HU-06 se desarrollaron en `sprint-2/hu05-hu06`. HU-07 a HU-10 continúan como propuesta sin implementar. Consulta [el avance y la evidencia de esta etapa](sprint-2-stage-1.md).
 
 ## Objetivo y alcance
 
 Gestionar categorías, unidades de medida, atributos por categoría, productos, ubicaciones físicas y unidades individualizadas de un único almacén en Río Grande.
 
-La revisión inicial del Sprint 1 identificó la brecha de roles fijos. El correctivo HU-03 se aprobó posteriormente y su implementación, pruebas y migración principal autorizada del 13 de octubre de 2026 se describen en [el informe del correctivo](sprint-1-hu03-corrective.md). La Etapa 1 añade ocho permisos explícitos para categorías y unidades, con concesión inicial aditiva en una migración pendiente de aplicar a la base principal. No añade permisos de historias futuras ni restaura revocaciones previas.
+La revisión inicial del Sprint 1 identificó la brecha de roles fijos. El correctivo HU-03 se aprobó posteriormente y su implementación, pruebas y migración principal autorizada del 13 de octubre de 2026 se describen en [el informe del correctivo](sprint-1-hu03-corrective.md). La Etapa 1 añadió ocho permisos explícitos para categorías y unidades mediante una migración principal autorizada. No añade permisos de historias futuras ni restaura revocaciones previas.
 
 Se conservan Laravel 13, PHP 8.3, MariaDB 10.4.32, las vistas Blade y el CSS existente. No se necesitan paquetes nuevos, compilación con Vite ni actualización de Node 18.8.0.
 
