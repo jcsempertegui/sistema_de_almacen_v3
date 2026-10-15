@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05/HU-06 implementadas en Etapa 1; HU-07 implementada y probada en rama de trabajo, exclusivamente en testing. Suite completa: 185 pruebas, 1.286 verificaciones y cero errores/fallos.** Consulta la evidencia de [Etapa 1](sprint-2-stage-1.md) y [Etapa 2](sprint-2-stage-2.md). HU-08 a HU-10 siguen planificadas. La regresión incluye el [correctivo HU-03](sprint-1-hu03-corrective.md).
+**Estado: HU-05/HU-06 y HU-07 implementadas e integradas en `main`, con aplicación principal autorizada y respaldada. Las pruebas automatizadas se ejecutaron exclusivamente en testing: 185 pruebas, 1.286 verificaciones y cero errores/fallos.** Consulta la evidencia de [Etapa 1](sprint-2-stage-1.md) y [Etapa 2](sprint-2-stage-2.md), que distingue la suite de las verificaciones de solo lectura posteriores a migrar. HU-08 a HU-10 siguen planificadas. La regresión incluye el [correctivo HU-03](sprint-1-hu03-corrective.md).
 
 ## Condiciones de ejecución
 

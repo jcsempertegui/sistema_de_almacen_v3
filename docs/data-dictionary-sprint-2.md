@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: `categories` y `measurement_units` aplicadas en la base principal con autorización el 13 de octubre de 2026. `attributes` y `category_attributes` implementadas y probadas en la rama de HU-07, con migraciones aplicadas únicamente a testing.** Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md), la [Etapa 1](sprint-2-stage-1.md) y las [reglas y evidencia de Etapa 2](sprint-2-stage-2.md).
+**Estado: `categories` y `measurement_units` aplicadas en la base principal con autorización el 13 de octubre de 2026; `attributes` y `category_attributes` implementadas y probadas en HU-07 y aplicadas con autorización y respaldo el 14 de octubre de 2026.** Las pruebas automatizadas se ejecutan exclusivamente en testing. Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md), la [Etapa 1](sprint-2-stage-1.md) y las [reglas y evidencia de Etapa 2](sprint-2-stage-2.md).
 
 ## Convenciones comunes
 

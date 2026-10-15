@@ -2,7 +2,7 @@
 
 Fecha: 14 de octubre de 2026, America/La_Paz.
 
-Estado: implementación autorizada y probada en la rama `sprint-2/hu07-atributos`, basada en `31d55fb44bfba859ac537ddc81b4368b8d46c987`. Las tres migraciones principales siguen pendientes. No se ha realizado commit, merge ni push.
+Estado: HU-07 implementada, probada e integrada en `main` tras autorización del usuario. Código en `2a24a6c0332cce144bbb1d3978f665bf63723e88`, basado en `31d55fb44bfba859ac537ddc81b4368b8d46c987`. Las tres migraciones principales se aplicaron con respaldo y verificación el 14 de octubre de 2026, en el lote 5.
 
 ## Revisión y alcance aprobado
 
@@ -78,7 +78,7 @@ Resultados reales de la ejecución final:
 | Aislamiento | `sga_rio_grande_testing` confirmado antes de preparar el esquema. |
 | Testing después de ejecutar | 18 migraciones, 33 permisos, 61 vínculos, nueve auditorías; tres roles con versión 3. |
 | Fixtures después de rollback/limpieza propia | Cero usuarios, trabajadores, categorías, unidades, atributos y asociaciones en testing. |
-| Base principal | Las huellas de datos y definiciones de sus 16 tablas coinciden antes/después. Conserva 15 migraciones, 25 permisos y 43 vínculos. |
+| Base principal durante las pruebas | Las huellas de datos y definiciones de sus 16 tablas coinciden antes/después de la suite. Entonces conservaba 15 migraciones, 25 permisos y 43 vínculos; la aplicación autorizada posterior se documenta más abajo. |
 | `.env` | Huella SHA-256 conservada. |
 | Pint sobre app/rutas/tests y solo las migraciones nuevas | Aprobado. |
 | `git diff --check` | Aprobado. |
@@ -131,22 +131,56 @@ Modificados:
 - `tests/Feature/RbacSchemaTest.php`, `tests/Feature/Catalog/CatalogPermissionInitializationTest.php`, `CatalogIntegrityTest.php`: catálogos esperados 33 permisos / 61 vínculos, capacidades 33/21/7 y tablas futuras excluyendo las implementadas.
 - `docs/sprint-2.md`, `docs/data-dictionary-sprint-2.md`, `docs/sprint-2-test-matrix.md`: estado y evidencia de HU-07.
 
-## Aplicación principal pendiente
+## Aplicación principal autorizada y realizada
 
-No ejecutar estos comandos sin autorización específica para `sga_rio_grande`. Primero realizar prevalidación actualizada, verificar destino y solo estas tres pendientes, preparar respaldo SQL completo fuera del repositorio y verificarlo, registrar datos/permisos existentes y programar mantenimiento.
+El usuario autorizó la publicación y la aplicación principal después de recibir los resultados de HU-07. Se integró mediante fast-forward, sin sobrescribir cambios. La nueva prevalidación comprobó `main` limpia en el commit de implementación, las huellas de las tres migraciones, Laravel/PHP/MariaDB, la conexión Laravel y `SELECT DATABASE() = sga_rio_grande`, restricciones habilitadas y exactamente las tres migraciones pendientes.
+
+Se verificó que no hubiera workers PHP de colas/planificador ni triggers, rutinas o eventos programados. Se abrió mantenimiento y se capturó la referencia de datos/esquemas antes del respaldo. Se usó `C:\xampp\mysql\bin\mysqldump.exe`, versión MariaDB 10.4.32, con:
+
+```text
+--single-transaction --quick --skip-lock-tables --routines --events --triggers
+--hex-blob --default-character-set=utf8mb4 --skip-add-drop-table
+--databases sga_rio_grande --result-file=<ruta fuera del repositorio>
+```
+
+Respaldo conservado:
+
+- Archivo: `C:\Users\jcsem\SGA-backups\sga_rio_grande_pre_hu07_20261014_200526_89f86516.sql`.
+- Tamaño: 30.233 bytes.
+- SHA-256: `996a4b0b423b3e449b78cbafa88fe0778caee9b3963f4278149e2f015a5b8957`.
+- Manifiesto: el mismo archivo con sufijo `.manifest.json`; referencias de conservación con sufijos `.before.json` y `.after.json`.
+- Procedimiento y verificador locales: `C:\Users\jcsem\SGA-backups\prevalidacion-hu07-2026-10-14`. Están congelados al commit de implementación y no se deben reutilizar con otro código sin revisión.
+
+Integridad comprobada: código de salida 0, marca de finalización, definiciones de las 16 tablas, INSERT de todas las tablas no vacías y SHA-256. Las huellas de esquema/datos originales no cambiaron durante el respaldo. No se ejecutó un ensayo de restauración ni se alteró la base de pruebas para restaurar el dump.
+
+Comandos de aplicación utilizados:
 
 ```powershell
-php artisan down
+php artisan down --retry=60
 php artisan migrate --force --path=database/migrations/2026_10_14_000001_create_attributes_table.php --path=database/migrations/2026_10_14_000002_create_category_attributes_table.php --path=database/migrations/2026_10_14_000003_add_attribute_permissions.php
 php artisan migrate:status
 # Verificar esquema, FKs, CHECK, permisos, versiones y datos conservados.
 php artisan up
 ```
 
-El destino deberá confirmarse mediante la conexión Laravel y `SELECT DATABASE()` inmediatamente antes de la operación; `.env` no se cambia. La prevalidación de Etapa 1 exige otro commit y no se debe reutilizar como herramienta de despliegue de HU-07.
+El destino se confirmó nuevamente antes de aplicar; `.env` conservó su huella. Se ejecutaron solo las tres migraciones indicadas, no seeders generales. Los snapshots anteriores y posteriores contienen huellas y conteos, sin publicar datos de usuarios o sesiones. No se usó la prevalidación de Etapa 1, congelada a otro commit.
 
 MariaDB realiza commits implícitos en DDL: un fallo puede dejar una tabla creada sin marcar la migración. Ante un fallo, mantener mantenimiento, inspeccionar el estado y definir recuperación/restauración autorizada desde el respaldo; no ejecutar rollback destructivo, fresh, reset ni wipe. Los métodos `down()` nuevos bloquean la reversión destructiva.
 
-Después de migrar: dos tablas nuevas vacías; tres migraciones registradas; tres FKs de attributes y cuatro de category_attributes; índices únicos y CHECK presentes; los permisos previos y vínculos revocados intactos; solo ocho permisos nuevos y concesiones iniciales autorizadas. Con los tres roles actuales sin configuración previa de HU-07, el total previsto es 33 permisos, 61 vínculos y versiones 3, con tres auditorías nuevas. Los usuarios, trabajadores y datos previos deben conservar sus huellas, salvo los cambios de roles/auditoría expresamente previstos.
+Verificación posterior aprobada:
 
-Commit, merge, push y aplicación principal permanecen pendientes de autorización. HU-08 no ha comenzado.
+| Comprobación principal | Resultado real |
+|---|---|
+| Tablas y migraciones | 18 tablas, 18 migraciones, ninguna pendiente; las tres nuevas en lote 5. |
+| Nuevas entidades | `attributes` y `category_attributes` vacías; no se crearon registros de negocio automáticamente. |
+| Integridad | Siete FKs RESTRICT y 17 restricciones en ambas tablas, incluyendo PK, UNIQUE y CHECK. |
+| Esquema probado | Definiciones nuevas iguales a testing, normalizando únicamente el contador AUTO_INCREMENT. |
+| Tablas anteriores | Todas sus definiciones se conservaron, normalizando el contador AUTO_INCREMENT esperado por nuevas filas administrativas. |
+| Permisos y vínculos | 33 permisos y 61 vínculos; todas las filas anteriores de permisos/vínculos se conservaron por huella y cantidad. |
+| Roles | IDs/configuración original conservados; capacidades activas 33/21/7 y versión 3 para Administrador/Encargado/Consulta-Auditor. |
+| Auditoría | Nueve registros: seis originales conservados y tres nuevas concesiones con acción `roles.permissions_changed` y origen `migration`. |
+| Datos existentes | Usuarios, trabajadores, categorías, unidades y sesiones conservados. Cero usuarios/trabajadores/categorías/unidades; tres sesiones anteriores intactas. |
+| Seguridad de archivos | `.env` intacto; migraciones anteriores y dependencias sin modificaciones. |
+| Mantenimiento | Cerrado mediante `php artisan up` después de todas las comprobaciones; aplicación activa. |
+
+La comprobación principal fue de solo lectura después de las migraciones: no se ejecutaron pruebas automatizadas contra `sga_rio_grande`. Las 185 pruebas y 1.286 verificaciones siguen referidas a la base exclusiva y al código aprobado. La aceptación visual y HU-08 continúan pendientes; no se crearon cuentas desconocidas ni se comenzó otro módulo.

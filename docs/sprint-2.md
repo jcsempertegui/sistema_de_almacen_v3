@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: Etapa 1 implementada e integrada en `main`, con migraciones principales autorizadas del 13 de octubre de 2026. HU-07 implementada y probada en la rama `sprint-2/hu07-atributos`, con migraciones solo en testing: 185 pruebas y 1.286 verificaciones en la suite completa.** Consulta [la Etapa 1](sprint-2-stage-1.md) y [la implementación y evidencia de HU-07](sprint-2-stage-2.md). La publicación y las migraciones principales de HU-07 están pendientes de autorización. HU-08 a HU-10 siguen como propuesta sin implementar.
+**Estado: Etapa 1 y HU-07 implementadas e integradas en `main`, con sus migraciones principales aplicadas bajo autorización y respaldo el 13 y 14 de octubre de 2026, respectivamente. Suite completa: 185 pruebas y 1.286 verificaciones, exclusivamente en testing.** Consulta [la Etapa 1](sprint-2-stage-1.md) y [la implementación, respaldo y aplicación principal de HU-07](sprint-2-stage-2.md). HU-08 a HU-10 siguen como propuesta sin implementar.
 
 ## Objetivo y alcance
 
