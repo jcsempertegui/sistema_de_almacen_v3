@@ -24,7 +24,13 @@ class Role extends Model
 
     public function assignedPermissionCodes(): array
     {
-        return $this->permissions()->wherePivot('is_active', true)->orderBy('code')->pluck('code')->all();
+        $query = $this->permissions()->wherePivot('is_active', true)->orderBy('code');
+        // Mutations must not authorize from an older REPEATABLE-READ snapshot.
+        if ($this->getConnection()->transactionLevel() > 0) {
+            $query->lockForUpdate();
+        }
+
+        return $query->pluck('code')->all();
     }
 
     public const ADMINISTRATOR = 'administrador';

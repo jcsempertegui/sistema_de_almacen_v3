@@ -38,6 +38,11 @@ class MeasurementUnit extends Model
         $this->attributes['symbol'] = trim($value);
     }
 
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

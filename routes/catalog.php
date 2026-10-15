@@ -5,9 +5,19 @@ use App\Http\Controllers\Catalog\CategoryAttributeController;
 use App\Http\Controllers\Catalog\CategoryController;
 use App\Http\Controllers\Catalog\LocationController;
 use App\Http\Controllers\Catalog\MeasurementUnitController;
+use App\Http\Controllers\Catalog\ProductController;
+use App\Http\Controllers\Catalog\ProductLocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'active'])->group(function () {
+    Route::post('/productos/revisar', [ProductController::class, 'preview'])->name('products.preview');
+    Route::post('/productos/{product}/revisar', [ProductController::class, 'preview'])->name('products.preview-update');
+    Route::resource('productos', ProductController::class)->parameters(['productos' => 'product'])->names('products')->only(['index', 'create', 'store', 'show', 'edit', 'update']);
+    Route::patch('/productos/{product}/estado', [ProductController::class, 'status'])->name('products.status');
+    Route::get('/productos/{product}/ubicaciones', [ProductLocationController::class, 'index'])->name('product-locations.index');
+    Route::get('/productos/{product}/ubicaciones/create', [ProductLocationController::class, 'create'])->name('product-locations.create');
+    Route::post('/productos/{product}/ubicaciones', [ProductLocationController::class, 'store'])->name('product-locations.store');
+    Route::patch('/productos/{product}/ubicaciones/{product_location}/estado', [ProductLocationController::class, 'status'])->name('product-locations.status')->scopeBindings();
     Route::get('/ubicaciones/arbol', [LocationController::class, 'tree'])->name('locations.tree');
     Route::resource('ubicaciones', LocationController::class)->parameters(['ubicaciones' => 'location'])->names('locations')->only(['index', 'create', 'store', 'edit', 'update']);
     Route::patch('/ubicaciones/{location}/estado', [LocationController::class, 'status'])->name('locations.status');

@@ -25,7 +25,7 @@ La tabla muestra la configuración inicial. Los roles y sus permisos son configu
 
 El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07/HU-09 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md), la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md) y la [Etapa 3: ubicaciones](docs/sprint-2-stage-3.md).
 
-HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y se integró en `main`; sus dos migraciones se aplicaron a la principal con autorización y respaldo el 14 de octubre de 2026, en el lote 6. Suite completa: **221 pruebas y 1.602 verificaciones aprobadas**, exclusivamente en testing. HU-08 y HU-10 permanecen sin implementar; la aceptación visual sigue pendiente.
+HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: consulta la [Etapa 4](docs/sprint-2-stage-4.md). Sus cinco migraciones están aplicadas exclusivamente en testing y siguen pendientes en la principal. Resultado actualizado de regresión: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos. HU-10 y la aceptación visual permanecen pendientes.
 
 ## Diagnóstico y planificación
 
@@ -35,9 +35,9 @@ HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y se integró en `main`; sus
 - [Matriz de pruebas del Sprint 2](docs/sprint-2-test-matrix.md): evidencia por etapa y casos todavía planificados.
 - [Planificación global de cinco sprints](docs/global-plan.md): distribución provisional y dependencias.
 
-La asociación `product_locations` y los criterios de equivalencia técnica del Sprint 2 siguen pendientes de aprobación. El correctivo de HU-03 tiene autorización independiente y no inicia ese Sprint.
+El diseño de `product_locations`, las revisiones de valores y el control de concurrencia de HU-08 fueron aprobados. La comparación exacta de identificadores genera candidatos para revisión humana; no certifica equivalencia, no fusiona productos y no convierte unidades.
 
-Las etapas publicadas comprenden HU-05/HU-06/HU-07/HU-09. Categorías, unidades, atributos y ubicaciones ya tienen sus tablas y permisos en la base principal local, tras sus respectivas autorizaciones. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`.
+Las etapas entregadas comprenden HU-05/HU-06/HU-07/HU-09 y el código de HU-08. Categorías, unidades, atributos y ubicaciones ya tienen sus tablas y permisos en la principal; productos, valores, revisiones y asociaciones esperan su autorización de migración. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`.
 
 ## Arranque local
 
@@ -49,9 +49,11 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local tiene las 20 migraciones aplicadas, incluidas las cinco del correctivo HU-03 y las ocho de HU-05/HU-06/HU-07/HU-09; no hay pendientes. En otros entornos deben aplicarse las migraciones normales con autorización del responsable. El comando solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local conserva las 20 migraciones aplicadas, incluidas las cinco del correctivo HU-03 y las ocho de HU-05/HU-06/HU-07/HU-09. Hay cinco migraciones nuevas de HU-08 pendientes de autorización específica, prevalidación y respaldo: no ejecutar una migración general antes de esos pasos. El procedimiento limitado está en la Etapa 4. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
 
 Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
+
+Tras autorizar y aplicar las migraciones de HU-08 se habilitarán `/productos` y `/productos/{product}/ubicaciones`. Publicar el código no habilita esas tablas en la principal.
 
 **Configuración local:** `APP_KEY` se generó con autorización específica y se verificó que fuera el único cambio en `.env`. Laravel utiliza esa clave para cifrar las cookies de sesión. No regeneres una clave existente sin autorización. Las pruebas usan una clave temporal independiente.
 
@@ -70,8 +72,8 @@ Se usa exclusivamente `sga_rio_grande_testing`, que debe existir previamente, co
 
 El bootstrap rechaza configuración cacheada, valida el entorno, exige que la base exclusiva exista y genera una clave efímera. Antes de migrar, comprueba la configuración y `SELECT DATABASE()`. Aplica migraciones normales una vez por ejecución y aísla los casos con transacciones, sin `RefreshDatabase` ni `migrate:fresh`. Las pruebas de concurrencia usan procesos independientes con datos de prueba confirmados; limpian exclusivamente los identificadores o códigos únicos que crearon. HU-09 añade cuatro carreras a las dos administrativas existentes. Su informe detalla también la verificación de estilo de las migraciones nuevas, sin reformatear las anteriores.
 
-Ejecuta la suite en un solo proceso, sin pruebas paralelas sobre esa misma base.
+HU-08 añade siete carreras de productos a las seis anteriores: trece escenarios concurrentes en total. Ejecuta la suite en un solo proceso, sin pruebas paralelas sobre esa misma base.
 
 ## Restricciones
 
-El alcance implementado no incluye productos, unidades individualizadas, inventario, movimientos, remitos ni entregas. HU-08/HU-10 y los sprints posteriores requieren su propia aprobación. La auditoría se limita a cambios administrativos de acceso; los catálogos conservan autoría y fechas. No se instalan paquetes, no se actualiza Node y no se modifica `.env` sin autorización específica. MariaDB 10.4 está fuera de mantenimiento; su actualización debe planificarse antes de producción.
+El alcance implementado incluye el catálogo de productos y sus valores técnicos, con historial de revisiones, y asociaciones a ubicaciones sin cantidades. No incluye HU-10, inventario, movimientos, remitos, entregas o préstamos. La auditoría administrativa conserva su alcance de acceso; el historial técnico usa su propia tabla. No se instalan paquetes, no se actualiza Node y no se modifica `.env` sin autorización específica. MariaDB 10.4 está fuera de mantenimiento; su actualización debe planificarse antes de producción.

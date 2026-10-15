@@ -23,7 +23,7 @@ class SecurityMutation
             if ($actor) {
                 $expectedRole = $actor->role;
                 $current = User::whereKey($actor->id)->lockForUpdate()->firstOrFail();
-                $current->load('role');
+                $current->setRelation('role', Role::whereKey($current->role_id)->lockForUpdate()->first());
                 if (! $current->is_active || ! $current->role?->is_active
                     || $actor->session_version !== $current->session_version
                     || $actor->role_id !== $current->role_id

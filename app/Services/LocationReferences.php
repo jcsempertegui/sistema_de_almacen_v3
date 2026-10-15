@@ -8,6 +8,18 @@ use Illuminate\Validation\ValidationException;
 
 class LocationReferences
 {
+    public function hasActiveProductLocations(array $ids): bool
+    {
+        if (! Schema::hasTable('product_locations')) {
+            return false;
+        }
+        if (! Schema::hasColumns('product_locations', ['location_id', 'is_active'])) {
+            throw ValidationException::withMessages(['is_active' => 'No se pudo verificar la configuración de ubicaciones de productos.']);
+        }
+
+        return DB::table('product_locations')->whereIn('location_id', $ids)->where('is_active', true)->lockForUpdate()->first(['location_id']) !== null;
+    }
+
     public function hasAssignedUnits(array $ids): bool
     {
         return $this->exists('individual_units', $ids);

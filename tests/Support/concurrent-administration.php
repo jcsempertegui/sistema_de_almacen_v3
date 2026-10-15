@@ -35,8 +35,8 @@ if (trim((string) fgets(STDIN)) !== 'GO') {
 // demonstrably competes for it, rather than only running sequential actions.
 $lockWait = 0;
 DB::listen(function ($query) use (&$lockWait) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update')) {
-        $lockWait = $query->time;
+    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+        $lockWait = max($lockWait, $query->time);
         usleep(300000);
     }
 });

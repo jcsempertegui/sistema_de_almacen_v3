@@ -16,7 +16,7 @@ class AttributeReferences
         }
         $this->requireColumns('product_attribute_values', ['category_attribute_id']);
 
-        return DB::table('product_attribute_values')->where('category_attribute_id', $id)->exists();
+        return DB::table('product_attribute_values')->where('category_attribute_id', $id)->lockForUpdate()->first(['product_id']) !== null;
     }
 
     public function categoryHasIncompleteProducts(CategoryAttribute $association): bool
@@ -27,16 +27,18 @@ class AttributeReferences
         $this->requireColumns('products', ['id', 'category_id', 'is_active']);
         $products = DB::table('products')->where('category_id', $association->category_id)->where('is_active', true);
         if (! Schema::hasTable('product_attribute_values')) {
-            return $products->exists();
+            return $products->lockForUpdate()->first(['id']) !== null;
         }
         $this->requireColumns('product_attribute_values', ['product_id', 'category_attribute_id', 'is_active']);
 
-        return $products->whereNotExists(function ($query) use ($association) {
-            $query->selectRaw('1')->from('product_attribute_values')
-                ->whereColumn('product_attribute_values.product_id', 'products.id')
-                ->where('category_attribute_id', $association->id)
-                ->where('product_attribute_values.is_active', true);
-        })->exists();
+        foreach ($products->lockForUpdate()->get(['id']) as $product) {
+            if (! DB::table('product_attribute_values')->where('product_id', $product->id)
+                ->where('category_attribute_id', $association->id)->where('is_active', true)->lockForUpdate()->first(['id'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function requireColumns(string $table, array $columns): void

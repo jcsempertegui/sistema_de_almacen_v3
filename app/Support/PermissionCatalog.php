@@ -5,6 +5,10 @@ namespace App\Support;
 final class PermissionCatalog
 {
     public const LABELS = [
+        'products.view' => 'Consultar productos', 'products.create' => 'Crear productos',
+        'products.update' => 'Editar productos', 'products.change_status' => 'Cambiar estado de productos',
+        'product_locations.view' => 'Consultar ubicaciones de productos', 'product_locations.create' => 'Asociar ubicaciones a productos',
+        'product_locations.change_status' => 'Cambiar estado de ubicaciones de productos',
         'locations.view' => 'Consultar ubicaciones',
         'locations.create' => 'Crear ubicaciones',
         'locations.update' => 'Editar ubicaciones',

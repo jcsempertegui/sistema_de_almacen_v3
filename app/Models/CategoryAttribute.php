@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['attribute_id', 'is_required', 'is_identity', 'display_order', 'min_value', 'max_value', 'is_active'])]
 class CategoryAttribute extends Model
@@ -24,6 +25,11 @@ class CategoryAttribute extends Model
     public function attribute(): BelongsTo
     {
         return $this->belongsTo(CatalogAttribute::class, 'attribute_id');
+    }
+
+    public function productAttributeValues(): HasMany
+    {
+        return $this->hasMany(ProductAttributeValue::class);
     }
 
     public function creator(): BelongsTo

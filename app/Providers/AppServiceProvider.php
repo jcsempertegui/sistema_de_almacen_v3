@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\CategoryAttribute;
 use App\Models\Location;
 use App\Models\MeasurementUnit;
+use App\Models\Product;
+use App\Models\ProductLocation;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Worker;
@@ -17,6 +19,8 @@ use App\Policies\CategoryAttributePolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\LocationPolicy;
 use App\Policies\MeasurementUnitPolicy;
+use App\Policies\ProductLocationPolicy;
+use App\Policies\ProductPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\UserPolicy;
 use App\Policies\WorkerPolicy;
@@ -39,6 +43,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(Product::class, ProductPolicy::class);
+        Gate::policy(ProductLocation::class, ProductLocationPolicy::class);
         Gate::policy(User::class, UserPolicy::class);
         Gate::policy(Worker::class, WorkerPolicy::class);
         Gate::policy(Role::class, RolePolicy::class);

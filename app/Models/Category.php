@@ -31,6 +31,11 @@ class Category extends Model
         $this->attributes['name'] = trim($value);
     }
 
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

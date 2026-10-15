@@ -70,7 +70,7 @@ class LocationIntegrityTest extends TestCase
             $this->assertSame('RESTRICT', $constraint->DELETE_RULE);
         }
         $this->assertSame('InnoDB', DB::table('information_schema.TABLES')->where('TABLE_SCHEMA', DB::connection()->getDatabaseName())->where('TABLE_NAME', 'locations')->value('ENGINE'));
-        foreach (['products', 'product_attribute_values', 'product_locations', 'individual_units', 'movements'] as $table) {
+        foreach (['individual_units', 'movements'] as $table) {
             $this->assertFalse(Schema::hasTable($table));
         }
     }

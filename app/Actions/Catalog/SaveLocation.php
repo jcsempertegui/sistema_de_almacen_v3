@@ -32,6 +32,9 @@ class SaveLocation
                     throw ValidationException::withMessages(['is_storable' => 'No puedes impedir el almacenamiento mientras existan referencias de esta ubicación.']);
                 }
                 if ($target && $location->isDirty('is_active') && ! $location->is_active) {
+                    if ($this->references->hasActiveProductLocations([$location->id])) {
+                        throw ValidationException::withMessages(['is_active' => 'Desactiva primero las asociaciones activas con productos.']);
+                    }
                     if ($location->children()->where('is_active', true)->lockForUpdate()->first(['id'])) {
                         throw ValidationException::withMessages(['is_active' => 'No puedes desactivar una ubicación con hijos activos. Desactívalos primero.']);
                     }

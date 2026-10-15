@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05/HU-06/HU-07/HU-09 integradas en `main` y aplicadas a la principal con autorización y respaldo. Suite completa: 221 pruebas, 1.602 verificaciones y cero errores/fallos, exclusivamente en testing.** La comprobación principal posterior a migrar fue de solo lectura. Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen planificadas.
+**Estado al 15 de octubre de 2026: HU-08 implementada con validación aislada, junto con la regresión de HU-01 a HU-07 y HU-09: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos.** Sus cinco migraciones solo están aplicadas en testing; las 20 anteriores siguen aplicadas en la principal. Consulta [Etapa 4](sprint-2-stage-4.md). HU-10 y aceptación visual permanecen pendientes. Las evidencias históricas se conservan en [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
 
 ## Condiciones de ejecución
 
@@ -51,7 +51,7 @@ Fecha: 12 de octubre de 2026, America/La_Paz.
 | LOC-03 | Elegir un descendiente como padre | Rechazo de ciclo indirecto. | Feature. |
 | LOC-04 | Dos solicitudes intentan ciclos cruzados simultáneamente | No se forma ciclo; bloqueo/reintento o rechazo controlado. | Dos conexiones MariaDB. |
 | LOC-05 | Desactivar nodo con hijos activos o unidades asignadas | Bloqueo con motivo español. | Feature. |
-| PLC-01 | Asociar un producto a varias ubicaciones válidas | Varias asociaciones, sin cantidades. | Feature, si se aprueba tabla. |
+| PLC-01 | Asociar un producto a varias ubicaciones válidas | Varias asociaciones, sin cantidades. | Feature ejecutado en HU-08. |
 | PLC-02 | Repetir asociación o usar ubicación no almacenable/inactiva | Rechazo. | Feature y UNIQUE. |
 | PLC-03 | Desactivar asociación con unidad asignada | Bloqueo; referencia conservada. | Feature. |
 | IND-01 | Registrar unidad de producto individual | Identificador visible y único, sin movimiento de stock. | Feature. |
@@ -86,7 +86,9 @@ El correctivo se aprobó y estos comportamientos se verificaron dentro de la sui
 
 La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md). HU-07 añade su [trazabilidad y evidencia](sprint-2-stage-2.md): ATR-01/02, ASC-01/02/04, SEC-01 a SEC-04 y REG-01. ATR-03 se verifica de forma conservadora con asociaciones históricas reales, incluso sin valores; ASC-03 e impacto sobre identificación/límites usan dependencias futuras simuladas. MED-04 incorpora referencias reales a atributos. CAT-03 e integración con productos/valores reales siguen pendientes. UI-01/UI-02 requieren aceptación en navegador.
 
-HU-09 incorpora LOC-01 a LOC-05, permisos, integridad SQL y regresión; véase [Etapa 3](sprint-2-stage-3.md). LOC-04 usa dos procesos reales y comprueba la espera del mutex, incluso con un snapshot previo. LOC-05 comprueba hijos reales y carreras con creación/reactivación; la dependencia de unidades sigue simulada, sin implementar HU-10. No se consideran ejecutados los casos PRO, VAL, PLC o IND.
+HU-09 incorpora LOC-01 a LOC-05, permisos, integridad SQL y regresión; véase [Etapa 3](sprint-2-stage-3.md). LOC-04 usa dos procesos reales y comprueba la espera del mutex, incluso con un snapshot previo. LOC-05 comprueba hijos reales y carreras con creación/reactivación; la dependencia de unidades sigue simulada, sin implementar HU-10.
+
+La Etapa 4 ejecuta PRO-01 a PRO-08, VAL-01 a VAL-05 y PLC-01/02 con productos y asociaciones reales en testing. CAT-03, MED-04 y ASC-03 se integran con productos reales; ASC-03 incluye ambos endpoints de reactivación. PLC-03 se verifica mediante guard simulado: su integración con unidades reales sigue pendiente de HU-10. Se añaden revisiones históricas, integridad SQL, CSRF, versiones de edición y siete carreras nuevas. No se consideran ejecutados los casos IND ni la aceptación visual UI-01/UI-02.
 
 Al ejecutar, cada caso debe registrar versión/commit, precondiciones, entrada, resultado esperado, resultado obtenido, estado, fecha, responsable y evidencia. Solo los casos realmente ejecutados se contabilizarán como aprobados.
 

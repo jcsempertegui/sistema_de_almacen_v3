@@ -19,7 +19,7 @@ class CatalogReferences
             throw ValidationException::withMessages(['is_active' => 'No se pudo verificar una dependencia del catálogo. Revisa su esquema antes de continuar.']);
         }
 
-        return DB::table($table)->where($foreignKey, $id)->when($activeOnly, fn ($query) => $query->where('is_active', true))->exists();
+        return DB::table($table)->where($foreignKey, $id)->when($activeOnly, fn ($query) => $query->where('is_active', true))->lockForUpdate()->first([$foreignKey]) !== null;
     }
 
     public function categoryHasActiveProducts(int $id): bool

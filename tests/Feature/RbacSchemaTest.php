@@ -20,8 +20,8 @@ class RbacSchemaTest extends TestCase
         $this->assertSame([1, 2, 3], Role::whereIn('code', array_keys(Role::LABELS))->orderBy('id')->pluck('id')->all());
         $this->assertDatabaseCount('permissions', count(PermissionCatalog::LABELS));
         $this->assertCount(count(PermissionCatalog::LABELS), Role::where('code', Role::ADMINISTRATOR)->firstOrFail()->assignedPermissionCodes());
-        $this->assertCount(25, Role::where('code', Role::WAREHOUSE_MANAGER)->firstOrFail()->assignedPermissionCodes());
-        $this->assertCount(8, Role::where('code', Role::AUDITOR)->firstOrFail()->assignedPermissionCodes());
+        $this->assertCount(32, Role::where('code', Role::WAREHOUSE_MANAGER)->firstOrFail()->assignedPermissionCodes());
+        $this->assertCount(10, Role::where('code', Role::AUDITOR)->firstOrFail()->assignedPermissionCodes());
         $this->assertDatabaseCount('users', 0);
     }
 

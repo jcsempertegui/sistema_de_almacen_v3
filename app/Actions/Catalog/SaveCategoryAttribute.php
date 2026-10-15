@@ -56,10 +56,11 @@ class SaveCategoryAttribute
                     if ($target && $association->isDirty(['is_identity', 'min_value', 'max_value']) && $this->references->associationHasValues($association->id)) {
                         throw ValidationException::withMessages(['is_identity' => 'Esta configuración tiene valores históricos. Revisa el impacto antes de cambiar su identificación o sus límites.']);
                     }
-                    if (($association->isDirty('is_required') && $association->is_required) && $this->references->categoryHasIncompleteProducts($association)) {
-                        throw ValidationException::withMessages(['is_required' => 'Completa primero el atributo en todos los productos activos de la categoría.']);
-                    }
                 }
+                if ($association->is_active && $association->is_required && ($enabling || $association->isDirty('is_required')) && $this->references->categoryHasIncompleteProducts($association)) {
+                    throw ValidationException::withMessages(['is_required' => 'Completa primero el atributo en todos los productos activos de la categoría.']);
+                }
+
                 if (! $target) {
                     $association->created_by = $operator->id;
                 }

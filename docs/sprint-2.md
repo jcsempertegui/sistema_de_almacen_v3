@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05/HU-06/HU-07/HU-09 integradas en `main` y aplicadas a la principal con autorización y respaldo. HU-09 se aplicó el 14 de octubre de 2026, lote 6. Suite completa: 221 pruebas y 1.602 verificaciones aprobadas, exclusivamente en testing.** Consulta [la Etapa 1](sprint-2-stage-1.md), [la Etapa 2](sprint-2-stage-2.md) y [la Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen sin implementar.
+**Estado al 15 de octubre de 2026: HU-05/HU-06/HU-07/HU-09 aplicadas a la principal con autorización y respaldo. HU-08 implementada y validada exclusivamente en testing; sus cinco migraciones principales siguen pendientes. Regresión: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos.** Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md). HU-10 permanece sin implementar; aceptación visual pendiente.
 
 ## Objetivo y alcance
 
@@ -39,8 +39,8 @@ Las reglas sobre retiros, saldos y documentos se implementarán en sprints poste
 | Roles y permisos configurables son el requisito original | Confirmado; correctivo implementado y probado, con migración principal autorizada aplicada. |
 | El Encargado también gestiona unidades de medida | Confirmado por el usuario. |
 | Conservar un rol por usuario inicialmente | Confirmado en el alcance del correctivo HU-03. |
-| Añadir `product_locations` para la relación muchos a muchos | Propuesto; pendiente de aprobación. |
-| Aviso de posibles equivalentes con revisión humana | Propuesto; falta acordar características de identificación y tolerancias técnicas. |
+| Añadir `product_locations` para la relación muchos a muchos | Aprobado e implementado en HU-08, sin cantidades; migración principal pendiente. |
+| Aviso de posibles equivalentes con revisión humana | Aprobado e implementado mediante comparación exacta de identificadores vigentes; sin conversiones, tolerancias ni fusión automática. |
 | Numeración HU-05 a HU-10 | Provisional; contrastar con backlog académico. |
 
 ## Historias y criterios de aceptación
@@ -89,7 +89,7 @@ Como Administrador o Encargado, quiero configurar características por categorí
 
 Implementación de Etapa 2: dos migraciones de tablas y una de ocho permisos; modelos `CatalogAttribute` y `CategoryAttribute`, acciones transaccionales, Policies, FormRequests, controladores, vistas Blade y pruebas. Se conserva tipo/unidad desde cualquier asociación, incluso histórica, y se bloquea la desactivación global mientras haya asociaciones activas. Las configuraciones existentes mantienen su categoría y atributo. Límites exactos DECIMAL(18,6), con precisión de la unidad, sin FLOAT ni conversiones.
 
-La integración real con productos y valores permanece pendiente de HU-08. Los guards de obligatoriedad e impacto histórico se verifican con simulaciones claramente identificadas; la preparación de la clave única compuesta no equivale a haber implementado las FKs de valores. Véanse [decisiones, trazabilidad, pruebas y aplicación principal](sprint-2-stage-2.md).
+La Etapa 4 integra productos y valores reales en testing, incluidas FKs compuestas, bloqueo de cambios con historial y reactivación de asociaciones obligatorias con productos incompletos. La evidencia de la Etapa 2 conserva su contexto original; la ampliación y pruebas reales se documentan en [Etapa 4](sprint-2-stage-4.md).
 
 Dependencias: categorías, unidades y autorización.
 
@@ -107,7 +107,7 @@ Como Administrador o Encargado, quiero registrar manualmente productos con sus c
 - Desactivación sin borrar referencias; identidad y modalidad protegidas cuando existan unidades o historial.
 - No existe importación Excel para crear o modificar productos.
 
-Tareas: migraciones de productos/valores y asociación de ubicaciones si se aprueba, modelos, acción transaccional, Policies, formularios, filtros y comparador de coincidencias.
+Implementación de Etapa 4: cuatro tablas nuevas (productos, valores, revisiones y asociaciones de ubicaciones), una migración de siete permisos, modelos, acciones transaccionales, Policies, FormRequests, listados, formularios, ficha e historial Blade y revisión humana de coincidencias. Código inmutable y edición optimista mediante `lock_version`. Las pruebas y migraciones de esta etapa se ejecutan exclusivamente en testing; la principal conserva 20 migraciones aplicadas y requiere autorización específica para las cinco nuevas.
 
 Dependencias: categorías, unidades, atributos y ubicaciones para asignación múltiple.
 
@@ -124,7 +124,7 @@ Como Administrador o Encargado, quiero organizar sectores, estantes y gabinetes 
 
 Implementación de Etapa 3: migración de `locations` y otra de cuatro permisos; modelo y factory, Policy, FormRequests, controlador, acción transaccional y servicios de jerarquía/referencias. Listado y árbol Blade, con ruta, tipos, estado y posibilidad de almacenar. La acción reutiliza `SecurityMutation`, recarga ancestros mediante lecturas con bloqueo y detecta ciclos, incluso con nodos inactivos. Cuatro carreras de dos procesos verifican ciclos cruzados y creación/reactivación de hijos frente a desactivación del padre, incluidas lecturas previas en REPEATABLE-READ.
 
-Las dependencias con unidades/productos se simulan sin implementar HU-08/HU-10. Su integración real y la aceptación visual siguen pendientes. La integración en main y las dos migraciones principales ya se autorizaron y aplicaron; consulta [reglas, archivos, respaldo y evidencia](sprint-2-stage-3.md).
+La Etapa 4 verifica asociaciones reales con productos y bloquea la desactivación de ubicaciones con asociaciones activas. Las dependencias con unidades siguen simuladas, sin implementar HU-10; la aceptación visual permanece pendiente. La integración y aplicación principal de HU-09 se documentan en [Etapa 3](sprint-2-stage-3.md).
 
 Dependencias: autorización. Puede implementarse antes de productos.
 
@@ -159,7 +159,7 @@ La gestión del Encargado incluye unidades de medida. Esta matriz describe la co
 
 - Conservar layout, navegación y estilo del Sprint 1; mensajes y errores en español.
 - Cada catálogo: listado paginado, búsqueda, estado, creación/edición y detalle cuando corresponda.
-- Productos: filtros por categoría, unidad, modo y características, con valores tipados generados desde la categoría.
+- Productos: filtros implementados por categoría, unidad, modo y estado, y búsqueda por código/nombre/marca/referencia; valores tipados generados desde la categoría. No se incorpora en HU-08 un buscador general por valores técnicos.
 - Ubicaciones: árbol y ruta legible además del listado.
 - Unidades individualizadas: búsqueda por identificador/serie y filtros por producto/ubicación.
 - Los campos dinámicos pueden renderizarse mediante recarga del formulario con categoría seleccionada, sin nuevas dependencias de frontend.
@@ -193,7 +193,7 @@ No se crean saldos, remitos, entregas, devoluciones, movimientos o ajustes. No h
 
 | Área | Creación o modificación prevista |
 |---|---|
-| Datos | Nuevas migraciones `create_categories_table`, `create_measurement_units_table`, `create_attributes_table`, `create_category_attributes_table`, `create_products_table`, `create_product_attribute_values_table`, `create_locations_table`, `create_individual_units_table` y `create_product_locations_table` si se aprueba. |
+| Datos | Categorías, unidades, atributos y ubicaciones implementados. HU-08 añade productos, valores, revisiones, asociaciones aprobadas y permisos. Solo `create_individual_units_table` permanece como diseño futuro. |
 | Modelos | `Category`, `MeasurementUnit`, `CatalogAttribute`, `CategoryAttribute`, `Product`, `ProductAttributeValue`, `Location`, `IndividualUnit` y `ProductLocation`. |
 | Autorización | Policies del catálogo; correctivo separado de permisos; registro en `AppServiceProvider.php`. |
 | Validación | `app/Http/Requests/Catalog/`, reutilizando `SgaFormRequest`. |

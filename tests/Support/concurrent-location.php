@@ -35,8 +35,8 @@ if ($job['mode'] === 'activate' && $job['index'] === 1) {
 $target = Location::findOrFail($targetId);
 $wait = 0;
 DB::listen(function ($query) use (&$wait) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update')) {
-        $wait = $query->time;
+    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+        $wait = max($wait, $query->time);
         usleep(300000);
     }
 });

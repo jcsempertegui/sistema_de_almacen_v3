@@ -43,6 +43,11 @@ class Location extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function productLocations(): HasMany
+    {
+        return $this->hasMany(ProductLocation::class);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
