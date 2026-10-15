@@ -2,7 +2,7 @@
 
 Fecha: 15 de octubre de 2026, America/La_Paz.
 
-Estado: diseño aprobado e implementación verificada en `sprint-2/hu08-productos`, preparada para integración y publicación autorizadas. Regresión completa aprobada: **280 pruebas y 2.067 verificaciones**, sin errores ni fallos. Las cinco migraciones nuevas se aplicaron exclusivamente en `sga_rio_grande_testing`. La aplicación en la principal NO está autorizada ni ejecutada en esta etapa. La publicación del código sí fue autorizada por el usuario.
+Estado: diseño aprobado e implementación verificada en `sprint-2/hu08-productos`, integrada por avance directo en `main` y publicada en ambas ramas con autorización del usuario. Código y pruebas en `00e007a5be869b07316bad9bd8d44f84befc7a2b`; coincidencia de las referencias remotas verificada tras el push. Regresión completa aprobada: **280 pruebas y 2.067 verificaciones**, sin errores ni fallos. Las cinco migraciones nuevas se aplicaron exclusivamente en `sga_rio_grande_testing`. La aplicación en la principal NO está autorizada ni ejecutada en esta etapa.
 
 ## Punto de partida y alcance
 
