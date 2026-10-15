@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: categorías, unidades y atributos aplicados en la principal con autorización y respaldo. `locations` implementada y probada en la rama de HU-09, aplicada únicamente a testing.** La suite completa aprobó 221 pruebas y 1.602 verificaciones. Las pruebas automatizadas se ejecutan exclusivamente en testing. Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md) y las evidencias de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
+**Estado: categorías, unidades, atributos y `locations` aplicados en la principal con autorización y respaldo; HU-09 se aplicó el 14 de octubre de 2026, lote 6.** La suite completa aprobó 221 pruebas y 1.602 verificaciones. Las pruebas automatizadas se ejecutan exclusivamente en testing. Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md) y las evidencias de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
 
 ## Convenciones comunes
 

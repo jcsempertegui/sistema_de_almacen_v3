@@ -2,7 +2,7 @@
 
 Fecha: 14 de octubre de 2026, America/La_Paz.
 
-Estado: implementación aprobada y probada en `sprint-2/hu09-ubicaciones`, basada en `08783b467a43b34175a83a86e7afc908ffa72e06`. Migraciones nuevas aplicadas únicamente a `sga_rio_grande_testing`. Sin commit, merge, push ni aplicación principal.
+Estado: HU-09 implementada, probada e integrada en `main` tras autorización del usuario. Código en `1fc5aab5410f35b6a8983c1d14afd570cd660fc9`, basado en `08783b467a43b34175a83a86e7afc908ffa72e06`. Sus dos migraciones principales se aplicaron con respaldo y verificación el 14 de octubre de 2026, en el lote 6.
 
 ## Revisión previa y autorización
 
@@ -12,7 +12,7 @@ La conexión Laravel y `SELECT DATABASE()` confirmaron `sga_rio_grande`, PHP 8.3
 
 La base exclusiva ya existía con 18 migraciones, cero usuarios, aislamiento REPEATABLE-READ y sin configuración cacheada. Se capturaron las huellas SHA-256 de los datos y definiciones de todas las tablas principales y de `.env` antes de implementar.
 
-El usuario aprobó el plan técnico de HU-09. La autorización abarca implementación y pruebas aisladas; publicación y migración principal requieren autorización posterior. HU-08/HU-10, productos, valores, unidades individualizadas, movimientos, transferencias y existencias no se implementan.
+El usuario aprobó primero la implementación y pruebas aisladas de HU-09. Tras recibir los resultados, autorizó también su publicación y las dos migraciones principales. HU-08/HU-10, productos, valores, unidades individualizadas, movimientos, transferencias y existencias no se implementan.
 
 ## Modelo y esquema
 
@@ -62,7 +62,7 @@ Estas dependencias futuras se prueban mediante simulaciones explícitas. Los fut
 
 Es configuración inicial editable mediante el formulario existente de roles. La migración usa datos congelados, agrega solo permisos y vínculos ausentes a los códigos iniciales conocidos, conserva revocaciones y no concede privilegios a roles/usuarios desconocidos. No modifica permisos previos. Versiona y audita solo roles que reciben vínculos nuevos, invalidando sus sesiones anteriores. Repetirla conserva la configuración.
 
-En una base con el estado inicial verificado, el resultado previsto de HU-09 es 37 permisos, 70 vínculos y capacidades 37/25/8, con versiones 4 y tres auditorías nuevas. La base principal mantiene su configuración anterior hasta una aplicación autorizada.
+El resultado verificado de HU-09 en testing y, después de la aplicación autorizada, en la principal es 37 permisos, 70 vínculos y capacidades 37/25/8, con versiones 4 y tres auditorías nuevas. Las filas anteriores de permisos y vínculos se conservaron.
 
 ## Pantallas y consultas
 
@@ -105,12 +105,12 @@ Resultados reales de la ejecución final, sobre el código definitivo:
 | Esquema de testing | 20 migraciones; tabla locations creada y vacía al terminar. |
 | Permisos de testing | 37 permisos, 70 vínculos y 12 auditorías; versiones 4 y capacidades 37/25/8 en los roles iniciales. |
 | Fixtures finales | Cero usuarios, trabajadores, categorías, unidades, atributos, asociaciones de atributos y ubicaciones en testing. |
-| Principal | Huellas de datos y definiciones de sus 18 tablas idénticas antes/después; 18 migraciones aplicadas y solo las dos de HU-09 pendientes. |
+| Principal durante las pruebas | Huellas de datos y definiciones de sus 18 tablas idénticas antes/después de la suite. Entonces tenía 18 migraciones; la aplicación autorizada posterior se documenta más abajo. |
 | .env | SHA-256 conservado. |
 | Pint y git diff --check | Aprobados. |
 | Archivos anteriores protegidos | Sin cambios en migraciones previas, SecurityMutation ni dependencias; no se instalaron paquetes. |
 
-Evidencia JUnit local: `storage/logs/hu09-phpunit.xml`, ignorada por Git. Los casos SQL comprobaron UNIQUE, CHECK y FKs mediante operaciones inválidas rechazadas por MariaDB. El estado principal se inspeccionó únicamente con consultas de lectura y `migrate:status`; no se ejecutó ninguna prueba ni migración allí.
+Evidencia JUnit local: `storage/logs/hu09-phpunit.xml`, ignorada por Git. Los casos SQL comprobaron UNIQUE, CHECK y FKs mediante operaciones inválidas rechazadas por MariaDB. Durante la validación se inspeccionó la principal únicamente mediante consultas de lectura y `migrate:status`. Ninguna prueba automatizada se ejecutó allí; las migraciones principales se aplicaron después de una autorización separada.
 
 ### Trazabilidad
 
@@ -155,9 +155,29 @@ Modificados:
 
 No se modifican SecurityMutation, .env, dependencias, migraciones previas ni los módulos anteriores para sustituir su funcionamiento.
 
-## Migraciones principales pendientes
+## Aplicación principal autorizada y realizada
 
-No se ejecutaron sobre `sga_rio_grande`. Después de revisión y autorización específica, se deberá verificar nuevamente Git/destino/pendientes, obtener un respaldo SQL completo fuera del repositorio y verificarlo, abrir mantenimiento y aplicar únicamente:
+El 14 de octubre de 2026, después de la autorización, se guardó el código probado en el commit indicado y se integró mediante fast-forward. La prevalidación específica verificó `main` limpia, las huellas de las dos migraciones, Laravel/PHP/MariaDB, la conexión Laravel y SELECT DATABASE() = sga_rio_grande, restricciones habilitadas y exactamente las dos migraciones aprobadas pendientes.
+
+Se comprobó la ausencia de workers PHP de colas/planificador y de triggers, rutinas y eventos programados. Se abrió mantenimiento, se capturó el estado anterior y se obtuvo un respaldo con `C:\xampp\mysql\bin\mysqldump.exe`, versión MariaDB 10.4.32, usando:
+
+```text
+--single-transaction --quick --skip-lock-tables --routines --events --triggers
+--hex-blob --default-character-set=utf8mb4 --skip-add-drop-table
+--databases sga_rio_grande --result-file=<ruta fuera del repositorio>
+```
+
+Respaldo conservado fuera del repositorio:
+
+- Archivo: `C:\Users\jcsem\SGA-backups\sga_rio_grande_pre_hu09_20261014_214552_f367874d.sql`.
+- Tamaño: 40.658 bytes.
+- SHA-256: `8df4950e4d502c7a71cb658327acb6157f9eb233fd2e15433e4e6757688deaa9`.
+- Manifiesto con sufijo `.manifest.json`; referencias de conservación con sufijos `.before.json` y `.after.json`.
+- Procedimiento y verificador locales: `C:\Users\jcsem\SGA-backups\prevalidacion-hu09-2026-10-14`, congelados al commit de implementación. Los verificadores de etapas anteriores se conservaron intactos.
+
+Integridad verificada: salida 0 de mysqldump, marca de finalización, definiciones de las 18 tablas, INSERT para todas las tablas no vacías y SHA-256. Las huellas de datos/esquemas originales no cambiaron durante el respaldo. No se realizó un ensayo de restauración ni se restauró el dump sobre testing.
+
+Comandos de aplicación utilizados:
 
 ```powershell
 php artisan down --retry=60
@@ -167,8 +187,22 @@ php artisan migrate:status
 php artisan up
 ```
 
-Comprobar primero la conexión Laravel y SELECT DATABASE() = sga_rio_grande; no cambiar .env. El resultado previsto es una tabla vacía nueva, 20 migraciones aplicadas y solo las concesiones iniciales autorizadas. Comparar por huella las filas previas de permisos/vínculos y los demás datos; solo cambian versiones/fecha de roles y las nuevas filas administrativas previstas. Revisar FKs, CHECK e índices, y reabrir únicamente tras verificar.
+Se confirmó de nuevo el destino inmediatamente antes de aplicar. Se ejecutaron únicamente las dos migraciones indicadas, sin seeders generales. Después se compararon los estados anterior/posterior mediante un verificador de solo lectura y se reabrió la aplicación solo al aprobar todas las comprobaciones.
+
+| Comprobación principal | Resultado real |
+|---|---|
+| Tablas y migraciones | 19 tablas y 20 migraciones; ninguna pendiente. Las dos de HU-09 en lote 6. |
+| Ubicaciones | Tabla creada y vacía; no se inventaron registros de negocio. |
+| Integridad nueva | Tres FKs RESTRICT, PK, UNIQUE de código y dos CHECK; siete restricciones en total, con índices presentes. |
+| Esquema probado | Definición de locations igual a testing, normalizando únicamente el contador AUTO_INCREMENT. |
+| Tablas anteriores | Sus definiciones se conservaron, normalizando el contador AUTO_INCREMENT esperado por nuevas filas administrativas. |
+| Permisos y vínculos | 37 permisos y 70 vínculos; todas las filas previas conservadas por huella y cantidad. |
+| Roles | IDs y configuración original conservados; capacidades 37/25/8 y versiones 4. |
+| Auditoría | 12 registros: nueve originales intactos y tres nuevas concesiones, acción roles.permissions_changed y origen migration. |
+| Datos existentes | Usuarios, trabajadores, catálogos y las tres sesiones previas conservaron sus huellas. No se crearon cuentas reales. |
+| Archivos y entorno | .env intacto; migraciones anteriores y dependencias sin cambios. |
+| Mantenimiento | Cerrado mediante php artisan up después de la verificación. |
 
 MariaDB confirma DDL implícitamente; ante un fallo se debe inspeccionar el estado y definir recuperación autorizada, sin rollback destructivo ni reintentos ciegos. Los verificadores de etapas previas están congelados a otros commits y no deben reutilizarse como procedimiento de HU-09 sin revisión.
 
-Publicación, merge/commit/push y migración principal permanecen pendientes de autorización posterior. No se inicia HU-08 ni HU-10.
+Las 221 pruebas/1.602 verificaciones corresponden a la base exclusiva y al código aprobado. La comprobación posterior de la principal fue de solo lectura; no se ejecutaron pruebas automatizadas contra ella. La aceptación visual y HU-08/HU-10 permanecen pendientes.

@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05/HU-06/HU-07 integradas en `main` y aplicadas a la principal con autorización y respaldo. HU-09 implementada y probada en `sprint-2/hu09-ubicaciones`, con migraciones únicamente en testing. Suite completa: 221 pruebas y 1.602 verificaciones aprobadas.** Consulta [la Etapa 1](sprint-2-stage-1.md), [la Etapa 2](sprint-2-stage-2.md) y [la Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen sin implementar.
+**Estado: HU-05/HU-06/HU-07/HU-09 integradas en `main` y aplicadas a la principal con autorización y respaldo. HU-09 se aplicó el 14 de octubre de 2026, lote 6. Suite completa: 221 pruebas y 1.602 verificaciones aprobadas, exclusivamente en testing.** Consulta [la Etapa 1](sprint-2-stage-1.md), [la Etapa 2](sprint-2-stage-2.md) y [la Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen sin implementar.
 
 ## Objetivo y alcance
 
@@ -89,7 +89,7 @@ Como Administrador o Encargado, quiero configurar características por categorí
 
 Implementación de Etapa 2: dos migraciones de tablas y una de ocho permisos; modelos `CatalogAttribute` y `CategoryAttribute`, acciones transaccionales, Policies, FormRequests, controladores, vistas Blade y pruebas. Se conserva tipo/unidad desde cualquier asociación, incluso histórica, y se bloquea la desactivación global mientras haya asociaciones activas. Las configuraciones existentes mantienen su categoría y atributo. Límites exactos DECIMAL(18,6), con precisión de la unidad, sin FLOAT ni conversiones.
 
-La integración real con productos y valores permanece pendiente de HU-08. Los guards de obligatoriedad e impacto histórico se verifican con simulaciones claramente identificadas; la preparación de la clave única compuesta no equivale a haber implementado las FKs de valores. Véanse [decisiones, trazabilidad, pruebas y migraciones pendientes](sprint-2-stage-2.md).
+La integración real con productos y valores permanece pendiente de HU-08. Los guards de obligatoriedad e impacto histórico se verifican con simulaciones claramente identificadas; la preparación de la clave única compuesta no equivale a haber implementado las FKs de valores. Véanse [decisiones, trazabilidad, pruebas y aplicación principal](sprint-2-stage-2.md).
 
 Dependencias: categorías, unidades y autorización.
 
@@ -124,7 +124,7 @@ Como Administrador o Encargado, quiero organizar sectores, estantes y gabinetes 
 
 Implementación de Etapa 3: migración de `locations` y otra de cuatro permisos; modelo y factory, Policy, FormRequests, controlador, acción transaccional y servicios de jerarquía/referencias. Listado y árbol Blade, con ruta, tipos, estado y posibilidad de almacenar. La acción reutiliza `SecurityMutation`, recarga ancestros mediante lecturas con bloqueo y detecta ciclos, incluso con nodos inactivos. Cuatro carreras de dos procesos verifican ciclos cruzados y creación/reactivación de hijos frente a desactivación del padre, incluidas lecturas previas en REPEATABLE-READ.
 
-Las dependencias con unidades/productos se simulan sin implementar HU-08/HU-10. Su integración real y la aceptación visual siguen pendientes. La publicación y las dos migraciones principales requieren autorización posterior; consulta [reglas, archivos y evidencia](sprint-2-stage-3.md).
+Las dependencias con unidades/productos se simulan sin implementar HU-08/HU-10. Su integración real y la aceptación visual siguen pendientes. La integración en main y las dos migraciones principales ya se autorizaron y aplicaron; consulta [reglas, archivos, respaldo y evidencia](sprint-2-stage-3.md).
 
 Dependencias: autorización. Puede implementarse antes de productos.
 

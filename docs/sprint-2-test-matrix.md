@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05/HU-06/HU-07 integradas en `main` y aplicadas a la principal. HU-09 implementada y probada en rama de trabajo, con migraciones solo en testing. Suite completa: 221 pruebas, 1.602 verificaciones y cero errores/fallos.** Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen planificadas.
+**Estado: HU-05/HU-06/HU-07/HU-09 integradas en `main` y aplicadas a la principal con autorización y respaldo. Suite completa: 221 pruebas, 1.602 verificaciones y cero errores/fallos, exclusivamente en testing.** La comprobación principal posterior a migrar fue de solo lectura. Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen planificadas.
 
 ## Condiciones de ejecución
 

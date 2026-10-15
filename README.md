@@ -23,9 +23,9 @@ Orden implementado: HU-01 (autenticación), HU-03 (roles), HU-02 (usuarios), HU-
 
 La tabla muestra la configuración inicial. Los roles y sus permisos son configurables, manteniendo un rol por usuario. No hay registro público ni rutas de eliminación. Los trabajadores son independientes de las cuentas de usuario.
 
-El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md) y la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md).
+El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07/HU-09 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md), la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md) y la [Etapa 3: ubicaciones](docs/sprint-2-stage-3.md).
 
-HU-09 está implementada y probada en la rama `sprint-2/hu09-ubicaciones`, con sus dos migraciones aplicadas únicamente a `sga_rio_grande_testing`. Suite completa: **221 pruebas y 1.602 verificaciones aprobadas**. Su publicación y aplicación principal requieren autorización posterior. Consulta la [Etapa 3](docs/sprint-2-stage-3.md). HU-08 y HU-10 permanecen sin implementar.
+HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y se integró en `main`; sus dos migraciones se aplicaron a la principal con autorización y respaldo el 14 de octubre de 2026, en el lote 6. Suite completa: **221 pruebas y 1.602 verificaciones aprobadas**, exclusivamente en testing. HU-08 y HU-10 permanecen sin implementar; la aceptación visual sigue pendiente.
 
 ## Diagnóstico y planificación
 
@@ -37,7 +37,7 @@ HU-09 está implementada y probada en la rama `sprint-2/hu09-ubicaciones`, con s
 
 La asociación `product_locations` y los criterios de equivalencia técnica del Sprint 2 siguen pendientes de aprobación. El correctivo de HU-03 tiene autorización independiente y no inicia ese Sprint.
 
-Las etapas publicadas comprenden HU-05/HU-06/HU-07. Categorías, unidades y atributos ya tienen sus tablas y permisos en la base principal local. La autorización de implementación de HU-09 no incluye migrarla a la principal ni publicar sus cambios. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`.
+Las etapas publicadas comprenden HU-05/HU-06/HU-07/HU-09. Categorías, unidades, atributos y ubicaciones ya tienen sus tablas y permisos en la base principal local, tras sus respectivas autorizaciones. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`.
 
 ## Arranque local
 
@@ -49,9 +49,9 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local tiene las 18 migraciones aplicadas, incluidas las cinco del correctivo HU-03 y las seis de HU-05/HU-06/HU-07. Las dos nuevas de HU-09 permanecen pendientes en la principal. En otros entornos deben aplicarse las migraciones normales con autorización del responsable. El comando solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local tiene las 20 migraciones aplicadas, incluidas las cinco del correctivo HU-03 y las ocho de HU-05/HU-06/HU-07/HU-09; no hay pendientes. En otros entornos deben aplicarse las migraciones normales con autorización del responsable. El comando solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
 
-Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos` y `/categorias/{category}/atributos`, según permisos. Las pantallas `/ubicaciones` y `/ubicaciones/arbol` requieren el esquema y los permisos de HU-09; por ahora solo se validan en testing.
+Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
 
 **Configuración local:** `APP_KEY` se generó con autorización específica y se verificó que fuera el único cambio en `.env`. Laravel utiliza esa clave para cifrar las cookies de sesión. No regeneres una clave existente sin autorización. Las pruebas usan una clave temporal independiente.
 
