@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: `categories` y `measurement_units` implementadas y probadas en la Etapa 1; sus migraciones principales se aplicaron con autorización y respaldo el 13 de octubre de 2026.** Las pruebas automatizadas se ejecutan exclusivamente en la base de pruebas. Las demás tablas siguen siendo diseño pendiente, sin código implementado. La relación adicional `product_locations` debe aprobarse explícitamente. Este documento corresponde al [plan del Sprint 2](sprint-2.md); el [informe de Etapa 1](sprint-2-stage-1.md) distingue evidencia real y validaciones futuras.
+**Estado: `categories` y `measurement_units` aplicadas en la base principal con autorización el 13 de octubre de 2026. `attributes` y `category_attributes` implementadas y probadas en la rama de HU-07, con migraciones aplicadas únicamente a testing.** Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md), la [Etapa 1](sprint-2-stage-1.md) y las [reglas y evidencia de Etapa 2](sprint-2-stage-2.md).
 
 ## Convenciones comunes
 
@@ -17,7 +17,7 @@ Todas las tablas propuestas tienen:
 | `created_at` | TIMESTAMP | Marca de tiempo Eloquent. |
 | `updated_at` | TIMESTAMP | Marca de tiempo Eloquent. |
 
-InnoDB y `utf8mb4_unicode_ci`, salvo la comparación binaria del símbolo de unidad. FKs explícitas, con tipos coincidentes e índices; eliminación y modificación de claves referenciadas restringidas. Las desactivaciones conservan registros. Los códigos únicos no se reutilizan al desactivar.
+InnoDB y `utf8mb4_unicode_ci`, salvo la comparación binaria del símbolo de unidad y del código de tipo de atributo. FKs explícitas, con tipos coincidentes e índices; eliminación y modificación de claves referenciadas restringidas. Las desactivaciones conservan registros. Los códigos únicos no se reutilizan al desactivar.
 
 Los autores no se aceptan del formulario. Identificadores y códigos se normalizan en el servidor según la regla de su campo; no se normalizan arbitrariamente símbolos técnicos sensibles a mayúsculas.
 
@@ -33,7 +33,7 @@ Modelo: `Category`.
 
 Restricciones: `UNIQUE(code)`, `UNIQUE(name)`. Índice de listado `(is_active,name)`.
 
-Relaciones futuras: `hasMany(Product)` y `hasMany(CategoryAttribute)`. La relación con atributos podrá exponerse como `belongsToMany` explícito a través de `category_attributes`. En Etapa 1 solo se implementan las relaciones de autoría a `User`; `CatalogReferences` prepara verificaciones de solo lectura para dependencias futuras, sin crear sus tablas o modelos.
+Relaciones implementadas: `categoryAttributes(): hasMany(CategoryAttribute)` y autoría a `User`. `Product` sigue fuera del alcance; `CatalogReferences` prepara comprobaciones de solo lectura sin crear ese módulo.
 
 Validación: longitud, contenido no vacío, unicidad y permisos. Desactivar se bloquea cuando hay productos activos; productos históricos mantienen su referencia.
 
@@ -53,9 +53,9 @@ Dimensiones implementadas para Etapa 1: `count`, `length`, `mass`, `volume`, `ti
 
 Restricciones: `UNIQUE(code)`, `UNIQUE(symbol)`, `CHECK(decimal_places BETWEEN 0 AND 6)` y validación del conjunto de dimensiones. Índice `(is_active,name)`.
 
-Relaciones futuras: `hasMany(Product)` y `hasMany(CatalogAttribute)` por su unidad técnica. En Etapa 1 solo se implementan `creator`/`updater` hacia `User` y las verificaciones de `CatalogReferences`.
+Relaciones implementadas: `attributes(): hasMany(CatalogAttribute)` por su unidad técnica y `creator`/`updater` hacia `User`. La relación a `Product` sigue pendiente; se conservan las verificaciones de `CatalogReferences`.
 
-Validación: símbolo y dimensión válidos, precisión compatible con datos existentes. Desactivar se bloquea si la utilizan productos o atributos activos. Con cualquier referencia, incluso inactiva, no se modifican código, símbolo, dimensión o precisión; el nombre puede corregirse. Actualmente esos módulos no existen: se verifica el guard con referencias simuladas y queda pendiente su integración con datos reales cuando se implementen las historias correspondientes.
+Validación: símbolo y dimensión válidos, precisión compatible con datos existentes. Desactivar se bloquea si la utilizan productos o atributos activos. Con cualquier referencia, incluso inactiva, no se modifican código, símbolo, dimensión o precisión; el nombre puede corregirse. En HU-07 se verifica con atributos reales; la integración con productos sigue pendiente.
 
 ## 3. `attributes`
 
@@ -65,7 +65,7 @@ Modelo: `CatalogAttribute`, con tabla explícita `attributes`.
 |---|---|---|
 | `code` | VARCHAR(50) | Obligatorio, normalizado, único. |
 | `name` | VARCHAR(100) | Obligatorio. |
-| `data_type` | VARCHAR(16) | Obligatorio: `text`, `decimal`, `boolean`, `date`. |
+| `data_type` | VARCHAR(16), utf8mb4_bin | Obligatorio: `text`, `decimal`, `boolean`, `date`, códigos exactos. |
 | `measurement_unit_id` | BIGINT UNSIGNED | Opcional; FK a `measurement_units.id`. |
 | `help_text` | VARCHAR(255) | Opcional. |
 
@@ -73,7 +73,7 @@ Restricciones: `UNIQUE(code)`, conjunto válido de tipos y unidad técnica solo 
 
 Relaciones: `belongsTo(MeasurementUnit)` y `hasMany(CategoryAttribute)`.
 
-Validación: unidad activa y adecuada al dato técnico. No cambiar tipo o unidad si ya hay valores asociados. Desactivar impide nuevas capturas y conserva las definiciones y valores anteriores; verificar previamente las asociaciones activas afectadas.
+Validación implementada de HU-07: unidad activa al crear/activar; solo atributos decimales admiten unidad. Desde cualquier asociación, incluso inactiva, no se cambia tipo ni unidad, anticipando la conservación de valores históricos. Desactivar exige desactivar antes todas las asociaciones activas, sin cascada. Se puede corregir nombre/ayuda de una definición histórica inactiva conservando su unidad inactiva. No se implementa captura de valores en esta etapa.
 
 ## 4. `category_attributes`
 
@@ -91,9 +91,11 @@ Modelo: `CategoryAttribute`, con identidad propia por sus reglas y relaciones.
 
 Restricciones: `UNIQUE(category_id,attribute_id)`, `UNIQUE(id,category_id)` para la FK compuesta de valores. CHECK de booleanos y de mínimo ≤ máximo cuando ambos se informen. Índice `(category_id,is_active,display_order)` y FK de atributo.
 
-Relaciones: `belongsTo(Category)`, `belongsTo(CatalogAttribute)` y `hasMany(ProductAttributeValue)`.
+Relaciones implementadas: `belongsTo(Category)`, `belongsTo(CatalogAttribute)` y autores. La relación a `ProductAttributeValue` sigue pendiente de HU-08.
 
-Validación: categoría/atributo activos, asociación no duplicada, límites compatibles con el tipo. Convertir en obligatorio exige completar antes todos los productos activos afectados. Desactivar no borra valores; cambios de características de identificación usadas requieren análisis de impacto.
+Validación implementada: categoría/atributo/unidad activos para asociar o reactivar, asociación no duplicada aunque esté inactiva, orden entero de 0 a 65535 y límites solo decimales. Punto decimal, hasta 12 enteros y 6 decimales, precisión de la unidad respetada; ceros finales no consumen precisión significativa. Comparación exacta sin FLOAT. Mínimo y máximo permiten cero y negativos.
+
+La categoría se toma de la ruta y no se sustituye; tampoco se sustituye el atributo de una asociación existente. Los guards futuros bloquean cambios de identificación/límites con valores históricos y obligatoriedad con productos activos incompletos. Se prueban mediante simulaciones en HU-07; su integración real corresponde a HU-08. Desactivar conserva filas y referencias; no hay DELETE.
 
 ## 5. `products`
 
@@ -253,7 +255,7 @@ Las referencias de autoría a `users` se omiten del diagrama para legibilidad, p
 - CHECK mediante SQL explícito dentro de nuevas migraciones; verificar su aplicación en pruebas sobre MariaDB.
 - Usar nombres de restricciones únicos en el esquema y dentro de los límites de longitud del servidor.
 - No depender de consultas sobre JSON ni de paquetes adicionales para el esquema.
-- Categorías y unidades tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva; el resto del diseño permanece sin pruebas de implementación.
+- Categorías, unidades, atributos y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. La Etapa 2 registra 185 pruebas y 1.286 verificaciones en la suite completa; las tablas de HU-08 en adelante permanecen sin implementación.
 - Guardar códigos y valores técnicos de forma consistente, sin FLOAT ni certificación automática de equivalencias.
 - Historial y saldos posteriores deberán respetar las identidades, FKs y desactivaciones de este catálogo.
 
@@ -261,4 +263,4 @@ Referencias oficiales: [restricciones MariaDB](https://mariadb.com/docs/server/r
 
 ## Pruebas asociadas
 
-Los casos de cada tabla, las operaciones de interfaz y la matriz de autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). El informe de Etapa 1 registra los casos efectivamente ejecutados; las pruebas de HU-07 a HU-10, integración con dependencias reales y aceptación visual permanecen previstas.
+Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de [Etapa 1](sprint-2-stage-1.md) y [Etapa 2](sprint-2-stage-2.md) distinguen ejecución real de simulaciones. HU-08 a HU-10, integración con productos/valores y aceptación visual permanecen previstos.

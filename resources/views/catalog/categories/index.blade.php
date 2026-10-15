@@ -9,6 +9,7 @@
 <div class="card table-wrap"><table><thead><tr><th>Código</th><th>Nombre</th><th>Descripción</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>
 @forelse($categories as $category)
 <tr><td>{{ $category->code }}</td><td>{{ $category->name }}</td><td>{{ $category->description ?? '—' }}</td><td><span class="badge {{ $category->is_active ? '' : 'inactive' }}">{{ $category->is_active ? 'Activa' : 'Inactiva' }}</span></td><td><div class="actions">
+    @can('viewAny', \App\Models\CategoryAttribute::class)<a href="{{ route('category-attributes.index', $category) }}">Configurar atributos</a>@endcan
     @can('update', $category)<a href="{{ route('categories.edit', $category) }}">Editar</a>@endcan
     @can('changeStatus', $category)<form method="POST" action="{{ route('categories.status', $category) }}">@csrf @method('PATCH')<input type="hidden" name="is_active" value="{{ $category->is_active ? 0 : 1 }}"><button class="secondary" type="submit">{{ $category->is_active ? 'Desactivar' : 'Activar' }}</button></form>@endcan
 </div></td></tr>

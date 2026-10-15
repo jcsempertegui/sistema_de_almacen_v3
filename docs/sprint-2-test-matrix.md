@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05 y HU-06 tienen implementación y pruebas de Etapa 1; los casos de HU-07 a HU-10 continúan planificados y sin ejecutar.** Consulta [la evidencia actual de Etapa 1](sprint-2-stage-1.md). La regresión del Sprint 1 incluye el [correctivo HU-03: 74 pruebas y 475 verificaciones de su validación original](sprint-1-hu03-corrective.md), además de la ejecución conjunta de esta etapa.
+**Estado: HU-05/HU-06 implementadas en Etapa 1; HU-07 implementada y probada en rama de trabajo, exclusivamente en testing. Suite completa: 185 pruebas, 1.286 verificaciones y cero errores/fallos.** Consulta la evidencia de [Etapa 1](sprint-2-stage-1.md) y [Etapa 2](sprint-2-stage-2.md). HU-08 a HU-10 siguen planificadas. La regresión incluye el [correctivo HU-03](sprint-1-hu03-corrective.md).
 
 ## Condiciones de ejecución
 
@@ -80,11 +80,11 @@ Fecha: 12 de octubre de 2026, America/La_Paz.
 | RBAC-06 | Dos cambios administrativos concurrentes | No dejar el sistema sin acceso administrativo. |
 | RBAC-07 | Migrar desde los tres roles actuales | Identificadores y usuarios asociados conservados, sin privilegios inesperados. |
 
-El correctivo se aprobó y estos comportamientos se verificaron dentro de la suite del Sprint 1: consulta la [trazabilidad y los resultados actuales](sprint-1-hu03-corrective.md). Se conserva un rol por usuario; no se añaden permisos arbitrarios ejecutables desde datos. La migración principal del correctivo se aplicó con autorización y respaldo el 13 de octubre de 2026; los casos del catálogo del Sprint 2 permanecen sin ejecutar.
+El correctivo se aprobó y estos comportamientos se verificaron dentro de la suite del Sprint 1: consulta la [trazabilidad y sus resultados](sprint-1-hu03-corrective.md). Se conserva un rol por usuario; no se añaden permisos arbitrarios ejecutables desde datos. Su migración principal se aplicó con autorización el 13 de octubre de 2026. Las evidencias del catálogo se registran por etapa.
 
 ## Registro de resultados
 
-La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md), relacionando requerimiento, historia, código y pruebas. CAT-03 y MED-04 verifican bloqueo y rollback con referencias simuladas; su integración con productos y atributos reales sigue pendiente. SEC-01 a SEC-04 y REG-01 se aplican únicamente a los módulos implementados. UI-01/UI-02 permanecen pendientes de aceptación en navegador.
+La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md). HU-07 añade su [trazabilidad y evidencia](sprint-2-stage-2.md): ATR-01/02, ASC-01/02/04, SEC-01 a SEC-04 y REG-01. ATR-03 se verifica de forma conservadora con asociaciones históricas reales, incluso sin valores; ASC-03 e impacto sobre identificación/límites usan dependencias futuras simuladas. MED-04 incorpora referencias reales a atributos. CAT-03 e integración con productos/valores reales siguen pendientes. UI-01/UI-02 requieren aceptación en navegador.
 
 Al ejecutar, cada caso debe registrar versión/commit, precondiciones, entrada, resultado esperado, resultado obtenido, estado, fecha, responsable y evidencia. Solo los casos realmente ejecutados se contabilizarán como aprobados.
 

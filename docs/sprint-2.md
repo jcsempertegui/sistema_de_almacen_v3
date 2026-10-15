@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: Etapa 1 implementada, probada e integrada en `main`, con las tres migraciones principales aplicadas bajo autorización y respaldo el 13 de octubre de 2026.** HU-05 y HU-06 se desarrollaron en `sprint-2/hu05-hu06`. HU-07 a HU-10 continúan como propuesta sin implementar. Consulta [el avance y la evidencia de esta etapa](sprint-2-stage-1.md).
+**Estado: Etapa 1 implementada e integrada en `main`, con migraciones principales autorizadas del 13 de octubre de 2026. HU-07 implementada y probada en la rama `sprint-2/hu07-atributos`, con migraciones solo en testing: 185 pruebas y 1.286 verificaciones en la suite completa.** Consulta [la Etapa 1](sprint-2-stage-1.md) y [la implementación y evidencia de HU-07](sprint-2-stage-2.md). La publicación y las migraciones principales de HU-07 están pendientes de autorización. HU-08 a HU-10 siguen como propuesta sin implementar.
 
 ## Objetivo y alcance
 
@@ -87,7 +87,9 @@ Como Administrador o Encargado, quiero configurar características por categorí
 - Completar los productos activos antes de convertir un atributo en obligatorio.
 - Desactivar asociaciones conserva valores anteriores y evita usarlas en nuevas capturas.
 
-Tareas: dos migraciones, modelos de atributo y asociación, gestión de definiciones y asociaciones, validación de impacto, vistas y pruebas.
+Implementación de Etapa 2: dos migraciones de tablas y una de ocho permisos; modelos `CatalogAttribute` y `CategoryAttribute`, acciones transaccionales, Policies, FormRequests, controladores, vistas Blade y pruebas. Se conserva tipo/unidad desde cualquier asociación, incluso histórica, y se bloquea la desactivación global mientras haya asociaciones activas. Las configuraciones existentes mantienen su categoría y atributo. Límites exactos DECIMAL(18,6), con precisión de la unidad, sin FLOAT ni conversiones.
+
+La integración real con productos y valores permanece pendiente de HU-08. Los guards de obligatoriedad e impacto histórico se verifican con simulaciones claramente identificadas; la preparación de la clave única compuesta no equivale a haber implementado las FKs de valores. Véanse [decisiones, trazabilidad, pruebas y migraciones pendientes](sprint-2-stage-2.md).
 
 Dependencias: categorías, unidades y autorización.
 

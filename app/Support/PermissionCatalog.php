@@ -5,6 +5,14 @@ namespace App\Support;
 final class PermissionCatalog
 {
     public const LABELS = [
+        'attributes.view' => 'Consultar atributos técnicos',
+        'attributes.create' => 'Crear atributos técnicos',
+        'attributes.update' => 'Editar atributos técnicos',
+        'attributes.change_status' => 'Cambiar estado de atributos técnicos',
+        'category_attributes.view' => 'Consultar atributos por categoría',
+        'category_attributes.create' => 'Asociar atributos a categorías',
+        'category_attributes.update' => 'Editar atributos por categoría',
+        'category_attributes.change_status' => 'Cambiar estado de atributos por categoría',
         'panel.view' => 'Acceder al panel',
         'users.view' => 'Consultar usuarios',
         'users.create' => 'Crear usuarios',

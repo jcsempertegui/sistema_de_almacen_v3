@@ -6,7 +6,7 @@
     $canStatus = ! $role->exists || auth()->user()->can('changeStatus', $role);
     $canAssign = $role->exists ? auth()->user()->can('assignPermissions', $role) : auth()->user()->can('roles.assign_permissions');
     $selected = array_map('strval', old('permissions', $role->permissions()->wherePivot('is_active', true)->pluck('permissions.id')->all()));
-    $groups = ['panel' => 'Panel', 'users' => 'Usuarios', 'roles' => 'Roles y permisos', 'workers' => 'Trabajadores', 'audit' => 'Auditoría', 'categories' => 'Categorías', 'measurement_units' => 'Unidades de medida'];
+    $groups = ['attributes' => 'Atributos técnicos', 'category_attributes' => 'Atributos por categoría', 'panel' => 'Panel', 'users' => 'Usuarios', 'roles' => 'Roles y permisos', 'workers' => 'Trabajadores', 'audit' => 'Auditoría', 'categories' => 'Categorías', 'measurement_units' => 'Unidades de medida'];
 @endphp
 <h1>{{ $role->exists ? 'Configurar rol' : 'Nuevo rol' }}</h1>
 <section class="card">

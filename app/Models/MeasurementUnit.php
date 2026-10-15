@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 #[Fillable(['code', 'name', 'symbol', 'dimension', 'decimal_places', 'is_active'])]
@@ -40,6 +41,11 @@ class MeasurementUnit extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function attributes(): HasMany
+    {
+        return $this->hasMany(CatalogAttribute::class, 'measurement_unit_id');
     }
 
     public function updater(): BelongsTo
