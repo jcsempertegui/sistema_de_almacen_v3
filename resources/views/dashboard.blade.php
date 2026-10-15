@@ -5,6 +5,7 @@
 <section class="card"><h2>Bienvenido, {{ auth()->user()->name }}</h2><p>Selecciona una opción del menú para comenzar.</p></section>
 <p class="role">Rol: <strong>{{ auth()->user()->role->name }}</strong></p>
 <div class="cards">
+    @can('viewAny', \App\Models\Location::class)<section class="card"><h2>Ubicaciones</h2><p>Consulta sectores, estantes, gabinetes y su jerarquía.</p><a href="{{ route('locations.index') }}">Consultar ubicaciones</a></section>@endcan
     @can('viewAny', \App\Models\CatalogAttribute::class)<section class="card"><h2>Atributos técnicos</h2><p>Configura las definiciones técnicas y sus tipos de dato.</p><a href="{{ route('attributes.index') }}">Consultar atributos técnicos</a></section>@endcan
     @can('viewAny', \App\Models\Category::class)<section class="card"><h2>Categorías</h2><p>Organiza las categorías del almacén.</p><a href="{{ route('categories.index') }}">Consultar categorías</a></section>@endcan
     @can('viewAny', \App\Models\MeasurementUnit::class)<section class="card"><h2>Unidades de medida</h2><p>Consulta unidades, símbolos y precisión decimal.</p><a href="{{ route('measurement-units.index') }}">Consultar unidades de medida</a></section>@endcan

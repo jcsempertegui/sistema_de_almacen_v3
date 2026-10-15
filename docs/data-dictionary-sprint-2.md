@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: `categories` y `measurement_units` aplicadas en la base principal con autorización el 13 de octubre de 2026; `attributes` y `category_attributes` implementadas y probadas en HU-07 y aplicadas con autorización y respaldo el 14 de octubre de 2026.** Las pruebas automatizadas se ejecutan exclusivamente en testing. Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md), la [Etapa 1](sprint-2-stage-1.md) y las [reglas y evidencia de Etapa 2](sprint-2-stage-2.md).
+**Estado: categorías, unidades y atributos aplicados en la principal con autorización y respaldo. `locations` implementada y probada en la rama de HU-09, aplicada únicamente a testing.** La suite completa aprobó 221 pruebas y 1.602 verificaciones. Las pruebas automatizadas se ejecutan exclusivamente en testing. Las demás tablas son diseño pendiente. `product_locations` requiere aprobación explícita. Consulta el [plan](sprint-2.md) y las evidencias de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
 
 ## Convenciones comunes
 
@@ -17,7 +17,7 @@ Todas las tablas propuestas tienen:
 | `created_at` | TIMESTAMP | Marca de tiempo Eloquent. |
 | `updated_at` | TIMESTAMP | Marca de tiempo Eloquent. |
 
-InnoDB y `utf8mb4_unicode_ci`, salvo la comparación binaria del símbolo de unidad y del código de tipo de atributo. FKs explícitas, con tipos coincidentes e índices; eliminación y modificación de claves referenciadas restringidas. Las desactivaciones conservan registros. Los códigos únicos no se reutilizan al desactivar.
+InnoDB y `utf8mb4_unicode_ci`, salvo la comparación binaria del símbolo de unidad y de los códigos de tipo de atributo/ubicación. FKs explícitas, con tipos coincidentes e índices; eliminación y modificación de claves referenciadas restringidas. Las desactivaciones conservan registros. Los códigos únicos no se reutilizan al desactivar.
 
 Los autores no se aceptan del formulario. Identificadores y códigos se normalizan en el servidor según la regla de su campo; no se normalizan arbitrariamente símbolos técnicos sensibles a mayúsculas.
 
@@ -169,20 +169,24 @@ Modelo: `Location`.
 |---|---|---|
 | `code` | VARCHAR(60) | Obligatorio, normalizado, único. |
 | `name` | VARCHAR(150) | Obligatorio. |
-| `type` | VARCHAR(16) | Obligatorio: `sector`, `shelf`, `cabinet`, mostrados en español. |
+| `type` | VARCHAR(16), utf8mb4_bin | Obligatorio: `sector`, `shelf`, `cabinet`, mostrados en español. |
 | `parent_id` | BIGINT UNSIGNED | Opcional; FK a `locations.id`. |
 | `is_storable` | BOOLEAN | Obligatorio, DEFAULT 1. |
 | `description` | TEXT | Opcional. |
 
-Restricciones: `UNIQUE(code)`, CHECK de tipo y booleanos, FK propia. Índice `(parent_id,is_active,type)`.
+Restricciones implementadas: `UNIQUE(code)`, CHECK de tipo y booleanos, FK propia y dos FKs de autoría con RESTRICT. Índices `(parent_id,is_active,type)` y `(is_active,name)`. Nombre sin unicidad obligatoria; descripción con límite de formulario de 10.000 caracteres.
 
-Relaciones: `belongsTo(Location,'parent_id')`, `hasMany(Location,'parent_id')`, `hasMany(IndividualUnit)` y `belongsToMany(Product)` si se aprueba la asociación.
+Relaciones implementadas: `parent(): belongsTo(Location,'parent_id')`, `children(): hasMany(Location,'parent_id')` y autoría a usuarios. Relaciones a productos/unidades siguen pendientes; no se crean sus modelos o tablas.
 
-La FK impide padres inexistentes, pero no evita ciclos. La acción de jerarquía validará padre activo, autorreferencia y descendientes, serializando las modificaciones del árbol mediante un bloqueo común y una transacción. Un bloqueo nombrado debe incluir el nombre de la base y liberarse explícitamente; no se libera solo por COMMIT.
+La FK impide padres inexistentes, pero no evita ciclos. `SaveLocation` usa el bloqueo común de `SecurityMutation`; `LocationHierarchy` recorre ancestros con FOR UPDATE después de adquirirlo, rechaza autorreferencia/descendientes y mantiene un conjunto de visitados. Incluye nodos inactivos y no reutiliza un snapshot anterior a la espera. No se usan bloqueos nombrados ni CTE recursivas.
 
 No se plantea un CHECK que compare el ID autoincremental para resolver ciclos. Tampoco se impone una combinación rígida de tipos padre/hijo que no haya sido aprobada.
 
-Desactivar se bloquea ante hijos activos o unidades asignadas. Conservar rutas y asociaciones históricas. Una ubicación no almacenable no puede seleccionarse como destino inicial de unidades.
+Crear, cambiar padre o reactivar exige cadena de ancestros activos. Una ubicación inactiva puede corregir metadatos conservando su padre histórico inactivo; ese vínculo no se elimina al desactivar.
+
+Desactivar se bloquea ante hijos activos. `LocationReferences` prepara consultas conservadoras a las futuras asignaciones, incluidas filas inactivas que retengan ubicación; bloquea desactivación con unidades en el nodo/subárbol, cambios de padre/tipo con referencias del subárbol y deshabilitar almacenamiento con referencias propias. Estos guards se prueban mediante simulaciones; su integración real y la selección de destinos almacenables quedan pendientes de HU-08/HU-10.
+
+Se conservan IDs y relaciones existentes. El árbol/ruta representa la estructura actual, sin snapshots históricos completos ni movimientos. La edición de estructura sin referencias es configuración del catálogo; con referencias futuras se bloquean los cambios indicados. No existen rutas DELETE.
 
 ## 8. `individual_units`
 
@@ -255,7 +259,7 @@ Las referencias de autoría a `users` se omiten del diagrama para legibilidad, p
 - CHECK mediante SQL explícito dentro de nuevas migraciones; verificar su aplicación en pruebas sobre MariaDB.
 - Usar nombres de restricciones únicos en el esquema y dentro de los límites de longitud del servidor.
 - No depender de consultas sobre JSON ni de paquetes adicionales para el esquema.
-- Categorías, unidades, atributos y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. La Etapa 2 registra 185 pruebas y 1.286 verificaciones en la suite completa; las tablas de HU-08 en adelante permanecen sin implementación.
+- Categorías, unidades, atributos y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. HU-09 añade ubicaciones y su validación de jerarquía; sus resultados se registran en Etapa 3. Productos, valores, asociaciones a productos y unidades individualizadas siguen sin implementación.
 - Guardar códigos y valores técnicos de forma consistente, sin FLOAT ni certificación automática de equivalencias.
 - Historial y saldos posteriores deberán respetar las identidades, FKs y desactivaciones de este catálogo.
 
@@ -263,4 +267,4 @@ Referencias oficiales: [restricciones MariaDB](https://mariadb.com/docs/server/r
 
 ## Pruebas asociadas
 
-Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de [Etapa 1](sprint-2-stage-1.md) y [Etapa 2](sprint-2-stage-2.md) distinguen ejecución real de simulaciones. HU-08 a HU-10, integración con productos/valores y aceptación visual permanecen previstos.
+Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md) distinguen ejecución real de simulaciones. HU-08/HU-10, integración con productos/valores/unidades y aceptación visual permanecen previstos.

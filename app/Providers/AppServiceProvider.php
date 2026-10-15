@@ -6,6 +6,7 @@ use App\Models\AdministrativeAuditLog;
 use App\Models\CatalogAttribute;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
+use App\Models\Location;
 use App\Models\MeasurementUnit;
 use App\Models\Role;
 use App\Models\User;
@@ -14,6 +15,7 @@ use App\Policies\AdministrativeAuditLogPolicy;
 use App\Policies\CatalogAttributePolicy;
 use App\Policies\CategoryAttributePolicy;
 use App\Policies\CategoryPolicy;
+use App\Policies\LocationPolicy;
 use App\Policies\MeasurementUnitPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\UserPolicy;
@@ -45,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(CatalogAttribute::class, CatalogAttributePolicy::class);
         Gate::policy(CategoryAttribute::class, CategoryAttributePolicy::class);
         Gate::policy(MeasurementUnit::class, MeasurementUnitPolicy::class);
+        Gate::policy(Location::class, LocationPolicy::class);
         Gate::define('access-panel', fn (User $user) => $user->hasPermission('panel.view'));
         foreach (array_keys(PermissionCatalog::LABELS) as $code) {
             Gate::define($code, fn (User $user) => $user->hasPermission($code));

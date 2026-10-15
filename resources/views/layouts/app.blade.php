@@ -19,6 +19,7 @@
             @can('viewAny', \App\Models\Category::class)<a href="{{ route('categories.index') }}">Categorías</a>@endcan
             @can('viewAny', \App\Models\MeasurementUnit::class)<a href="{{ route('measurement-units.index') }}">Unidades de medida</a>@endcan
             @can('viewAny', \App\Models\CatalogAttribute::class)<a href="{{ route('attributes.index') }}">Atributos técnicos</a>@endcan
+            @can('viewAny', \App\Models\Location::class)<a href="{{ route('locations.index') }}">Ubicaciones</a>@endcan
             <span>{{ auth()->user()->name }}</span>
             <form method="POST" action="{{ route('logout') }}">@csrf<button class="secondary" type="submit">Cerrar sesión</button></form>
         </nav>

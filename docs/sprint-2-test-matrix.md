@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado: HU-05/HU-06 y HU-07 implementadas e integradas en `main`, con aplicación principal autorizada y respaldada. Las pruebas automatizadas se ejecutaron exclusivamente en testing: 185 pruebas, 1.286 verificaciones y cero errores/fallos.** Consulta la evidencia de [Etapa 1](sprint-2-stage-1.md) y [Etapa 2](sprint-2-stage-2.md), que distingue la suite de las verificaciones de solo lectura posteriores a migrar. HU-08 a HU-10 siguen planificadas. La regresión incluye el [correctivo HU-03](sprint-1-hu03-corrective.md).
+**Estado: HU-05/HU-06/HU-07 integradas en `main` y aplicadas a la principal. HU-09 implementada y probada en rama de trabajo, con migraciones solo en testing. Suite completa: 221 pruebas, 1.602 verificaciones y cero errores/fallos.** Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md). HU-08/HU-10 siguen planificadas.
 
 ## Condiciones de ejecución
 
@@ -85,6 +85,8 @@ El correctivo se aprobó y estos comportamientos se verificaron dentro de la sui
 ## Registro de resultados
 
 La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md). HU-07 añade su [trazabilidad y evidencia](sprint-2-stage-2.md): ATR-01/02, ASC-01/02/04, SEC-01 a SEC-04 y REG-01. ATR-03 se verifica de forma conservadora con asociaciones históricas reales, incluso sin valores; ASC-03 e impacto sobre identificación/límites usan dependencias futuras simuladas. MED-04 incorpora referencias reales a atributos. CAT-03 e integración con productos/valores reales siguen pendientes. UI-01/UI-02 requieren aceptación en navegador.
+
+HU-09 incorpora LOC-01 a LOC-05, permisos, integridad SQL y regresión; véase [Etapa 3](sprint-2-stage-3.md). LOC-04 usa dos procesos reales y comprueba la espera del mutex, incluso con un snapshot previo. LOC-05 comprueba hijos reales y carreras con creación/reactivación; la dependencia de unidades sigue simulada, sin implementar HU-10. No se consideran ejecutados los casos PRO, VAL, PLC o IND.
 
 Al ejecutar, cada caso debe registrar versión/commit, precondiciones, entrada, resultado esperado, resultado obtenido, estado, fecha, responsable y evidencia. Solo los casos realmente ejecutados se contabilizarán como aprobados.
 

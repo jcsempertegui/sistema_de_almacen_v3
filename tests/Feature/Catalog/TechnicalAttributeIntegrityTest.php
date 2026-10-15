@@ -116,7 +116,7 @@ class TechnicalAttributeIntegrityTest extends TestCase
         $indexes = DB::select('SHOW INDEX FROM category_attributes');
         $composite = array_filter($indexes, fn ($row) => $row->Key_name === 'category_attributes_id_category_id_unique');
         $this->assertSame(['id', 'category_id'], array_values(array_map(fn ($row) => $row->Column_name, $composite)));
-        foreach (['products', 'product_attribute_values', 'locations', 'individual_units', 'product_locations'] as $table) {
+        foreach (['products', 'product_attribute_values', 'individual_units', 'product_locations'] as $table) {
             $this->assertFalse(Schema::hasTable($table));
         }
         $this->assertDatabaseCount('attributes', 0);

@@ -1,15 +1,15 @@
 # Planificación global de cinco sprints
 
-Fecha de revisión: 12 de octubre de 2026, America/La_Paz.
+Fecha de revisión: 14 de octubre de 2026, America/La_Paz.
 
-Estado: propuesta para aprobación. No se encontró un backlog global anterior documentado en el repositorio; la distribución debe contrastarse con la planificación académica existente, si la hubiera. Publicar este documento no autoriza implementar las funcionalidades pendientes.
+Estado: planificación general con avances aprobados y verificados por etapas. La distribución global debe contrastarse con la planificación académica existente, si la hubiera. Publicar este documento no autoriza implementar las funcionalidades pendientes.
 
 ## Distribución propuesta
 
 | Sprint | Objetivo | Alcance | Estado |
 |---|---|---|---|
 | 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Correctivo HU-03 implementado, probado y migrado con autorización; primer administrador y aceptación visual pendientes. |
-| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06 implementadas, probadas y migradas a la principal con autorización y respaldo. HU-07 a HU-10 sin implementar. |
+| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06/HU-07 integradas en main y aplicadas a la principal con autorización y respaldo. HU-09 implementada y probada en rama de trabajo, migrada solo en testing; suite completa: 221 pruebas/1.602 verificaciones. HU-08/HU-10 sin implementar. |
 | 3 | Recepción y existencias | Recepción, remitos y existencias por ubicación, con movimientos únicos por documento confirmado. | Planificación general; sin especificación detallada ni implementación. |
 | 4 | Entregas y préstamos | Entregas, préstamos y devoluciones; retiro por ubicaciones seleccionadas manualmente. | Planificación general; sin implementar. |
 | 5 | Control y cierre | Ajustes/anulaciones autorizadas, reportes, auditoría, regresión y documentación académica final. | Planificación general; sin implementar. |
@@ -49,7 +49,7 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 ## Decisiones pendientes
 
 1. Revisar los [resultados del correctivo HU-03](sprint-1-hu03-corrective.md), cuya migración principal ya se aplicó con autorización, y configurar el primer administrador. Se conserva un único rol por usuario según el alcance aprobado.
-2. Aprobar el Sprint 2 y la asociación `product_locations`.
+2. Revisar la [Etapa 3 de HU-09](sprint-2-stage-3.md) y autorizar por separado su publicación y migración principal. Aprobar las siguientes etapas del Sprint 2 y la asociación `product_locations` antes de implementarlas.
 3. Acordar criterios técnicos para comparar productos equivalentes y tratamiento de coincidencias.
 4. Confirmar la numeración provisional HU-05 a HU-10 con el backlog académico.
 5. Refinar los sprints 3 a 5 antes de programarlos.
