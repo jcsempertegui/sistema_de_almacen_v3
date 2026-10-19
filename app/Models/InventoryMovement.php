@@ -28,6 +28,36 @@ class InventoryMovement extends Model
         return $this->belongsTo(InventoryDocumentLine::class, 'document_line_id');
     }
 
+    public function deliveryLine(): BelongsTo
+    {
+        return $this->belongsTo(MaterialDeliveryLine::class, 'delivery_line_id');
+    }
+
+    public function loanItem(): BelongsTo
+    {
+        return $this->belongsTo(ToolLoanItem::class, 'loan_item_id');
+    }
+
+    public function returnItem(): BelongsTo
+    {
+        return $this->belongsTo(ToolReturnItem::class, 'return_item_id');
+    }
+
+    public function getOriginAttribute(): InventoryDocumentLine|MaterialDeliveryLine|ToolLoanItem|ToolReturnItem
+    {
+        return $this->document_line_id !== null ? $this->line : ($this->delivery_line_id !== null ? $this->deliveryLine : ($this->loan_item_id !== null ? $this->loanItem : $this->returnItem));
+    }
+
+    public function getOriginKindAttribute(): string
+    {
+        return $this->document_line_id !== null ? 'inventory-documents' : ($this->delivery_line_id !== null ? 'deliveries' : ($this->loan_item_id !== null ? 'loans' : 'returns'));
+    }
+
+    public function getIdentifiersAttribute(): string
+    {
+        return in_array($this->origin_kind, ['inventory-documents', 'deliveries'], true) ? $this->origin->units->pluck('identifier')->join(', ') : $this->origin->unit->identifier;
+    }
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

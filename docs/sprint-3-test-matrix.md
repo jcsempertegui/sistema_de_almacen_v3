@@ -42,4 +42,6 @@ Ejecución focalizada congelada: **33 pruebas/218 aserciones, sin fallos**. Carr
 
 Guion humano: [sprint-3-acceptance.md](sprint-3-acceptance.md), íntegramente pendiente. No se crearon datos de aceptación ni se ejecutó navegador para el Sprint 3.
 
+Seguimiento local autorizado durante Sprint 4: se añadieron `InitialStockCsvBoundaryTest` y diagnóstico por fase en `ProductConcurrencyTest`. La tanda de siete casos CSV y siete carreras pasó con 14 pruebas/168 aserciones. Se corrigió el rechazo de NUL antes de `trim`. La causa original de TEST-S3-01 sigue sin determinarse; estos resultados no sustituyen retrospectivamente la regresión histórica ni la aceptación humana. Véase [matriz S4](sprint-4-test-matrix.md).
+
 Resultado final: los **44 casos nuevos de inventario pasaron** en la suite completa. El escenario `ProductConcurrencyTest/stale edit` superó su timeout de 120 segundos. Pasó al repetirlo (1 prueba/15 aserciones) y al repetir el grupo completo (7 pruebas/99 aserciones), sin cambios de código o límites. Causa no determinada; conservar la reserva de estabilidad. [JSON y JUnit](evidence/sprint-3-implementation.json) registran el error y los resultados reales por separado.

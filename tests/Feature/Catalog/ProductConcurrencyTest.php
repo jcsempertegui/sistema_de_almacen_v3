@@ -5,6 +5,7 @@ namespace Tests\Feature\Catalog;
 use PDO;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
+use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\InputStream;
 use Symfony\Component\Process\Process;
 use Tests\TestCase;
@@ -66,12 +67,21 @@ class ProductConcurrencyTest extends TestCase
                 $processes[] = $process;
                 $streams[] = $stream;
             }
-            $await = function (callable $ready) use (&$processes): void {
+            $phase = 'arranque';
+            $started = microtime(true);
+            $await = function (callable $ready) use (&$processes, &$phase, $started, $pdo): void {
                 do {
                     foreach ($processes as $process) {
-                        $process->checkTimeout();
+                        try {
+                            $process->checkTimeout();
+                        } catch (ProcessTimedOutException $e) {
+                            $diagnostics = ['phase' => $phase, 'elapsed' => microtime(true) - $started,
+                                'workers' => array_map(fn ($p) => ['stdout' => $p->getOutput(), 'stderr' => $p->getErrorOutput(), 'running' => $p->isRunning()], $processes),
+                                'waits' => $pdo->query('SELECT * FROM information_schema.INNODB_LOCK_WAITS')->fetchAll(PDO::FETCH_ASSOC)];
+                            throw new \RuntimeException(json_encode($diagnostics, JSON_THROW_ON_ERROR), previous: $e);
+                        }
                         if (! $process->isRunning() && ! str_contains($process->getOutput(), 'RESULT:')) {
-                            $this->fail($process->getErrorOutput());
+                            $this->fail($phase.': '.$process->getOutput().' '.$process->getErrorOutput());
                         }
                     }
                     if ($ready()) {
@@ -81,14 +91,19 @@ class ProductConcurrencyTest extends TestCase
             };
             $await(fn () => count(array_filter($processes, fn ($p) => str_contains($p->getOutput(), 'READY'))) === 2);
             $streams[0]->write("GO\n");
+            $phase = 'mutex del ganador';
             $await(fn () => str_contains($processes[0]->getOutput(), 'LOCKED'));
             $streams[1]->write("GO\n");
             $streams[1]->close();
             preg_match('/CONNECTION_ID:([0-9]+)/', $processes[1]->getOutput(), $connectionMatch);
             $waitingConnection = (int) ($connectionMatch[1] ?? 0);
             $this->assertGreaterThan(0, $waitingConnection);
+            $phase = 'espera SQL del competidor';
             // Release the winner only AFTER MariaDB confirms the second connection is blocked.
-            $await(function () use ($pdo, $waitingConnection) {
+            $await(function () use ($pdo, $waitingConnection, &$processes) {
+                if (! $processes[1]->isRunning()) {
+                    $this->fail('El competidor terminó antes de observar su bloqueo: '.$processes[1]->getOutput().' '.$processes[1]->getErrorOutput());
+                }
                 $q = $pdo->prepare('SELECT COUNT(*) FROM information_schema.INNODB_LOCK_WAITS w JOIN information_schema.INNODB_TRX t ON t.trx_id=w.requesting_trx_id WHERE t.trx_mysql_thread_id=?');
                 $q->execute([$waitingConnection]);
 
@@ -97,6 +112,7 @@ class ProductConcurrencyTest extends TestCase
             usleep(150000); // Keep the measured wait >=100 ms without depending on process scheduling.
             $streams[0]->write("RELEASE\n");
             $streams[0]->close();
+            $phase = 'finalización tras RELEASE';
             $await(fn () => ! $processes[0]->isRunning() && ! $processes[1]->isRunning());
             foreach ($processes as $i => $process) {
                 $this->assertSame(0, $process->wait(), $process->getErrorOutput());

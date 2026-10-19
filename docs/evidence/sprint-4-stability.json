@@ -1,0 +1,35 @@
+{
+  "method": "Windows System Power-Troubleshooter event 1 SleepTime/WakeTime; approximate testcase windows from original JUnit file mtime and ordered testcase durations",
+  "correlations": [
+    {
+      "incident": "TEST-S3-01",
+      "case": "test_concurrent_writers_revalidate_current_state_after_the_mutex with data set \"stale edit\"",
+      "seconds": 882.55847,
+      "estimated_start_utc": "2026-10-19T17:34:07.753670+00:00",
+      "estimated_end_utc": "2026-10-19T17:48:50.312140+00:00",
+      "overlapping_host_sleep": [
+        {
+          "sleep_utc": "2026-10-19T17:34:09.0788915Z",
+          "wake_utc": "2026-10-19T17:48:25.2069331Z"
+        }
+      ],
+      "junit_sha256": "bfefff58768e776a152d83035d82d7a622c2afe97733bd6d28913ee4176df407"
+    },
+    {
+      "incident": "S4-return-retry",
+      "case": "test_atomic_current_state_under_real_sql_wait with data set \"return retry\"",
+      "seconds": 1593.072741,
+      "estimated_start_utc": "2026-10-19T20:54:24.429310+00:00",
+      "estimated_end_utc": "2026-10-19T21:20:57.502051+00:00",
+      "overlapping_host_sleep": [
+        {
+          "sleep_utc": "2026-10-19T20:54:17.4907581Z",
+          "wake_utc": "2026-10-19T21:20:31.4071494Z"
+        }
+      ],
+      "junit_sha256": "fd1aaaa6425147541070a3c6019fe116976e7b2294ea0709fb72f337d989e1eb"
+    }
+  ],
+  "finding": "Both timeout cases overlap host suspension. No application deadlock demonstrated. Historical reports are retained unchanged.",
+  "mitigation": "Temporary per-thread ES_CONTINUOUS|ES_SYSTEM_REQUIRED execution request during test command, restoring previous state in finally; no power-plan or execution-policy changes; timeouts unchanged."
+}

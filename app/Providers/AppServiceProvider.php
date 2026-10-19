@@ -9,10 +9,13 @@ use App\Models\CategoryAttribute;
 use App\Models\IndividualUnit;
 use App\Models\InventoryDocument;
 use App\Models\Location;
+use App\Models\MaterialDelivery;
 use App\Models\MeasurementUnit;
 use App\Models\Product;
 use App\Models\ProductLocation;
 use App\Models\Role;
+use App\Models\ToolLoan;
+use App\Models\ToolReturn;
 use App\Models\User;
 use App\Models\Worker;
 use App\Policies\AdministrativeAuditLogPolicy;
@@ -22,10 +25,13 @@ use App\Policies\CategoryPolicy;
 use App\Policies\IndividualUnitPolicy;
 use App\Policies\InventoryDocumentPolicy;
 use App\Policies\LocationPolicy;
+use App\Policies\MaterialDeliveryPolicy;
 use App\Policies\MeasurementUnitPolicy;
 use App\Policies\ProductLocationPolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\ToolLoanPolicy;
+use App\Policies\ToolReturnPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\WorkerPolicy;
 use App\Support\PermissionCatalog;
@@ -47,6 +53,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        foreach ([MaterialDelivery::class => MaterialDeliveryPolicy::class, ToolLoan::class => ToolLoanPolicy::class, ToolReturn::class => ToolReturnPolicy::class] as $model => $policy) {
+            Gate::policy($model, $policy);
+        }
         Gate::policy(InventoryDocument::class, InventoryDocumentPolicy::class);
         Gate::policy(IndividualUnit::class, IndividualUnitPolicy::class);
         Gate::policy(Product::class, ProductPolicy::class);

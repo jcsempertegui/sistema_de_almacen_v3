@@ -37,8 +37,13 @@ class InitialStockCsv
                     $this->fail("Fila {$number}: se requieren cuatro columnas.");
                 }
                 foreach ($row as &$value) {
-                    $value = trim($value ?? '');
-                    if (! mb_check_encoding($value, 'UTF-8') || preg_match('/^[=+@]/', $value) || str_contains($value, "\0")) {
+                    // trim() removes NUL too: reject it before normalization.
+                    $value ??= '';
+                    if (! mb_check_encoding($value, 'UTF-8') || str_contains($value, "\0")) {
+                        $this->fail("Fila {$number}: usa texto UTF-8 sin fórmulas ni caracteres de control.");
+                    }
+                    $value = trim($value);
+                    if (preg_match('/^[=+@]/', $value)) {
                         $this->fail("Fila {$number}: usa texto UTF-8 sin fórmulas ni caracteres de control.");
                     }
                 }

@@ -25,6 +25,10 @@
             @can('viewAny', \App\Models\InventoryDocument::class)<a href="{{ route('inventory-documents.index') }}">Remitos y aperturas</a>@endcan
             @can('stock.view')<a href="{{ route('stock.index') }}">Existencias</a>@endcan
             @can('movements.view')<a href="{{ route('movements.index') }}">Movimientos</a>@endcan
+            @foreach(\App\Support\WorkerOperationTypes::LABELS as $kind => $label)
+                @can($kind.'.view')<a href="{{ route('worker-operations.index', $kind) }}">{{ $label }}</a>@endcan
+            @endforeach
+            @can('availability.view')<a href="{{ route('availability.index') }}">Disponibilidad</a>@endcan
             <span>{{ auth()->user()->name }}</span>
             <form method="POST" action="{{ route('logout') }}">@csrf<button class="secondary" type="submit">Cerrar sesión</button></form>
         </nav>

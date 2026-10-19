@@ -61,8 +61,8 @@ class InventoryIntegrityTest extends TestCase
 
     public function test_new_permissions_preserve_revocations_unknown_roles_and_initial_configuration(): void
     {
-        $this->assertDatabaseCount('permissions', 62);
-        $this->assertDatabaseCount('permission_role', 126);
+        $this->assertDatabaseCount('permissions', 81);
+        $this->assertDatabaseCount('permission_role', 166);
         $this->assertContains('initial_stock.confirm', Role::findOrFail(1)->assignedPermissionCodes());
         $this->assertNotContains('initial_stock.confirm', Role::findOrFail(2)->assignedPermissionCodes());
         foreach (array_keys(InventoryPermissions::LABELS) as $code) {

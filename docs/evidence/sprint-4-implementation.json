@@ -1,0 +1,276 @@
+{
+  "base_commit": "cd7b4eabc031",
+  "branch": "feature/sprint-4-worker-operations",
+  "implementation_status": "implemented_locally_tested_not_published_not_deployed",
+  "single_clean_full_suite_claimed": true,
+  "full_suite_source_files_frozen": 323,
+  "source_hashes_unchanged_after_final_suite": true,
+  "executions": {
+    "stage-1.xml": {
+      "tests": 14,
+      "assertions": 168,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 140.177787,
+      "sha256": "19c64151654ba24dadaa48604a6143b15e54c67cdf2b5a5d79a7b2e8950b5e95"
+    },
+    "schema.xml": {
+      "tests": 1,
+      "assertions": 5,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 4.003059,
+      "sha256": "a1389974e5c7802588397278d15e8f25b58d068323e7f5ea9ceb530a5b498241"
+    },
+    "deliveries.xml": {
+      "tests": 5,
+      "assertions": 16,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 4.964994,
+      "sha256": "8cfaf60e71f66cf92afb8953118124b0c968a2d2868bbf5cc4ab2d241f7e67ac"
+    },
+    "loans.xml": {
+      "tests": 7,
+      "assertions": 24,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 5.171923,
+      "sha256": "c4714ec6c9d017802659f718fa40569c691eb2efc20a21f2e19d6c98c6b5330e"
+    },
+    "returns.xml": {
+      "tests": 5,
+      "assertions": 25,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 6.63468,
+      "sha256": "da34f0a07028b784425ba9c7b163fd0626c28a463db29a043e10a45d867b6c50"
+    },
+    "http.xml": {
+      "tests": 4,
+      "assertions": 41,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 18.70417,
+      "sha256": "be85bff437ac6235022ec5a8255e7009c5029e99a4d61b2d602d300b35995dcd"
+    },
+    "concurrency.xml": {
+      "tests": 9,
+      "assertions": 36,
+      "errors": 9,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 3.824625,
+      "sha256": "761296024a20a2f25208b90d6d0b2677542f390cdbd37f4bfc822a5090e7d8df"
+    },
+    "concurrency-recheck.xml": {
+      "tests": 9,
+      "assertions": 135,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 100.965173,
+      "sha256": "bf3da22ccbab43e7451fded78a948169cddab4c98fc7604cc284c1bf9d54c8b5"
+    },
+    "targeted-expanded.xml": {
+      "tests": 14,
+      "assertions": 114,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 21.983849,
+      "sha256": "fcb83b59c6418914abb69942a1da52bf718ff720ebc4558f7174ffca26639748"
+    },
+    "regression.xml": {
+      "tests": 399,
+      "assertions": 3121,
+      "errors": 1,
+      "failures": 3,
+      "skipped": 0,
+      "seconds": 2478.713337,
+      "sha256": "fd1aaaa6425147541070a3c6019fe116976e7b2294ea0709fb72f337d989e1eb"
+    },
+    "stability-targeted.xml": {
+      "tests": 47,
+      "assertions": 400,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 273.485462,
+      "sha256": "c28d44a0ad12b2170d9008202e006bddcdf8cf368418040868c25f89a320ffd4"
+    },
+    "regression-final.xml": {
+      "tests": 401,
+      "assertions": 3143,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 915.473326,
+      "sha256": "a8888e60a383b8aaaf2ee757cd6e4f577281bde99a3a4391906f1f06a2d06675"
+    }
+  },
+  "main": {
+    "database": "sga_rio_grande",
+    "tables": 31,
+    "counts": {
+      "administrative_audit_logs": 21,
+      "attributes": 0,
+      "cache": 0,
+      "cache_locks": 0,
+      "categories": 0,
+      "category_attributes": 0,
+      "failed_jobs": 0,
+      "individual_units": 0,
+      "individual_unit_positions": 0,
+      "initial_stock_products": 0,
+      "inventory_documents": 0,
+      "inventory_document_lines": 0,
+      "inventory_document_line_units": 0,
+      "inventory_movements": 0,
+      "jobs": 0,
+      "job_batches": 0,
+      "locations": 0,
+      "measurement_units": 0,
+      "migrations": 29,
+      "password_reset_tokens": 0,
+      "permissions": 62,
+      "permission_role": 126,
+      "products": 0,
+      "product_attribute_values": 0,
+      "product_attribute_value_revisions": 0,
+      "product_locations": 0,
+      "roles": 3,
+      "sessions": 3,
+      "stock_positions": 0,
+      "users": 0,
+      "workers": 0
+    },
+    "foreign_keys": 63,
+    "checks": 44,
+    "unique_indexes_including_primary": 63,
+    "roles": [
+      {
+        "code": "administrador",
+        "permissions_version": 7,
+        "active_permissions": 62
+      },
+      {
+        "code": "encargado",
+        "permissions_version": 7,
+        "active_permissions": 49
+      },
+      {
+        "code": "consulta_auditor",
+        "permissions_version": 7,
+        "active_permissions": 15
+      }
+    ]
+  },
+  "testing": {
+    "database": "sga_rio_grande_testing",
+    "tables": 42,
+    "counts": {
+      "administrative_audit_logs": 24,
+      "attributes": 0,
+      "cache": 0,
+      "cache_locks": 0,
+      "categories": 0,
+      "category_attributes": 0,
+      "failed_jobs": 0,
+      "individual_units": 0,
+      "individual_unit_custodies": 0,
+      "individual_unit_positions": 0,
+      "initial_stock_products": 0,
+      "inventory_documents": 0,
+      "inventory_document_lines": 0,
+      "inventory_document_line_units": 0,
+      "inventory_movements": 0,
+      "jobs": 0,
+      "job_batches": 0,
+      "loan_item_settlements": 0,
+      "locations": 0,
+      "material_deliveries": 0,
+      "material_delivery_lines": 0,
+      "material_delivery_line_units": 0,
+      "measurement_units": 0,
+      "migrations": 35,
+      "password_reset_tokens": 0,
+      "permissions": 81,
+      "permission_role": 166,
+      "products": 0,
+      "product_attribute_values": 0,
+      "product_attribute_value_revisions": 0,
+      "product_locations": 0,
+      "return_regularization_authorizations": 0,
+      "return_regularization_events": 0,
+      "roles": 3,
+      "sessions": 0,
+      "stock_positions": 0,
+      "tool_loans": 0,
+      "tool_loan_items": 0,
+      "tool_returns": 0,
+      "tool_return_items": 0,
+      "users": 0,
+      "workers": 0
+    },
+    "foreign_keys": 110,
+    "checks": 71,
+    "unique_indexes_including_primary": 100,
+    "roles": [
+      {
+        "code": "administrador",
+        "permissions_version": 8,
+        "active_permissions": 81
+      },
+      {
+        "code": "encargado",
+        "permissions_version": 8,
+        "active_permissions": 66
+      },
+      {
+        "code": "consulta_auditor",
+        "permissions_version": 8,
+        "active_permissions": 19
+      }
+    ]
+  },
+  "main_applied_migrations": 29,
+  "testing_applied_migrations": 35,
+  "main_pending_migrations": [
+    "2026_10_19_000003_create_worker_operation_documents",
+    "2026_10_19_000004_create_return_regularizations",
+    "2026_10_19_000005_extend_inventory_movement_sources",
+    "2026_10_19_000006_create_loan_custodies_and_settlements",
+    "2026_10_19_000007_extend_individual_unit_position_sources",
+    "2026_10_19_000008_add_worker_operation_permissions"
+  ],
+  "testing_pending_migrations": [],
+  "main_all_previous_tables_data_hashes_match": true,
+  "env_unchanged": true,
+  "old_migrations_unchanged": true,
+  "dependencies_changed": false,
+  "integrity_violations": 0,
+  "cross_schema_foreign_keys": 0,
+  "testing_business_fixtures_remaining": {},
+  "human_browser_acceptance": "pending_not_executed",
+  "main_migrations_executed": false,
+  "main_backup_created": false,
+  "real_accounts_created": false,
+  "commit_created": false,
+  "merge_executed": false,
+  "push_executed": false,
+  "sprint5_started": false,
+  "stability_evidence": "sprint-4-stability.json",
+  "artifacts": {
+    "frozen-source.json": "281eab9f65e3e37820ad5e0f3974cc0f940e70bb0ee7e11efc82ab30826c2f77",
+    "regression-final.xml": "a8888e60a383b8aaaf2ee757cd6e4f577281bde99a3a4391906f1f06a2d06675",
+    "stability-targeted.xml": "c28d44a0ad12b2170d9008202e006bddcdf8cf368418040868c25f89a320ffd4",
+    "stage-1.xml": "19c64151654ba24dadaa48604a6143b15e54c67cdf2b5a5d79a7b2e8950b5e95"
+  }
+}

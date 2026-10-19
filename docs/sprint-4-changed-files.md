@@ -1,0 +1,99 @@
+# Sprint 4 ? Archivos nuevos y modificados
+
+Base: `cd7b4eabc031`. Rama: `feature/sprint-4-worker-operations`. Sin commit, merge o push.
+
+Listado del resultado local. Las seis migraciones son nuevas; las 29 anteriores no se modificaron. Los JUnit y JSON son evidencia de ejecuciones, no aceptaci?n humana.
+
+Total: **89 archivos** (24 modificados, 65 nuevos).
+
+| Estado | Archivo |
+|---|---|
+| Modificado | [README.md](../README.md) |
+| Nuevo | [app/Actions/Deliveries/ConfirmDelivery.php](../app/Actions/Deliveries/ConfirmDelivery.php) |
+| Nuevo | [app/Actions/Deliveries/SaveDelivery.php](../app/Actions/Deliveries/SaveDelivery.php) |
+| Modificado | [app/Actions/Inventory/ConfirmInventoryDocument.php](../app/Actions/Inventory/ConfirmInventoryDocument.php) |
+| Nuevo | [app/Actions/Loans/ConfirmLoan.php](../app/Actions/Loans/ConfirmLoan.php) |
+| Nuevo | [app/Actions/Loans/SaveLoan.php](../app/Actions/Loans/SaveLoan.php) |
+| Nuevo | [app/Actions/Returns/ConfirmReturn.php](../app/Actions/Returns/ConfirmReturn.php) |
+| Nuevo | [app/Actions/Returns/SaveReturn.php](../app/Actions/Returns/SaveReturn.php) |
+| Nuevo | [app/Actions/WorkerOperations/CancelWorkerOperation.php](../app/Actions/WorkerOperations/CancelWorkerOperation.php) |
+| Modificado | [app/Http/Controllers/Inventory/InventoryQueryController.php](../app/Http/Controllers/Inventory/InventoryQueryController.php) |
+| Nuevo | [app/Http/Controllers/WorkerOperations/WorkerOperationController.php](../app/Http/Controllers/WorkerOperations/WorkerOperationController.php) |
+| Nuevo | [app/Http/Requests/WorkerOperations/WorkerOperationRequest.php](../app/Http/Requests/WorkerOperations/WorkerOperationRequest.php) |
+| Modificado | [app/Models/InventoryMovement.php](../app/Models/InventoryMovement.php) |
+| Nuevo | [app/Models/LoanItemSettlement.php](../app/Models/LoanItemSettlement.php) |
+| Nuevo | [app/Models/MaterialDelivery.php](../app/Models/MaterialDelivery.php) |
+| Nuevo | [app/Models/MaterialDeliveryLine.php](../app/Models/MaterialDeliveryLine.php) |
+| Nuevo | [app/Models/ReturnRegularizationAuthorization.php](../app/Models/ReturnRegularizationAuthorization.php) |
+| Nuevo | [app/Models/ReturnRegularizationEvent.php](../app/Models/ReturnRegularizationEvent.php) |
+| Nuevo | [app/Models/ToolLoan.php](../app/Models/ToolLoan.php) |
+| Nuevo | [app/Models/ToolLoanItem.php](../app/Models/ToolLoanItem.php) |
+| Nuevo | [app/Models/ToolReturn.php](../app/Models/ToolReturn.php) |
+| Nuevo | [app/Models/ToolReturnItem.php](../app/Models/ToolReturnItem.php) |
+| Nuevo | [app/Models/WorkerOperationDocument.php](../app/Models/WorkerOperationDocument.php) |
+| Nuevo | [app/Policies/MaterialDeliveryPolicy.php](../app/Policies/MaterialDeliveryPolicy.php) |
+| Nuevo | [app/Policies/ToolLoanPolicy.php](../app/Policies/ToolLoanPolicy.php) |
+| Nuevo | [app/Policies/ToolReturnPolicy.php](../app/Policies/ToolReturnPolicy.php) |
+| Nuevo | [app/Policies/WorkerOperationPolicy.php](../app/Policies/WorkerOperationPolicy.php) |
+| Modificado | [app/Providers/AppServiceProvider.php](../app/Providers/AppServiceProvider.php) |
+| Modificado | [app/Services/InitialStockCsv.php](../app/Services/InitialStockCsv.php) |
+| Modificado | [app/Services/InventoryReferences.php](../app/Services/InventoryReferences.php) |
+| Nuevo | [app/Services/ReturnEligibility.php](../app/Services/ReturnEligibility.php) |
+| Nuevo | [app/Services/ReturnRegularization.php](../app/Services/ReturnRegularization.php) |
+| Nuevo | [app/Services/WorkerStockPosting.php](../app/Services/WorkerStockPosting.php) |
+| Nuevo | [app/Support/OperationForm.php](../app/Support/OperationForm.php) |
+| Nuevo | [app/Support/OperationValidation.php](../app/Support/OperationValidation.php) |
+| Modificado | [app/Support/PermissionCatalog.php](../app/Support/PermissionCatalog.php) |
+| Nuevo | [app/Support/WorkerOperationPermissions.php](../app/Support/WorkerOperationPermissions.php) |
+| Nuevo | [app/Support/WorkerOperationTypes.php](../app/Support/WorkerOperationTypes.php) |
+| Nuevo | [database/migrations/2026_10_19_000003_create_worker_operation_documents.php](../database/migrations/2026_10_19_000003_create_worker_operation_documents.php) |
+| Nuevo | [database/migrations/2026_10_19_000004_create_return_regularizations.php](../database/migrations/2026_10_19_000004_create_return_regularizations.php) |
+| Nuevo | [database/migrations/2026_10_19_000005_extend_inventory_movement_sources.php](../database/migrations/2026_10_19_000005_extend_inventory_movement_sources.php) |
+| Nuevo | [database/migrations/2026_10_19_000006_create_loan_custodies_and_settlements.php](../database/migrations/2026_10_19_000006_create_loan_custodies_and_settlements.php) |
+| Nuevo | [database/migrations/2026_10_19_000007_extend_individual_unit_position_sources.php](../database/migrations/2026_10_19_000007_extend_individual_unit_position_sources.php) |
+| Nuevo | [database/migrations/2026_10_19_000008_add_worker_operation_permissions.php](../database/migrations/2026_10_19_000008_add_worker_operation_permissions.php) |
+| Nuevo | [docs/data-dictionary-sprint-4.md](../docs/data-dictionary-sprint-4.md) |
+| Nuevo | [docs/evidence/sprint-4-implementation.json](../docs/evidence/sprint-4-implementation.json) |
+| Nuevo | [docs/evidence/sprint-4-stability.json](../docs/evidence/sprint-4-stability.json) |
+| Nuevo | [docs/evidence/sprint-4-upgrade.json](../docs/evidence/sprint-4-upgrade.json) |
+| Nuevo | [docs/evidence/sprint-4/frozen-source.json](../docs/evidence/sprint-4/frozen-source.json) |
+| Nuevo | [docs/evidence/sprint-4/regression-final.xml](../docs/evidence/sprint-4/regression-final.xml) |
+| Nuevo | [docs/evidence/sprint-4/stability-targeted.xml](../docs/evidence/sprint-4/stability-targeted.xml) |
+| Nuevo | [docs/evidence/sprint-4/stage-1.xml](../docs/evidence/sprint-4/stage-1.xml) |
+| Modificado | [docs/global-plan.md](../docs/global-plan.md) |
+| Modificado | [docs/sprint-3-test-matrix.md](../docs/sprint-3-test-matrix.md) |
+| Nuevo | [docs/sprint-4-changed-files.md](../docs/sprint-4-changed-files.md) |
+| Nuevo | [docs/sprint-4-implementation.md](../docs/sprint-4-implementation.md) |
+| Nuevo | [docs/sprint-4-operator-guide.md](../docs/sprint-4-operator-guide.md) |
+| Nuevo | [docs/sprint-4-test-matrix.md](../docs/sprint-4-test-matrix.md) |
+| Nuevo | [docs/sprint-4.md](../docs/sprint-4.md) |
+| Modificado | [resources/views/inventory/movements.blade.php](../resources/views/inventory/movements.blade.php) |
+| Modificado | [resources/views/inventory/stock.blade.php](../resources/views/inventory/stock.blade.php) |
+| Modificado | [resources/views/layouts/app.blade.php](../resources/views/layouts/app.blade.php) |
+| Nuevo | [resources/views/worker-operations/availability.blade.php](../resources/views/worker-operations/availability.blade.php) |
+| Nuevo | [resources/views/worker-operations/form.blade.php](../resources/views/worker-operations/form.blade.php) |
+| Nuevo | [resources/views/worker-operations/index.blade.php](../resources/views/worker-operations/index.blade.php) |
+| Nuevo | [resources/views/worker-operations/line.blade.php](../resources/views/worker-operations/line.blade.php) |
+| Nuevo | [resources/views/worker-operations/show.blade.php](../resources/views/worker-operations/show.blade.php) |
+| Modificado | [routes/web.php](../routes/web.php) |
+| Nuevo | [routes/worker-operations.php](../routes/worker-operations.php) |
+| Modificado | [tests/Feature/AdministrativeAuditTest.php](../tests/Feature/AdministrativeAuditTest.php) |
+| Modificado | [tests/Feature/Catalog/AttributePermissionInitializationTest.php](../tests/Feature/Catalog/AttributePermissionInitializationTest.php) |
+| Modificado | [tests/Feature/Catalog/CatalogPermissionInitializationTest.php](../tests/Feature/Catalog/CatalogPermissionInitializationTest.php) |
+| Modificado | [tests/Feature/Catalog/IndividualUnitPermissionInitializationTest.php](../tests/Feature/Catalog/IndividualUnitPermissionInitializationTest.php) |
+| Modificado | [tests/Feature/Catalog/LocationPermissionInitializationTest.php](../tests/Feature/Catalog/LocationPermissionInitializationTest.php) |
+| Modificado | [tests/Feature/Catalog/ProductConcurrencyTest.php](../tests/Feature/Catalog/ProductConcurrencyTest.php) |
+| Modificado | [tests/Feature/Catalog/ProductPermissionInitializationTest.php](../tests/Feature/Catalog/ProductPermissionInitializationTest.php) |
+| Nuevo | [tests/Feature/Inventory/DeliveryManagementTest.php](../tests/Feature/Inventory/DeliveryManagementTest.php) |
+| Nuevo | [tests/Feature/Inventory/InitialStockCsvBoundaryTest.php](../tests/Feature/Inventory/InitialStockCsvBoundaryTest.php) |
+| Modificado | [tests/Feature/Inventory/InventoryIntegrityTest.php](../tests/Feature/Inventory/InventoryIntegrityTest.php) |
+| Nuevo | [tests/Feature/Inventory/LoanManagementTest.php](../tests/Feature/Inventory/LoanManagementTest.php) |
+| Nuevo | [tests/Feature/Inventory/ReturnManagementTest.php](../tests/Feature/Inventory/ReturnManagementTest.php) |
+| Nuevo | [tests/Feature/Inventory/WorkerOperationConcurrencyTest.php](../tests/Feature/Inventory/WorkerOperationConcurrencyTest.php) |
+| Nuevo | [tests/Feature/Inventory/WorkerOperationHttpTest.php](../tests/Feature/Inventory/WorkerOperationHttpTest.php) |
+| Nuevo | [tests/Feature/Inventory/WorkerOperationPermissionTest.php](../tests/Feature/Inventory/WorkerOperationPermissionTest.php) |
+| Nuevo | [tests/Feature/Inventory/WorkerOperationSchemaTest.php](../tests/Feature/Inventory/WorkerOperationSchemaTest.php) |
+| Modificado | [tests/Feature/RbacSchemaTest.php](../tests/Feature/RbacSchemaTest.php) |
+| Modificado | [tests/Support/concurrent-product.php](../tests/Support/concurrent-product.php) |
+| Nuevo | [tests/Support/concurrent-worker-operation.php](../tests/Support/concurrent-worker-operation.php) |
+| Nuevo | [tests/Support/verify-sprint4-upgrade.php](../tests/Support/verify-sprint4-upgrade.php) |

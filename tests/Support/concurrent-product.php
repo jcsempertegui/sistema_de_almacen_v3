@@ -53,6 +53,8 @@ flush();
 if (trim((string) fgets(STDIN)) !== 'GO') {
     exit(2);
 }
+echo "GO_RECEIVED\n";
+flush();
 try {
     switch ($job['operation']) {
         case 'create':

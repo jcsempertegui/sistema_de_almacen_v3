@@ -1,0 +1,21 @@
+{
+  "database": "sga_rio_grande_testing",
+  "method": "Captured output from the single verify-sprint4-upgrade.php execution before the new migrations; compared every original column before/after",
+  "applied_migrations_before": 29,
+  "applied_migrations_after": 35,
+  "tables_after": 42,
+  "permissions_after": 81,
+  "historical_rows_preserved": {
+    "inventory_documents": 6,
+    "inventory_document_lines": 6,
+    "inventory_document_line_units": 3,
+    "inventory_movements": 6,
+    "stock_positions": 3,
+    "individual_unit_positions": 1,
+    "initial_stock_products": 1
+  },
+  "success": true,
+  "own_fixtures_cleaned": true,
+  "schema_reset_or_drop_executed": false,
+  "main_touched": false
+}

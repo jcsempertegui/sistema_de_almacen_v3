@@ -23,7 +23,7 @@ class InventoryQueryController extends Controller
             ->when($filters['product_id'] ?? null, fn ($q, $id) => $q->where('pos.product_id', $id))
             ->when($filters['location_id'] ?? null, fn ($q, $id) => $q->where('pos.location_id', $id))
             ->when($filters['q'] ?? null, fn ($q, $term) => $q->where(fn ($w) => $w->where('u.identifier', 'like', '%'.$term.'%')->orWhere('p.internal_code', 'like', '%'.$term.'%')->orWhere('p.name', 'like', '%'.$term.'%')))
-            ->select('u.identifier', 'p.internal_code', 'pos.is_present', 'l.code as location_code', 'pos.last_document_line_id')->orderBy('u.identifier')->paginate(30, ['*'], 'units_page')->withQueryString();
+            ->select('u.identifier', 'p.internal_code', 'pos.*', 'l.code as location_code')->orderBy('u.identifier')->paginate(30, ['*'], 'units_page')->withQueryString();
 
         return view('inventory.stock', compact('positions', 'individuals') + $this->choices());
     }
@@ -32,7 +32,7 @@ class InventoryQueryController extends Controller
     {
         Gate::authorize('movements.view');
         $filters = $this->filters($request);
-        $movements = $this->apply(InventoryMovement::with('product', 'location', 'line.units', 'line.document'), $filters)->latest('id')->paginate(30)->withQueryString();
+        $movements = $this->apply(InventoryMovement::with('product', 'location', 'line.units', 'line.document', 'deliveryLine.units', 'deliveryLine.document', 'loanItem.unit', 'loanItem.document', 'returnItem.unit', 'returnItem.document', 'returnItem.loanItem'), $filters)->latest('id')->paginate(30)->withQueryString();
 
         return view('inventory.movements', compact('movements') + $this->choices());
     }

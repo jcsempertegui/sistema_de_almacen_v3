@@ -29,7 +29,7 @@ class AdministrativeAuditTest extends TestCase
 
     public function test_audit_access_is_read_only_and_permission_controlled(): void
     {
-        $this->signIn(User::factory()->create(['role_id' => 3]))->get(route('audit.index'))->assertOk()->assertSee('Permisos iniciales');
+        $this->signIn(User::factory()->create(['role_id' => 3]))->get(route('audit.index', ['q' => 'rbac.initialized']))->assertOk()->assertSee('Permisos iniciales');
         $this->post(route('audit.index'), [])->assertStatus(405);
         $this->delete(route('audit.index'))->assertStatus(405);
         $this->signIn(User::factory()->create(['role_id' => 2]))->get(route('audit.index'))->assertForbidden();

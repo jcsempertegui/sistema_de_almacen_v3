@@ -8,6 +8,7 @@ use App\Services\InventoryDraftValidator;
 use App\Services\SecurityMutation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\ValidationException;
 
 class ConfirmInventoryDocument
@@ -64,11 +65,16 @@ class ConfirmInventoryDocument
                     throw ValidationException::withMessages(['lines' => $incoming ? 'El saldo excedería la capacidad decimal del sistema.' : 'Existencias insuficientes en la ubicación seleccionada.']);
                 }
                 foreach ($line->units->sortBy('id') as $unit) {
+                    if (Schema::hasTable('individual_unit_custodies') && DB::table('individual_unit_custodies')->where('individual_unit_id', $unit->id)->whereNotNull('current_loan_item_id')->lockForUpdate()->first()) {
+                        throw ValidationException::withMessages(['lines' => 'La herramienta está prestada. Registra su devolución vinculada al préstamo.']);
+                    }
                     $position = DB::table('individual_unit_positions')->where('individual_unit_id', $unit->id)->lockForUpdate()->first();
                     if (($incoming && $position?->is_present) || (! $incoming && (! $position?->is_present || $position->location_id !== $line->location_id))) {
                         throw ValidationException::withMessages(['lines' => 'La unidad '.$unit->identifier.' no tiene una presencia física compatible con esta operación.']);
                     }
-                    DB::table('individual_unit_positions')->updateOrInsert(['individual_unit_id' => $unit->id], [
+                    $newSources = Schema::hasColumn('individual_unit_positions', 'last_loan_item_id')
+                        ? ['last_delivery_line_id' => null, 'last_loan_item_id' => null, 'last_return_item_id' => null] : [];
+                    DB::table('individual_unit_positions')->updateOrInsert(['individual_unit_id' => $unit->id], $newSources + [
                         'product_id' => $line->product_id, 'is_present' => $incoming, 'location_id' => $incoming ? $line->location_id : null,
                         'last_document_line_id' => $line->id, 'lock_version' => ($position?->lock_version ?? 0) + 1,
                         'created_at' => $position?->created_at ?? $time, 'updated_at' => $time,
