@@ -21,3 +21,7 @@ Comparar el remoto `main` con la base `cd7b4eabc0319c0322be929db0de1af1a16675d5`
 ## Despliegue reservado
 
 La última verificación de solo lectura conserva **31 tablas, 29 migraciones aplicadas, 62 permisos y 126 relaciones rol–permiso** en la principal. Las seis migraciones del Sprint 4 siguen pendientes. Su futura aplicación requiere prevalidación, respaldo actual verificado, ensayo de recuperación y autorización específica. No ejecutar un `migrate` general ni repetir migraciones del Sprint 3.
+
+## Resultado de publicación
+
+El commit `349e3af` integra 90 archivos: los 89 de la entrega y este registro. Se incorporó a `main` mediante avance rápido desde `cd7b4ea` y se publicó correctamente en `origin/main`. Antes del commit coincidían las 323 fuentes congeladas y el hash del JUnit final. El primer envío quedó sin finalizar y se interrumpió; el reintento con HTTP/1.1 terminó correctamente, sin cambiar la configuración permanente de Git. Este seguimiento documental se publica en un commit posterior. No se ejecutaron migraciones, pruebas adicionales ni cambios sobre la base principal durante la publicación.
