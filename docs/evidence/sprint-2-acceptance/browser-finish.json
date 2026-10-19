@@ -1,0 +1,87 @@
+[
+  {
+    "case": "AF-35",
+    "check": "cross-origin form without CSRF rejected",
+    "passed": true,
+    "details": {
+      "status": 419,
+      "url": "/categorias"
+    },
+    "at": "2026-10-19T11:01:16-0400"
+  },
+  {
+    "case": "AF-35",
+    "check": "stored text rendered escaped",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T11:01:22-0400"
+  },
+  {
+    "case": "AF-02",
+    "check": "login rate limiting Spanish 422",
+    "passed": true,
+    "details": [
+      {
+        "status": 422,
+        "limited": false
+      },
+      {
+        "status": 422,
+        "limited": false
+      },
+      {
+        "status": 422,
+        "limited": false
+      },
+      {
+        "status": 422,
+        "limited": false
+      },
+      {
+        "status": 422,
+        "limited": false
+      },
+      {
+        "status": 422,
+        "limited": true
+      }
+    ],
+    "at": "2026-10-19T11:01:35-0400"
+  },
+  {
+    "case": "AF-21",
+    "check": "invalid product not persisted",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T11:01:37-0400"
+  },
+  {
+    "case": "AF-29",
+    "check": "catalogue does not create operational tables",
+    "passed": true,
+    "details": {
+      "tables": 24,
+      "individual_units": 4
+    },
+    "at": "2026-10-19T11:01:37-0400"
+  },
+  {
+    "case": "AF-10",
+    "check": "category with active products protected",
+    "passed": true,
+    "details": {
+      "status": 422
+    },
+    "at": "2026-10-19T11:01:41-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "mobile table reaches final columns",
+    "passed": true,
+    "details": {
+      "scrollable": true,
+      "reachedRight": true
+    },
+    "at": "2026-10-19T11:01:43-0400"
+  }
+]

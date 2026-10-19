@@ -1,0 +1,395 @@
+{
+  "verified_at": "2026-10-19T11:06:27.632254-04:00",
+  "baseline_commit": "44e0335c380bb26ebae5cac88cbef2049e68ea25",
+  "authorization": "User approved isolated acceptance environment, demonstration data, execution and repository publication. Formal functional acceptance is not inferred.",
+  "status": "pending_human_functional_acceptance",
+  "sprint_3_started": false,
+  "stack": {
+    "php": "8.3.10",
+    "laravel": "13.35.0",
+    "mariadb": "10.4.32-MariaDB"
+  },
+  "source_hashes": {
+    "resources/views/roles/form.blade.php": "57a2accd0409efaa1274ef19254ba9847c77dd73cb4e90f96436ea0a85df820a",
+    "composer.lock": "5ee35975ad4405554629dbaa238074ab22ab4775ad2cdfff2e692c0aa39c91f1"
+  },
+  "source_hash_normalization": "CRLF to LF before SHA256",
+  "published_text_artifact_normalization": "CRLF to LF; external original files retained unchanged",
+  "main": {
+    "database": "sga_rio_grande",
+    "tables": 24,
+    "migrations": 27,
+    "pending": [],
+    "counts": {
+      "administrative_audit_logs": 18,
+      "attributes": 0,
+      "cache": 0,
+      "cache_locks": 0,
+      "categories": 0,
+      "category_attributes": 0,
+      "failed_jobs": 0,
+      "individual_units": 0,
+      "job_batches": 0,
+      "jobs": 0,
+      "locations": 0,
+      "measurement_units": 0,
+      "migrations": 27,
+      "password_reset_tokens": 0,
+      "permission_role": 95,
+      "permissions": 48,
+      "product_attribute_value_revisions": 0,
+      "product_attribute_values": 0,
+      "product_locations": 0,
+      "products": 0,
+      "roles": 3,
+      "sessions": 3,
+      "users": 0,
+      "workers": 0
+    },
+    "data_schema_environment_and_migration_files_unchanged": true,
+    "before_sha256": "38391cfd9d77353fa773c4b716e5880ed85a1c7df8c85aa159360268096a4ab4",
+    "after_sha256": "38391cfd9d77353fa773c4b716e5880ed85a1c7df8c85aa159360268096a4ab4",
+    "real_administrator_exists": false,
+    "writes_performed": false
+  },
+  "phpunit": {
+    "database": "sga_rio_grande_testing",
+    "new_execution": true,
+    "name": "C:\\laragon\\www\\sistema_de_almacen_v3\\phpunit.xml",
+    "tests": "315",
+    "assertions": "2409",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "581.114160",
+    "previous_assertions": 2411,
+    "assertion_count_difference": "Same 315 test cases. Two LocationConcurrencyTest permitted result branches: creation 15->12 assertions; activation 14->15. No tests changed."
+  },
+  "browser": {
+    "engine": "Edg/155.0.4283.62",
+    "mode": "headless Edge, agent assisted and programmatic via local CDP; not human manual acceptance",
+    "url": "http://127.0.0.1:8012",
+    "database": "sga_rio_grande_acceptance_s2",
+    "initial_migrations_applied_only_to_new_schema": 27,
+    "final_counts": {
+      "administrative_audit_logs": 28,
+      "attributes": 4,
+      "cache": 6,
+      "cache_locks": 0,
+      "categories": 4,
+      "category_attributes": 4,
+      "failed_jobs": 0,
+      "individual_units": 4,
+      "job_batches": 0,
+      "jobs": 0,
+      "locations": 3,
+      "measurement_units": 5,
+      "migrations": 27,
+      "password_reset_tokens": 0,
+      "permission_role": 98,
+      "permissions": 48,
+      "product_attribute_value_revisions": 11,
+      "product_attribute_values": 8,
+      "product_locations": 5,
+      "products": 3,
+      "roles": 4,
+      "sessions": 14,
+      "users": 4,
+      "workers": 2
+    },
+    "observations": 162,
+    "matched_expectations": 150,
+    "initial_unmatched_expectations": [
+      {
+        "file": "browser-results.json",
+        "index": 1,
+        "case": "AF-01",
+        "classification": "Harness: DOM boolean or incorrect POST method; corrected and retested"
+      },
+      {
+        "file": "browser-results.json",
+        "index": 3,
+        "case": "AF-36",
+        "classification": "UI-S2-01: real label defect, fixed and browser retested"
+      },
+      {
+        "file": "browser-results.json",
+        "index": 4,
+        "case": "AF-06",
+        "classification": "Harness: DOM boolean or incorrect POST method; corrected and retested"
+      },
+      {
+        "file": "browser-results.json",
+        "index": 5,
+        "case": "AF-06",
+        "classification": "Harness: DOM boolean or incorrect POST method; corrected and retested"
+      },
+      {
+        "file": "browser-results.json",
+        "index": 40,
+        "case": "AF-17",
+        "classification": "Harness: loanable/control guard belongs to final save, not preview; final rejection retested"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 10,
+        "case": "AF-04",
+        "classification": "Harness: raw PATCH preserved by fetch after 302; native POST _method and state retested"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 40,
+        "case": "AF-35",
+        "classification": "Harness: Laravel 13 trusts valid same-origin metadata; genuine cross-origin form without token retested 419"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 41,
+        "case": "AF-02",
+        "classification": "Harness: rate limit is Spanish ValidationException 422, not HTTP429; message retested"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 43,
+        "case": "AF-08",
+        "classification": "Harness: raw PATCH preserved by fetch after 302; native POST _method and state retested"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 44,
+        "case": "AF-08",
+        "classification": "Harness: raw PATCH preserved by fetch after 302; native POST _method and state retested"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 46,
+        "case": "AF-10",
+        "classification": "Harness: raw PATCH preserved by fetch after 302; native POST _method and state retested"
+      },
+      {
+        "file": "browser-followup.json",
+        "index": 47,
+        "case": "AF-10",
+        "classification": "Harness: raw PATCH preserved by fetch after 302; native POST _method and state retested"
+      }
+    ],
+    "final_units_and_finish_checks_passed": true,
+    "human_manual_cases_executed": 0,
+    "viewports": [
+      [
+        1366,
+        768
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "layout_sample": [
+      "panel",
+      "product form",
+      "individual unit list",
+      "role form"
+    ],
+    "real_200_percent_browser_zoom_performed": false,
+    "real_application_incidents": [
+      {
+        "id": "UI-S2-01",
+        "severity": "minor",
+        "status": "fixed_and_browser_retested",
+        "file": "resources/views/roles/form.blade.php",
+        "description": "Spanish legend missing for individual_units"
+      },
+      {
+        "id": "UI-S2-02",
+        "severity": "minor",
+        "status": "open",
+        "evidence": "19-cross-origin-419.png",
+        "description": "Default HTTP419 error page displays Page Expired in English; security rejection works. Spanish error template remains pending."
+      }
+    ]
+  },
+  "isolation": {
+    "main_untouched": true,
+    "phpunit_destination": "sga_rio_grande_testing",
+    "browser_and_demo_destination": "sga_rio_grande_acceptance_s2",
+    "env_modified": false,
+    "dependencies_modified": false,
+    "packages_installed": false,
+    "previous_migrations_modified": false,
+    "general_seeders_run": false,
+    "credentials_published": false,
+    "runtime_directory": "C:\\Users\\jcsem\\SGA-acceptance\\sprint-2-20261019",
+    "restricted_acl": true,
+    "demo_data_retained": true
+  },
+  "pending": [
+    "Human functional acceptance and complete UI-01/UI-02 review",
+    "Real browser zoom 200%, accessibility usability and physical devices",
+    "Real first administrator on primary: separate explicit authorization",
+    "IND-06 operational document history in future scope",
+    "Restore rehearsal; MariaDB lifecycle plan"
+  ],
+  "artifacts": {
+    "01-admin-panel.png": {
+      "bytes": 82906,
+      "sha256": "2e5c6c28570993e46f164fb256902fdacdce8deaf320a47e5736146990dcf212"
+    },
+    "02-role-label-before.png": {
+      "bytes": 271047,
+      "sha256": "1226096555246f82cb4d51aeac6133ee5bd632f981235fea12cbe7f845c2688b"
+    },
+    "03-required-errors.png": {
+      "bytes": 41294,
+      "sha256": "a0b097f5261b12178f1b374c6abced276147cb1aa856616e25a835637dcf688c"
+    },
+    "04-location-tree.png": {
+      "bytes": 48253,
+      "sha256": "5692d3db795b5ec800dee7dced385da8f9132eee503e1d3b1dadf418001bc1f7"
+    },
+    "05-product-form.png": {
+      "bytes": 104807,
+      "sha256": "1718bbee786ebf3d01eb6f35688d441b6dc991c46fad96cf458c81e6c8ab4fda"
+    },
+    "06-product-preview.png": {
+      "bytes": 47306,
+      "sha256": "197755f892f1632e3c017b2aeb2d617e4e99f6d9e5515c90b8586986a3ba4da7"
+    },
+    "07-product-history.png": {
+      "bytes": 66457,
+      "sha256": "7caca46b8797da03da5182f2274ce464f585a98d07d43b9e133feeb14b701a6a"
+    },
+    "08-duplicate-review.png": {
+      "bytes": 60150,
+      "sha256": "c87442e050997e32e0068626296b2e32e4988b2a44f8e57708896988e78f19d9"
+    },
+    "09-history-revised.png": {
+      "bytes": 67444,
+      "sha256": "83a1923646e84cf3c4321511456ff18d890d9e45970ac4033b18c3d1acee80eb"
+    },
+    "11-login-error.png": {
+      "bytes": 29029,
+      "sha256": "f77448ddc3aee45472eb969c84b285397afc234292332f4ab901d1447be465da"
+    },
+    "12-role-label-fixed.png": {
+      "bytes": 271633,
+      "sha256": "84ff825adcb46ef1b377962cd10e4b1fffdaa632e35708d4cfcc35a081413d9b"
+    },
+    "13-manager-panel.png": {
+      "bytes": 66021,
+      "sha256": "94d7f8d68558e34a413c3928d3711299c55263b96d67c6291a8d3098eb132cf1"
+    },
+    "14-auditor-panel.png": {
+      "bytes": 68383,
+      "sha256": "97fe5b725b20fe714045d1092690306638a5e893d0c80a7d17dbf870d91db7ee"
+    },
+    "15-administrative-audit.png": {
+      "bytes": 157523,
+      "sha256": "9b23bc0672f4d980c58d72c8d98182aca6f8027691fe25259453cdec12da174e"
+    },
+    "16-final-product.png": {
+      "bytes": 65203,
+      "sha256": "7101dc543c386782afe500b6dedd50b8b5cde07c03d956a1d705857398f74bf6"
+    },
+    "17-individual-filters.png": {
+      "bytes": 55185,
+      "sha256": "41363eac69313ba39cb2395125914e3e0e21359fbd2085f20c56c6c42c43d738"
+    },
+    "19-cross-origin-419.png": {
+      "bytes": 6023,
+      "sha256": "270c43d28bb411063422216f583d46631416df150a96a14ef743d02e8277a315"
+    },
+    "20-expanded-history.png": {
+      "bytes": 97560,
+      "sha256": "bc1edc1978985280d1dae50f708f2bb60b601fbeaae7d67393a68b666d51cff4"
+    },
+    "browser-finish.json": {
+      "bytes": 1693,
+      "sha256": "02b31dcc7587183dc4e237b63d4e96620b13dce7e1bce714b23fe06c9e5aedc0"
+    },
+    "browser-followup.json": {
+      "bytes": 12206,
+      "sha256": "484e446746c92fe614d3d70e05675bc98c0db383361fec7a8a7b2c02714b5411"
+    },
+    "browser-results.json": {
+      "bytes": 13310,
+      "sha256": "f0c22740ad852c75ef4c080a1f18efedbf7771ed00320e3f17f69170cb98ba91"
+    },
+    "browser-review.json": {
+      "bytes": 169,
+      "sha256": "71b8e3d21ec24e99c1445dd933de9e53497727c6c57d9a1ee35e6c3b227d34fb"
+    },
+    "browser-units.json": {
+      "bytes": 5810,
+      "sha256": "fe57d9c4c4c4d778a3894cdfee2043a3efdb018131ffb51e130a399d9663e9ea"
+    },
+    "regression-junit.xml": {
+      "bytes": 123396,
+      "sha256": "2fba10a5ee77f520666084665d511c6e2914e608bc1d57a09d08bd96817adc3e"
+    },
+    "ui-form-reflow-683.png": {
+      "bytes": 34039,
+      "sha256": "3675a23046597c1d33b7e99ccf11accfb02cfca6391d1b9890e518ee6c65566b"
+    },
+    "ui-individual-final-mobile.png": {
+      "bytes": 57648,
+      "sha256": "78ed6a4fd0fd5722b6372c54bfaf02e1ad28ad92dfd87303c9d244429242563c"
+    },
+    "ui-individual-list-1366.png": {
+      "bytes": 58919,
+      "sha256": "7849288f2de4eb0f367dd2aa1f487cdc16679ac0f349eaf050b786c17c8d4452"
+    },
+    "ui-individual-list-390.png": {
+      "bytes": 48864,
+      "sha256": "893160fb799c64bb0ae5ccf6cce7e2ded2b1b3ce70a8ddaa65906763e32697df"
+    },
+    "ui-individual-list-768.png": {
+      "bytes": 58874,
+      "sha256": "ef338e0fcc071e964ae8f52010101889cfcd3f885297c6b76be12363083323da"
+    },
+    "ui-individual-mobile-right.png": {
+      "bytes": 68916,
+      "sha256": "daf91a89b1dd5f73f898294c342b3fcb2e737ccb8346391971e455f45bc1ee65"
+    },
+    "ui-panel-1366.png": {
+      "bytes": 82906,
+      "sha256": "2e5c6c28570993e46f164fb256902fdacdce8deaf320a47e5736146990dcf212"
+    },
+    "ui-panel-390.png": {
+      "bytes": 99979,
+      "sha256": "c15f7ea7f43572a860908a0487636226c2156db9445d5225d7f2b2165416728b"
+    },
+    "ui-panel-768.png": {
+      "bytes": 87553,
+      "sha256": "c85742a5fb1e9ab29b4c623e79be145513ed03e87677ff13dfb850e4829b4630"
+    },
+    "ui-product-form-1366.png": {
+      "bytes": 92809,
+      "sha256": "e54b861cdf584123f5e3721a681ca48b552ae41109edab1db0bc07d0a14e95b7"
+    },
+    "ui-product-form-390.png": {
+      "bytes": 98057,
+      "sha256": "32fa1f79f984d3dbffaafd459074317709e3ec2d7c7abd0b726e8ec82a959aae"
+    },
+    "ui-product-form-768.png": {
+      "bytes": 88671,
+      "sha256": "5f91aa471e1974ddffb38a8e84c527ba993963ad39f4701717a130f3a4fe94c8"
+    },
+    "ui-role-form-1366.png": {
+      "bytes": 271633,
+      "sha256": "84ff825adcb46ef1b377962cd10e4b1fffdaa632e35708d4cfcc35a081413d9b"
+    },
+    "ui-role-form-390.png": {
+      "bytes": 250990,
+      "sha256": "efee83c25ee75c9ab146596511eea009dda5205f8c244a49e31ffbf26c5bd94a"
+    },
+    "ui-role-form-768.png": {
+      "bytes": 259247,
+      "sha256": "69f1750350e53e2812531cc6489f47569aac28a612159bfd00e1147b17e428a2"
+    }
+  }
+}

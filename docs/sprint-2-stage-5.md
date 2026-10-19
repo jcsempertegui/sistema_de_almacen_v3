@@ -2,6 +2,8 @@
 
 Fecha: 19 de octubre de 2026, America/La_Paz.
 
+**Revisión funcional posterior:** el [informe de aceptación](sprint-2-acceptance.md) conserva la evidencia de esta etapa y añade una nueva regresión de 315 pruebas y 2.409 aserciones en testing, capturas y resultados asistidos en un entorno adicional autorizado. No se repitieron las migraciones principales. La aprobación humana y UI-S2-02 (419 en inglés) siguen pendientes; no se inició Sprint 3.
+
 Diseño e implementación autorizados por el usuario, incluida la actualización del repositorio. Base de partida: `eb4b476da16e6a4b2a5ff8ef347a7db973301459`, rama de trabajo `feature/hu10-individual-units`.
 
 **Estado al 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo SQL nuevo, lote 12. Hay **24 tablas, 27 migraciones aplicadas, ninguna pendiente, 48 permisos y 95 vínculos**. La regresión previa aprobó 315 pruebas y 2.411 verificaciones exclusivamente en testing. Aceptación visual pendiente.

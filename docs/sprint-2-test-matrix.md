@@ -2,11 +2,14 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
+**Validación funcional posterior:** consultar [AF-01 a AF-36 y sus resultados reales](sprint-2-acceptance.md). La nueva regresión aprobó 315 pruebas y 2.409 aserciones en testing. Se añaden capturas y verificaciones asistidas en Edge; UI-01/UI-02 no tienen aprobación manual humana. La leyenda de roles se corrigió; UI-S2-02 (419 en inglés) queda abierta. El JSON conserva expectativas iniciales incorrectas del guion y sus repeticiones; no se cuentan como casos de aceptación aprobados.
+
 **Estado al 19 de octubre de 2026:** HU-10 aplicada a la principal con autorización y respaldo nuevo, lote 12: 27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. La regresión previa aprobó 315 pruebas y 2.411 verificaciones exclusivamente en testing. El despliegue se comprobó con consultas de lectura y comparación de estado; no se ejecutaron pruebas automatizadas sobre la principal. Consulta la [Etapa 5](sprint-2-stage-5.md) y su [evidencia de despliegue](evidence/sprint-2-stage-5-deployment.json). UI-01/UI-02 y la parte operativa futura de IND-06 permanecen pendientes.
 
 ## Condiciones de ejecución
 
-- Usar exclusivamente `sga_rio_grande_testing`, con comprobación de configuración y `SELECT DATABASE()` antes de preparar el esquema.
+- La suite PHPUnit, las pruebas SQL y de concurrencia usan exclusivamente `sga_rio_grande_testing`, con comprobación de configuración y `SELECT DATABASE()` antes de preparar el esquema.
+- El recorrido de aceptación en navegador y los datos demostrativos tienen un destino adicional expresamente autorizado: `sga_rio_grande_acceptance_s2`, copia de ejecución y sesiones/caché independientes. Se documenta como comprobación asistida/programática, sin atribuirle aceptación humana. No dirigir allí PHPUnit ni usar la principal para pruebas.
 - Mantener transacciones para casos ordinarios, sin `RefreshDatabase`, `migrate:fresh`, `migrate:reset` o `db:wipe`.
 - No crear ni modificar productos o datos de prueba en `sga_rio_grande`.
 - Migraciones nuevas solo después de aprobar el diseño y confirmar el destino de ejecución.

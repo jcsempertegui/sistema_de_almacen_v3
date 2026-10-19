@@ -25,6 +25,8 @@ La tabla muestra la configuración inicial. Los roles y sus permisos son configu
 
 ## Sprint 2
 
+**Validación funcional del 19 de octubre:** [informe de aceptación](docs/sprint-2-acceptance.md), matriz AF-01 a AF-36 y evidencias reales. Nueva regresión: **315 pruebas y 2.409 aserciones**, sin fallos, exclusivamente en testing. Se preparó un entorno adicional de aceptación con datos demostrativos autorizados; la principal permanece intacta. El recorrido asistido y las capturas no sustituyen la aceptación humana, todavía pendiente. Se corrigió la leyenda española de unidades individualizadas en roles; la página genérica 419 en inglés queda como incidencia menor abierta. Sprint 3 no iniciado.
+
 **Actualización del 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo nuevo verificado, lote 12. Estado actual: **24 tablas, 27 migraciones aplicadas, ninguna pendiente, 48 permisos y 95 vínculos**. Consulta la [Etapa 5](docs/sprint-2-stage-5.md).
 
 El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07/HU-09 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md), la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md) y la [Etapa 3: ubicaciones](docs/sprint-2-stage-3.md).
@@ -37,11 +39,12 @@ HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones princi
 - [Propuesta del Sprint 2](docs/sprint-2.md): historias, permisos, interfaces, tareas y entregables.
 - [Diccionario de datos propuesto](docs/data-dictionary-sprint-2.md): esquema físico, relaciones e invariantes.
 - [Matriz de pruebas del Sprint 2](docs/sprint-2-test-matrix.md): evidencia por etapa y casos todavía planificados.
+- [Validación y preparación del cierre del Sprint 2](docs/sprint-2-acceptance.md): resultados actuales, capturas, incidencias y aceptación humana pendiente.
 - [Planificación global de cinco sprints](docs/global-plan.md): distribución provisional y dependencias.
 
 El diseño de `product_locations`, las revisiones de valores y el control de concurrencia de HU-08 fueron aprobados. La comparación exacta de identificadores genera candidatos para revisión humana; no certifica equivalencia, no fusiona productos y no convierte unidades.
 
-Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-09/HU-08/HU-10. Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones, asociaciones y unidades individualizadas tienen sus tablas y permisos aplicados. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`; las verificaciones posteriores de HU-08 y HU-10 en la principal fueron de solo lectura, sin crear datos de prueba.
+Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-09/HU-08/HU-10. Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones, asociaciones y unidades individualizadas tienen sus tablas y permisos aplicados. La suite PHPUnit y las pruebas de integridad permanecen aisladas en `sga_rio_grande_testing`; el recorrido asistido en navegador utiliza el entorno adicional de aceptación expresamente autorizado. Las verificaciones posteriores de HU-08 y HU-10 en la principal fueron de solo lectura, sin crear datos de prueba.
 
 ## Arranque local
 
@@ -78,7 +81,7 @@ Se usa exclusivamente `sga_rio_grande_testing`, que debe existir previamente, co
 
 El bootstrap rechaza configuración cacheada, valida el entorno, exige que la base exclusiva exista y genera una clave efímera. Antes de migrar, comprueba la configuración y `SELECT DATABASE()`. Aplica migraciones normales una vez por ejecución y aísla los casos con transacciones, sin `RefreshDatabase` ni `migrate:fresh`. Las pruebas de concurrencia usan procesos independientes con datos de prueba confirmados; limpian exclusivamente los identificadores o códigos únicos que crearon. HU-09 añade cuatro carreras a las dos administrativas existentes. Su informe detalla también la verificación de estilo de las migraciones nuevas, sin reformatear las anteriores.
 
-HU-08 añade siete carreras de productos a las seis anteriores: trece escenarios concurrentes en total. Ejecuta la suite en un solo proceso, sin pruebas paralelas sobre esa misma base.
+HU-08 añade siete carreras de productos a las seis anteriores; HU-10 incorpora once más: veinticuatro escenarios concurrentes en total. Ejecuta la suite en un solo proceso, sin pruebas paralelas sobre esa misma base. El total de aserciones puede variar según las ramas válidas de las carreras de ubicaciones; los resultados y la diferencia con la ejecución anterior se explican en el informe de aceptación.
 
 ## Restricciones
 

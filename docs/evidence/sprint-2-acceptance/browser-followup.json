@@ -1,0 +1,616 @@
+[
+  {
+    "case": "AF-01",
+    "check": "invalid login Spanish error",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:51:47-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "Spanish role legend corrected",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:51:51-0400"
+  },
+  {
+    "case": "AF-06",
+    "check": "/usuarios/3/estado",
+    "passed": true,
+    "details": {
+      "status": 422,
+      "expected": [
+        403,
+        422
+      ]
+    },
+    "at": "2026-10-19T10:51:56-0400"
+  },
+  {
+    "case": "AF-06",
+    "check": "last administrative role loss rejected",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:52:04-0400"
+  },
+  {
+    "case": "AF-05",
+    "check": "custom role created",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:52:13-0400"
+  },
+  {
+    "case": "AF-05",
+    "check": "custom role updated and permission revoked",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:52:24-0400"
+  },
+  {
+    "case": "AF-03",
+    "check": "user created with configurable role",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:52:32-0400"
+  },
+  {
+    "case": "AF-03",
+    "check": "/usuarios",
+    "passed": true,
+    "details": {
+      "status": 422,
+      "expected": [
+        422
+      ]
+    },
+    "at": "2026-10-19T10:52:34-0400"
+  },
+  {
+    "case": "AF-03",
+    "check": "/usuarios",
+    "passed": true,
+    "details": {
+      "status": 422,
+      "expected": [
+        422
+      ]
+    },
+    "at": "2026-10-19T10:52:36-0400"
+  },
+  {
+    "case": "AF-03",
+    "check": "user edited",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:52:43-0400"
+  },
+  {
+    "case": "AF-04",
+    "check": "/usuarios/6/estado",
+    "passed": false,
+    "details": {
+      "status": 405,
+      "expected": [
+        200
+      ]
+    },
+    "at": "2026-10-19T10:52:46-0400"
+  },
+  {
+    "case": "AF-01",
+    "check": "inactive user rejected",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:52:53-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager login",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:01-0400"
+  },
+  {
+    "case": "AF-04",
+    "check": "permission revocation invalidates manager session",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:13-0400"
+  },
+  {
+    "case": "AF-05",
+    "check": "revoked permission server denied",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:21-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /categorias",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:46-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /unidades-de-medida",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:48-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /atributos-tecnicos",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:50-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /ubicaciones",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:52-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /productos",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:55-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /unidades-individualizadas",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:53:59-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "manager GET /trabajadores",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:01-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "manager cannot manage roles",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:03-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor login",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:15-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /categorias",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:18-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /categorias",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:20-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /unidades-de-medida",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:22-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /unidades-de-medida",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:24-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /atributos-tecnicos",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:27-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /atributos-tecnicos",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:29-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /ubicaciones",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:31-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /ubicaciones",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:34-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /productos",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:36-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /productos",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:38-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /unidades-individualizadas",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:40-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /unidades-individualizadas",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:42-0400"
+  },
+  {
+    "case": "AF-33",
+    "check": "auditor read /trabajadores",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:44-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "auditor cannot create /trabajadores",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:46-0400"
+  },
+  {
+    "case": "AF-34",
+    "check": "/categorias",
+    "passed": true,
+    "details": {
+      "status": 403,
+      "expected": [
+        403
+      ]
+    },
+    "at": "2026-10-19T10:54:50-0400"
+  },
+  {
+    "case": "AF-02",
+    "check": "logout rejects protected navigation",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:54:56-0400"
+  },
+  {
+    "case": "AF-35",
+    "check": "/categorias",
+    "passed": false,
+    "details": {
+      "status": 200,
+      "expected": [
+        419
+      ]
+    },
+    "at": "2026-10-19T10:55:03-0400"
+  },
+  {
+    "case": "AF-02",
+    "check": "login throttle",
+    "passed": false,
+    "details": {
+      "status_codes": [
+        422,
+        422,
+        422,
+        422,
+        422,
+        422,
+        422,
+        422
+      ]
+    },
+    "at": "2026-10-19T10:55:19-0400"
+  },
+  {
+    "case": "AF-08",
+    "check": "worker edit",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:55:26-0400"
+  },
+  {
+    "case": "AF-08",
+    "check": "/trabajadores/1/estado",
+    "passed": false,
+    "details": {
+      "status": 405,
+      "expected": [
+        200
+      ]
+    },
+    "at": "2026-10-19T10:55:31-0400"
+  },
+  {
+    "case": "AF-08",
+    "check": "/trabajadores/1/estado",
+    "passed": false,
+    "details": {
+      "status": 405,
+      "expected": [
+        200
+      ]
+    },
+    "at": "2026-10-19T10:55:35-0400"
+  },
+  {
+    "case": "AF-07",
+    "check": "administrative audit visible",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:55:38-0400"
+  },
+  {
+    "case": "AF-10",
+    "check": "/categorias/4/estado",
+    "passed": false,
+    "details": {
+      "status": 405,
+      "expected": [
+        200
+      ]
+    },
+    "at": "2026-10-19T10:55:55-0400"
+  },
+  {
+    "case": "AF-10",
+    "check": "/categorias/4/estado",
+    "passed": false,
+    "details": {
+      "status": 405,
+      "expected": [
+        200
+      ]
+    },
+    "at": "2026-10-19T10:55:57-0400"
+  },
+  {
+    "case": "AF-12",
+    "check": "/unidades-de-medida/2",
+    "passed": true,
+    "details": {
+      "status": 422,
+      "expected": [
+        422
+      ]
+    },
+    "at": "2026-10-19T10:56:01-0400"
+  },
+  {
+    "case": "AF-15",
+    "check": "/categorias/1/atributos/2",
+    "passed": true,
+    "details": {
+      "status": 422,
+      "expected": [
+        422
+      ]
+    },
+    "at": "2026-10-19T10:56:06-0400"
+  },
+  {
+    "case": "AF-19",
+    "check": "/productos/1/revisar",
+    "passed": true,
+    "details": {
+      "status": 422,
+      "expected": [
+        422
+      ]
+    },
+    "at": "2026-10-19T10:56:10-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "panel horizontal layout 1366",
+    "passed": true,
+    "details": {
+      "viewport": 1366,
+      "body": 1366,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:12-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "panel horizontal layout 768",
+    "passed": true,
+    "details": {
+      "viewport": 768,
+      "body": 768,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:13-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "panel horizontal layout 390",
+    "passed": true,
+    "details": {
+      "viewport": 390,
+      "body": 390,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:13-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "product-form horizontal layout 1366",
+    "passed": true,
+    "details": {
+      "viewport": 1366,
+      "body": 1366,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:16-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "product-form horizontal layout 768",
+    "passed": true,
+    "details": {
+      "viewport": 768,
+      "body": 768,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:16-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "product-form horizontal layout 390",
+    "passed": true,
+    "details": {
+      "viewport": 390,
+      "body": 390,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:17-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "individual-list horizontal layout 1366",
+    "passed": true,
+    "details": {
+      "viewport": 1366,
+      "body": 1366,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:19-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "individual-list horizontal layout 768",
+    "passed": true,
+    "details": {
+      "viewport": 768,
+      "body": 768,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:20-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "individual-list horizontal layout 390",
+    "passed": true,
+    "details": {
+      "viewport": 390,
+      "body": 390,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:20-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "role-form horizontal layout 1366",
+    "passed": true,
+    "details": {
+      "viewport": 1366,
+      "body": 1366,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:24-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "role-form horizontal layout 768",
+    "passed": true,
+    "details": {
+      "viewport": 768,
+      "body": 768,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:25-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "role-form horizontal layout 390",
+    "passed": true,
+    "details": {
+      "viewport": 390,
+      "body": 390,
+      "lang": "es"
+    },
+    "at": "2026-10-19T10:56:26-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "keyboard Tab focus moves",
+    "passed": true,
+    "details": [
+      {
+        "tag": "A",
+        "text": "Panel",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Roles y permisos",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Auditoría",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Usuarios",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Trabajadores",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Categorías",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Unidades de medida",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Atributos técnicos",
+        "id": ""
+      }
+    ],
+    "at": "2026-10-19T10:56:28-0400"
+  }
+]

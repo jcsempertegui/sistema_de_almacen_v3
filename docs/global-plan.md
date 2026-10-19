@@ -4,6 +4,8 @@ Fecha de revisión: 19 de octubre de 2026, America/La_Paz.
 
 Estado: planificación general con avances aprobados y verificados por etapas. La distribución global debe contrastarse con la planificación académica existente, si la hubiera. Publicar este documento no autoriza implementar las funcionalidades pendientes.
 
+Validación de cierre del 19 de octubre: se ejecutó una nueva regresión de 315 pruebas y 2.409 aserciones en testing y un recorrido asistido con capturas en un entorno adicional autorizado. La principal se conserva. La [aceptación funcional](sprint-2-acceptance.md) sigue pendiente de revisión humana; UI-S2-02 (página 419 en inglés) está abierta. Esta revisión no cierra formalmente el Sprint 2 ni inicia el Sprint 3.
+
 ## Distribución propuesta
 
 Actualización del 19 de octubre: HU-10 implementada y aplicada a la principal con autorización y respaldo nuevo, lote 12. Consulta la [Etapa 5](sprint-2-stage-5.md) para evidencia de despliegue y pruebas.

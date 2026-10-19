@@ -1,0 +1,639 @@
+[
+  {
+    "case": "AF-01",
+    "check": "guest redirected to login",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:41:55-0400"
+  },
+  {
+    "case": "AF-01",
+    "check": "invalid credentials rejected",
+    "passed": false,
+    "details": null,
+    "at": "2026-10-19T10:41:59-0400"
+  },
+  {
+    "case": "AF-01",
+    "check": "valid login",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:42:05-0400"
+  },
+  {
+    "case": "AF-36",
+    "check": "Spanish legend for individual units",
+    "passed": false,
+    "details": {
+      "legends": [
+        "Atributos técnicos",
+        "Auditoría",
+        "Categorías",
+        "Atributos por categoría",
+        "individual_units",
+        "Ubicaciones",
+        "Unidades de medida",
+        "Panel",
+        "Ubicaciones de productos",
+        "Productos",
+        "Roles y permisos",
+        "Usuarios",
+        "Trabajadores"
+      ]
+    },
+    "at": "2026-10-19T10:42:12-0400"
+  },
+  {
+    "case": "AF-06",
+    "check": "server-request /usuarios/3/estado",
+    "passed": false,
+    "details": {
+      "expected": 422,
+      "actual": 405,
+      "error_fields": []
+    },
+    "at": "2026-10-19T10:42:15-0400"
+  },
+  {
+    "case": "AF-06",
+    "check": "cannot revoke last full administrator",
+    "passed": false,
+    "details": null,
+    "at": "2026-10-19T10:42:20-0400"
+  },
+  {
+    "case": "AF-09",
+    "check": "form-create /categorias",
+    "passed": true,
+    "details": {
+      "url": "/categorias",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:42:27-0400"
+  },
+  {
+    "case": "AF-09",
+    "check": "form-create /categorias",
+    "passed": true,
+    "details": {
+      "url": "/categorias",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:42:34-0400"
+  },
+  {
+    "case": "AF-09",
+    "check": "server-request /categorias",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "code",
+        "name"
+      ]
+    },
+    "at": "2026-10-19T10:42:40-0400"
+  },
+  {
+    "case": "AF-09",
+    "check": "required fields Spanish alert",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:42:46-0400"
+  },
+  {
+    "case": "AF-11",
+    "check": "form-create /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "url": "/unidades-de-medida",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:42:56-0400"
+  },
+  {
+    "case": "AF-11",
+    "check": "form-create /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "url": "/unidades-de-medida",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:43:19-0400"
+  },
+  {
+    "case": "AF-11",
+    "check": "form-create /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "url": "/unidades-de-medida",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:43:35-0400"
+  },
+  {
+    "case": "AF-11",
+    "check": "form-create /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "url": "/unidades-de-medida",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:43:50-0400"
+  },
+  {
+    "case": "AF-12",
+    "check": "form-create /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "url": "/unidades-de-medida",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:44:09-0400"
+  },
+  {
+    "case": "AF-11",
+    "check": "server-request /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "decimal_places"
+      ]
+    },
+    "at": "2026-10-19T10:44:19-0400"
+  },
+  {
+    "case": "AF-11",
+    "check": "server-request /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "decimal_places"
+      ]
+    },
+    "at": "2026-10-19T10:44:22-0400"
+  },
+  {
+    "case": "AF-12",
+    "check": "server-request /unidades-de-medida",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "symbol"
+      ]
+    },
+    "at": "2026-10-19T10:44:26-0400"
+  },
+  {
+    "case": "AF-13",
+    "check": "form-create /atributos-tecnicos",
+    "passed": true,
+    "details": {
+      "url": "/atributos-tecnicos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:44:40-0400"
+  },
+  {
+    "case": "AF-13",
+    "check": "form-create /atributos-tecnicos",
+    "passed": true,
+    "details": {
+      "url": "/atributos-tecnicos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:44:54-0400"
+  },
+  {
+    "case": "AF-13",
+    "check": "form-create /atributos-tecnicos",
+    "passed": true,
+    "details": {
+      "url": "/atributos-tecnicos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:45:11-0400"
+  },
+  {
+    "case": "AF-13",
+    "check": "form-create /atributos-tecnicos",
+    "passed": true,
+    "details": {
+      "url": "/atributos-tecnicos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:45:22-0400"
+  },
+  {
+    "case": "AF-13",
+    "check": "server-request /atributos-tecnicos",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "measurement_unit_id"
+      ]
+    },
+    "at": "2026-10-19T10:45:30-0400"
+  },
+  {
+    "case": "AF-15",
+    "check": "form-create /categorias/1/atributos",
+    "passed": true,
+    "details": {
+      "url": "/categorias/1/atributos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:45:45-0400"
+  },
+  {
+    "case": "AF-15",
+    "check": "form-create /categorias/1/atributos",
+    "passed": true,
+    "details": {
+      "url": "/categorias/1/atributos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:45:53-0400"
+  },
+  {
+    "case": "AF-15",
+    "check": "form-create /categorias/1/atributos",
+    "passed": true,
+    "details": {
+      "url": "/categorias/1/atributos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:46:01-0400"
+  },
+  {
+    "case": "AF-15",
+    "check": "form-create /categorias/1/atributos",
+    "passed": true,
+    "details": {
+      "url": "/categorias/1/atributos",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:46:11-0400"
+  },
+  {
+    "case": "AF-15",
+    "check": "server-request /categorias/1/atributos",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "attribute_id"
+      ]
+    },
+    "at": "2026-10-19T10:46:18-0400"
+  },
+  {
+    "case": "AF-14",
+    "check": "server-request /atributos-tecnicos/1",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "data_type"
+      ]
+    },
+    "at": "2026-10-19T10:46:20-0400"
+  },
+  {
+    "case": "AF-25",
+    "check": "form-create /ubicaciones",
+    "passed": true,
+    "details": {
+      "url": "/ubicaciones",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:46:29-0400"
+  },
+  {
+    "case": "AF-25",
+    "check": "form-create /ubicaciones",
+    "passed": true,
+    "details": {
+      "url": "/ubicaciones",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:46:39-0400"
+  },
+  {
+    "case": "AF-25",
+    "check": "form-create /ubicaciones",
+    "passed": true,
+    "details": {
+      "url": "/ubicaciones",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:46:47-0400"
+  },
+  {
+    "case": "AF-25",
+    "check": "server-request /ubicaciones/1",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "parent_id"
+      ]
+    },
+    "at": "2026-10-19T10:46:52-0400"
+  },
+  {
+    "case": "AF-25",
+    "check": "server-request /ubicaciones/1",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "parent_id"
+      ]
+    },
+    "at": "2026-10-19T10:46:56-0400"
+  },
+  {
+    "case": "AF-25",
+    "check": "hierarchy displays all levels",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:47:02-0400"
+  },
+  {
+    "case": "AF-26",
+    "check": "server-request /ubicaciones/1/estado",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "is_active"
+      ]
+    },
+    "at": "2026-10-19T10:47:10-0400"
+  },
+  {
+    "case": "AF-19",
+    "check": "server-request /productos/revisar",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "location_ids.0"
+      ]
+    },
+    "at": "2026-10-19T10:47:17-0400"
+  },
+  {
+    "case": "AF-17",
+    "check": "server-request /productos/revisar",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "location_ids.0"
+      ]
+    },
+    "at": "2026-10-19T10:47:19-0400"
+  },
+  {
+    "case": "AF-20",
+    "check": "server-request /productos/revisar",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "location_ids.0"
+      ]
+    },
+    "at": "2026-10-19T10:47:20-0400"
+  },
+  {
+    "case": "AF-19",
+    "check": "server-request /productos/revisar",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "values.1"
+      ]
+    },
+    "at": "2026-10-19T10:49:00-0400"
+  },
+  {
+    "case": "AF-17",
+    "check": "server-request /productos/revisar",
+    "passed": false,
+    "details": {
+      "expected": 422,
+      "actual": 200,
+      "error_fields": []
+    },
+    "at": "2026-10-19T10:49:04-0400"
+  },
+  {
+    "case": "AF-20",
+    "check": "server-request /productos/revisar",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "values.2"
+      ]
+    },
+    "at": "2026-10-19T10:49:07-0400"
+  },
+  {
+    "case": "AF-17",
+    "check": "product confirmed through review",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:49:20-0400"
+  },
+  {
+    "case": "AF-20",
+    "check": "false and date preserved",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:49:20-0400"
+  },
+  {
+    "case": "AF-17",
+    "check": "quantity product created",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:49:31-0400"
+  },
+  {
+    "case": "AF-18",
+    "check": "server-request /productos/revisar",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "internal_code"
+      ]
+    },
+    "at": "2026-10-19T10:49:36-0400"
+  },
+  {
+    "case": "AF-22",
+    "check": "candidate warning without equivalence certification",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:49:39-0400"
+  },
+  {
+    "case": "AF-22",
+    "check": "distinct product after explicit review",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:49:44-0400"
+  },
+  {
+    "case": "AF-23",
+    "check": "technical revision visible",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:49:54-0400"
+  },
+  {
+    "case": "AF-08",
+    "check": "form-create /trabajadores",
+    "passed": true,
+    "details": {
+      "url": "/trabajadores/1",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:50:05-0400"
+  },
+  {
+    "case": "AF-08",
+    "check": "form-create /trabajadores",
+    "passed": true,
+    "details": {
+      "url": "/trabajadores/2",
+      "status": 200,
+      "alert": null
+    },
+    "at": "2026-10-19T10:50:16-0400"
+  },
+  {
+    "case": "AF-29",
+    "check": "individual unit created",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:50:31-0400"
+  },
+  {
+    "case": "AF-30",
+    "check": "server-request /unidades-individualizadas",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "identifier"
+      ]
+    },
+    "at": "2026-10-19T10:50:36-0400"
+  },
+  {
+    "case": "AF-30",
+    "check": "server-request /unidades-individualizadas",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "serial_number"
+      ]
+    },
+    "at": "2026-10-19T10:50:39-0400"
+  },
+  {
+    "case": "AF-29",
+    "check": "server-request /unidades-individualizadas",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "product_id"
+      ]
+    },
+    "at": "2026-10-19T10:50:43-0400"
+  },
+  {
+    "case": "AF-31",
+    "check": "server-request /unidades-individualizadas",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "location_id"
+      ]
+    },
+    "at": "2026-10-19T10:50:45-0400"
+  },
+  {
+    "case": "AF-30",
+    "check": "blank serial and location accepted",
+    "passed": true,
+    "details": null,
+    "at": "2026-10-19T10:50:50-0400"
+  },
+  {
+    "case": "AF-31",
+    "check": "server-request /unidades-individualizadas/1",
+    "passed": true,
+    "details": {
+      "expected": 422,
+      "actual": 422,
+      "error_fields": [
+        "identifier"
+      ]
+    },
+    "at": "2026-10-19T10:50:56-0400"
+  }
+]
