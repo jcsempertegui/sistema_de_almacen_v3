@@ -2,7 +2,9 @@
 
 Fecha: 15 de octubre de 2026, America/La_Paz.
 
-Estado: diseño aprobado e implementación verificada en `sprint-2/hu08-productos`, integrada por avance directo en `main` y publicada en ambas ramas con autorización del usuario. Código y pruebas en `00e007a5be869b07316bad9bd8d44f84befc7a2b`; coincidencia de las referencias remotas verificada tras el push. Regresión completa aprobada: **280 pruebas y 2.067 verificaciones**, sin errores ni fallos. Las cinco migraciones nuevas se aplicaron exclusivamente en `sga_rio_grande_testing`. La aplicación en la principal NO está autorizada ni ejecutada en esta etapa.
+Actualización de aplicación principal: 18 de octubre de 2026, America/La_Paz.
+
+Estado: diseño aprobado e implementación verificada en `sprint-2/hu08-productos`, integrada por avance directo en `main` y publicada con autorización. Código y pruebas en `00e007a5be869b07316bad9bd8d44f84befc7a2b`; publicación documentada en `3db8fd6e5e8a4add7ab29de565a87d4d96ff0189`. La suite del 15 de octubre aprobó **280 pruebas y 2.067 verificaciones**, exclusivamente en testing. Las cinco migraciones principales se aplicaron el **18 de octubre**, con autorización expresa y respaldo nuevo verificado, en los lotes **7 a 11**. Hay **25 migraciones aplicadas y ninguna pendiente**. La aplicación principal se comprobó mediante consultas de solo lectura; no se repitieron pruebas automatizadas sobre ella.
 
 ## Punto de partida y alcance
 
@@ -81,7 +83,7 @@ Siete capacidades nuevas: `products.view/create/update/change_status` y `product
 
 Configuración inicial: Administrador y Encargado reciben siete; Consulta/Auditor recibe las dos de lectura. No se otorgan a roles desconocidos ni se restauran vínculos revocados. La migración conserva personas, asignaciones y permisos previos, aumenta la versión solo si incorpora capacidades y registra el cambio administrativo. Las Policies comprueban permisos, no nombres de roles.
 
-En testing, el catálogo inicial pasa a 44 permisos y 86 vínculos; capacidades iniciales 44/32/10. La principal mantiene sus 37 permisos, 70 vínculos y 20 migraciones mientras no se autorice migrarla.
+En testing y, desde la aplicación autorizada del 18 de octubre, en la principal, el catálogo inicial tiene 44 permisos y 86 vínculos; capacidades iniciales 44/32/10. La principal pasó de 20 a 25 migraciones aplicadas y las versiones de permisos de sus tres roles pasaron de 4 a 5.
 
 ## Trazabilidad y evidencia
 
@@ -122,11 +124,39 @@ Se verificó `SELECT DATABASE()` antes de preparar testing. El bootstrap rechaza
 
 Se guardaron huellas de todas las tablas principales y `.env`, fuera del repositorio, en `C:\Users\jcsem\SGA-backups\hu08-baseline-20261015-101229.json`. Este archivo de huellas no es un respaldo SQL ni sustituye el respaldo previo a una futura migración principal.
 
-La comprobación final confirmó contenido idéntico en las 19 tablas principales y `.env` sin cambios. Principal: 20 migraciones, 37 permisos y 70 vínculos. Testing: 25 migraciones, 44 permisos, 86 vínculos y cero usuarios/productos/valores/revisiones/asociaciones remanentes. Informe de verificación: `C:\Users\jcsem\SGA-backups\hu08-final-verification.json`. Las 20 migraciones anteriores y los archivos de dependencias no tienen modificaciones.
+La comprobación del cierre de implementación del 15 de octubre confirmó contenido idéntico en las 19 tablas principales y `.env` sin cambios. En ese momento, antes de la autorización principal, había 20 migraciones, 37 permisos y 70 vínculos. Testing tenía 25 migraciones, 44 permisos, 86 vínculos y cero usuarios/productos/valores/revisiones/asociaciones remanentes. Informe histórico: `C:\Users\jcsem\SGA-backups\hu08-final-verification.json`. El estado posterior a la aplicación principal se registra a continuación; las 20 migraciones anteriores y los archivos de dependencias se conservaron.
 
-## Pendiente para la base principal
+## Aplicación autorizada a la base principal — 18 de octubre de 2026
 
-No ejecutar los siguientes pasos hasta disponer de autorización específica, prevalidación y respaldo SQL completo verificado fuera del repositorio. Confirmar conexión principal, conservar huellas y comprobar que solo estas cinco migraciones estén pendientes.
+El usuario autorizó crear el respaldo y aplicar las cinco migraciones después de la prevalidación. Se revalidó `main` limpia y sincronizada en `3db8fd6e5e8a4add7ab29de565a87d4d96ff0189`, PHP 8.3.10, Laravel 13.35.0 y las migraciones anteriores sin modificaciones. MariaDB estaba detenido: se inició el servidor existente de XAMPP con su configuración actual; el servicio independiente MySQL80 permaneció detenido. La conexión Laravel confirmó mediante `SELECT DATABASE()` la base `sga_rio_grande` y MariaDB 10.4.32.
+
+Se abrió mantenimiento y se capturó una referencia nueva de las 19 tablas: filas, conteos, definiciones, huellas y fuentes de las migraciones. No se usó un respaldo de otra etapa como sustituto. Se ejecutó el cliente `C:\xampp\mysql\bin\mysqldump.exe`, distribución MariaDB 10.4.32, con credenciales temporales protegidas fuera del repositorio, retiradas al finalizar. Se utilizaron `--single-transaction`, `--quick`, `--hex-blob`, `--routines`, `--events`, `--triggers`, `--complete-insert`, `--skip-extended-insert`, `--skip-lock-tables`, `--skip-add-locks`, `--skip-add-drop-table` y `--result-file`. Todas las tablas eran InnoDB y no había rutinas, triggers ni eventos.
+
+Respaldo nuevo, fuera del repositorio:
+
+```text
+C:\Users\jcsem\SGA-backups\hu08-deployment-20261019-030658-UTC-474b0c32\sga_rio_grande_pre_hu08.sql
+```
+
+- Tamaño: **62.311 bytes**; **19 tablas y 145 filas**.
+- SHA-256: `121b4626c9fdaa3b8b144c83b648b1d77f03a56ed43a991841eb14633cf0eeb7`.
+- Salida de mysqldump correcta y marca de finalización presentes.
+- Los 19 nombres y definiciones SQL coincidieron con el estado anterior. Al exportar una fila por INSERT, se comprobó el conteo exacto de filas de cada tabla.
+- Las referencias anteriores y posteriores al respaldo coincidieron. No se realizó un ensayo de restauración ni se importó el dump sobre otra base.
+
+El nombre de la carpeta usa UTC: `20261019-030658-UTC` corresponde a la noche del **18 de octubre en America/La_Paz**. El respaldo, manifiestos y registros privados permanecen fuera de Git.
+
+Se aplicaron únicamente estas migraciones, en orden y deteniendo la secuencia ante cualquier error:
+
+| Migración | Lote | Resultado |
+|---|---:|---|
+| `2026_10_15_000001_create_products_table` | 7 | Aplicada |
+| `2026_10_15_000002_create_product_attribute_values_table` | 8 | Aplicada |
+| `2026_10_15_000003_create_product_attribute_value_revisions_table` | 9 | Aplicada |
+| `2026_10_15_000004_create_product_locations_table` | 10 | Aplicada |
+| `2026_10_15_000005_add_product_permissions` | 11 | Aplicada |
+
+Registro del procedimiento limitado ejecutado; no son migraciones pendientes:
 
 ```powershell
 $hu08Migrations = @(
@@ -143,7 +173,27 @@ foreach ($hu08Migration in $hu08Migrations) {
 php artisan migrate:status
 ```
 
-Después: verificar las cuatro tablas, CHECK/UNIQUE/FKs con SHOW CREATE TABLE, 25 migraciones totales, integridad de referencias, contenido anterior conservado, 44 permisos/86 vínculos si se mantiene la configuración inicial, auditoría/versiones y cierre de sesiones anteriores de los roles que reciban capacidades. No aplicar rollback destructivo si una sentencia DDL falla: revisar el estado y recuperar según procedimiento autorizado. La publicación del código no implica que HU-08 esté habilitada en la principal antes de migrar.
+Comprobaciones posteriores realmente ejecutadas, mediante consultas de solo lectura:
+
+| Elemento | Antes | Después |
+|---|---:|---:|
+| Tablas | 19 | 23 |
+| Migraciones aplicadas | 20 | 25 |
+| Permisos | 37 | 44 |
+| Vínculos rol–permiso | 70 | 86 |
+| Auditorías administrativas | 12 | 15 |
+| Roles | 3 | 3 |
+| Versión de permisos de cada rol | 4 | 5 |
+| Capacidades Administrador / Encargado / Consulta | 37 / 25 / 8 | 44 / 32 / 10 |
+| Usuarios / trabajadores | 0 / 0 | 0 / 0 |
+
+Se verificaron las **14 FKs con RESTRICT, 10 CHECK, cinco UNIQUE adicionales a las PK**, índices y tipos; las cuatro estructuras nuevas coinciden con las probadas en testing, ignorando únicamente el contador AUTO_INCREMENT. Se comprobaron las dos FKs compuestas de pertenencia a categoría y ambas columnas DECIMAL(18,6). No se detectaron referencias huérfanas. Las cuatro tablas nuevas quedaron vacías, sin datos de prueba.
+
+Se conservaron las estructuras de las 19 tablas anteriores y las filas existentes. Los únicos cambios previstos fueron cinco registros de migración, siete permisos, dieciséis vínculos, tres auditorías y las versiones/fechas de los roles. No se restauraron revocaciones ni se asignaron privilegios a cuentas desconocidas. `.env`, las fuentes de migraciones y las dependencias quedaron intactas. No hubo seeders generales, comandos destructivos o desarrollo de HU-10. El mantenimiento se cerró después de verificar el resultado.
+
+Evidencia externa en la carpeta del respaldo: `before.json`, `after-backup.json`, `backup-verified.json`, `after-migrations.json`, `deployment-result.json`, `final-readonly-verification.json`, huella `.sql.sha256` y registros individuales de las cinco migraciones. No se incorporan a Git archivos SQL, credenciales ni manifiestos con filas de la base.
+
+Ante un futuro fallo parcial de DDL se debe detener la secuencia, conservar mantenimiento, respaldo y evidencia, y revisar tablas/restricciones/registro antes de proponer una reparación aditiva autorizada. Los `down()` rechazan una reversión destructiva; no se borran tablas ni se restaura encima de la principal automáticamente.
 
 ## Archivos
 

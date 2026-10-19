@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 15 de octubre de 2026: HU-05/HU-06/HU-07/HU-09 aplicadas a la principal con autorización y respaldo. HU-08 implementada y validada exclusivamente en testing; sus cinco migraciones principales siguen pendientes. Regresión: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos.** Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md). HU-10 permanece sin implementar; aceptación visual pendiente.
+**Estado al 18 de octubre de 2026: HU-05/HU-06/HU-07/HU-09/HU-08 aplicadas a la principal con autorización y respaldo. HU-08 se aplicó en los lotes 7 a 11; hay 25 migraciones aplicadas y ninguna pendiente, 23 tablas, 44 permisos y 86 vínculos. La última regresión del 15 de octubre aprobó 280 pruebas y 2.067 verificaciones exclusivamente en testing.** Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md). HU-10 permanece sin implementar; aceptación visual pendiente.
 
 ## Objetivo y alcance
 
@@ -39,7 +39,7 @@ Las reglas sobre retiros, saldos y documentos se implementarán en sprints poste
 | Roles y permisos configurables son el requisito original | Confirmado; correctivo implementado y probado, con migración principal autorizada aplicada. |
 | El Encargado también gestiona unidades de medida | Confirmado por el usuario. |
 | Conservar un rol por usuario inicialmente | Confirmado en el alcance del correctivo HU-03. |
-| Añadir `product_locations` para la relación muchos a muchos | Aprobado e implementado en HU-08, sin cantidades; migración principal pendiente. |
+| Añadir `product_locations` para la relación muchos a muchos | Aprobado, implementado y migrado en HU-08, sin cantidades. |
 | Aviso de posibles equivalentes con revisión humana | Aprobado e implementado mediante comparación exacta de identificadores vigentes; sin conversiones, tolerancias ni fusión automática. |
 | Numeración HU-05 a HU-10 | Provisional; contrastar con backlog académico. |
 
@@ -107,7 +107,7 @@ Como Administrador o Encargado, quiero registrar manualmente productos con sus c
 - Desactivación sin borrar referencias; identidad y modalidad protegidas cuando existan unidades o historial.
 - No existe importación Excel para crear o modificar productos.
 
-Implementación de Etapa 4: cuatro tablas nuevas (productos, valores, revisiones y asociaciones de ubicaciones), una migración de siete permisos, modelos, acciones transaccionales, Policies, FormRequests, listados, formularios, ficha e historial Blade y revisión humana de coincidencias. Código inmutable y edición optimista mediante `lock_version`. Las pruebas y migraciones de esta etapa se ejecutan exclusivamente en testing; la principal conserva 20 migraciones aplicadas y requiere autorización específica para las cinco nuevas.
+Implementación de Etapa 4: cuatro tablas nuevas (productos, valores, revisiones y asociaciones de ubicaciones), una migración de siete permisos, modelos, acciones transaccionales, Policies, FormRequests, listados, formularios, ficha e historial Blade y revisión humana de coincidencias. Código inmutable y edición optimista mediante `lock_version`. Las pruebas se ejecutaron exclusivamente en testing. Las cinco migraciones principales se aplicaron con autorización y respaldo el 18 de octubre de 2026, lotes 7 a 11; la principal tiene 25 migraciones aplicadas y ninguna pendiente. Las comprobaciones posteriores de datos y esquema fueron de solo lectura.
 
 Dependencias: categorías, unidades, atributos y ubicaciones para asignación múltiple.
 

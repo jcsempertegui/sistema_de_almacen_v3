@@ -25,7 +25,7 @@ La tabla muestra la configuración inicial. Los roles y sus permisos son configu
 
 El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07/HU-09 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md), la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md) y la [Etapa 3: ubicaciones](docs/sprint-2-stage-3.md).
 
-HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: consulta la [Etapa 4](docs/sprint-2-stage-4.md). Sus cinco migraciones están aplicadas exclusivamente en testing y siguen pendientes en la principal. Resultado actualizado de regresión: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos. HU-10 y la aceptación visual permanecen pendientes.
+HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: sus cinco migraciones principales se aplicaron con autorización y respaldo verificado el **18 de octubre de 2026**, lotes 7 a 11. Consulta la [Etapa 4](docs/sprint-2-stage-4.md). La principal tiene 25 migraciones aplicadas, ninguna pendiente, 23 tablas, 44 permisos y 86 vínculos. La última regresión, ejecutada el 15 de octubre exclusivamente en testing, aprobó 280 pruebas y 2.067 verificaciones. HU-10 y la aceptación visual permanecen pendientes.
 
 ## Diagnóstico y planificación
 
@@ -37,7 +37,7 @@ HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones princi
 
 El diseño de `product_locations`, las revisiones de valores y el control de concurrencia de HU-08 fueron aprobados. La comparación exacta de identificadores genera candidatos para revisión humana; no certifica equivalencia, no fusiona productos y no convierte unidades.
 
-Las etapas entregadas comprenden HU-05/HU-06/HU-07/HU-09 y el código de HU-08. Categorías, unidades, atributos y ubicaciones ya tienen sus tablas y permisos en la principal; productos, valores, revisiones y asociaciones esperan su autorización de migración. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`.
+Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-09/HU-08. Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen sus tablas y permisos aplicados. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`; la aplicación principal de HU-08 se comprobó mediante consultas de solo lectura, sin crear datos de prueba.
 
 ## Arranque local
 
@@ -49,11 +49,11 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local conserva las 20 migraciones aplicadas, incluidas las cinco del correctivo HU-03 y las ocho de HU-05/HU-06/HU-07/HU-09. Hay cinco migraciones nuevas de HU-08 pendientes de autorización específica, prevalidación y respaldo: no ejecutar una migración general antes de esos pasos. El procedimiento limitado está en la Etapa 4. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local tiene **25 migraciones aplicadas y ninguna pendiente**, incluidas las cinco del correctivo HU-03 y las trece de HU-05/HU-06/HU-07/HU-09/HU-08. La Etapa 4 registra el respaldo y las verificaciones de HU-08. Otras aplicaciones de migraciones requieren su propia prevalidación, respaldo y autorización. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
 
 Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
 
-Tras autorizar y aplicar las migraciones de HU-08 se habilitarán `/productos` y `/productos/{product}/ubicaciones`. Publicar el código no habilita esas tablas en la principal.
+HU-08 tiene sus tablas y permisos aplicados: `/productos` y `/productos/{product}/ubicaciones` están disponibles según las capacidades del usuario autenticado.
 
 **Configuración local:** `APP_KEY` se generó con autorización específica y se verificó que fuera el único cambio en `.env`. Laravel utiliza esa clave para cifrar las cookies de sesión. No regeneres una clave existente sin autorización. Las pruebas usan una clave temporal independiente.
 

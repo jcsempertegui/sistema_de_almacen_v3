@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 15 de octubre de 2026: HU-08 implementada con validación aislada, junto con la regresión de HU-01 a HU-07 y HU-09: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos.** Sus cinco migraciones solo están aplicadas en testing; las 20 anteriores siguen aplicadas en la principal. Consulta [Etapa 4](sprint-2-stage-4.md). HU-10 y aceptación visual permanecen pendientes. Las evidencias históricas se conservan en [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
+**Estado al 18 de octubre de 2026: HU-08 aplicada a la principal con autorización y respaldo, con 25 migraciones totales y ninguna pendiente. La última suite del 15 de octubre aprobó 280 pruebas y 2.067 verificaciones exclusivamente en testing, incluida la regresión de HU-01 a HU-07 y HU-09.** La aplicación principal del 18 de octubre se verificó mediante consultas de solo lectura; no se ejecutaron pruebas automatizadas sobre ella. Consulta [Etapa 4](sprint-2-stage-4.md). HU-10 y aceptación visual permanecen pendientes. Las evidencias históricas se conservan en [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
 
 ## Condiciones de ejecución
 
@@ -84,7 +84,7 @@ El correctivo se aprobó y estos comportamientos se verificaron dentro de la sui
 
 ## Registro de resultados
 
-La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md). HU-07 añade su [trazabilidad y evidencia](sprint-2-stage-2.md): ATR-01/02, ASC-01/02/04, SEC-01 a SEC-04 y REG-01. ATR-03 se verifica de forma conservadora con asociaciones históricas reales, incluso sin valores; ASC-03 e impacto sobre identificación/límites usan dependencias futuras simuladas. MED-04 incorpora referencias reales a atributos. CAT-03 e integración con productos/valores reales siguen pendientes. UI-01/UI-02 requieren aceptación en navegador.
+La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md). La evidencia original de HU-07 registra ATR-01/02, ASC-01/02/04, SEC-01 a SEC-04 y REG-01: ATR-03 se verificó con asociaciones históricas reales y ASC-03/impacto sobre identificación/límites con dependencias futuras simuladas. MED-04 incorporó atributos reales; en ese momento CAT-03 y la integración con productos/valores estaban pendientes. La Etapa 4 añadió esas integraciones reales, como se detalla más abajo. UI-01/UI-02 requieren aceptación en navegador.
 
 HU-09 incorpora LOC-01 a LOC-05, permisos, integridad SQL y regresión; véase [Etapa 3](sprint-2-stage-3.md). LOC-04 usa dos procesos reales y comprueba la espera del mutex, incluso con un snapshot previo. LOC-05 comprueba hijos reales y carreras con creación/reactivación; la dependencia de unidades sigue simulada, sin implementar HU-10.
 

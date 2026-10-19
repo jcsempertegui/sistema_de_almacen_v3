@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 15 de octubre de 2026: categorías, unidades, atributos y `locations` aplicados en la principal con autorización y respaldo. HU-08 implementa `products`, valores, revisiones y `product_locations`, aprobados y migrados exclusivamente en testing. Sus cinco migraciones principales permanecen pendientes de autorización. Regresión: 280 pruebas y 2.067 verificaciones aprobadas, sin errores ni fallos.** `individual_units` sigue siendo diseño pendiente. Consulta el [plan](sprint-2.md) y la [Etapa 4](sprint-2-stage-4.md); las Etapas 1 a 3 conservan su evidencia histórica.
+**Estado al 18 de octubre de 2026: categorías, unidades, atributos, `locations`, `products`, valores, revisiones y `product_locations` aplicados a la principal con autorización y respaldo. Hay 25 migraciones aplicadas, ninguna pendiente y 23 tablas. La última regresión del 15 de octubre aprobó 280 pruebas y 2.067 verificaciones exclusivamente en testing.** `individual_units` sigue siendo diseño pendiente. Consulta el [plan](sprint-2.md) y la [Etapa 4](sprint-2-stage-4.md); las Etapas 1 a 3 conservan su evidencia histórica.
 
 ## Convenciones comunes
 
@@ -55,9 +55,9 @@ Dimensiones implementadas para Etapa 1: `count`, `length`, `mass`, `volume`, `ti
 
 Restricciones: `UNIQUE(code)`, `UNIQUE(symbol)`, `CHECK(decimal_places BETWEEN 0 AND 6)` y validación del conjunto de dimensiones. Índice `(is_active,name)`.
 
-Relaciones implementadas: `attributes(): hasMany(CatalogAttribute)` por su unidad técnica y `creator`/`updater` hacia `User`. La relación a `Product` sigue pendiente; se conservan las verificaciones de `CatalogReferences`.
+Relaciones implementadas: `attributes(): hasMany(CatalogAttribute)` por su unidad técnica, `products(): hasMany(Product)` y `creator`/`updater` hacia `User`. Se conservan las verificaciones de `CatalogReferences`.
 
-Validación: símbolo y dimensión válidos, precisión compatible con datos existentes. Desactivar se bloquea si la utilizan productos o atributos activos. Con cualquier referencia, incluso inactiva, no se modifican código, símbolo, dimensión o precisión; el nombre puede corregirse. En HU-07 se verifica con atributos reales; la integración con productos sigue pendiente.
+Validación: símbolo y dimensión válidos, precisión compatible con datos existentes. Desactivar se bloquea si la utilizan productos o atributos activos. Con cualquier referencia, incluso inactiva, no se modifican código, símbolo, dimensión o precisión; el nombre puede corregirse. HU-07 verifica atributos reales y HU-08 integra productos reales en las pruebas aisladas.
 
 ## 3. `attributes`
 
@@ -93,11 +93,11 @@ Modelo: `CategoryAttribute`, con identidad propia por sus reglas y relaciones.
 
 Restricciones: `UNIQUE(category_id,attribute_id)`, `UNIQUE(id,category_id)` para la FK compuesta de valores. CHECK de booleanos y de mínimo ≤ máximo cuando ambos se informen. Índice `(category_id,is_active,display_order)` y FK de atributo.
 
-Relaciones implementadas: `belongsTo(Category)`, `belongsTo(CatalogAttribute)` y autores. La relación a `ProductAttributeValue` sigue pendiente de HU-08.
+Relaciones implementadas: `belongsTo(Category)`, `belongsTo(CatalogAttribute)`, `productAttributeValues(): hasMany(ProductAttributeValue)` y autores.
 
 Validación implementada: categoría/atributo/unidad activos para asociar o reactivar, asociación no duplicada aunque esté inactiva, orden entero de 0 a 65535 y límites solo decimales. Punto decimal, hasta 12 enteros y 6 decimales, precisión de la unidad respetada; ceros finales no consumen precisión significativa. Comparación exacta sin FLOAT. Mínimo y máximo permiten cero y negativos.
 
-La categoría se toma de la ruta y no se sustituye; tampoco se sustituye el atributo de una asociación existente. Los guards futuros bloquean cambios de identificación/límites con valores históricos y obligatoriedad con productos activos incompletos. Se prueban mediante simulaciones en HU-07; su integración real corresponde a HU-08. Desactivar conserva filas y referencias; no hay DELETE.
+La categoría se toma de la ruta y no se sustituye; tampoco se sustituye el atributo de una asociación existente. Los guards bloquean cambios de identificación/límites con valores históricos y obligatoriedad con productos activos incompletos, incluida la reactivación de una asociación obligatoria. HU-07 conservó simulaciones de dependencias futuras y HU-08 añadió pruebas con productos y valores reales. Desactivar conserva filas y referencias; no hay DELETE.
 
 ## 5. `products`
 
@@ -126,7 +126,7 @@ Validación: referencias activas, código único y todos los valores requeridos/
 
 Desactivar conserva asociaciones y unidades, impide nuevos registros operativos y no modifica saldos. No hay columna de stock o cantidad.
 
-Implementado en HU-08, pendiente de migración principal. El código interno es inmutable. Categoría, unidad, modo y prestable no se cambian cuando hay valores, asociaciones o unidades históricas. Los cambios efectivos de producto, valores o asociaciones incrementan `lock_version`; un formulario obsoleto obtiene HTTP 409.
+Implementado y aplicado a la principal en HU-08 el 18 de octubre de 2026. El código interno es inmutable. Categoría, unidad, modo y prestable no se cambian cuando hay valores, asociaciones o unidades históricas. Los cambios efectivos de producto, valores o asociaciones incrementan `lock_version`; un formulario obsoleto obtiene HTTP 409.
 
 ## 6. `product_attribute_values`
 
@@ -241,7 +241,7 @@ Relaciones: `belongsTo(Product)` y `belongsTo(Location)`; Product expone `belong
 
 Validación: referencias activas, ubicación almacenable, sin asociación duplicada. Desactivar se bloquea si una unidad permanece asignada allí. No borrar asociaciones con historial.
 
-Esta tabla representa ubicaciones configuradas para el producto y no tiene cantidades. Aprobada e implementada en HU-08, pendiente de migración principal. Se permiten cero o varias ubicaciones. Las parejas no se sustituyen; una pareja inactiva se reactiva. Se bloquea la desactivación de ubicaciones con asociaciones activas. La validación real con unidades asignadas queda pendiente de HU-10; el guard se prueba mediante simulación aislada.
+Esta tabla representa ubicaciones configuradas para el producto y no tiene cantidades. Aprobada, implementada y aplicada a la principal en HU-08 el 18 de octubre de 2026. Se permiten cero o varias ubicaciones. Las parejas no se sustituyen; una pareja inactiva se reactiva. Se bloquea la desactivación de ubicaciones con asociaciones activas. La validación real con unidades asignadas queda pendiente de HU-10; el guard se prueba mediante simulación aislada.
 
 ## Diagrama de relaciones propuesto
 
@@ -271,7 +271,7 @@ Las referencias de autoría a `users` se omiten del diagrama para legibilidad, p
 - CHECK mediante SQL explícito dentro de nuevas migraciones; verificar su aplicación en pruebas sobre MariaDB.
 - Usar nombres de restricciones únicos en el esquema y dentro de los límites de longitud del servidor.
 - No depender de consultas sobre JSON ni de paquetes adicionales para el esquema.
-- Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. Las cuatro tablas de HU-08 todavía no están aplicadas en la principal. Unidades individualizadas permanecen sin implementación.
+- Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. Las cuatro tablas de HU-08 se aplicaron a la principal el 18 de octubre de 2026; sus estructuras coinciden con las probadas en testing. Unidades individualizadas permanecen sin implementación.
 - Guardar códigos y valores técnicos de forma consistente, sin FLOAT ni certificación automática de equivalencias.
 - Historial y saldos posteriores deberán respetar las identidades, FKs y desactivaciones de este catálogo.
 
