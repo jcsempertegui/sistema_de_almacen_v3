@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-Validación funcional posterior del 19 de octubre: [informe y matriz de aceptación](sprint-2-acceptance.md). Nueva regresión: 315 pruebas y 2.409 aserciones, sin fallos, en testing. Hay recorrido asistido, capturas y entorno demostrativo separado; permanecen pendientes la aceptación humana y UI-S2-02. Los resultados de las etapas siguientes se conservan como evidencia histórica. No se inició Sprint 3.
+Validación funcional posterior del 19 de octubre: [informe y matriz de aceptación](sprint-2-acceptance.md). Regresión completa histórica: 315 pruebas y 2.409 aserciones, sin fallos, en testing. UI-S2-02 se corrigió después con una vista 419 española y 39 pruebas seleccionadas/306 aserciones aprobadas. Hay recorrido asistido, capturas y entorno demostrativo separado; la aceptación humana permanece pendiente y tiene su [guion](sprint-2-human-acceptance.md). Los resultados de las etapas siguientes se conservan como evidencia histórica. No se inició Sprint 3.
 
 **Estado al 19 de octubre de 2026:** HU-05/HU-06/HU-07/HU-09/HU-08/HU-10 aplicadas a la principal con autorización y respaldo. HU-10 se aplicó en el lote 12; hay **27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos**. Evidencia de despliegue y regresión previa en [Etapa 5](sprint-2-stage-5.md). Aceptación visual pendiente.
 

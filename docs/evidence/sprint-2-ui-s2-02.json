@@ -1,0 +1,180 @@
+{
+  "verified_at": "2026-10-19T11:54:49.541409-04:00",
+  "baseline_commit": "bd28aa410109ffb053a5f8b6b4bf785b46a30dbb",
+  "authorization": "User approved UI-S2-02 implementation, tests, documentation and repository publication; no formal functional acceptance granted.",
+  "incident": {
+    "id": "UI-S2-02",
+    "status": "fixed_and_technically_verified",
+    "human_review": "pending",
+    "new_view": "resources/views/errors/419.blade.php",
+    "status_code": 419,
+    "middleware_modified": false,
+    "bootstrap_or_routes_modified": false,
+    "json_behavior": "native Laravel JSON error response preserved"
+  },
+  "acceptance_status": "pending_human_functional_acceptance",
+  "sprint_3_started": false,
+  "phpunit": {
+    "database": "sga_rio_grande_testing",
+    "new_execution": true,
+    "scope": "ExpiredRequestPageTest, AuthenticationTest, RbacManagementTest, CatalogAuthorizationTest, ProductAuthorizationTest, IndividualUnitAuthorizationTest",
+    "name": "C:\\laragon\\www\\sistema_de_almacen_v3\\phpunit.xml",
+    "tests": "39",
+    "assertions": "306",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "59.010244",
+    "new_test_cases": [
+      {
+        "name": "test_guest_csrf_failure_uses_the_spanish_page_and_keeps_status_419",
+        "file": "C:\\laragon\\www\\sistema_de_almacen_v3\\tests\\Feature\\ExpiredRequestPageTest.php",
+        "line": "10",
+        "class": "Tests\\Feature\\ExpiredRequestPageTest",
+        "classname": "Tests.Feature.ExpiredRequestPageTest",
+        "assertions": "10",
+        "time": "0.113112"
+      },
+      {
+        "name": "test_authenticated_invalid_token_cannot_create_a_category",
+        "file": "C:\\laragon\\www\\sistema_de_almacen_v3\\tests\\Feature\\ExpiredRequestPageTest.php",
+        "line": "28",
+        "class": "Tests\\Feature\\ExpiredRequestPageTest",
+        "classname": "Tests.Feature.ExpiredRequestPageTest",
+        "assertions": "4",
+        "time": "0.181210"
+      },
+      {
+        "name": "test_json_csrf_failure_keeps_the_native_json_response",
+        "file": "C:\\laragon\\www\\sistema_de_almacen_v3\\tests\\Feature\\ExpiredRequestPageTest.php",
+        "line": "40",
+        "class": "Tests\\Feature\\ExpiredRequestPageTest",
+        "classname": "Tests.Feature.ExpiredRequestPageTest",
+        "assertions": "5",
+        "time": "0.117775"
+      },
+      {
+        "name": "test_valid_csrf_token_still_allows_a_normal_login",
+        "file": "C:\\laragon\\www\\sistema_de_almacen_v3\\tests\\Feature\\ExpiredRequestPageTest.php",
+        "line": "51",
+        "class": "Tests\\Feature\\ExpiredRequestPageTest",
+        "classname": "Tests.Feature.ExpiredRequestPageTest",
+        "assertions": "5",
+        "time": "0.129691"
+      }
+    ],
+    "full_suite_rerun": false,
+    "historical_full_suite": {
+      "tests": 315,
+      "assertions": 2409,
+      "evidence": "sprint-2-acceptance.json"
+    }
+  },
+  "browser": {
+    "verified_at": "2026-10-19T11:51:51-0400",
+    "mode": "agent-assisted Edge CDP, not human acceptance",
+    "browser": "Edg/155.0.4283.62",
+    "url": "http://127.0.0.1:8012",
+    "database": "sga_rio_grande_acceptance_s2",
+    "new_demo_records_created": false,
+    "migrations_run": false,
+    "checks": [
+      {
+        "check": "cross_origin_form_without_token_rejected_419",
+        "passed": true,
+        "details": {
+          "status": 419
+        }
+      },
+      {
+        "check": "spanish_message_and_brand",
+        "passed": true,
+        "details": null
+      },
+      {
+        "check": "recovery_link_is_local_root",
+        "passed": true,
+        "details": null
+      },
+      {
+        "check": "no_page_overflow_1366",
+        "passed": true,
+        "details": null
+      },
+      {
+        "check": "no_page_overflow_390",
+        "passed": true,
+        "details": null
+      },
+      {
+        "check": "recovery_link_keyboard_focus",
+        "passed": true,
+        "details": null
+      },
+      {
+        "check": "recovery_opens_login",
+        "passed": true,
+        "details": null
+      },
+      {
+        "check": "existing_demo_login_still_works",
+        "passed": true,
+        "details": null
+      }
+    ]
+  },
+  "preservation": {
+    "main_database": "sga_rio_grande",
+    "main_tables": 24,
+    "main_migrations": 27,
+    "main_data_and_schemas_unchanged": true,
+    "env_unchanged": true,
+    "previous_migration_files_unchanged": true,
+    "main_before_sha256": "38391cfd9d77353fa773c4b716e5880ed85a1c7df8c85aa159360268096a4ab4",
+    "main_after_sha256": "38391cfd9d77353fa773c4b716e5880ed85a1c7df8c85aa159360268096a4ab4",
+    "acceptance_database": "sga_rio_grande_acceptance_s2",
+    "acceptance_compared_tables": 21,
+    "acceptance_business_data_and_schemas_unchanged": true,
+    "excluded_acceptance_infrastructure": [
+      "sessions",
+      "cache",
+      "cache_locks"
+    ],
+    "acceptance_before_sha256": "8f4f03ec87d4787462593a4913192415f5cdac021b802d3c6c9e29f99956ea54",
+    "acceptance_after_sha256": "8f4f03ec87d4787462593a4913192415f5cdac021b802d3c6c9e29f99956ea54",
+    "new_demo_records_or_users_created": false,
+    "migrations_applied_to_main_or_acceptance": false,
+    "existing_security_and_layout_files_unchanged": true,
+    "packages_or_dependencies_modified": false
+  },
+  "source_hash_normalization": "CRLF to LF before SHA256",
+  "source_hashes": {
+    "resources/views/errors/419.blade.php": "9b4af66d312732d0ee92fd57aa75065e3a4a11fc583a383a3951b9bc270235b1",
+    "tests/Feature/ExpiredRequestPageTest.php": "80eca382b037773063820de727f9d43b6ee849893386946eb56e6d19beb2e9ed"
+  },
+  "style": {
+    "pint_new_test": "passed",
+    "git_diff_check": "passed"
+  },
+  "artifacts": {
+    "419-es-desktop.png": {
+      "bytes": 21753,
+      "sha256": "e0256f943fa6185df9428512edb33333d26f3b8d91fa19e06b305910d069b4b3"
+    },
+    "419-es-mobile.png": {
+      "bytes": 19603,
+      "sha256": "0b5708bb9559845437a07ffd72a2903fa9610fd233082dea959578e7985abdb5"
+    },
+    "browser-verification.json": {
+      "bytes": 1154,
+      "sha256": "4c1e884f8b4a0550a05fbd1b5e22f652183326d5d33019999620e51e01f35ab6"
+    },
+    "targeted-junit.xml": {
+      "bytes": 14231,
+      "sha256": "240ea85fc1f918c6d90b7528413ed6945fc0ce0c99ff6a2d9eb223999c3e50ed"
+    }
+  },
+  "external_evidence_directory": "C:\\Users\\jcsem\\SGA-acceptance\\sprint-2-20261019\\ui-s2-02",
+  "human_acceptance_guide": "../sprint-2-human-acceptance.md",
+  "formal_acceptance_recorded": false
+}

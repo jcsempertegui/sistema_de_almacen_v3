@@ -4,7 +4,9 @@ Fecha: 19 de octubre de 2026, America/La_Paz.
 
 **Estado: candidato a aceptación; sin aprobación funcional formal.** El usuario autorizó preparar el entorno aislado, ejecutar las verificaciones y actualizar el repositorio. Esa autorización no se registra como aceptación del producto ni como inicio del Sprint 3.
 
-Base revisada: `44e0335c380bb26ebae5cac88cbef2049e68ea25`, `main` limpia y coincidente con GitHub al comenzar. El único cambio de aplicación de esta revisión es la etiqueta española del grupo de permisos de unidades individualizadas; no se cambian reglas de negocio, dependencias ni migraciones.
+Base de la revisión original: `44e0335c380bb26ebae5cac88cbef2049e68ea25`, `main` limpia y coincidente con GitHub al comenzar. En aquella revisión, el único cambio de aplicación fue la etiqueta española del grupo de permisos de unidades individualizadas; no se cambiaron reglas de negocio, dependencias ni migraciones.
+
+**Seguimiento de UI-S2-02, autorizado después de `bd28aa410109`:** se añadió la vista española 419 conservando el middleware y el código HTTP. Se ejecutaron **39 pruebas seleccionadas, 306 aserciones, sin fallos**, incluidas cuatro pruebas nuevas y regresión de autenticación, roles y autorización de catálogos. Ocho comprobaciones asistidas en Edge y dos capturas posteriores verifican la recuperación y presentación. La regresión completa histórica de 315 pruebas no se repitió en este seguimiento. Evidencia vigente del correctivo: [sprint-2-ui-s2-02.json](evidence/sprint-2-ui-s2-02.json). La revisión humana continúa pendiente; usar el [guion personal de aceptación](sprint-2-human-acceptance.md).
 
 ## 1. Historias implementadas y trazabilidad
 
@@ -52,7 +54,9 @@ Se usó Edge real en modo headless, controlado mediante CDP con scripts locales 
 
 En la matriz, **E** significa que se ejecutaron las comprobaciones indicadas y **P** que queda parte del alcance original pendiente de revisión humana o de un caso adicional. Una fila E no equivale a aprobación funcional formal. Los JSON conservan observaciones, respuestas y repeticiones; no se deduce aprobación a partir de una captura.
 
-Se conservaron **162 observaciones del guion y 33 capturas**. No representan 162 casos manuales aprobados: incluyen doce expectativas iniciales no satisfechas, clasificadas y repetidas según la sección 5, además de comprobaciones parciales. La incidencia visual abierta de la página 419 se registra expresamente aunque su rechazo de seguridad sea correcto.
+Se conservaron **162 observaciones del guion y 33 capturas**. No representan 162 casos manuales aprobados: incluyen doce expectativas iniciales no satisfechas, clasificadas y repetidas según la sección 5, además de comprobaciones parciales. La incidencia visual de la página 419 estaba abierta en ese recorrido aunque su rechazo de seguridad era correcto; su resolución posterior se registra en la sección 5.
+
+Estos conteos y el JSON agregado original corresponden al recorrido anterior, cuyo estado se conserva como evidencia histórica. El correctivo posterior añade ocho comprobaciones asistidas y dos capturas; no transforma observaciones anteriores en aceptación humana ni reemplaza sus archivos originales.
 
 | Caso | Alcance efectivamente comprobado | Situación / referencia de la matriz original |
 |---|---|---|
@@ -104,7 +108,8 @@ Las capturas se publican en [evidence/sprint-2-acceptance](evidence/sprint-2-acc
 - [Formulario de producto móvil](evidence/sprint-2-acceptance/ui-product-form-390.png) y [panel en tableta](evidence/sprint-2-acceptance/ui-panel-768.png).
 - [Tabla móvil, columnas finales](evidence/sprint-2-acceptance/ui-individual-mobile-right.png): utiliza desplazamiento interno, sin ensanchar la página.
 - [Historial con revisiones desplegadas](evidence/sprint-2-acceptance/20-expanded-history.png).
-- [Rechazo 419](evidence/sprint-2-acceptance/19-cross-origin-419.png), con traducción pendiente.
+- [Rechazo 419 original](evidence/sprint-2-acceptance/19-cross-origin-419.png), antes de corregir su traducción.
+- Corrección posterior: [419 en escritorio](evidence/sprint-2-ui-s2-02/419-es-desktop.png) y [419 móvil](evidence/sprint-2-ui-s2-02/419-es-mobile.png). El archivo anterior conserva el defecto original; estas dos capturas muestran su corrección.
 
 Pendientes: recorrido del responsable funcional, evaluación de comprensión de errores y advertencias, teclado completo, contraste/foco, zoom real al 200 %, otros navegadores/dispositivos y capturas adicionales de los casos P. La captura de reflujo a 683 px no se presenta como prueba de zoom real.
 
@@ -112,7 +117,11 @@ Pendientes: recorrido del responsable funcional, evaluación de comprensión de 
 
 **UI-S2-01, menor, corregida:** el formulario de roles mostraba `individual_units` como leyenda. Se añadió «Unidades individualizadas» a `resources/views/roles/form.blade.php`. Confirmación en navegador y capturas antes/después; no cambia autorizaciones.
 
-**UI-S2-02, menor, abierta:** la página genérica HTTP 419 muestra «Page Expired» en inglés. La solicitud sin protección de origen/token se rechaza correctamente. Queda pendiente acordar y traducir la plantilla de error; no se cambia el middleware de seguridad. La evidencia es `19-cross-origin-419.png`. Este hallazgo no queda oculto por el resultado satisfactorio del caso de seguridad AF-35.
+**UI-S2-02, menor, corregida y verificada técnicamente; revisión humana pendiente:** la página genérica HTTP 419 mostraba «Page Expired». Con autorización posterior se añadió `resources/views/errors/419.blade.php`, extendiendo `layouts.app` y reutilizando su CSS. Presenta «Solicitud no válida o caducada», instrucciones en español y un enlace local «Volver al inicio». Conserva 419, no reenvía formularios y no expone la excepción. No se modifican middleware, rutas, `.env`, dependencias ni migraciones. La captura `19-cross-origin-419.png` conserva el defecto original; las nuevas capturas y pruebas están en `evidence/sprint-2-ui-s2-02/`.
+
+Las cuatro pruebas de `ExpiredRequestPageTest` comprueban HTML español para invitado, rechazo de token inválido para usuario autenticado sin alta de categoría, respuesta JSON nativa y acceso normal con token válido. Se ejecutaron junto con `AuthenticationTest`, `RbacManagementTest`, `CatalogAuthorizationTest`, `ProductAuthorizationTest` e `IndividualUnitAuthorizationTest`: **39 pruebas y 306 aserciones aprobadas**, sin omisiones. `Pint --test` del archivo nuevo y `git diff --check` pasaron. PHPUnit utiliza únicamente `sga_rio_grande_testing`, con sus controles existentes de aislamiento; no se crearon migraciones nuevas ni se aplicaron migraciones a la principal o a aceptación.
+
+En el entorno de aceptación existente se envió un formulario sin token desde un origen opaco utilizando un código ya existente. La respuesta fue 419. Se comprobaron mensaje español, marca, enlace local, foco por Tab, ausencia de desbordamiento a 1366×768 y 390×844, navegación al login y acceso con una cuenta demostrativa existente. No se crearon registros demostrativos. Los hashes anteriores/posteriores confirman conservación de las 21 tablas de negocio y configuración comparadas en aceptación; solo se excluyen sesiones, caché y bloqueos de caché, propios del funcionamiento web. La comparación completa de la principal y `.env` también coincide. Estas verificaciones fueron asistidas, no humanas.
 
 Los registros originales conservan expectativas fallidas del guion: serialización de nodos DOM y arrays, selección de identificadores de asociaciones, formularios GET sin `action`, expectativa 422 en previsualización en lugar del guardado final, uso de PATCH directo seguido de redirect 302, expectativa HTTP 429 y omisión de token desde mismo origen. Se corrigieron las comprobaciones y se repitieron los casos pertinentes. El intento de imponer metadatos de origen con CDP no produjo una solicitud válida y se reemplazó por un formulario real desde un origen opaco. No se cambió la aplicación para hacer coincidir esas expectativas. El seed demostrativo inicial también se corrigió para usar el valor permitido `console` en auditoría; su transacción fallida no dejó cuentas parciales.
 
@@ -162,6 +171,8 @@ No se crean tablas, migraciones, modelos, controladores ni reglas operativas del
 ## 9. Resultado de aceptación
 
 **Pendiente de aceptación funcional humana y aprobación expresa.** La regresión automatizada pasó y existe evidencia del recorrido asistido. No se declara completada la matriz manual ni aprobado formalmente el Sprint 2.
+
+El [guion de aceptación humana](sprint-2-human-acceptance.md) utiliza los registros existentes, especifica qué revisar personalmente y deja los resultados sin prellenar. UI-S2-02 tiene verificación técnica posterior; el responsable aún debe revisar su presentación y la recuperación.
 
 Para cerrar: revisar evidencias, ejecutar los casos humanos pendientes, resolver incidencias bloqueantes, registrar reservas menores si el responsable las acepta y obtener aprobación identificable del responsable funcional. Esa aprobación se añadirá después; no se infiere de la autorización para ejecutar pruebas o publicar este informe.
 

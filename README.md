@@ -25,7 +25,7 @@ La tabla muestra la configuración inicial. Los roles y sus permisos son configu
 
 ## Sprint 2
 
-**Validación funcional del 19 de octubre:** [informe de aceptación](docs/sprint-2-acceptance.md), matriz AF-01 a AF-36 y evidencias reales. Nueva regresión: **315 pruebas y 2.409 aserciones**, sin fallos, exclusivamente en testing. Se preparó un entorno adicional de aceptación con datos demostrativos autorizados; la principal permanece intacta. El recorrido asistido y las capturas no sustituyen la aceptación humana, todavía pendiente. Se corrigió la leyenda española de unidades individualizadas en roles; la página genérica 419 en inglés queda como incidencia menor abierta. Sprint 3 no iniciado.
+**Validación funcional del 19 de octubre:** [informe de aceptación](docs/sprint-2-acceptance.md), matriz AF-01 a AF-36 y evidencias reales. Regresión completa histórica: **315 pruebas y 2.409 aserciones**, sin fallos, exclusivamente en testing. El seguimiento de UI-S2-02 añade una vista 419 en español y **39 pruebas seleccionadas con 306 aserciones aprobadas**, incluidas cuatro nuevas; mantiene íntegra la protección CSRF. Hay dos capturas posteriores, sin nuevos datos demostrativos ni cambios en la principal. El [guion personal de aceptación](docs/sprint-2-human-acceptance.md) está listo: recorrido asistido y corrección técnica no sustituyen la aceptación humana, todavía pendiente. Sprint 3 no iniciado.
 
 **Actualización del 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo nuevo verificado, lote 12. Estado actual: **24 tablas, 27 migraciones aplicadas, ninguna pendiente, 48 permisos y 95 vínculos**. Consulta la [Etapa 5](docs/sprint-2-stage-5.md).
 

@@ -2,7 +2,7 @@
 
 Fecha: 19 de octubre de 2026, America/La_Paz.
 
-**Revisión funcional posterior:** el [informe de aceptación](sprint-2-acceptance.md) conserva la evidencia de esta etapa y añade una nueva regresión de 315 pruebas y 2.409 aserciones en testing, capturas y resultados asistidos en un entorno adicional autorizado. No se repitieron las migraciones principales. La aprobación humana y UI-S2-02 (419 en inglés) siguen pendientes; no se inició Sprint 3.
+**Revisión funcional posterior:** el [informe de aceptación](sprint-2-acceptance.md) conserva la evidencia de esta etapa y añade una regresión completa de 315 pruebas y 2.409 aserciones en testing, capturas y resultados asistidos en un entorno adicional autorizado. El seguimiento posterior corrige UI-S2-02 con una vista 419 española y 39 pruebas seleccionadas/306 aserciones aprobadas. No se repitieron las migraciones principales ni se crearon datos demostrativos adicionales. La aprobación humana sigue pendiente; no se inició Sprint 3.
 
 Diseño e implementación autorizados por el usuario, incluida la actualización del repositorio. Base de partida: `eb4b476da16e6a4b2a5ff8ef347a7db973301459`, rama de trabajo `feature/hu10-individual-units`.
 

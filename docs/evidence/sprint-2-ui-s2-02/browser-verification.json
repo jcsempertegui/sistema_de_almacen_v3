@@ -1,0 +1,53 @@
+{
+  "verified_at": "2026-10-19T11:51:51-0400",
+  "mode": "agent-assisted Edge CDP, not human acceptance",
+  "browser": "Edg/155.0.4283.62",
+  "url": "http://127.0.0.1:8012",
+  "database": "sga_rio_grande_acceptance_s2",
+  "new_demo_records_created": false,
+  "migrations_run": false,
+  "checks": [
+    {
+      "check": "cross_origin_form_without_token_rejected_419",
+      "passed": true,
+      "details": {
+        "status": 419
+      }
+    },
+    {
+      "check": "spanish_message_and_brand",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "recovery_link_is_local_root",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "no_page_overflow_1366",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "no_page_overflow_390",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "recovery_link_keyboard_focus",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "recovery_opens_login",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "existing_demo_login_still_works",
+      "passed": true,
+      "details": null
+    }
+  ]
+}
