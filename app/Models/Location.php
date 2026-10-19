@@ -48,6 +48,11 @@ class Location extends Model
         return $this->hasMany(ProductLocation::class);
     }
 
+    public function individualUnits(): HasMany
+    {
+        return $this->hasMany(IndividualUnit::class);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

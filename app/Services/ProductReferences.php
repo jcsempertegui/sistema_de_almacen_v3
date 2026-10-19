@@ -9,6 +9,15 @@ use Illuminate\Validation\ValidationException;
 
 class ProductReferences
 {
+    public function hasActiveUnits(int $productId): bool
+    {
+        if (! Schema::hasTable('individual_units')) {
+            return false;
+        }
+
+        return DB::table('individual_units')->where('product_id', $productId)->where('is_active', true)->lockForUpdate()->first(['id']) !== null;
+    }
+
     public function hasHistory(Product $product): bool
     {
         return $product->attributeValues()->lockForUpdate()->first(['id']) !== null

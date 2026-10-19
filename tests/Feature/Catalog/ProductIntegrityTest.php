@@ -130,7 +130,7 @@ class ProductIntegrityTest extends TestCase
         $this->assertSame('decimal', $column->DATA_TYPE);
         $this->assertSame(18, (int) $column->NUMERIC_PRECISION);
         $this->assertSame(6, (int) $column->NUMERIC_SCALE);
-        foreach (['individual_units', 'movements', 'stocks', 'loans'] as $table) {
+        foreach (['movements', 'stocks', 'loans'] as $table) {
             $this->assertFalse(Schema::hasTable($table));
         }
         $this->assertFalse(Schema::hasColumn('products', 'quantity'));

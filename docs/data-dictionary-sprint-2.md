@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 18 de octubre de 2026: categorías, unidades, atributos, `locations`, `products`, valores, revisiones y `product_locations` aplicados a la principal con autorización y respaldo. Hay 25 migraciones aplicadas, ninguna pendiente y 23 tablas. La última regresión del 15 de octubre aprobó 280 pruebas y 2.067 verificaciones exclusivamente en testing.** `individual_units` sigue siendo diseño pendiente. Consulta el [plan](sprint-2.md) y la [Etapa 4](sprint-2-stage-4.md); las Etapas 1 a 3 conservan su evidencia histórica.
+**Estado al 19 de octubre de 2026:** categorías, unidades, atributos, `locations`, `products`, valores, revisiones y `product_locations` aplicados a la principal con autorización y respaldo. Hay 25 migraciones aplicadas y 23 tablas en la principal; las dos migraciones de HU-10 están pendientes de autorización para su aplicación allí. `individual_units` está implementada y se valida exclusivamente en testing. Consulta el [plan](sprint-2.md), la [Etapa 4](sprint-2-stage-4.md) y los resultados actuales de la [Etapa 5](sprint-2-stage-5.md).
 
 ## Convenciones comunes
 
@@ -120,7 +120,7 @@ Restricciones: `UNIQUE(internal_code)`, `UNIQUE(id,category_id)`, CHECK de modo 
 
 Índice de filtros `(category_id,measurement_unit_id,control_mode,is_active)` e índices de FKs. Búsqueda por nombres/referencias mediante consultas parametrizadas; no se propone un motor de búsqueda adicional.
 
-Relaciones implementadas: `belongsTo(Category)`, `belongsTo(MeasurementUnit)`, `hasMany(ProductAttributeValue)`, `hasMany(ProductLocation)` y `belongsToMany(Location)` por `product_locations`. La relación a `IndividualUnit` queda para HU-10; no se referencia un modelo inexistente.
+Relaciones implementadas: `belongsTo(Category)`, `belongsTo(MeasurementUnit)`, `hasMany(ProductAttributeValue)`, `hasMany(ProductLocation)`, `belongsToMany(Location)` por `product_locations` y `individualUnits(): hasMany(IndividualUnit)` incorporada en HU-10.
 
 Validación: referencias activas, código único y todos los valores requeridos/tipados de la categoría. Guardar producto y valores de forma atómica. Cambios de categoría, unidad, modo o identidad con valores, unidades o historial necesitan restricciones que conserven trazabilidad; no reinterpretar registros vinculados.
 
@@ -187,7 +187,7 @@ Modelo: `Location`.
 
 Restricciones implementadas: `UNIQUE(code)`, CHECK de tipo y booleanos, FK propia y dos FKs de autoría con RESTRICT. Índices `(parent_id,is_active,type)` y `(is_active,name)`. Nombre sin unicidad obligatoria; descripción con límite de formulario de 10.000 caracteres.
 
-Relaciones implementadas: `parent(): belongsTo(Location,'parent_id')`, `children(): hasMany(Location,'parent_id')`, `productLocations(): hasMany(ProductLocation)` y autoría a usuarios. La relación con unidades sigue pendiente de HU-10.
+Relaciones implementadas: `parent(): belongsTo(Location,'parent_id')`, `children(): hasMany(Location,'parent_id')`, `productLocations(): hasMany(ProductLocation)`, `individualUnits(): hasMany(IndividualUnit)` y autoría a usuarios.
 
 La FK impide padres inexistentes, pero no evita ciclos. `SaveLocation` usa el bloqueo común de `SecurityMutation`; `LocationHierarchy` recorre ancestros con FOR UPDATE después de adquirirlo, rechaza autorreferencia/descendientes y mantiene un conjunto de visitados. Incluye nodos inactivos y no reutiliza un snapshot anterior a la espera. No se usan bloqueos nombrados ni CTE recursivas.
 
@@ -195,11 +195,13 @@ No se plantea un CHECK que compare el ID autoincremental para resolver ciclos. T
 
 Crear, cambiar padre o reactivar exige cadena de ancestros activos. Una ubicación inactiva puede corregir metadatos conservando su padre histórico inactivo; ese vínculo no se elimina al desactivar.
 
-Desactivar se bloquea ante hijos activos y asociaciones activas de productos. `LocationReferences` también bloquea cambios de padre/tipo con referencias históricas del subárbol y deshabilitar almacenamiento con referencias propias. HU-08 verifica asociaciones reales de productos y selección de destinos activos/almacenables; la dependencia de unidades sigue simulada y pendiente de HU-10.
+Desactivar se bloquea ante hijos activos y asociaciones activas de productos. `LocationReferences` también bloquea cambios de padre/tipo con referencias históricas del subárbol y deshabilitar almacenamiento con referencias propias. HU-08 verifica asociaciones reales de productos y selección de destinos activos/almacenables. HU-10 integra unidades reales, incluso inactivas, para proteger ubicaciones y subárboles.
 
 Se conservan IDs y relaciones existentes. El árbol/ruta representa la estructura actual, sin snapshots históricos completos ni movimientos. La edición de estructura sin referencias es configuración del catálogo; con referencias futuras se bloquean los cambios indicados. No existen rutas DELETE.
 
 ## 8. `individual_units`
+
+Implementada en HU-10, Etapa 5, el 19 de octubre de 2026. Migraciones principales pendientes. La especificación operativa siguiente y la [Etapa 5](sprint-2-stage-5.md) documentan las decisiones aprobadas.
 
 Modelo: `IndividualUnit`.
 
@@ -211,9 +213,15 @@ Modelo: `IndividualUnit`.
 | `location_id` | BIGINT UNSIGNED | Opcional; ubicación de asignación inicial. |
 | `notes` | TEXT | Opcional. |
 
+Campo adicional aprobado: `lock_version BIGINT UNSIGNED NOT NULL DEFAULT 1`, con CHECK positivo y comprobación de versión en edición y cambio de estado. La serie usa `utf8mb4_bin`, conserva mayúsculas/minúsculas y convierte vacío en NULL, sin perder la serie `0`. El identificador se recorta y convierte a mayúsculas. Los campos comunes de estado, autores y fechas se conservan.
+
+Identificador, producto y ubicación inicial son inmutables después del alta, incluso si la ubicación es NULL. Se permite completar una serie vacía; una serie informada no se sustituye ni borra en este CRUD. Las observaciones son editables. La reactivación exige producto individual activo y ubicación/asociación válidas cuando se informa ubicación. No hay rutas DELETE ni incremento de existencias.
+
+FK compuesta implementada en la migración nueva, utilizando `product_locations_pair_unique` ya existente; sin alterar la tabla padre. Índice hijo `(product_id,location_id)`, además de los dos índices de estado. FKs de producto, ubicación y autores con RESTRICT; CHECK de estado, versión y campos de identidad no vacíos. Los permisos de HU-10 se inicializan mediante otra migración nueva conservando revocaciones previas.
+
 Restricciones: `UNIQUE(identifier)`, `UNIQUE(product_id,serial_number)` cuando exista serie, FKs explícitas. Índices `(product_id,is_active)` y `(location_id,is_active)`.
 
-Para HU-10 se prevé añadir esta FK compuesta contra la asociación aprobada:
+HU-10 implementa esta FK compuesta contra la asociación aprobada:
 
 ```text
 (product_id, location_id)
@@ -241,7 +249,7 @@ Relaciones: `belongsTo(Product)` y `belongsTo(Location)`; Product expone `belong
 
 Validación: referencias activas, ubicación almacenable, sin asociación duplicada. Desactivar se bloquea si una unidad permanece asignada allí. No borrar asociaciones con historial.
 
-Esta tabla representa ubicaciones configuradas para el producto y no tiene cantidades. Aprobada, implementada y aplicada a la principal en HU-08 el 18 de octubre de 2026. Se permiten cero o varias ubicaciones. Las parejas no se sustituyen; una pareja inactiva se reactiva. Se bloquea la desactivación de ubicaciones con asociaciones activas. La validación real con unidades asignadas queda pendiente de HU-10; el guard se prueba mediante simulación aislada.
+Esta tabla representa ubicaciones configuradas para el producto y no tiene cantidades. Aprobada, implementada y aplicada a la principal en HU-08 el 18 de octubre de 2026. Se permiten cero o varias ubicaciones. Las parejas no se sustituyen; una pareja inactiva se reactiva. Se bloquea la desactivación de ubicaciones con asociaciones activas. HU-10 incorpora la FK compuesta y pruebas de integración real de PLC-03: una asociación con unidades asignadas, incluso inactivas, no se desactiva.
 
 ## Diagrama de relaciones propuesto
 
@@ -271,7 +279,7 @@ Las referencias de autoría a `users` se omiten del diagrama para legibilidad, p
 - CHECK mediante SQL explícito dentro de nuevas migraciones; verificar su aplicación en pruebas sobre MariaDB.
 - Usar nombres de restricciones únicos en el esquema y dentro de los límites de longitud del servidor.
 - No depender de consultas sobre JSON ni de paquetes adicionales para el esquema.
-- Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. Las cuatro tablas de HU-08 se aplicaron a la principal el 18 de octubre de 2026; sus estructuras coinciden con las probadas en testing. Unidades individualizadas permanecen sin implementación.
+- Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. Las cuatro tablas de HU-08 se aplicaron a la principal el 18 de octubre de 2026; sus estructuras coinciden con las probadas en testing. Unidades individualizadas implementadas en HU-10, con aplicación principal pendiente.
 - Guardar códigos y valores técnicos de forma consistente, sin FLOAT ni certificación automática de equivalencias.
 - Historial y saldos posteriores deberán respetar las identidades, FKs y desactivaciones de este catálogo.
 
@@ -279,4 +287,4 @@ Referencias oficiales: [restricciones MariaDB](https://mariadb.com/docs/server/r
 
 ## Pruebas asociadas
 
-Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md) distinguen ejecución real de simulaciones. HU-08 integra productos/valores/asociaciones reales; HU-10, la dependencia real de unidades y la aceptación visual permanecen pendientes.
+Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md) distinguen ejecución real de simulaciones. HU-08 integra productos/valores/asociaciones reales; La Etapa 5 integra unidades reales; su aplicación principal y la aceptación visual permanecen pendientes.

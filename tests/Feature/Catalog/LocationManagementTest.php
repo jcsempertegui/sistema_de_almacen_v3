@@ -3,10 +3,11 @@
 namespace Tests\Feature\Catalog;
 
 use App\Actions\Catalog\SaveLocation;
+use App\Models\IndividualUnit;
 use App\Models\Location;
+use App\Models\ProductLocation;
 use App\Models\User;
 use App\Services\LocationHierarchy;
-use App\Services\LocationReferences;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
@@ -140,15 +141,16 @@ class LocationManagementTest extends TestCase
         $this->assertSame($allowed->id, $root->fresh()->parent_id);
     }
 
-    public function test_future_reference_guards_are_explicitly_simulated_and_rollback_changes(): void
+    public function test_real_inactive_units_protect_location_and_subtree_history(): void
     {
         $root = Location::factory()->create();
         $other = Location::factory()->create();
         $child = Location::factory()->create(['parent_id' => $root->id, 'is_active' => false]);
-        $references = $this->partialMock(LocationReferences::class);
-        $references->shouldReceive('hasAssignedUnits')->once()->with([$root->id, $child->id])->andReturn(true);
-        $references->shouldReceive('hasHistoricalReferences')->twice()->with([$root->id, $child->id])->andReturn(true);
-        $references->shouldReceive('hasHistoricalReferences')->once()->with([$root->id])->andReturn(true);
+        foreach ([$root, $child] as $node) {
+            $unit = IndividualUnit::factory()->create();
+            ProductLocation::factory()->create(['product_id' => $unit->product_id, 'location_id' => $node->id, 'is_active' => false]);
+            $unit->update(['location_id' => $node->id, 'is_active' => false]);
+        }
         $this->signIn(User::factory()->create(['role_id' => 1]));
         $this->patch(route('locations.status', $root), ['is_active' => 0])->assertSessionHasErrors('is_active');
         $this->put(route('locations.update', $root), $this->payload(['code' => $root->code, 'parent_id' => $other->id]))->assertSessionHasErrors('location');

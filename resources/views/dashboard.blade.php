@@ -5,6 +5,7 @@
 <section class="card"><h2>Bienvenido, {{ auth()->user()->name }}</h2><p>Selecciona una opción del menú para comenzar.</p></section>
 <p class="role">Rol: <strong>{{ auth()->user()->role->name }}</strong></p>
 <div class="cards">
+    @can('viewAny', \App\Models\IndividualUnit::class)<section class="card"><h2>Unidades individualizadas</h2><p>Consulta las identidades de herramientas y equipos.</p><a href="{{ route('individual-units.index') }}">Consultar unidades individualizadas</a></section>@endcan
     @can('viewAny', \App\Models\Product::class)<section class="card"><h2>Productos</h2><p>Consulta el catálogo, sus características técnicas e historial.</p><a href="{{ route('products.index') }}">Consultar productos</a></section>@endcan
     @can('viewAny', \App\Models\Location::class)<section class="card"><h2>Ubicaciones</h2><p>Consulta sectores, estantes, gabinetes y su jerarquía.</p><a href="{{ route('locations.index') }}">Consultar ubicaciones</a></section>@endcan
     @can('viewAny', \App\Models\CatalogAttribute::class)<section class="card"><h2>Atributos técnicos</h2><p>Configura las definiciones técnicas y sus tipos de dato.</p><a href="{{ route('attributes.index') }}">Consultar atributos técnicos</a></section>@endcan

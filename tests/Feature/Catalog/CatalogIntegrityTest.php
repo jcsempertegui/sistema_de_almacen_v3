@@ -83,7 +83,7 @@ class CatalogIntegrityTest extends TestCase
 
     public function test_scope_does_not_create_future_tables_and_catalogs_start_empty(): void
     {
-        foreach (['individual_units', 'movements'] as $table) {
+        foreach (['movements'] as $table) {
             $this->assertFalse(Schema::hasTable($table));
         }
         $this->assertDatabaseCount('categories', 0);

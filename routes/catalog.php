@@ -3,6 +3,7 @@
 use App\Http\Controllers\Catalog\CatalogAttributeController;
 use App\Http\Controllers\Catalog\CategoryAttributeController;
 use App\Http\Controllers\Catalog\CategoryController;
+use App\Http\Controllers\Catalog\IndividualUnitController;
 use App\Http\Controllers\Catalog\LocationController;
 use App\Http\Controllers\Catalog\MeasurementUnitController;
 use App\Http\Controllers\Catalog\ProductController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Catalog\ProductLocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'active'])->group(function () {
+    Route::resource('unidades-individualizadas', IndividualUnitController::class)->parameters(['unidades-individualizadas' => 'individual_unit'])->names('individual-units')->only(['index', 'create', 'store', 'show', 'edit', 'update']);
+    Route::patch('/unidades-individualizadas/{individual_unit}/estado', [IndividualUnitController::class, 'status'])->name('individual-units.status');
     Route::post('/productos/revisar', [ProductController::class, 'preview'])->name('products.preview');
     Route::post('/productos/{product}/revisar', [ProductController::class, 'preview'])->name('products.preview-update');
     Route::resource('productos', ProductController::class)->parameters(['productos' => 'product'])->names('products')->only(['index', 'create', 'store', 'show', 'edit', 'update']);

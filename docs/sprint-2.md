@@ -2,9 +2,11 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 18 de octubre de 2026: HU-05/HU-06/HU-07/HU-09/HU-08 aplicadas a la principal con autorización y respaldo. HU-08 se aplicó en los lotes 7 a 11; hay 25 migraciones aplicadas y ninguna pendiente, 23 tablas, 44 permisos y 86 vínculos. La última regresión del 15 de octubre aprobó 280 pruebas y 2.067 verificaciones exclusivamente en testing.** Consulta [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md). HU-10 permanece sin implementar; aceptación visual pendiente.
+**Estado al 19 de octubre de 2026:** HU-05/HU-06/HU-07/HU-09/HU-08 aplicadas a la principal con autorización y respaldo. HU-10 implementada, con dos migraciones nuevas pendientes de aplicación principal. La principal conserva 25 migraciones aplicadas, 23 tablas, 44 permisos y 86 vínculos. Resultados actuales en [Etapa 5](sprint-2-stage-5.md); la aceptación visual permanece pendiente. Evidencias anteriores: [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md).
 
 ## Objetivo y alcance
+
+**Actualización del 19 de octubre de 2026:** HU-10 implementada; sus dos migraciones se validan en testing y no se aplican a la principal en esta entrega. Consulta [Etapa 5](sprint-2-stage-5.md) para las decisiones aprobadas, conservación histórica y resultados actuales.
 
 Gestionar categorías, unidades de medida, atributos por categoría, productos, ubicaciones físicas y unidades individualizadas de un único almacén en Río Grande.
 
@@ -124,7 +126,7 @@ Como Administrador o Encargado, quiero organizar sectores, estantes y gabinetes 
 
 Implementación de Etapa 3: migración de `locations` y otra de cuatro permisos; modelo y factory, Policy, FormRequests, controlador, acción transaccional y servicios de jerarquía/referencias. Listado y árbol Blade, con ruta, tipos, estado y posibilidad de almacenar. La acción reutiliza `SecurityMutation`, recarga ancestros mediante lecturas con bloqueo y detecta ciclos, incluso con nodos inactivos. Cuatro carreras de dos procesos verifican ciclos cruzados y creación/reactivación de hijos frente a desactivación del padre, incluidas lecturas previas en REPEATABLE-READ.
 
-La Etapa 4 verifica asociaciones reales con productos y bloquea la desactivación de ubicaciones con asociaciones activas. Las dependencias con unidades siguen simuladas, sin implementar HU-10; la aceptación visual permanece pendiente. La integración y aplicación principal de HU-09 se documentan en [Etapa 3](sprint-2-stage-3.md).
+La Etapa 4 verifica asociaciones reales con productos y bloquea la desactivación de ubicaciones con asociaciones activas. La Etapa 5 integra unidades reales y sustituye las comprobaciones simuladas de sus dependencias. La aceptación visual permanece pendiente. La integración y aplicación principal de HU-09 se documentan en [Etapa 3](sprint-2-stage-3.md).
 
 Dependencias: autorización. Puede implementarse antes de productos.
 

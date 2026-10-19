@@ -37,14 +37,17 @@ DB::beginTransaction();
 Product::orderBy('id')->get(); // Deliberately retain a read view from BEFORE the winner commits.
 $target = $job['product'] ? Product::findOrFail($job['product']) : null;
 $wait = 0;
-DB::listen(function ($query) use (&$wait) {
+DB::listen(function ($query) use (&$wait, $job) {
     if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
         $wait = max($wait, $query->time);
         echo "LOCKED\n";
         flush();
-        usleep(400000);
+        if ($job['index'] === 0 && trim((string) fgets(STDIN)) !== 'RELEASE') {
+            throw new RuntimeException('Missing release barrier.');
+        }
     }
 });
+echo 'CONNECTION_ID:'.DB::selectOne('SELECT CONNECTION_ID() AS id')->id."\n";
 echo "READY\n";
 flush();
 if (trim((string) fgets(STDIN)) !== 'GO') {

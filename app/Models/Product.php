@@ -13,6 +13,11 @@ use Illuminate\Support\Str;
 #[Fillable(['internal_code', 'name', 'description', 'category_id', 'measurement_unit_id', 'brand', 'manufacturer_reference', 'control_mode', 'is_loanable', 'is_active'])]
 class Product extends Model
 {
+    public function individualUnits(): HasMany
+    {
+        return $this->hasMany(IndividualUnit::class);
+    }
+
     use HasFactory;
 
     public const MODES = ['quantity' => 'Por cantidad', 'individual' => 'Individual'];

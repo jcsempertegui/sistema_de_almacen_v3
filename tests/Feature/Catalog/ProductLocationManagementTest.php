@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Catalog;
 
+use App\Models\IndividualUnit;
 use App\Models\Location;
 use App\Models\ProductLocation;
 use App\Models\User;
-use App\Services\ProductReferences;
 use Illuminate\Support\Facades\Schema;
 use Tests\Support\CreatesProductCatalog;
 use Tests\TestCase;
@@ -77,14 +77,12 @@ class ProductLocationManagementTest extends TestCase
     {
         $actor = User::factory()->create(['role_id' => 1]);
         $location = Location::factory()->create();
-        $product = $this->savedProduct($actor, ['location_ids' => [$location->id]]);
+        $product = $this->savedProduct($actor, ['location_ids' => [$location->id], 'control_mode' => 'individual']);
         $other = $this->savedProduct($actor);
         $link = $product->productLocations()->firstOrFail();
         $this->signIn($actor)->patch(route('product-locations.status', [$other, $link]), ['is_active' => 0, 'lock_version' => 1])->assertNotFound();
         $this->patch(route('product-locations.status', [$product, $link]), ['is_active' => 0, 'lock_version' => 1])->assertStatus(409);
-        $this->mock(ProductReferences::class, function ($mock) use ($product, $location) {
-            $mock->shouldReceive('hasAssignedUnits')->with($product->id, $location->id)->once()->andReturnTrue();
-        });
+        IndividualUnit::factory()->create(['product_id' => $product->id, 'location_id' => $location->id]);
         $this->patch(route('product-locations.status', [$product, $link]), ['is_active' => 0, 'lock_version' => 2])->assertSessionHasErrors('is_active');
         $this->assertTrue($link->fresh()->is_active);
     }

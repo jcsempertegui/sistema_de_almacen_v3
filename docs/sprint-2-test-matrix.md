@@ -84,6 +84,8 @@ El correctivo se aprobó y estos comportamientos se verificaron dentro de la sui
 
 ## Registro de resultados
 
+La [Etapa 5](sprint-2-stage-5.md), del 19 de octubre de 2026, incorpora HU-10 y la integración real de PLC-03/LOC-05 con unidades. Resultado final: 315 pruebas y 2.411 verificaciones aprobadas exclusivamente en testing; los párrafos siguientes conservan la evidencia histórica de las etapas anteriores. IND-06 con documentos operativos y UI-01/UI-02 siguen pendientes.
+
 La ejecución de Etapa 1 se documenta en [sprint-2-stage-1.md](sprint-2-stage-1.md). La evidencia original de HU-07 registra ATR-01/02, ASC-01/02/04, SEC-01 a SEC-04 y REG-01: ATR-03 se verificó con asociaciones históricas reales y ASC-03/impacto sobre identificación/límites con dependencias futuras simuladas. MED-04 incorporó atributos reales; en ese momento CAT-03 y la integración con productos/valores estaban pendientes. La Etapa 4 añadió esas integraciones reales, como se detalla más abajo. UI-01/UI-02 requieren aceptación en navegador.
 
 HU-09 incorpora LOC-01 a LOC-05, permisos, integridad SQL y regresión; véase [Etapa 3](sprint-2-stage-3.md). LOC-04 usa dos procesos reales y comprueba la espera del mutex, incluso con un snapshot previo. LOC-05 comprueba hijos reales y carreras con creación/reactivación; la dependencia de unidades sigue simulada, sin implementar HU-10.

@@ -81,10 +81,22 @@ class ProductConcurrencyTest extends TestCase
             };
             $await(fn () => count(array_filter($processes, fn ($p) => str_contains($p->getOutput(), 'READY'))) === 2);
             $streams[0]->write("GO\n");
-            $streams[0]->close();
             $await(fn () => str_contains($processes[0]->getOutput(), 'LOCKED'));
             $streams[1]->write("GO\n");
             $streams[1]->close();
+            preg_match('/CONNECTION_ID:([0-9]+)/', $processes[1]->getOutput(), $connectionMatch);
+            $waitingConnection = (int) ($connectionMatch[1] ?? 0);
+            $this->assertGreaterThan(0, $waitingConnection);
+            // Release the winner only AFTER MariaDB confirms the second connection is blocked.
+            $await(function () use ($pdo, $waitingConnection) {
+                $q = $pdo->prepare('SELECT COUNT(*) FROM information_schema.INNODB_LOCK_WAITS w JOIN information_schema.INNODB_TRX t ON t.trx_id=w.requesting_trx_id WHERE t.trx_mysql_thread_id=?');
+                $q->execute([$waitingConnection]);
+
+                return (int) $q->fetchColumn() > 0;
+            });
+            usleep(150000); // Keep the measured wait >=100 ms without depending on process scheduling.
+            $streams[0]->write("RELEASE\n");
+            $streams[0]->close();
             $await(fn () => ! $processes[0]->isRunning() && ! $processes[1]->isRunning());
             foreach ($processes as $i => $process) {
                 $this->assertSame(0, $process->wait(), $process->getErrorOutput());

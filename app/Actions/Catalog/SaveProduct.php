@@ -40,6 +40,9 @@ class SaveProduct
                 }
                 if ($target && $product->isDirty('is_active')) {
                     $this->security->requirePermissions($operator, 'products.change_status');
+                    if (! $product->is_active && $this->references->hasActiveUnits($product->id)) {
+                        throw ValidationException::withMessages(['is_active' => 'No puedes desactivar un producto con unidades individualizadas activas.']);
+                    }
                 }
                 foreach (['category_id' => Category::class, 'measurement_unit_id' => MeasurementUnit::class] as $key => $model) {
                     $reference = $model::whereKey($product->$key)->lockForUpdate()->first();
