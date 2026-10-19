@@ -1,0 +1,171 @@
+{
+  "verified_at": "2026-10-19T09:48:43-04:00",
+  "code_commit": "3897f02c54e1d88f467bb9056c199f02a8fd291d",
+  "database": "sga_rio_grande",
+  "php": "8.3.10",
+  "laravel": "13.35.0",
+  "mariadb": "10.4.32-MariaDB",
+  "authorized_operations": [
+    "Nuevo respaldo SQL fuera del repositorio",
+    "Aplicación exclusiva de las dos migraciones HU-10",
+    "Actualización documental y publicación del repositorio"
+  ],
+  "backup": {
+    "file": "C:\\Users\\jcsem\\SGA-backups\\hu10-deployment-20261019-094544/sga_rio_grande_pre_hu10.sql",
+    "size_bytes": 78680,
+    "sha256": "0334f252774836048c5dcb32fea923c55862dd91bf87a932412a08278af79a43",
+    "tables": 23,
+    "rows": 176,
+    "dump_exit": 0,
+    "footer_complete": true,
+    "source_unchanged_during_dump": true,
+    "restore_rehearsal_performed": false
+  },
+  "before": {
+    "tables": 23,
+    "migrations": 25,
+    "permissions": 44,
+    "permission_role": 86,
+    "administrative_audit_logs": 15,
+    "users": 0,
+    "workers": 0
+  },
+  "after": {
+    "tables": 24,
+    "migrations": 27,
+    "pending": [],
+    "permissions": 48,
+    "permission_role": 95,
+    "administrative_audit_logs": 18,
+    "users": 0,
+    "workers": 0,
+    "individual_units": 0
+  },
+  "applied_migrations": [
+    {
+      "id": 26,
+      "migration": "2026_10_18_000001_create_individual_units_table",
+      "batch": 12
+    },
+    {
+      "id": 27,
+      "migration": "2026_10_18_000002_add_individual_unit_permissions",
+      "batch": 12
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "code": "administrador",
+      "permissions_version": 6,
+      "active_capabilities": 48
+    },
+    {
+      "id": 2,
+      "code": "encargado",
+      "permissions_version": 6,
+      "active_capabilities": 36
+    },
+    {
+      "id": 3,
+      "code": "consulta_auditor",
+      "permissions_version": 6,
+      "active_capabilities": 11
+    }
+  ],
+  "verification": {
+    "counts": true,
+    "env_unchanged": true,
+    "old_schemas_unchanged": true,
+    "old_rows_preserved": true,
+    "unaffected_data_unchanged": true,
+    "migration_files_unchanged": true,
+    "only_expected_grants": true,
+    "five_restrict_fks": true,
+    "four_checks": true,
+    "new_schema_matches_tested": true,
+    "backup_sha256_valid": true
+  },
+  "comparison_notes": {
+    "existing_schemas": "Se excluye el avance esperado de AUTO_INCREMENT al comparar DDL.",
+    "existing_roles": "Solo se permiten permissions_version y updated_at; los demás campos se conservan.",
+    "existing_appended_tables": "Se conservan las filas anteriores de migrations, permissions, permission_role y administrative_audit_logs."
+  },
+  "integrity": {
+    "database": "sga_rio_grande",
+    "verified_at": "2026-10-19T09:48:43-04:00",
+    "migrations": [
+      {
+        "id": 26,
+        "migration": "2026_10_18_000001_create_individual_units_table",
+        "batch": 12
+      },
+      {
+        "id": 27,
+        "migration": "2026_10_18_000002_add_individual_unit_permissions",
+        "batch": 12
+      }
+    ],
+    "roles": [
+      {
+        "id": 1,
+        "code": "administrador",
+        "permissions_version": 6,
+        "is_active": 1
+      },
+      {
+        "id": 2,
+        "code": "encargado",
+        "permissions_version": 6,
+        "is_active": 1
+      },
+      {
+        "id": 3,
+        "code": "consulta_auditor",
+        "permissions_version": 6,
+        "is_active": 1
+      }
+    ],
+    "constraint_flags": {
+      "fk_checks": 1,
+      "check_checks": 1
+    },
+    "fk_integrity": {
+      "constraints": 43,
+      "violations": []
+    },
+    "check_integrity": {
+      "constraints": 26,
+      "violations": []
+    },
+    "unique_integrity": {
+      "indexes": 46,
+      "violations": []
+    },
+    "new_audits_valid": true
+  },
+  "maintenance_closed": true,
+  "previous_tested_source_unchanged": true,
+  "automated_tests_on_main": false,
+  "new_test_execution": false,
+  "previous_testing_result": {
+    "tests": 315,
+    "assertions": 2411,
+    "database": "sga_rio_grande_testing"
+  },
+  "evidence_sha256": {
+    "before.json": "9741a6df63e0e1bf5b5b65b34e220b5f4377bab3f612ba18d00ce3aaa6f33c10",
+    "after.json": "5d7b41a12a6e7698e7fa7a47315c5ee998c367c6e9beb78c763870bbaf6c1525",
+    "backup-manifest.json": "45bd09affbd0ee3254b623c0e53ed21e1a2e8f69412603b7d8a92b49b91c2b52",
+    "migration.log": "ec3de09c6bf4a0b308749bb7e9393a37293d0660f4b3e332d8a2bd7e98f550a6",
+    "migration-status-after.log": "59f1f4f54971424229e1422659b8d6efcc6fce9440a9f00ad45736b52d9ea4d9",
+    "verification.json": "26b8108e6fcaa0d1e02376f03274221d08d241fe241c0aab68bc0b6e1a39d33f",
+    "integrity.json": "4ec35ae12fd9bd3dd03eb124dcbdb84816dde5c3174a4a3476402ab1e989db1d"
+  },
+  "pending": [
+    "Primer administrador mediante creación explícita autorizada",
+    "Aceptación visual UI-01/UI-02",
+    "IND-06 con documentos operativos futuros"
+  ],
+  "sprint_3_started": false
+}

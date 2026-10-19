@@ -2,11 +2,11 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 19 de octubre de 2026:** HU-05/HU-06/HU-07/HU-09/HU-08 aplicadas a la principal con autorización y respaldo. HU-10 implementada, con dos migraciones nuevas pendientes de aplicación principal. La principal conserva 25 migraciones aplicadas, 23 tablas, 44 permisos y 86 vínculos. Resultados actuales en [Etapa 5](sprint-2-stage-5.md); la aceptación visual permanece pendiente. Evidencias anteriores: [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md).
+**Estado al 19 de octubre de 2026:** HU-05/HU-06/HU-07/HU-09/HU-08/HU-10 aplicadas a la principal con autorización y respaldo. HU-10 se aplicó en el lote 12; hay **27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos**. Evidencia de despliegue y regresión previa en [Etapa 5](sprint-2-stage-5.md). Aceptación visual pendiente.
 
 ## Objetivo y alcance
 
-**Actualización del 19 de octubre de 2026:** HU-10 implementada; sus dos migraciones se validan en testing y no se aplican a la principal en esta entrega. Consulta [Etapa 5](sprint-2-stage-5.md) para las decisiones aprobadas, conservación histórica y resultados actuales.
+**Actualización del 19 de octubre de 2026:** las dos migraciones de HU-10 se aplicaron exclusivamente a `sga_rio_grande` después de verificar un respaldo SQL nuevo. Se conservan los resultados de las 315 pruebas y 2.411 verificaciones anteriores, ejecutadas solo en testing; la aplicación principal se comprobó mediante consultas de lectura.
 
 Gestionar categorías, unidades de medida, atributos por categoría, productos, ubicaciones físicas y unidades individualizadas de un único almacén en Río Grande.
 
@@ -109,7 +109,7 @@ Como Administrador o Encargado, quiero registrar manualmente productos con sus c
 - Desactivación sin borrar referencias; identidad y modalidad protegidas cuando existan unidades o historial.
 - No existe importación Excel para crear o modificar productos.
 
-Implementación de Etapa 4: cuatro tablas nuevas (productos, valores, revisiones y asociaciones de ubicaciones), una migración de siete permisos, modelos, acciones transaccionales, Policies, FormRequests, listados, formularios, ficha e historial Blade y revisión humana de coincidencias. Código inmutable y edición optimista mediante `lock_version`. Las pruebas se ejecutaron exclusivamente en testing. Las cinco migraciones principales se aplicaron con autorización y respaldo el 18 de octubre de 2026, lotes 7 a 11; la principal tiene 25 migraciones aplicadas y ninguna pendiente. Las comprobaciones posteriores de datos y esquema fueron de solo lectura.
+Implementación de Etapa 4: cuatro tablas nuevas (productos, valores, revisiones y asociaciones de ubicaciones), una migración de siete permisos, modelos, acciones transaccionales, Policies, FormRequests, listados, formularios, ficha e historial Blade y revisión humana de coincidencias. Código inmutable y edición optimista mediante `lock_version`. Las pruebas se ejecutaron exclusivamente en testing. Las cinco migraciones principales se aplicaron con autorización y respaldo el 18 de octubre de 2026, lotes 7 a 11; al finalizar esa etapa la principal tenía 25 migraciones aplicadas y ninguna pendiente. Las comprobaciones posteriores de datos y esquema fueron de solo lectura.
 
 Dependencias: categorías, unidades, atributos y ubicaciones para asignación múltiple.
 

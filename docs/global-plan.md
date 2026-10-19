@@ -6,12 +6,12 @@ Estado: planificación general con avances aprobados y verificados por etapas. L
 
 ## Distribución propuesta
 
-Actualización del 19 de octubre: HU-10 implementada, con dos migraciones pendientes de aplicación principal. Consulta la [Etapa 5](sprint-2-stage-5.md) para pruebas y trazabilidad; la tabla distingue el despliegue anterior de HU-08.
+Actualización del 19 de octubre: HU-10 implementada y aplicada a la principal con autorización y respaldo nuevo, lote 12. Consulta la [Etapa 5](sprint-2-stage-5.md) para evidencia de despliegue y pruebas.
 
 | Sprint | Objetivo | Alcance | Estado |
 |---|---|---|---|
 | 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Correctivo HU-03 implementado, probado y migrado con autorización; primer administrador y aceptación visual pendientes. |
-| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06/HU-07/HU-09/HU-08 aplicadas a la principal con autorización y respaldo. HU-08 se aplicó el 18 de octubre de 2026, lotes 7 a 11: 25 migraciones totales, 23 tablas, 44 permisos y 86 vínculos. Última regresión del 19 de octubre en testing: 315 pruebas y 2.411 verificaciones aprobadas. HU-10 implementada; sus dos migraciones principales y la aceptación visual están pendientes. Resultados actuales en [Etapa 5](sprint-2-stage-5.md). |
+| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06/HU-07/HU-09/HU-08/HU-10 aplicadas a la principal con autorización y respaldo. HU-10 se aplicó el 19 de octubre de 2026, lote 12: 27 migraciones, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. Regresión previa en testing: 315 pruebas y 2.411 verificaciones aprobadas. Aceptación visual pendiente. Evidencia en [Etapa 5](sprint-2-stage-5.md). |
 | 3 | Recepción y existencias | Recepción, remitos y existencias por ubicación, con movimientos únicos por documento confirmado. | Planificación general; sin especificación detallada ni implementación. |
 | 4 | Entregas y préstamos | Entregas, préstamos y devoluciones; retiro por ubicaciones seleccionadas manualmente. | Planificación general; sin implementar. |
 | 5 | Control y cierre | Ajustes/anulaciones autorizadas, reportes, auditoría, regresión y documentación académica final. | Planificación general; sin implementar. |
@@ -51,7 +51,7 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 ## Decisiones pendientes
 
 1. Revisar los [resultados del correctivo HU-03](sprint-1-hu03-corrective.md), cuya migración principal ya se aplicó con autorización, y configurar el primer administrador. Se conserva un único rol por usuario según el alcance aprobado.
-2. Completar la aceptación visual de las etapas entregadas. La [Etapa 4 de HU-08](sprint-2-stage-4.md), incluido `product_locations`, ya fue aprobada, respaldada y aplicada a la principal el 18 de octubre de 2026. HU-10 fue aprobada e implementada; su aplicación principal requiere prevalidación, respaldo nuevo y autorización específica.
+2. Completar la aceptación visual de las etapas entregadas. HU-08 y HU-10 ya se aplicaron a la principal con autorizaciones y respaldos propios, el 18 y 19 de octubre de 2026 respectivamente. La aplicación de HU-10 conserva datos e identidades; no inicia el Sprint 3.
 3. La comparación exacta por categoría/unidad/modo/identificadores fue aprobada para advertencias con revisión humana. Conversiones, tolerancias y equivalencia certificada permanecen fuera de alcance.
 4. Confirmar la numeración provisional HU-05 a HU-10 con el backlog académico.
 5. Refinar los sprints 3 a 5 antes de programarlos.

@@ -4,7 +4,7 @@ Fecha: 19 de octubre de 2026, America/La_Paz.
 
 Diseño e implementación autorizados por el usuario, incluida la actualización del repositorio. Base de partida: `eb4b476da16e6a4b2a5ff8ef347a7db973301459`, rama de trabajo `feature/hu10-individual-units`.
 
-**Estado: código implementado y verificado; 315 pruebas y 2.411 verificaciones aprobadas el 19 de octubre de 2026. Las dos migraciones de HU-10 solo se aplican en `sga_rio_grande_testing`. La principal conserva las 25 migraciones anteriores. Aplicar HU-10 a la principal requiere una prevalidación, respaldo actual y autorización específica.**
+**Estado al 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo SQL nuevo, lote 12. Hay **24 tablas, 27 migraciones aplicadas, ninguna pendiente, 48 permisos y 95 vínculos**. La regresión previa aprobó 315 pruebas y 2.411 verificaciones exclusivamente en testing. Aceptación visual pendiente.
 
 ## Alcance implementado
 
@@ -74,7 +74,7 @@ Las pruebas de integridad anteriores ahora reconocen `individual_units` como tab
 
 Resultado final: **315 pruebas, 2.411 verificaciones, cero fallos, errores u omisiones**, exclusivamente en `sga_rio_grande_testing`, en 423.555 segundos. Incluye once carreras de HU-10 y la regresión completa anterior. Pint y `git diff --check` aprobados.
 
-La comparación de referencias anterior/posterior confirmó igualdad de hashes de esquema y datos de las 23 tablas principales, las mismas 25 migraciones aplicadas, los archivos de esas migraciones intactos y `.env` sin cambios. La consulta Laravel confirmó `sga_rio_grande`; `migrate:status` muestra únicamente las dos migraciones nuevas pendientes. Testing tiene 27 migraciones, 48 permisos y 95 vínculos; no quedan usuarios, trabajadores, productos ni unidades de las pruebas.
+La verificación de implementación previa al despliegue conservó intactas las 23 tablas principales y sus 25 migraciones, como registra la evidencia original. Después de la autorización de despliegue se aplicaron las dos migraciones principales: la captura y comparación de esa ejecución se documentan a continuación y en un archivo de evidencia separado. Testing conserva sus resultados anteriores; no se repitieron las pruebas durante el despliegue.
 
 Evidencia resumida y hashes de código/archivos de ejecución: [sprint-2-stage-5-verification.json](evidence/sprint-2-stage-5-verification.json). Los registros completos JUnit, consola y referencias se conservan fuera del repositorio en `C:\Users\jcsem\SGA-backups\hu10-implementation-20261019`.
 
@@ -91,19 +91,56 @@ La configuración de pruebas exige `APP_ENV=testing`, conexión MySQL sin DB_URL
 
 La aceptación visual UI-01/UI-02 y la parte de IND-06 que requiere documentos operativos permanecen pendientes. Renderizar Blade en pruebas automatizadas no sustituye la revisión visual.
 
-## Aplicación principal pendiente
+## Aplicación principal autorizada y ejecutada
 
-No ejecutar todavía. Después de la prevalidación, respaldo completo actualizado y autorización específica, las rutas limitadas serán:
+El usuario autorizó expresamente crear el respaldo nuevo, aplicar las dos migraciones y actualizar el repositorio. Verificación final del despliegue: **2026-10-19T09:48:43-04:00**, America/La_Paz. Código aplicado: `3897f02c54e1d88f467bb9056c199f02a8fd291d`.
+
+Se confirmó `SELECT DATABASE() = sga_rio_grande`, PHP 8.3.10, Laravel 13.35.0 y MariaDB 10.4.32. `main` estaba limpia y sincronizada. Se activó mantenimiento por archivo; no había procesos de cola activos. No se modificó `.env` ni se instalaron herramientas o paquetes.
+
+Respaldo nuevo, fuera del repositorio y con ACL limitada al usuario actual y SYSTEM:
+
+- Archivo: `C:\Users\jcsem\SGA-backups\hu10-deployment-20261019-094544\sga_rio_grande_pre_hu10.sql`.
+- Tamaño: **78.680 bytes**, 23 tablas y 176 registros.
+- SHA-256: `0334f252774836048c5dcb32fea923c55862dd91bf87a932412a08278af79a43`.
+- `mysqldump` 10.4.32, salida 0, snapshot InnoDB, estructura y datos completos, sin DROP TABLE y con `--result-file`.
+- Verificados los nombres de las 23 tablas, registros por tabla, cierre SQL y hash, también después de migrar. La fuente no cambió durante el respaldo. No se realizó un ensayo de restauración y no se presenta como realizado.
+
+Comando ejecutado, limitado a estas dos migraciones:
 
 ```powershell
 php artisan migrate --path=database/migrations/2026_10_18_000001_create_individual_units_table.php --path=database/migrations/2026_10_18_000002_add_individual_unit_permissions.php --force
 ```
 
-No volver a ejecutar las cinco migraciones de HU-08. MariaDB 10.4 no permite asumir rollback atómico de un conjunto de DDL: un fallo parcial requerirá inspeccionar tabla, restricciones y registro de migraciones antes de cualquier reparación. No ejecutar rollback ni borrar tablas para repetir automáticamente.
+Ambas se registraron en el **lote 12**, IDs 26 y 27. No se repitieron las migraciones de HU-08 ni se ejecutaron seeders.
 
-Hasta aplicar HU-10, la principal conserva 25 migraciones, 23 tablas, 44 permisos y 86 vínculos. El enlace de navegación está sujeto a permisos: las capacidades nuevas aún no están instaladas allí.
+| Comprobación | Antes | Después verificado |
+|---|---:|---:|
+| Tablas | 23 | 24 |
+| Migraciones aplicadas | 25 | 27 |
+| Migraciones pendientes | 2 | 0 |
+| Permisos | 44 | 48 |
+| Relaciones rol–permiso | 86 | 95 |
+| Auditorías administrativas | 15 | 18 |
+| Usuarios / trabajadores | 0 / 0 | 0 / 0 |
+| Unidades individualizadas | Tabla ausente | Tabla vacía |
 
-## Archivos
+Los roles conservan identidad, estado y autoría; únicamente avanzan `permissions_version` de 5 a 6 y su fecha de modificación. Capacidades iniciales verificadas: Administrador 48, Encargado 36, Consulta/Auditor 11. Las 44 filas de permisos y 86 asignaciones anteriores se conservan exactamente; se añaden solo las cuatro capacidades y nueve vínculos aprobados. Las tres auditorías nuevas coinciden con los permisos concedidos y sus versiones.
+
+Se conservaron los esquemas lógicos de las 23 tablas anteriores, excluyendo el avance esperado de AUTO_INCREMENT, y todas sus filas previas con la excepción explícita de los dos campos autorizados de roles. Las tablas ajenas a los cambios previstos mantienen el mismo hash de datos. `.env`, todos los archivos de migraciones y el código probado permanecen intactos.
+
+`individual_units` coincide con el esquema de testing, excluido su contador AUTO_INCREMENT: cinco FKs RESTRICT, incluida la compuesta, cuatro CHECK y los índices previstos. Las consultas de integridad global verificaron **43 FKs, 26 CHECK y 46 índices únicos**, sin huérfanos, incumplimientos ni duplicados. Los controles de FKs y CHECK permanecen habilitados.
+
+La aplicación salió correctamente de mantenimiento. No se crearon usuarios ni datos de prueba en la principal. No se ejecutaron pruebas automatizadas sobre ella ni se inició Sprint 3.
+
+Evidencia nueva: [sprint-2-stage-5-deployment.json](evidence/sprint-2-stage-5-deployment.json). Se conserva sin cambios la [evidencia anterior de implementación](evidence/sprint-2-stage-5-verification.json). Los archivos completos de captura, migración, respaldo y verificaciones están en `C:\Users\jcsem\SGA-backups\hu10-deployment-20261019-094544`; el SQL y los datos privados no se publican.
+
+No quedan comandos de migración pendientes para HU-10. No repetir el comando anterior. Permanecen pendientes el primer administrador mediante creación explícita, la aceptación visual y los casos de IND-06 que requieren documentos operativos futuros.
+
+## Archivos de la actualización documental del despliegue
+
+`README.md`, `docs/global-plan.md`, `docs/sprint-2.md`, `docs/data-dictionary-sprint-2.md`, `docs/sprint-2-test-matrix.md`, este informe y `docs/evidence/sprint-2-stage-5-deployment.json`. No se modifica código de aplicación, migraciones ni la evidencia original de pruebas.
+
+## Archivos de la implementación original
 
 Archivos de esta entrega (51). No incluye `.env`, dependencias ni migraciones anteriores:
 

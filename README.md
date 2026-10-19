@@ -25,11 +25,11 @@ La tabla muestra la configuración inicial. Los roles y sus permisos son configu
 
 ## Sprint 2
 
-**Actualización del 19 de octubre de 2026:** HU-10 implementada; resultados y trazabilidad en [Etapa 5](docs/sprint-2-stage-5.md). Sus dos migraciones se validan exclusivamente en testing y quedan pendientes de autorización para la principal. El estado del despliegue de HU-08 que sigue corresponde al 18 de octubre.
+**Actualización del 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo nuevo verificado, lote 12. Estado actual: **24 tablas, 27 migraciones aplicadas, ninguna pendiente, 48 permisos y 95 vínculos**. Consulta la [Etapa 5](docs/sprint-2-stage-5.md).
 
 El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07/HU-09 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md), la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md) y la [Etapa 3: ubicaciones](docs/sprint-2-stage-3.md).
 
-HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: sus cinco migraciones principales se aplicaron con autorización y respaldo verificado el **18 de octubre de 2026**, lotes 7 a 11. Consulta la [Etapa 4](docs/sprint-2-stage-4.md). La principal tiene 25 migraciones aplicadas, dos pendientes de HU-10, 23 tablas, 44 permisos y 86 vínculos. La última regresión, ejecutada el 19 de octubre exclusivamente en testing, aprobó 315 pruebas y 2.411 verificaciones. HU-10 está implementada; su aplicación principal y la aceptación visual permanecen pendientes. Los resultados actuales figuran en [Etapa 5](docs/sprint-2-stage-5.md).
+HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: sus cinco migraciones principales se aplicaron con autorización y respaldo verificado el **18 de octubre de 2026**, lotes 7 a 11. Consulta la [Etapa 4](docs/sprint-2-stage-4.md). La principal tiene 27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. La última regresión, ejecutada el 19 de octubre exclusivamente en testing, aprobó 315 pruebas y 2.411 verificaciones. HU-10 ya se aplicó a la principal; la aceptación visual permanece pendiente. Los resultados actuales figuran en [Etapa 5](docs/sprint-2-stage-5.md).
 
 ## Diagnóstico y planificación
 
@@ -41,7 +41,7 @@ HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones princi
 
 El diseño de `product_locations`, las revisiones de valores y el control de concurrencia de HU-08 fueron aprobados. La comparación exacta de identificadores genera candidatos para revisión humana; no certifica equivalencia, no fusiona productos y no convierte unidades.
 
-Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-09/HU-08. Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen sus tablas y permisos aplicados. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`; la aplicación principal de HU-08 se comprobó mediante consultas de solo lectura, sin crear datos de prueba.
+Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-09/HU-08/HU-10. Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones, asociaciones y unidades individualizadas tienen sus tablas y permisos aplicados. Las pruebas automatizadas permanecen aisladas en `sga_rio_grande_testing`; las verificaciones posteriores de HU-08 y HU-10 en la principal fueron de solo lectura, sin crear datos de prueba.
 
 ## Arranque local
 
@@ -53,11 +53,13 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local tiene **25 migraciones aplicadas y dos pendientes de HU-10**, incluidas las cinco del correctivo HU-03 y las trece de HU-05/HU-06/HU-07/HU-09/HU-08. La Etapa 4 registra el respaldo y las verificaciones de HU-08. Otras aplicaciones de migraciones requieren su propia prevalidación, respaldo y autorización. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local tiene **27 migraciones aplicadas y ninguna pendiente**, incluidas las cinco del correctivo HU-03 y las quince de HU-05/HU-06/HU-07/HU-09/HU-08/HU-10. Las Etapas 4 y 5 registran los respaldos y las verificaciones de HU-08 y HU-10. Otras aplicaciones de migraciones requieren su propia prevalidación, respaldo y autorización. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
 
 Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
 
 HU-08 tiene sus tablas y permisos aplicados: `/productos` y `/productos/{product}/ubicaciones` están disponibles según las capacidades del usuario autenticado.
+
+HU-10 tiene sus tablas y permisos aplicados: `/unidades-individualizadas` está disponible según las capacidades del usuario autenticado.
 
 **Configuración local:** `APP_KEY` se generó con autorización específica y se verificó que fuera el único cambio en `.env`. Laravel utiliza esa clave para cifrar las cookies de sesión. No regeneres una clave existente sin autorización. Las pruebas usan una clave temporal independiente.
 
@@ -80,4 +82,4 @@ HU-08 añade siete carreras de productos a las seis anteriores: trece escenarios
 
 ## Restricciones
 
-El alcance implementado incluye el catálogo de productos y sus valores técnicos, con historial de revisiones, asociaciones a ubicaciones sin cantidades y unidades individualizadas de HU-10. Las dos migraciones de HU-10 están pendientes de autorización para la principal. No incluye inventario, movimientos, remitos, entregas o préstamos. La auditoría administrativa conserva su alcance de acceso; el historial técnico usa su propia tabla. No se instalan paquetes, no se actualiza Node y no se modifica `.env` sin autorización específica. MariaDB 10.4 está fuera de mantenimiento; su actualización debe planificarse antes de producción.
+El alcance implementado incluye el catálogo de productos y sus valores técnicos, con historial de revisiones, asociaciones a ubicaciones sin cantidades y unidades individualizadas de HU-10. Las dos migraciones de HU-10 se aplicaron con autorización y respaldo el 19 de octubre de 2026. No incluye inventario, movimientos, remitos, entregas o préstamos. La auditoría administrativa conserva su alcance de acceso; el historial técnico usa su propia tabla. No se instalan paquetes, no se actualiza Node y no se modifica `.env` sin autorización específica. MariaDB 10.4 está fuera de mantenimiento; su actualización debe planificarse antes de producción.

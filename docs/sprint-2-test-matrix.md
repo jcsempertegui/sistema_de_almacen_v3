@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 18 de octubre de 2026: HU-08 aplicada a la principal con autorización y respaldo, con 25 migraciones totales y ninguna pendiente. La última suite del 15 de octubre aprobó 280 pruebas y 2.067 verificaciones exclusivamente en testing, incluida la regresión de HU-01 a HU-07 y HU-09.** La aplicación principal del 18 de octubre se verificó mediante consultas de solo lectura; no se ejecutaron pruebas automatizadas sobre ella. Consulta [Etapa 4](sprint-2-stage-4.md). HU-10 y aceptación visual permanecen pendientes. Las evidencias históricas se conservan en [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md) y [Etapa 3](sprint-2-stage-3.md).
+**Estado al 19 de octubre de 2026:** HU-10 aplicada a la principal con autorización y respaldo nuevo, lote 12: 27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. La regresión previa aprobó 315 pruebas y 2.411 verificaciones exclusivamente en testing. El despliegue se comprobó con consultas de lectura y comparación de estado; no se ejecutaron pruebas automatizadas sobre la principal. Consulta la [Etapa 5](sprint-2-stage-5.md) y su [evidencia de despliegue](evidence/sprint-2-stage-5-deployment.json). UI-01/UI-02 y la parte operativa futura de IND-06 permanecen pendientes.
 
 ## Condiciones de ejecución
 

@@ -2,7 +2,7 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
-**Estado al 19 de octubre de 2026:** categorías, unidades, atributos, `locations`, `products`, valores, revisiones y `product_locations` aplicados a la principal con autorización y respaldo. Hay 25 migraciones aplicadas y 23 tablas en la principal; las dos migraciones de HU-10 están pendientes de autorización para su aplicación allí. `individual_units` está implementada y se valida exclusivamente en testing. Consulta el [plan](sprint-2.md), la [Etapa 4](sprint-2-stage-4.md) y los resultados actuales de la [Etapa 5](sprint-2-stage-5.md).
+**Estado al 19 de octubre de 2026:** todas las tablas del catálogo del Sprint 2, incluida `individual_units`, están aplicadas a la principal con autorización y respaldo. Hay **27 migraciones aplicadas, ninguna pendiente y 24 tablas**. HU-10 se aplicó en el lote 12. Consulta el [plan](sprint-2.md) y la [Etapa 5](sprint-2-stage-5.md).
 
 ## Convenciones comunes
 
@@ -201,7 +201,7 @@ Se conservan IDs y relaciones existentes. El árbol/ruta representa la estructur
 
 ## 8. `individual_units`
 
-Implementada en HU-10, Etapa 5, el 19 de octubre de 2026. Migraciones principales pendientes. La especificación operativa siguiente y la [Etapa 5](sprint-2-stage-5.md) documentan las decisiones aprobadas.
+Implementada y aplicada a la principal en HU-10, Etapa 5, el 19 de octubre de 2026, lote 12, con autorización y respaldo nuevo. La especificación siguiente y la [Etapa 5](sprint-2-stage-5.md) documentan las decisiones y verificaciones reales.
 
 Modelo: `IndividualUnit`.
 
@@ -279,7 +279,7 @@ Las referencias de autoría a `users` se omiten del diagrama para legibilidad, p
 - CHECK mediante SQL explícito dentro de nuevas migraciones; verificar su aplicación en pruebas sobre MariaDB.
 - Usar nombres de restricciones únicos en el esquema y dentro de los límites de longitud del servidor.
 - No depender de consultas sobre JSON ni de paquetes adicionales para el esquema.
-- Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones y asociaciones tienen índices, FKs y CHECK comprobados sobre MariaDB 10.4.32 en la base exclusiva. Las cuatro tablas de HU-08 se aplicaron a la principal el 18 de octubre de 2026; sus estructuras coinciden con las probadas en testing. Unidades individualizadas implementadas en HU-10, con aplicación principal pendiente.
+- Categorías, unidades, atributos, ubicaciones, productos, valores, revisiones, asociaciones y unidades individualizadas tienen sus estructuras aplicadas a la principal. HU-08 se aplicó el 18 de octubre y HU-10 el 19 de octubre de 2026. Las cinco FKs RESTRICT, cuatro CHECK e índices de `individual_units` coinciden con el esquema probado en MariaDB 10.4.32, excluyendo únicamente el contador AUTO_INCREMENT.
 - Guardar códigos y valores técnicos de forma consistente, sin FLOAT ni certificación automática de equivalencias.
 - Historial y saldos posteriores deberán respetar las identidades, FKs y desactivaciones de este catálogo.
 
@@ -287,4 +287,4 @@ Referencias oficiales: [restricciones MariaDB](https://mariadb.com/docs/server/r
 
 ## Pruebas asociadas
 
-Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de [Etapa 1](sprint-2-stage-1.md), [Etapa 2](sprint-2-stage-2.md), [Etapa 3](sprint-2-stage-3.md) y [Etapa 4](sprint-2-stage-4.md) distinguen ejecución real de simulaciones. HU-08 integra productos/valores/asociaciones reales; La Etapa 5 integra unidades reales; su aplicación principal y la aceptación visual permanecen pendientes.
+Los casos y la autorización se detallan en [la matriz de pruebas](sprint-2-test-matrix.md). Los informes de las Etapas 1 a 4 conservan la evidencia histórica. La [Etapa 5](sprint-2-stage-5.md) integra unidades reales y registra su aplicación principal autorizada y respaldada. La aceptación visual y los casos operativos futuros de IND-06 permanecen pendientes.
