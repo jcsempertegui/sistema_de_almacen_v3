@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable(['identifier', 'product_id', 'serial_number', 'location_id', 'notes', 'is_active'])]
 class IndividualUnit extends Model
@@ -22,6 +23,11 @@ class IndividualUnit extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function position(): HasOne
+    {
+        return $this->hasOne(IndividualUnitPosition::class);
     }
 
     public function location(): BelongsTo

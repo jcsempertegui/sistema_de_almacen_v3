@@ -6,6 +6,7 @@ use App\Models\Location;
 use App\Models\Product;
 use App\Models\ProductLocation;
 use App\Models\User;
+use App\Services\InventoryReferences;
 use App\Services\LocationHierarchy;
 use App\Services\ProductReferences;
 use App\Services\SecurityMutation;
@@ -34,6 +35,9 @@ class SaveProductLocation
                     $link->created_by = $operator->id;
                 }
                 $link->is_active = $data['is_active'];
+                if ($target && ! $link->is_active) {
+                    app(InventoryReferences::class)->protectPair($product->id, $link->location_id);
+                }
                 if (! $target && ! $link->is_active) {
                     throw ValidationException::withMessages(['is_active' => 'Las asociaciones nuevas se registran activas.']);
                 }

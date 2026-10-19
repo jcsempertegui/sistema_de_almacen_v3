@@ -1,0 +1,4 @@
+<section class="card"><form method="GET" class="form-grid">
+<div class="field"><label for="q">Buscar producto</label><input id="q" name="q" maxlength="100" value="{{ request('q') }}"></div>
+<div class="field"><label for="product_id">Producto</label><select id="product_id" name="product_id"><option value="">Todos</option>@foreach($products as $product)<option value="{{ $product->id }}" @selected((string) request('product_id') === (string) $product->id)>{{ $product->internal_code }} {{ $product->name }}</option>@endforeach</select></div>
+<div class="field"><label for="location_id">Ubicación</label><select id="location_id" name="location_id"><option value="">Todas</option>@foreach($locations as $location)<option value="{{ $location->id }}" @selected((string) request('location_id') === (string) $location->id)>{{ $location->code }} {{ $location->name }}</option>@endforeach</select></div><button>Buscar</button></form></section>

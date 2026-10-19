@@ -4,7 +4,7 @@ namespace App\Support;
 
 final class PermissionCatalog
 {
-    public const LABELS = [
+    public const LABELS = InventoryPermissions::LABELS + [
         'individual_units.view' => 'Consultar unidades individualizadas', 'individual_units.create' => 'Crear unidades individualizadas',
         'individual_units.update' => 'Editar unidades individualizadas', 'individual_units.change_status' => 'Cambiar estado de unidades individualizadas',
         'products.view' => 'Consultar productos', 'products.create' => 'Crear productos',

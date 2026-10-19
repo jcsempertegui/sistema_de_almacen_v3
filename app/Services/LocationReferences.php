@@ -27,7 +27,7 @@ class LocationReferences
 
     public function hasHistoricalReferences(array $ids): bool
     {
-        return $this->hasAssignedUnits($ids) || $this->exists('product_locations', $ids);
+        return $this->hasAssignedUnits($ids) || $this->exists('product_locations', $ids) || $this->exists('inventory_document_lines', $ids);
     }
 
     private function exists(string $table, array $ids): bool

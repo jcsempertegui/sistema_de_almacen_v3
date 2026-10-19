@@ -2,7 +2,7 @@
 
 Fecha: 19 de octubre de 2026, America/La_Paz.
 
-**Estado: candidato a aceptación; sin aprobación funcional formal.** El usuario autorizó preparar el entorno aislado, ejecutar las verificaciones y actualizar el repositorio. Esa autorización no se registra como aceptación del producto ni como inicio del Sprint 3.
+**Estado vigente: aceptación funcional declarada por el usuario para avanzar, con reservas de evidencia humana.** El usuario declaró «todo esta bien podemos continuar» y autorizó la continuación tras revisar la propuesta. Registro documental: 19 de octubre de 2026. No se atribuyen firma, identidad legal ni fecha de ejecución a pruebas humanas sin constancia. Esta declaración no convierte los recorridos asistidos en pruebas manuales; los casos pendientes del guion y las reservas siguientes se conservan. El inicio del Sprint 3 fue autorizado posteriormente; su implementación no autoriza migraciones principales ni publicación.
 
 Base de la revisión original: `44e0335c380bb26ebae5cac88cbef2049e68ea25`, `main` limpia y coincidente con GitHub al comenzar. En aquella revisión, el único cambio de aplicación fue la etiqueta española del grupo de permisos de unidades individualizadas; no se cambiaron reglas de negocio, dependencias ni migraciones.
 
@@ -152,7 +152,7 @@ El entorno y sus datos se conservan para revisión; no hay limpieza destructiva 
 - MariaDB 10.4 está fuera de mantenimiento; planificar actualización antes de producción, fuera de esta etapa.
 - El respaldo de despliegue tiene integridad verificada, pero no un ensayo de restauración registrado.
 - El mutex global preserva coherencia y serializa escrituras; este recorrido no es una prueba de carga.
-- Faltan aceptación humana, primer administrador real y validación de la numeración académica del backlog.
+- Falta completar la evidencia de revisiones humanas reservadas, configurar el primer administrador real y validar la numeración académica del backlog. La aceptación declarada posterior del usuario figura en la sección 9.
 - IND-06 con documentos operativos no puede validarse todavía; se conserva la identidad básica comprobada en Sprint 2.
 
 | Tema preliminar | Dependencia o decisión para el diseño futuro |
@@ -166,15 +166,15 @@ El entorno y sus datos se conservan para revisión; no hay limpieza destructiva 
 | Cantidades | DECIMAL y precisión de unidad aprobada, sin FLOAT; decidir relación entre cantidad y unidades físicas individuales. |
 | Correcciones | Diseñar autorizaciones y trazabilidad de anulaciones/ajustes; conservar documentos confirmados y relaciones históricas. |
 
-No se crean tablas, migraciones, modelos, controladores ni reglas operativas del Sprint 3.
+La revisión original del Sprint 2 no creó componentes del Sprint 3. Su implementación posterior está autorizada y se documenta separadamente en `sprint-3.md`; no se altera esta evidencia histórica.
 
 ## 9. Resultado de aceptación
 
-**Pendiente de aceptación funcional humana y aprobación expresa.** La regresión automatizada pasó y existe evidencia del recorrido asistido. No se declara completada la matriz manual ni aprobado formalmente el Sprint 2.
+**Aceptación funcional declarada por el usuario para avanzar, con reservas de evidencia humana.** La declaración «todo esta bien podemos continuar», ratificada mediante autorización de continuación después de la propuesta, se registra sin inferir una firma o ejecución de los casos manuales pendientes. Véase `evidence/sprint-2-user-conformity.json`.
 
 El [guion de aceptación humana](sprint-2-human-acceptance.md) utiliza los registros existentes, especifica qué revisar personalmente y deja los resultados sin prellenar. UI-S2-02 tiene verificación técnica posterior; el responsable aún debe revisar su presentación y la recuperación.
 
-Para cerrar: revisar evidencias, ejecutar los casos humanos pendientes, resolver incidencias bloqueantes, registrar reservas menores si el responsable las acepta y obtener aprobación identificable del responsable funcional. Esa aprobación se añadirá después; no se infiere de la autorización para ejecutar pruebas o publicar este informe.
+Se conserva como reserva la ejecución documentada de los casos humanos pendientes, incluidas las revisiones visuales y de accesibilidad. No se detectaron incidencias técnicas bloqueantes en los resultados registrados. La conformidad declarada permite avanzar y no completa retrospectivamente esa matriz ni acredita una firma formal externa.
 
 ## 10. Retrospectiva preliminar
 

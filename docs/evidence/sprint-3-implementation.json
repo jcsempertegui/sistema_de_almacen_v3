@@ -1,0 +1,126 @@
+{
+  "recorded_at_utc": "2026-10-19T18:01:01.794432+00:00",
+  "base_commit": "1f6d30e13dd20caa8ae1e5c1ba8c9bc5d411301c",
+  "branch": "feature/sprint-3-inventory",
+  "implementation_status": "implemented_locally_pending_review",
+  "technical_status": "full_suite_executed_with_one_timeout_then_affected_case_and_group_passed",
+  "single_clean_full_suite_claimed": false,
+  "new_inventory_tests": {
+    "tests": 44,
+    "errors": 0,
+    "failures": 0
+  },
+  "executions": {
+    "inventory-first.xml": {
+      "tests": 20,
+      "assertions": 92,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 37.926401
+    },
+    "inventory-targeted.xml": {
+      "tests": 28,
+      "assertions": 160,
+      "errors": 0,
+      "failures": 1,
+      "skipped": 0,
+      "seconds": 24.332558
+    },
+    "inventory-concurrency.xml": {
+      "tests": 11,
+      "assertions": 143,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 118.805856
+    },
+    "regression-first.xml": {
+      "tests": 361,
+      "assertions": 2746,
+      "errors": 0,
+      "failures": 2,
+      "skipped": 0,
+      "seconds": 674.556003
+    },
+    "inventory-final-targeted.xml": {
+      "tests": 33,
+      "assertions": 218,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 37.388305
+    },
+    "regression-final.xml": {
+      "tests": 363,
+      "assertions": 2783,
+      "errors": 1,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 1553.231156
+    },
+    "legacy-concurrency-recheck.xml": {
+      "tests": 1,
+      "assertions": 15,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 7.646308
+    },
+    "product-concurrency-final.xml": {
+      "tests": 7,
+      "assertions": 99,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 139.530088
+    }
+  },
+  "timeout_incident": {
+    "id": "TEST-S3-01",
+    "test": "ProductConcurrencyTest/stale edit",
+    "exception": "ProcessTimedOutException",
+    "timeout_seconds": 120,
+    "reproduced_in_single_case_recheck": false,
+    "reproduced_in_full_product_concurrency_group": false,
+    "cause": "not_determined",
+    "production_logic_or_timeouts_changed_to_mask_it": false
+  },
+  "testing": {
+    "database": "sga_rio_grande_testing",
+    "tables": 31,
+    "applied_migrations": 29,
+    "permissions": 62,
+    "role_permissions": 126,
+    "business_fixtures_remaining": false
+  },
+  "main_conservation": "sprint-3-implementation/main-conservation.json",
+  "source_hashes": "sprint-3-implementation/frozen-source.json",
+  "source_hashes_unchanged_after_final_tests": true,
+  "main_migrations_executed": false,
+  "main_backup_created": false,
+  "env_changed": false,
+  "old_migrations_changed": false,
+  "dependencies_changed": false,
+  "real_accounts_created": false,
+  "sprint_2_acceptance_environment_changed": false,
+  "sprint_3_browser_checks_executed": false,
+  "sprint_3_human_acceptance": "pending",
+  "commit_created": false,
+  "push_executed": false,
+  "pending_checks": [
+    "human_browser_acceptance",
+    "specific_csv_size_row_and_encoding_boundary_cases",
+    "investigate_legacy_concurrency_timeout_stability"
+  ],
+  "artifacts": {
+    "frozen-source.json": "51014d1ae949683241312e8ce6972109fbf543095063de459e518d5a4be0b1d3",
+    "inventory-concurrency.xml": "fa09e39c3b2509901d502f184f1de799e2c56d969f4697ba72b6f2509975f354",
+    "inventory-final-targeted.xml": "cfc8f7bc81c2dbceb8375935451e3aa9c4c9736a3caa26b0f9b15e0257d62f6b",
+    "legacy-concurrency-recheck.xml": "0dad60f143ec0288dd9df863ce473f605889e12f9612d54bf35862a1aa8d9773",
+    "main-conservation.json": "9e7236e330ddf6b1c665751d35f7072b8cb4069e2b8da62f5a9ffe321dc9e1a0",
+    "product-concurrency-final.xml": "02ff041a5c18904194295f6cf1c3902d7d7a449040eb9860706e00a1cc8990ed",
+    "regression-junit.xml": "bfefff58768e776a152d83035d82d7a622c2afe97733bd6d28913ee4176df407",
+    "testing-state.json": "dcc4d29d9206fffee3869cf1b3c9c2f7f29454fd07d295db54e4f0cf75fb0816"
+  }
+}

@@ -7,6 +7,7 @@ use App\Models\CatalogAttribute;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
 use App\Models\IndividualUnit;
+use App\Models\InventoryDocument;
 use App\Models\Location;
 use App\Models\MeasurementUnit;
 use App\Models\Product;
@@ -19,6 +20,7 @@ use App\Policies\CatalogAttributePolicy;
 use App\Policies\CategoryAttributePolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\IndividualUnitPolicy;
+use App\Policies\InventoryDocumentPolicy;
 use App\Policies\LocationPolicy;
 use App\Policies\MeasurementUnitPolicy;
 use App\Policies\ProductLocationPolicy;
@@ -45,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(InventoryDocument::class, InventoryDocumentPolicy::class);
         Gate::policy(IndividualUnit::class, IndividualUnitPolicy::class);
         Gate::policy(Product::class, ProductPolicy::class);
         Gate::policy(ProductLocation::class, ProductLocationPolicy::class);

@@ -2,6 +2,8 @@
 
 Fecha: 12 de octubre de 2026, America/La_Paz.
 
+**Cierre declarado posteriormente:** el usuario manifestó «todo esta bien podemos continuar» y autorizó avanzar tras revisar el diseño. Se registra aceptación declarada con reservas de evidencia humana en `sprint-2-acceptance.md`. Esto no modifica los resultados históricos ni completa los casos manuales pendientes. La cobertura operativa añadida en el Sprint 3 se informa en su propia matriz.
+
 **Validación funcional posterior:** consultar [AF-01 a AF-36 y sus resultados reales](sprint-2-acceptance.md). La regresión completa histórica aprobó 315 pruebas y 2.409 aserciones en testing. UI-S2-02 se corrigió posteriormente con una vista 419 española: 39 pruebas seleccionadas/306 aserciones aprobadas, cuatro casos nuevos y dos capturas. Se mantienen CSRF y respuestas JSON nativas. UI-01/UI-02 siguen sin aprobación manual humana; usar el [guion personal](sprint-2-human-acceptance.md). El JSON anterior conserva expectativas iniciales incorrectas del guion y sus repeticiones; no se cuentan como casos de aceptación aprobados. La evidencia posterior es [sprint-2-ui-s2-02.json](evidence/sprint-2-ui-s2-02.json).
 
 **Estado al 19 de octubre de 2026:** HU-10 aplicada a la principal con autorización y respaldo nuevo, lote 12: 27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. La regresión previa aprobó 315 pruebas y 2.411 verificaciones exclusivamente en testing. El despliegue se comprobó con consultas de lectura y comparación de estado; no se ejecutaron pruebas automatizadas sobre la principal. Consulta la [Etapa 5](sprint-2-stage-5.md) y su [evidencia de despliegue](evidence/sprint-2-stage-5-deployment.json). UI-01/UI-02 y la parte operativa futura de IND-06 permanecen pendientes.

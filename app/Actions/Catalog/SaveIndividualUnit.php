@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\Product;
 use App\Models\ProductLocation;
 use App\Models\User;
+use App\Services\InventoryReferences;
 use App\Services\LocationHierarchy;
 use App\Services\SecurityMutation;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -53,6 +54,9 @@ class SaveIndividualUnit
                 }
                 if ($target && $unit->isDirty('is_active')) {
                     $this->security->requirePermissions($operator, 'individual_units.change_status');
+                    if (! $unit->is_active) {
+                        app(InventoryReferences::class)->protectUnit($unit->id);
+                    }
                 }
                 // Current locking reads are essential after waiting on the shared security mutex.
                 $product = Product::whereKey($unit->product_id)->lockForUpdate()->first();

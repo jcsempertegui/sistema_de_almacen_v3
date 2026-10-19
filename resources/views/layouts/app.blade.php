@@ -22,6 +22,9 @@
             @can('viewAny', \App\Models\Location::class)<a href="{{ route('locations.index') }}">Ubicaciones</a>@endcan
             @can('viewAny', \App\Models\Product::class)<a href="{{ route('products.index') }}">Productos</a>@endcan
             @can('viewAny', \App\Models\IndividualUnit::class)<a href="{{ route('individual-units.index') }}">Unidades individualizadas</a>@endcan
+            @can('viewAny', \App\Models\InventoryDocument::class)<a href="{{ route('inventory-documents.index') }}">Remitos y aperturas</a>@endcan
+            @can('stock.view')<a href="{{ route('stock.index') }}">Existencias</a>@endcan
+            @can('movements.view')<a href="{{ route('movements.index') }}">Movimientos</a>@endcan
             <span>{{ auth()->user()->name }}</span>
             <form method="POST" action="{{ route('logout') }}">@csrf<button class="secondary" type="submit">Cerrar sesión</button></form>
         </nav>

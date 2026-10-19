@@ -19,6 +19,7 @@ Route::middleware(['auth', 'active'])->group(function () {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/catalog.php';
+require __DIR__.'/inventory.php';
 
 Route::middleware(['auth', 'active'])->group(function () {
     Route::resource('roles', RoleController::class)->names('roles')->only(['index', 'create', 'store', 'edit', 'update']);

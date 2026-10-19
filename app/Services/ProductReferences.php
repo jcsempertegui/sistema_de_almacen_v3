@@ -20,7 +20,8 @@ class ProductReferences
 
     public function hasHistory(Product $product): bool
     {
-        return $product->attributeValues()->lockForUpdate()->first(['id']) !== null
+        return app(InventoryReferences::class)->hasProductHistory($product->id)
+            || $product->attributeValues()->lockForUpdate()->first(['id']) !== null
             || $product->productLocations()->lockForUpdate()->first(['id']) !== null
             || $this->hasAssignedUnits($product->id);
     }

@@ -4,7 +4,7 @@ Fecha de revisión: 19 de octubre de 2026, America/La_Paz.
 
 Estado: planificación general con avances aprobados y verificados por etapas. La distribución global debe contrastarse con la planificación académica existente, si la hubiera. Publicar este documento no autoriza implementar las funcionalidades pendientes.
 
-Validación de cierre del 19 de octubre: se ejecutó una regresión de 315 pruebas y 2.409 aserciones en testing y un recorrido asistido con capturas en un entorno adicional autorizado. Su seguimiento corrige UI-S2-02 con una vista 419 española, 39 pruebas seleccionadas/306 aserciones aprobadas y dos capturas posteriores. La principal se conserva. La [aceptación funcional](sprint-2-acceptance.md) sigue pendiente de revisión humana; está preparado el [guion personal](sprint-2-human-acceptance.md). Esta revisión no cierra formalmente el Sprint 2 ni inicia el Sprint 3.
+Validación de cierre del 19 de octubre: evidencia histórica de 315 pruebas/2.409 aserciones y correctivo UI-S2-02 con 39 pruebas/306 aserciones, más recorridos asistidos. El usuario declaró aceptación funcional para avanzar, con reservas de evidencia humana conservadas en la [aceptación](sprint-2-acceptance.md) y el [guion personal](sprint-2-human-acceptance.md). Sprint 3 implementado en rama de trabajo; publicación posteriormente autorizada según [su registro](sprint-3-publication.md). Las migraciones principales siguen sin autorización. Véase [Sprint 3](sprint-3.md).
 
 ## Distribución propuesta
 
@@ -13,8 +13,8 @@ Actualización del 19 de octubre: HU-10 implementada y aplicada a la principal c
 | Sprint | Objetivo | Alcance | Estado |
 |---|---|---|---|
 | 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Correctivo HU-03 implementado, probado y migrado con autorización; primer administrador y aceptación visual pendientes. |
-| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06/HU-07/HU-09/HU-08/HU-10 aplicadas a la principal con autorización y respaldo. HU-10 se aplicó el 19 de octubre de 2026, lote 12: 27 migraciones, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. Regresión previa en testing: 315 pruebas y 2.411 verificaciones aprobadas. Aceptación visual pendiente. Evidencia en [Etapa 5](sprint-2-stage-5.md). |
-| 3 | Recepción y existencias | Recepción, remitos y existencias por ubicación, con movimientos únicos por documento confirmado. | Planificación general; sin especificación detallada ni implementación. |
+| 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06/HU-07/HU-09/HU-08/HU-10 aplicadas a la principal con autorización y respaldo. HU-10 se aplicó el 19 de octubre de 2026, lote 12: 27 migraciones, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. Regresión previa en testing: 315 pruebas y 2.411 verificaciones aprobadas. Aceptación declarada por el usuario; evidencia personal pendiente en los casos reservados. Evidencia en [Etapa 5](sprint-2-stage-5.md). |
+| 3 | Recepción y existencias | Recepción, remitos, aperturas y existencias por ubicación, con movimientos únicos por documento confirmado. | Implementado localmente en `feature/sprint-3-inventory`; 44 casos nuevos aprobados. Regresión completa con reserva TEST-S3-01 (timeout anterior, repeticiones aprobadas). Aceptación humana y despliegue pendientes. Véase [informe](sprint-3-implementation.md). |
 | 4 | Entregas y préstamos | Entregas, préstamos y devoluciones; retiro por ubicaciones seleccionadas manualmente. | Planificación general; sin implementar. |
 | 5 | Control y cierre | Ajustes/anulaciones autorizadas, reportes, auditoría, regresión y documentación académica final. | Planificación general; sin implementar. |
 
@@ -56,7 +56,7 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 2. Completar la aceptación visual de las etapas entregadas. HU-08 y HU-10 ya se aplicaron a la principal con autorizaciones y respaldos propios, el 18 y 19 de octubre de 2026 respectivamente. La aplicación de HU-10 conserva datos e identidades; no inicia el Sprint 3.
 3. La comparación exacta por categoría/unidad/modo/identificadores fue aprobada para advertencias con revisión humana. Conversiones, tolerancias y equivalencia certificada permanecen fuera de alcance.
 4. Confirmar la numeración provisional HU-05 a HU-10 con el backlog académico.
-5. Refinar los sprints 3 a 5 antes de programarlos.
+5. Sprint 3 autorizado según su diseño detallado; refinar los sprints 4 y 5 antes de programarlos.
 
 ## Referencias internas
 
@@ -64,3 +64,6 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 - [Plan del Sprint 2](sprint-2.md).
 - [Diccionario de datos propuesto](data-dictionary-sprint-2.md).
 - [Matriz de pruebas propuesta](sprint-2-test-matrix.md).
+- [Alcance autorizado del Sprint 3](sprint-3.md).
+- [Implementación, conservación de datos y despliegue pendiente](sprint-3-implementation.md).
+- [Guion funcional pendiente del Sprint 3](sprint-3-acceptance.md).

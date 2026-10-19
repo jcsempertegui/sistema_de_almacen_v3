@@ -1,5 +1,7 @@
 # Sprint 2 — Guion de aceptación humana
 
+**Seguimiento del 19 de octubre de 2026:** el usuario declaró su conformidad para avanzar. Véase el estado vigente en `sprint-2-acceptance.md`. No se completan retrospectivamente los resultados de este guion: las revisiones personales sin evidencia siguen pendientes.
+
 Estado: preparado para ejecución personal; **sin resultados humanos ni aprobación formal registrados**.
 
 Usar únicamente `http://127.0.0.1:8012` y la base `sga_rio_grande_acceptance_s2`. La copia de ejecución existente está en `C:\Users\jcsem\SGA-acceptance\sprint-2-20261019\runtime`. El servidor es local: la simulación móvil se realiza en el navegador de ese equipo; probar un teléfono físico requerirá acordar previamente el acceso al entorno aislado.
@@ -42,4 +44,4 @@ Las capturas deben identificar el paso y el perfil, sin contraseñas. Registrar 
 4. Delimitar IND-06 con documentos operativos como dependencia futura, sin declarar implementados remitos, entregas, saldos ni movimientos.
 5. Registrar confirmación expresa del responsable funcional, con nombre, fecha, versión revisada y reservas. Solo entonces actualizar `sprint-2-acceptance.md` a su resultado formal.
 
-La creación del primer administrador real de la principal y el inicio del Sprint 3 requieren sus autorizaciones independientes. Publicar este guion o autorizar la corrección 419 no constituye aceptación funcional.
+La creación del primer administrador real de la principal sigue pendiente de autorización específica. Posteriormente el usuario declaró conformidad para avanzar y autorizó implementar el Sprint 3; esa declaración se registra separadamente y no completa los casos personales de este guion. Publicar el guion o corregir el 419 por sí solos no constituyen aceptación funcional.

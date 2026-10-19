@@ -9,6 +9,12 @@ Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora d
 - Blade y CSS local para las historias implementadas de los Sprints 1 y 2; no se requiere npm ni compilación.
 - La consola utiliza PHP 8.3.10 de Laragon. Apache de XAMPP carga PHP 8.2.12 y no puede ejecutar Laravel 13. Usa el servidor integrado de PHP 8.3 manteniendo MariaDB de XAMPP.
 
+## Sprint 3 — Publicación autorizada
+
+Recepción mediante remitos, borradores, confirmación transaccional e idempotente, saldos por ubicación, trazabilidad individual y apertura manual/CSV. Véanse [alcance](docs/sprint-3.md), [implementación y migraciones pendientes](docs/sprint-3-implementation.md), [diccionario](docs/data-dictionary-sprint-3.md) y [matriz](docs/sprint-3-test-matrix.md).
+
+La principal conserva las 27 migraciones del Sprint 2. Las dos nuevas migraciones del Sprint 3 necesitan prevalidación, respaldo y autorización específica; no ejecutarlas con un comando general de migración. El usuario autorizó actualizar el repositorio; véase el [registro de publicación](docs/sprint-3-publication.md). La aceptación visual y la reserva TEST-S3-01 siguen pendientes. No se inicia el Sprint 4.
+
 ## Sprint 1
 
 Orden implementado: HU-01 (autenticación), HU-03 (roles), HU-02 (usuarios), HU-04 (trabajadores). Consulta [el alcance y los criterios](docs/sprint-1.md).
@@ -25,13 +31,13 @@ La tabla muestra la configuración inicial. Los roles y sus permisos son configu
 
 ## Sprint 2
 
-**Validación funcional del 19 de octubre:** [informe de aceptación](docs/sprint-2-acceptance.md), matriz AF-01 a AF-36 y evidencias reales. Regresión completa histórica: **315 pruebas y 2.409 aserciones**, sin fallos, exclusivamente en testing. El seguimiento de UI-S2-02 añade una vista 419 en español y **39 pruebas seleccionadas con 306 aserciones aprobadas**, incluidas cuatro nuevas; mantiene íntegra la protección CSRF. Hay dos capturas posteriores, sin nuevos datos demostrativos ni cambios en la principal. El [guion personal de aceptación](docs/sprint-2-human-acceptance.md) está listo: recorrido asistido y corrección técnica no sustituyen la aceptación humana, todavía pendiente. Sprint 3 no iniciado.
+**Validación funcional del 19 de octubre:** [informe de aceptación](docs/sprint-2-acceptance.md), matriz AF-01 a AF-36 y evidencias reales. Regresión completa histórica: **315 pruebas y 2.409 aserciones**, sin fallos, exclusivamente en testing. El seguimiento de UI-S2-02 añade una vista 419 en español y **39 pruebas seleccionadas con 306 aserciones aprobadas**, incluidas cuatro nuevas; mantiene íntegra la protección CSRF. Hay dos capturas posteriores, sin nuevos datos demostrativos ni cambios en la principal. El [guion personal de aceptación](docs/sprint-2-human-acceptance.md) está listo: recorrido asistido y corrección técnica no sustituyen la aceptación humana documentada. Posteriormente el usuario declaró conformidad para avanzar, con reservas de evidencia personal pendientes. Sprint 3 autorizado en rama de trabajo.
 
-**Actualización del 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo nuevo verificado, lote 12. Estado actual: **24 tablas, 27 migraciones aplicadas, ninguna pendiente, 48 permisos y 95 vínculos**. Consulta la [Etapa 5](docs/sprint-2-stage-5.md).
+**Actualización del 19 de octubre de 2026:** HU-10 implementada, probada y aplicada a `sga_rio_grande` con autorización y respaldo nuevo verificado, lote 12. Estado actual: **24 tablas, 27 migraciones aplicadas, sin pendientes del Sprint 2, 48 permisos y 95 vínculos**. Consulta la [Etapa 5](docs/sprint-2-stage-5.md).
 
 El [correctivo HU-03](docs/sprint-1-hu03-corrective.md) y las historias HU-05/HU-06/HU-07/HU-09 están implementados e integrados en `main`, con migraciones principales autorizadas y respaldadas. Consulta la [Etapa 1](docs/sprint-2-stage-1.md), la [Etapa 2: atributos por categoría](docs/sprint-2-stage-2.md) y la [Etapa 3: ubicaciones](docs/sprint-2-stage-3.md).
 
-HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: sus cinco migraciones principales se aplicaron con autorización y respaldo verificado el **18 de octubre de 2026**, lotes 7 a 11. Consulta la [Etapa 4](docs/sprint-2-stage-4.md). La principal tiene 27 migraciones aplicadas, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. La última regresión, ejecutada el 19 de octubre exclusivamente en testing, aprobó 315 pruebas y 2.411 verificaciones. HU-10 ya se aplicó a la principal; la aceptación visual permanece pendiente. Los resultados actuales figuran en [Etapa 5](docs/sprint-2-stage-5.md).
+HU-09 se desarrolló en `sprint-2/hu09-ubicaciones` y sus dos migraciones principales se aplicaron con autorización y respaldo el 14 de octubre de 2026, lote 6. HU-08 añade productos, valores técnicos con revisiones y asociaciones de ubicaciones: sus cinco migraciones principales se aplicaron con autorización y respaldo verificado el **18 de octubre de 2026**, lotes 7 a 11. Consulta la [Etapa 4](docs/sprint-2-stage-4.md). La principal tiene 27 migraciones aplicadas, sin pendientes del Sprint 2, 24 tablas, 48 permisos y 95 vínculos. La regresión histórica de esta entrega, ejecutada el 19 de octubre exclusivamente en testing, aprobó 315 pruebas y 2.411 verificaciones. HU-10 ya se aplicó a la principal; la aceptación visual permanece pendiente. Los resultados actuales figuran en [Etapa 5](docs/sprint-2-stage-5.md).
 
 ## Diagnóstico y planificación
 
@@ -56,7 +62,7 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local tiene **27 migraciones aplicadas y ninguna pendiente**, incluidas las cinco del correctivo HU-03 y las quince de HU-05/HU-06/HU-07/HU-09/HU-08/HU-10. Las Etapas 4 y 5 registran los respaldos y las verificaciones de HU-08 y HU-10. Otras aplicaciones de migraciones requieren su propia prevalidación, respaldo y autorización. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local tiene **27 migraciones aplicadas y sin pendientes del Sprint 2**, incluidas las cinco del correctivo HU-03 y las quince de HU-05/HU-06/HU-07/HU-09/HU-08/HU-10. Las Etapas 4 y 5 registran los respaldos y las verificaciones de HU-08 y HU-10. Otras aplicaciones de migraciones requieren su propia prevalidación, respaldo y autorización. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
 
 Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
 

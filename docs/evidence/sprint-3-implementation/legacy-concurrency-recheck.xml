@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\Catalog\ProductConcurrencyTest" file="C:\laragon\www\sistema_de_almacen_v3\tests\Feature\Catalog\ProductConcurrencyTest.php" tests="1" assertions="15" errors="0" failures="0" skipped="0" time="7.646308">
+    <testsuite name="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex" tests="1" assertions="15" errors="0" failures="0" skipped="0" time="7.646308">
+      <testcase name="test_concurrent_writers_revalidate_current_state_after_the_mutex with data set &quot;stale edit&quot;" file="C:\laragon\www\sistema_de_almacen_v3\tests\Feature\Catalog\ProductConcurrencyTest.php" line="21" class="Tests\Feature\Catalog\ProductConcurrencyTest" classname="Tests.Feature.Catalog.ProductConcurrencyTest" assertions="15" time="7.646308"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,490 @@
+{
+  "database": "sga_rio_grande_testing",
+  "php": "8.3.10",
+  "laravel": "13.35.0",
+  "mariadb": "10.4.32-MariaDB",
+  "sql_mode": "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+  "tables": {
+    "administrative_audit_logs": 21,
+    "attributes": 0,
+    "cache": 0,
+    "cache_locks": 0,
+    "categories": 0,
+    "category_attributes": 0,
+    "failed_jobs": 0,
+    "individual_unit_positions": 0,
+    "individual_units": 0,
+    "initial_stock_products": 0,
+    "inventory_document_line_units": 0,
+    "inventory_document_lines": 0,
+    "inventory_documents": 0,
+    "inventory_movements": 0,
+    "job_batches": 0,
+    "jobs": 0,
+    "locations": 0,
+    "measurement_units": 0,
+    "migrations": 29,
+    "password_reset_tokens": 0,
+    "permission_role": 126,
+    "permissions": 62,
+    "product_attribute_value_revisions": 0,
+    "product_attribute_values": 0,
+    "product_locations": 0,
+    "products": 0,
+    "roles": 3,
+    "sessions": 0,
+    "stock_positions": 0,
+    "users": 0,
+    "workers": 0
+  },
+  "applied": [
+    "0001_01_01_000000_create_users_table",
+    "0001_01_01_000001_create_cache_table",
+    "0001_01_01_000002_create_jobs_table",
+    "2026_10_11_000001_add_access_status_to_users_table",
+    "2026_10_11_000002_create_roles_table",
+    "2026_10_11_000003_add_role_to_users_table",
+    "2026_10_11_000004_create_workers_table",
+    "2026_10_12_000001_add_security_fields_to_roles_table",
+    "2026_10_12_000002_create_permissions_table",
+    "2026_10_12_000003_create_permission_role_table",
+    "2026_10_12_000004_create_administrative_audit_logs_table",
+    "2026_10_12_000005_initialize_existing_role_permissions",
+    "2026_10_13_000001_create_categories_table",
+    "2026_10_13_000002_create_measurement_units_table",
+    "2026_10_13_000003_add_category_and_measurement_unit_permissions",
+    "2026_10_14_000001_create_attributes_table",
+    "2026_10_14_000002_create_category_attributes_table",
+    "2026_10_14_000003_add_attribute_permissions",
+    "2026_10_14_000004_create_locations_table",
+    "2026_10_14_000005_add_location_permissions",
+    "2026_10_15_000001_create_products_table",
+    "2026_10_15_000002_create_product_attribute_values_table",
+    "2026_10_15_000003_create_product_attribute_value_revisions_table",
+    "2026_10_15_000004_create_product_locations_table",
+    "2026_10_15_000005_add_product_permissions",
+    "2026_10_18_000001_create_individual_units_table",
+    "2026_10_18_000002_add_individual_unit_permissions",
+    "2026_10_19_000001_create_inventory_tables",
+    "2026_10_19_000002_add_inventory_permissions"
+  ],
+  "role_permissions": {
+    "administrador": 62,
+    "consulta_auditor": 15,
+    "encargado": 49
+  },
+  "inventory_constraints": [
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_position_line_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_position_location_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_position_product_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_presence_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_version_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "initial_stock_products",
+      "CONSTRAINT_NAME": "initial_stock_kind_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "initial_stock_products",
+      "CONSTRAINT_NAME": "initial_stock_opening_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "initial_stock_products",
+      "CONSTRAINT_NAME": "initial_stock_products_product_id_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "initial_stock_products",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_cancelled_by_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_confirmed_by_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_created_by_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_id_kind_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_updated_by_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_uuid_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_cancellation_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_confirmation_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_kind_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_metadata_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_source_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_status_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inv_doc_version_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_document_id_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_location_id_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_measurement_unit_id_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_product_id_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_lines_document_product_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_lines_number_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_lines_pair_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_lines_pair_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_lines_product_location_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_line_mode_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_line_number_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_line_precision_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_line_quantity_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_line_units",
+      "CONSTRAINT_NAME": "inv_line_units_document_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_document_line_units",
+      "CONSTRAINT_NAME": "inv_line_units_line_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_line_units",
+      "CONSTRAINT_NAME": "inv_line_units_product_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_document_line_units",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inventory_movements_created_by_foreign",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inventory_movements_document_line_id_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inv_movements_line_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inv_movements_stock_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inv_movement_direction_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inv_movement_quantity_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "stock_positions",
+      "CONSTRAINT_NAME": "PRIMARY",
+      "CONSTRAINT_TYPE": "PRIMARY KEY"
+    },
+    {
+      "TABLE_NAME": "stock_positions",
+      "CONSTRAINT_NAME": "stock_positions_pair_fk",
+      "CONSTRAINT_TYPE": "FOREIGN KEY"
+    },
+    {
+      "TABLE_NAME": "stock_positions",
+      "CONSTRAINT_NAME": "stock_positions_pair_unique",
+      "CONSTRAINT_TYPE": "UNIQUE"
+    },
+    {
+      "TABLE_NAME": "stock_positions",
+      "CONSTRAINT_NAME": "stock_quantity_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    },
+    {
+      "TABLE_NAME": "stock_positions",
+      "CONSTRAINT_NAME": "stock_version_check",
+      "CONSTRAINT_TYPE": "CHECK"
+    }
+  ],
+  "inventory_foreign_keys": [
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_position_line_fk",
+      "REFERENCED_TABLE_NAME": "inventory_document_line_units",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_position_location_fk",
+      "REFERENCED_TABLE_NAME": "product_locations",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "individual_unit_positions",
+      "CONSTRAINT_NAME": "inv_unit_position_product_fk",
+      "REFERENCED_TABLE_NAME": "individual_units",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "initial_stock_products",
+      "CONSTRAINT_NAME": "initial_stock_opening_fk",
+      "REFERENCED_TABLE_NAME": "inventory_documents",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "initial_stock_products",
+      "CONSTRAINT_NAME": "initial_stock_products_product_id_foreign",
+      "REFERENCED_TABLE_NAME": "products",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_cancelled_by_foreign",
+      "REFERENCED_TABLE_NAME": "users",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_confirmed_by_foreign",
+      "REFERENCED_TABLE_NAME": "users",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_created_by_foreign",
+      "REFERENCED_TABLE_NAME": "users",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_documents",
+      "CONSTRAINT_NAME": "inventory_documents_updated_by_foreign",
+      "REFERENCED_TABLE_NAME": "users",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_document_id_foreign",
+      "REFERENCED_TABLE_NAME": "inventory_documents",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_location_id_foreign",
+      "REFERENCED_TABLE_NAME": "locations",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_measurement_unit_id_foreign",
+      "REFERENCED_TABLE_NAME": "measurement_units",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inventory_document_lines_product_id_foreign",
+      "REFERENCED_TABLE_NAME": "products",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_lines",
+      "CONSTRAINT_NAME": "inv_lines_pair_fk",
+      "REFERENCED_TABLE_NAME": "product_locations",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_line_units",
+      "CONSTRAINT_NAME": "inv_line_units_line_fk",
+      "REFERENCED_TABLE_NAME": "inventory_document_lines",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_document_line_units",
+      "CONSTRAINT_NAME": "inv_line_units_product_fk",
+      "REFERENCED_TABLE_NAME": "individual_units",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inventory_movements_created_by_foreign",
+      "REFERENCED_TABLE_NAME": "users",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inv_movements_line_fk",
+      "REFERENCED_TABLE_NAME": "inventory_document_lines",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "inventory_movements",
+      "CONSTRAINT_NAME": "inv_movements_stock_fk",
+      "REFERENCED_TABLE_NAME": "stock_positions",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    },
+    {
+      "TABLE_NAME": "stock_positions",
+      "CONSTRAINT_NAME": "stock_positions_pair_fk",
+      "REFERENCED_TABLE_NAME": "product_locations",
+      "UPDATE_RULE": "RESTRICT",
+      "DELETE_RULE": "RESTRICT"
+    }
+  ]
+}

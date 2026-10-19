@@ -28,8 +28,8 @@ class AttributePermissionInitializationTest extends TestCase
         foreach (array_diff($this->codes(), ['attributes.view', 'category_attributes.view']) as $code) {
             $this->assertNotContains($code, $auditor);
         }
-        $this->assertDatabaseCount('permissions', 48);
-        $this->assertDatabaseCount('permission_role', 95);
+        $this->assertDatabaseCount('permissions', 62);
+        $this->assertDatabaseCount('permission_role', 126);
     }
 
     public function test_reinitialization_preserves_revoked_old_and_new_permissions_unknown_roles_and_users(): void

@@ -7,6 +7,7 @@ use App\Models\MeasurementUnit;
 use App\Models\Product;
 use App\Models\ProductAttributeValue;
 use App\Models\User;
+use App\Services\InventoryReferences;
 use App\Services\ProductAttributeHistory;
 use App\Services\ProductAttributeValidator;
 use App\Services\ProductDuplicateFinder;
@@ -40,6 +41,9 @@ class SaveProduct
                 }
                 if ($target && $product->isDirty('is_active')) {
                     $this->security->requirePermissions($operator, 'products.change_status');
+                    if (! $product->is_active && app(InventoryReferences::class)->hasStock($product->id)) {
+                        throw ValidationException::withMessages(['is_active' => 'No puedes desactivar un producto con existencias físicas.']);
+                    }
                     if (! $product->is_active && $this->references->hasActiveUnits($product->id)) {
                         throw ValidationException::withMessages(['is_active' => 'No puedes desactivar un producto con unidades individualizadas activas.']);
                     }
