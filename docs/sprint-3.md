@@ -6,6 +6,8 @@ Continuación autorizada por el usuario el 19 de octubre de 2026 después de rev
 
 Posteriormente el usuario autorizó actualizar el repositorio. Esa autorización de commit, integración y push se registra en [sprint-3-publication.md](sprint-3-publication.md); no autoriza migraciones principales ni equivale a aceptación funcional del Sprint 3.
 
+**Seguimiento posterior:** el usuario declaró «autorizado y aceptado» y pidió retomar las acciones. Se registró aceptación declarada con reservas y se aplicaron las dos migraciones principales, con respaldo nuevo y restauración de ensayo. Estado verificado: 31 tablas, 29 migraciones, ninguna pendiente, 62 permisos y 126 vínculos. Véase [despliegue y aceptación declarada](sprint-3-deployment.md). No se inicia el Sprint 4.
+
 | Historia | Objetivo | Criterio principal |
 |---|---|---|
 | HU-11 | Recibir materiales | Remito de ingreso confirmado registra recepción física |

@@ -4,7 +4,9 @@
 
 Rama `feature/sprint-3-inventory`, basada en `1f6d30e13dd20caa8ae1e5c1ba8c9bc5d411301c`. Se registró la conformidad declarada del Sprint 2, con reservas de pruebas personales sin evidencia. Se implementaron HU-11 a HU-17 según el [alcance autorizado](sprint-3.md).
 
-No se aplican migraciones a la principal, no se modifica `.env`, no se crean cuentas reales ni datos demostrativos principales y no se actualizan herramientas. La implementación se verificó antes de su publicación; el usuario autorizó posteriormente actualizar el repositorio, según [el registro de publicación](sprint-3-publication.md). El entorno de aceptación del Sprint 2 se conserva sin migraciones ni datos nuevos.
+**Estado posterior vigente:** código publicado en `0f63d4258baf193d9a491e583ad6aa3e830ea76f`; el usuario declaró aceptación y autorizó aplicar las dos migraciones principales. Despliegue verificado en lote 13: 31 tablas, 29 migraciones, ninguna pendiente, 62 permisos y 126 vínculos. Véase [despliegue y aceptación declarada](sprint-3-deployment.md). Las capturas y los resultados de implementación que siguen son históricos y se conservan sin reescribirlos.
+
+Durante la implementación no se aplicaron migraciones principales. La publicación y el despliegue fueron autorizados posteriormente y se registran por separado. No se modifica `.env`, no se crean cuentas reales ni datos demostrativos principales y no se actualizan herramientas. El entorno de aceptación del Sprint 2 se conserva sin migraciones ni datos nuevos.
 
 ## Código y comportamiento
 
@@ -39,18 +41,18 @@ Inspección final de testing: **31 tablas, 29 migraciones, 62 permisos, 126 vín
 
 Las ejecuciones de desarrollo conservaron un fallo de comparación de un objeto recién creado con uno recargado, corregido comparando ambos estados persistidos, y una primera regresión de 361 casos con dos fallos de vistas al modificar código durante su ejecución. Esos resultados no se declaran aprobados ni sustituyen la regresión final con fuentes congeladas.
 
-## Conservación de la principal comprobada
+## Conservación de la principal antes del despliegue (histórico)
 
 Consultas de solo lectura verificaron `SELECT DATABASE() = sga_rio_grande`, PHP 8.3.10, Laravel 13.35.0 y MariaDB 10.4.32. La comparación anterior/posterior confirmó **24 tablas, 27 migraciones aplicadas, 48 permisos, 95 vínculos y cero usuarios**. Las 24 estructuras, conteos y hashes de datos coinciden; `.env` y las 27 migraciones anteriores conservan sus hashes. Solo hay dos migraciones nuevas pendientes. No existe aún un administrador real y no se creó ninguna cuenta.
 
-Las instantáneas de lectura y registros se conservan fuera del repositorio, en `C:\Users\jcsem\SGA-acceptance\sprint-2-20261019\sprint-3-implementation`. No son respaldos SQL restaurables y no se ha creado un respaldo principal en esta etapa.
+Las instantáneas de lectura de la implementación se conservan fuera del repositorio, en `C:\Users\jcsem\SGA-acceptance\sprint-2-20261019\sprint-3-implementation`. No son respaldos SQL restaurables; el respaldo principal nuevo y su restauración posterior se registran en `sprint-3-deployment.md`.
 
-## Migraciones principales pendientes
+## Procedimiento principal preparado antes del despliegue
 
 1. `2026_10_19_000001_create_inventory_tables.php`: siete tablas, restricciones y un índice aditivo en `individual_units`.
 2. `2026_10_19_000002_add_inventory_permissions.php`: 14 permisos y concesiones iniciales sin restaurar vínculos revocados.
 
-**Comandos preparados; no ejecutados sobre la principal:** después de prevalidación, respaldo actual verificado y autorización específica:
+**Registro histórico del procedimiento:** los comandos siguientes se ejecutaron tras la autorización posterior y el respaldo verificado. Ambas migraciones están aplicadas; no repetirlas para este despliegue. La evidencia real está en `sprint-3-deployment.md`.
 
 ```powershell
 php artisan migrate:status --database=mysql
@@ -70,7 +72,7 @@ MariaDB ejecuta DDL con commits implícitos: si falla una creación parcial, no 
 
 - `TEST-S3-01`: timeout no reproducido en el escenario aislado ni en el grupo completo repetido; investigar estabilidad antes de considerar una regresión completa única aprobada.
 - Los límites máximos de tamaño/filas y variantes de codificación del CSV están implementados, pero faltan casos de borde automatizados específicos. La matriz lo distingue de los cuatro casos de importación ejecutados.
-- Revisión funcional y visual del Sprint 3 pendiente; no se reutiliza el entorno del Sprint 2 para simular aprobación de pantallas nuevas.
+- Evidencia desglosada de revisiones personales/visuales pendiente, aunque el usuario declaró aceptación del Sprint 3. No se reutiliza el entorno del Sprint 2 para simular pruebas de pantallas nuevas.
 - El mutex global serializa escrituras administrativas, de catálogo y de inventario; evaluar rendimiento antes de uso intensivo. Límites de carga/formulario son deliberados.
 - Permisos SQL del operador de mantenimiento siguen permitiendo cambios directos en la base. La aplicación no ofrece edición/borrado de documentos cerrados ni movimientos; las FK/CHECK no constituyen un sistema contra un administrador SQL malicioso.
 - Las confirmaciones tienen fecha física de registro; la fecha comercial y el corte se conservan sin reconstruir saldos retroactivos.
@@ -78,4 +80,4 @@ MariaDB ejecuta DDL con commits implícitos: si falla una creación parcial, no 
 - El evento interno `inventory.line_posted` se emite dentro de la transacción para comprobación de atomicidad. Cualquier futuro efecto externo debe diferirse hasta commit.
 - MariaDB 10.4 y el Apache local con PHP 8.2 mantienen las limitaciones de entorno previamente documentadas. No se actualiza el entorno.
 
-Listado completo: [archivos nuevos/modificados](sprint-3-changed-files.md). Guion de navegador: [aceptación pendiente](sprint-3-acceptance.md). La publicación del código fue autorizada posteriormente; el despliegue principal sigue pendiente y se mantiene separado.
+Listado de la implementación/publicación original: [archivos nuevos/modificados](sprint-3-changed-files.md). Guion personal con reservas: [aceptación declarada](sprint-3-acceptance.md). Publicación y despliegue se autorizaron en momentos separados; el segundo ya se ejecutó y se documenta en `sprint-3-deployment.md`.

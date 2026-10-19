@@ -1,6 +1,6 @@
 # Sprint 3 — Guion funcional pendiente
 
-**No ejecutado en navegador ni aprobado por el responsable funcional.** Las pruebas HTTP/SQL/entre procesos se registran en la matriz técnica y no completan este guion. La aceptación declarada del Sprint 2 no aprueba las pantallas nuevas del Sprint 3.
+**Estado vigente: aceptación funcional declarada por el usuario, con reservas de evidencia personal.** El usuario manifestó «autorizado y aceptado» y posteriormente pidió retomar las acciones. Se aplicaron las dos migraciones principales tras respaldo y restauración de ensayo: [registro de despliegue](sprint-3-deployment.md). Este guion no se ejecutó en navegador por el agente y sus resultados personales no se rellenan sin constancia. Las pruebas HTTP/SQL/entre procesos siguen registradas separadamente.
 
 ## Entorno propuesto
 

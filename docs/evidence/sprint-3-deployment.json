@@ -1,0 +1,165 @@
+{
+  "verified_at": "2026-10-19T14:48:17-04:00",
+  "database": "sga_rio_grande",
+  "code_commit": "0f63d4258baf193d9a491e583ad6aa3e830ea76f",
+  "backup": {
+    "database": "sga_rio_grande",
+    "created_at": "2026-10-19T14:45:37-04:00",
+    "file": "C:\\Users\\jcsem\\SGA-backups\\sprint3-deployment-20261019-0037062b\\sga_rio_grande_pre_sprint3.sql",
+    "size_bytes": 89928,
+    "sha256": "f2e835418321556f7fb604771cb84fc5e5c2426358d5a5306656d7b8931c9f4e",
+    "tables": 24,
+    "rows": 194,
+    "footer_complete": true,
+    "source_unchanged_during_dump": true,
+    "restore_rehearsal_performed": true,
+    "restore_database": "sga_rio_grande_restore_s3_0037062b",
+    "restored_data_and_schemas_match": true,
+    "restored_table_counts": {
+      "administrative_audit_logs": 18,
+      "attributes": 0,
+      "cache": 0,
+      "cache_locks": 0,
+      "categories": 0,
+      "category_attributes": 0,
+      "failed_jobs": 0,
+      "individual_units": 0,
+      "job_batches": 0,
+      "jobs": 0,
+      "locations": 0,
+      "measurement_units": 0,
+      "migrations": 27,
+      "password_reset_tokens": 0,
+      "permission_role": 95,
+      "permissions": 48,
+      "product_attribute_value_revisions": 0,
+      "product_attribute_values": 0,
+      "product_locations": 0,
+      "products": 0,
+      "roles": 3,
+      "sessions": 3,
+      "users": 0,
+      "workers": 0
+    },
+    "restore_database_retained": true
+  },
+  "before": {
+    "tables": 24,
+    "migrations": 27,
+    "permissions": 48,
+    "role_permissions": 95,
+    "audits": 18,
+    "users": 0,
+    "workers": 0
+  },
+  "after": {
+    "tables": 31,
+    "migrations": 29,
+    "pending": [],
+    "permissions": 62,
+    "role_permissions": 126,
+    "audits": 21,
+    "users": 0,
+    "workers": 0
+  },
+  "applied_migrations": [
+    {
+      "id": 28,
+      "migration": "2026_10_19_000001_create_inventory_tables",
+      "batch": 13
+    },
+    {
+      "id": 29,
+      "migration": "2026_10_19_000002_add_inventory_permissions",
+      "batch": 13
+    }
+  ],
+  "checks": {
+    "exact_tables": true,
+    "counts": true,
+    "env_unchanged": true,
+    "migration_sources_unchanged": true,
+    "stored_objects_unchanged": true,
+    "old_rows_preserved": true,
+    "only_expected_schema_change": true,
+    "unaffected_data_unchanged": true,
+    "empty_inventory": true,
+    "schemas_match_tested": true,
+    "composite_unit_index": true,
+    "only_expected_grants": true,
+    "only_expected_permission_codes": true,
+    "only_expected_audit": true,
+    "only_expected_migrations": true,
+    "twenty_new_restrict_foreign_keys": true,
+    "eighteen_new_checks": true,
+    "sql_protections_enabled": true,
+    "global_integrity": true,
+    "backup_hash_still_valid": true
+  },
+  "integrity": {
+    "foreign_keys": 63,
+    "checks": 44,
+    "unique_indexes": 63,
+    "orphans": 0,
+    "check_violations": 0,
+    "duplicate_groups": 0
+  },
+  "new_foreign_keys": 20,
+  "new_checks": 18,
+  "main_automated_tests_executed": false,
+  "maintenance_verified_closed": true,
+  "migration_status_exit": 0,
+  "authorized_operations": [
+    "Current full SQL backup and isolated restoration rehearsal",
+    "Apply only the two Sprint 3 migrations",
+    "Record user-declared acceptance with existing evidence reserves"
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "code": "administrador",
+      "permissions_version": 7,
+      "active_capabilities": 62
+    },
+    {
+      "id": 2,
+      "code": "encargado",
+      "permissions_version": 7,
+      "active_capabilities": 49
+    },
+    {
+      "id": 3,
+      "code": "consulta_auditor",
+      "permissions_version": 7,
+      "active_capabilities": 15
+    }
+  ],
+  "authorization": {
+    "declaration": "autorizado y aceptado",
+    "continuation": "retoma las acciones",
+    "acceptance": "user_declared_with_existing_evidence_reserves",
+    "human_cases_execution_claimed": false,
+    "formal_signature_inferred": false
+  },
+  "reserved_incident": "TEST-S3-01",
+  "sprint_4_started": false,
+  "main_accounts_created": false,
+  "acceptance_s2_changed": false,
+  "testing_database_changed": false,
+  "raw_evidence_sha256": {
+    "after.json": "31ec5e954f70282417b1b20b67bf29e9de37c250dce1d3cac907d3a26703a620",
+    "backup-manifest.json": "aff7a9affd98b254075bf3ff36d4ef32292b3fcb832b81c1618ce59a86df9f6f",
+    "before.json": "bc764cf54b40446612b2e50b1c4e143b2d2197b9717d3545327066a90d4c0194",
+    "deploy.php": "808c6129d7348d57a6608dde20a7ccc5c9020f4ab502a54daaed84792149ab7d",
+    "deployment-result.json": "9329261e86224054572560e896e0279ee25fb857ec45c6d04f4140afe81887ab",
+    "immediately-before-migrations.json": "bc764cf54b40446612b2e50b1c4e143b2d2197b9717d3545327066a90d4c0194",
+    "migrate-status.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "migrate-status.stdout.log": "1d06a7df6295c35ec4f08fd570d8c96d38ffc2b6435c08b32e136f918fe07a06",
+    "mysqldump.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mysqldump.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preflight.json": "bc764cf54b40446612b2e50b1c4e143b2d2197b9717d3545327066a90d4c0194",
+    "restore-rehearsal.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "restore-rehearsal.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verification.json": "66b41535316d53db035a5dc23a85a2308c09c96b25100777f684080a961a68f0"
+  }
+}

@@ -17,3 +17,7 @@ La autorización corresponde al repositorio. No autoriza aplicar las dos migraci
 - `.env`, dependencias y migraciones anteriores permanecen fuera del commit. Las dos migraciones nuevas se publican como código pendiente de aplicación a la principal.
 
 La comprobación final requiere confirmar que `main` local y `origin/main` apuntan al mismo commit y que el árbol de trabajo queda limpio. No se ejecutan nuevamente las pruebas de base de datos para estos ajustes documentales; se conservan sus resultados reales.
+
+## Seguimiento posterior de base principal
+
+El commit de implementación `0f63d4258baf193d9a491e583ad6aa3e830ea76f` se publicó y verificó en `main` y en la rama de trabajo. Después, el usuario manifestó «autorizado y aceptado» y pidió retomar las acciones. Esa autorización posterior permitió el [despliegue principal y registro de aceptación declarada](sprint-3-deployment.md), conservando las reservas y las evidencias originales.

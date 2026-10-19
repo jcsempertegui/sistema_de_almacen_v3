@@ -9,11 +9,11 @@ Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora d
 - Blade y CSS local para las historias implementadas de los Sprints 1 y 2; no se requiere npm ni compilación.
 - La consola utiliza PHP 8.3.10 de Laragon. Apache de XAMPP carga PHP 8.2.12 y no puede ejecutar Laravel 13. Usa el servidor integrado de PHP 8.3 manteniendo MariaDB de XAMPP.
 
-## Sprint 3 — Publicación autorizada
+## Sprint 3 — Desplegado con aceptación declarada
 
 Recepción mediante remitos, borradores, confirmación transaccional e idempotente, saldos por ubicación, trazabilidad individual y apertura manual/CSV. Véanse [alcance](docs/sprint-3.md), [implementación y migraciones pendientes](docs/sprint-3-implementation.md), [diccionario](docs/data-dictionary-sprint-3.md) y [matriz](docs/sprint-3-test-matrix.md).
 
-La principal conserva las 27 migraciones del Sprint 2. Las dos nuevas migraciones del Sprint 3 necesitan prevalidación, respaldo y autorización específica; no ejecutarlas con un comando general de migración. El usuario autorizó actualizar el repositorio; véase el [registro de publicación](docs/sprint-3-publication.md). La aceptación visual y la reserva TEST-S3-01 siguen pendientes. No se inicia el Sprint 4.
+Las dos migraciones del Sprint 3 se aplicaron con autorización, respaldo nuevo y restauración de ensayo, lote 13. Estado principal verificado: **31 tablas, 29 migraciones aplicadas, ninguna pendiente, 62 permisos y 126 vínculos**. No repetir sus migraciones. Véase [despliegue y aceptación declarada](docs/sprint-3-deployment.md). La conformidad del usuario no completa los casos personales sin evidencia; se conservan esas reservas y TEST-S3-01. No se inicia el Sprint 4.
 
 ## Sprint 1
 

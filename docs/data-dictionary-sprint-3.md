@@ -2,6 +2,8 @@
 
 Todas las tablas nuevas utilizan InnoDB, IDs compatibles con los existentes y claves foráneas restrictivas. Cantidades `DECIMAL(18,6)`. No se cambian migraciones ya ejecutadas.
 
+Estado verificado: esquema aplicado a `sga_rio_grande` con autorización, lote 13, después de respaldo y restauración de ensayo. Veinte FKs nuevas RESTRICT, dieciocho CHECK y estructuras coincidentes con testing. Véase [despliegue](sprint-3-deployment.md).
+
 | Tabla | Clave y campos principales | Relaciones y restricciones |
 |---|---|---|
 | inventory_documents | id, uuid único, kind, status, document_date, cutoff_date, counterparty_id/name, external_reference, notes, source, source_sha256, lock_version, autores/fechas de confirmación y cancelación | kind receipt/issue/opening; status draft/confirmed/cancelled; usuarios restrictivos |

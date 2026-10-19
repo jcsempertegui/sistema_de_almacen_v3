@@ -2,6 +2,8 @@
 
 **La tabla siguiente define el plan; los resultados ejecutados se registran por separado al final.** Usar exclusivamente `sga_rio_grande_testing`. No deducir aprobación de navegador a partir de pruebas HTTP.
 
+**Seguimiento de despliegue:** aceptación declarada del usuario y dos migraciones principales aplicadas con respaldo/restauración verificados, lote 13. Las comprobaciones de conservación e integridad fueron de solo lectura; no se ejecutó PHPUnit sobre la principal. Véase [el informe](sprint-3-deployment.md). La declaración no completa los casos humanos sin evidencia ni cambia los resultados históricos siguientes.
+
 | Caso | Historia/requisito | Evidencia prevista |
 |---|---|---|
 | INV-01 | HU-11/12 borrador sin efectos físicos, alta/edición/cancelación | Prueba HTTP y SQL |
