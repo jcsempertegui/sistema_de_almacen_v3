@@ -25,4 +25,4 @@ Testing quedó con 53 tablas y 43 migraciones, 123 permisos y 260 vínculos. La 
 
 La entrega local de 96 archivos se acompaña del seguimiento de publicación y una regla en `.gitattributes` para conservar los bytes exactos de las evidencias S5, incluidos sus finales de línea. Total de publicación: 98 archivos. No cambia el código probado.
 
-Se preparan commit de la rama, integración por avance directo a `main` y push sin forzar. El resultado y el commit publicado se añadirán después de verificar la referencia remota.
+Publicación ejecutada el 20 de octubre de 2026: commit de implementación [`1585a28d69de83a28626c279b83356e627a4d67d`](https://github.com/jcsempertegui/sistema_de_almacen_v3/commit/1585a28d69de83a28626c279b83356e627a4d67d), integración por avance directo a `main` y push sin forzar. `git ls-remote origin refs/heads/main` confirmó exactamente ese commit y el árbol de trabajo quedó limpio. Este seguimiento se registra después en un commit exclusivamente documental.
