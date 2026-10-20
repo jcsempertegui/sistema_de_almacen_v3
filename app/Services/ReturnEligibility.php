@@ -21,7 +21,14 @@ class ReturnEligibility
             $this->fail('El ítem no pertenece al préstamo.');
         }
         $custody = DB::table('individual_unit_custodies')->where('individual_unit_id', $loanItem->individual_unit_id)->lockForUpdate()->first();
-        if ((int) ($custody?->current_loan_item_id ?? 0) !== $loanItem->id || DB::table('loan_item_settlements')->where('loan_item_id', $loanItem->id)->lockForUpdate()->first()) {
+        $cycles = app(LoanCycles::class);
+        if ($cycles->enabled()) {
+            $cycle = $cycles->current($loanItem->individual_unit_id, $loanItem->id);
+            if ((int) ($item['custody_cycle_id'] ?? 0) !== $cycle->id) {
+                $this->fail('El ciclo de custodia cambió; prepara nuevamente la devolución.');
+            }
+        }
+        if ((int) ($custody?->current_loan_item_id ?? 0) !== $loanItem->id || (! $cycles->enabled() && DB::table('loan_item_settlements')->where('loan_item_id', $loanItem->id)->lockForUpdate()->first())) {
             $this->fail('La herramienta no tiene este préstamo pendiente.');
         }
         $product = Product::whereKey($loanItem->product_id)->lockForUpdate()->firstOrFail();
@@ -43,6 +50,9 @@ class ReturnEligibility
             'product' => $product->only(['is_active', 'lock_version', 'measurement_unit_id', 'control_mode', 'is_loanable']),
             'unit' => $unit->only(['is_active', 'lock_version', 'product_id']), 'measurement' => $measure->only(['is_active', 'symbol', 'dimension', 'decimal_places']),
             'location' => $location->only(['is_active', 'is_storable', 'parent_id', 'lock_version']), 'pair' => $pair->only(['id', 'is_active', 'updated_at'])];
+        if ($cycles->enabled()) {
+            $snapshot['custody_cycle_id'] = $cycle->id;
+        }
         $exceptions = [];
         foreach (['product' => $product, 'unit' => $unit, 'measurement' => $measure, 'pair' => $pair] as $key => $reference) {
             if (! $reference->is_active) {

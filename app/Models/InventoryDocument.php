@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasCompensation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use LogicException;
 
 class InventoryDocument extends Model
 {
+    use HasCompensation;
+
     public const DISPLAY_TIMEZONE = 'America/La_Paz';
 
     public const KINDS = ['receipt' => 'Ingreso', 'issue' => 'Egreso', 'opening' => 'Apertura'];

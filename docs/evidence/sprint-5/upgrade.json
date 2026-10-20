@@ -1,0 +1,22 @@
+{
+    "database":  "sga_rio_grande_testing",
+    "migrations_before":  35,
+    "migrations_after":  40,
+    "historical_rows_preserved":  {
+                                      "inventory_documents":  2,
+                                      "inventory_document_lines":  2,
+                                      "inventory_document_line_units":  1,
+                                      "inventory_movements":  5,
+                                      "stock_positions":  2,
+                                      "individual_unit_positions":  1,
+                                      "tool_loans":  2,
+                                      "tool_loan_items":  2,
+                                      "tool_returns":  1,
+                                      "tool_return_items":  1,
+                                      "individual_unit_custodies":  1,
+                                      "loan_item_settlements":  1
+                                  },
+    "cycles":  2,
+    "closures":  1,
+    "success":  true
+}

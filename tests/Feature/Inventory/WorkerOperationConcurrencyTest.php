@@ -177,6 +177,14 @@ class WorkerOperationConcurrencyTest extends TestCase
                 $product = $c['product']->id;
                 $returnItems = DB::table('tool_return_items')->where('product_id', $product)->pluck('id');
                 $auth = DB::table('return_regularization_authorizations')->whereIn('return_item_id', $returnItems)->pluck('id');
+                // Remove only cycles created by this committed race fixture.
+                $cycles = DB::table('loan_custody_cycles')->where('product_id', $product)->orderByDesc('id')->pluck('id');
+                DB::table('individual_unit_custodies')->where('product_id', $product)->delete();
+                DB::table('tool_return_items')->whereIn('id', $returnItems)->update(['custody_cycle_id' => null]);
+                DB::table('loan_cycle_closures')->whereIn('cycle_id', $cycles)->delete();
+                foreach ($cycles as $cycleId) {
+                    DB::table('loan_custody_cycles')->where('id', $cycleId)->delete();
+                }
                 DB::table('individual_unit_positions')->where('product_id', $product)->delete();
                 DB::table('loan_item_settlements')->whereIn('return_item_id', $returnItems)->delete();
                 DB::table('individual_unit_custodies')->where('product_id', $product)->delete();

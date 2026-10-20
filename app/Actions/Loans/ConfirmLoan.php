@@ -7,6 +7,7 @@ use App\Models\ToolLoan;
 use App\Models\User;
 use App\Models\Worker;
 use App\Services\InventoryDraftValidator;
+use App\Services\LoanCycles;
 use App\Services\SecurityMutation;
 use App\Services\WorkerStockPosting;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,8 @@ class ConfirmLoan
                 }
                 app(WorkerStockPosting::class)->post($operator, ['product_id' => $item->product_id, 'location_id' => $item->location_id, 'quantity' => '1'], [$item->individual_unit_id], 'loan_item_id', $item->id);
                 DB::table('individual_unit_custodies')->insertOrIgnore(['individual_unit_id' => $item->individual_unit_id, 'product_id' => $item->product_id, 'created_at' => now(), 'updated_at' => now()]);
-                $changed = DB::table('individual_unit_custodies')->where('individual_unit_id', $item->individual_unit_id)->whereNull('current_loan_item_id')->update(['current_loan_item_id' => $item->id, 'lock_version' => DB::raw('lock_version+1'), 'updated_at' => now()]);
+                $cycleValues = app(LoanCycles::class)->enabled() ? ['current_cycle_id' => app(LoanCycles::class)->open($item)] : [];
+                $changed = DB::table('individual_unit_custodies')->where('individual_unit_id', $item->individual_unit_id)->whereNull('current_loan_item_id')->update($cycleValues + ['current_loan_item_id' => $item->id, 'lock_version' => DB::raw('lock_version+1'), 'updated_at' => now()]);
                 if ($changed !== 1) {
                     throw ValidationException::withMessages(['lines' => 'La herramienta ya tiene custodia vigente.']);
                 }

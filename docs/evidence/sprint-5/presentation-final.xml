@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\Inventory\ControlHttpTest" file="C:\laragon\www\sistema_de_almacen_v3\tests\Feature\Inventory\ControlHttpTest.php" tests="3" assertions="75" errors="0" failures="0" skipped="0" time="13.273818">
+    <testcase name="test_control_pages_reports_and_exports_respect_permissions" file="C:\laragon\www\sistema_de_almacen_v3\tests\Feature\Inventory\ControlHttpTest.php" line="16" class="Tests\Feature\Inventory\ControlHttpTest" classname="Tests.Feature.Inventory.ControlHttpTest" assertions="59" time="11.274925"/>
+    <testcase name="test_http_adjustment_workflow_and_invalid_nested_form" file="C:\laragon\www\sistema_de_almacen_v3\tests\Feature\Inventory\ControlHttpTest.php" line="42" class="Tests\Feature\Inventory\ControlHttpTest" classname="Tests.Feature.Inventory.ControlHttpTest" assertions="11" time="1.652011"/>
+    <testcase name="test_csv_neutralizes_formulas_and_filters_cutoff_without_writing" file="C:\laragon\www\sistema_de_almacen_v3\tests\Feature\Inventory\ControlHttpTest.php" line="62" class="Tests\Feature\Inventory\ControlHttpTest" classname="Tests.Feature.Inventory.ControlHttpTest" assertions="5" time="0.346882"/>
+  </testsuite>
+</testsuites>

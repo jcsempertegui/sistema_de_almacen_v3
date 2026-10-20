@@ -1,0 +1,61 @@
+{
+    "recorded_at": "2026-10-20T13:22:05-04:00",
+    "php": "8.3.10",
+    "laravel": "13.35.0",
+    "main": {
+        "database": "sga_rio_grande",
+        "tables": 42,
+        "migrations": 35,
+        "pending": [
+            "2026_10_20_000001_create_inventory_corrections",
+            "2026_10_20_000002_extend_correction_movement_sources",
+            "2026_10_20_000003_create_loan_custody_cycles",
+            "2026_10_20_000004_create_backup_and_critical_audit_tables",
+            "2026_10_20_000005_add_control_permissions",
+            "2026_10_20_000006_harden_correction_and_cycle_membership",
+            "2026_10_20_000007_bind_reopened_cycles_to_return_movements",
+            "2026_10_20_000008_bind_correction_position_direction"
+        ],
+        "permissions": 81,
+        "role_permissions": 166,
+        "users": 0,
+        "workers": 0,
+        "data_changes": [],
+        "schema_changes": [],
+        "integrity": {
+            "foreign_keys": 110,
+            "checks": 71,
+            "unique_indexes": 100,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        }
+    },
+    "testing": {
+        "database": "sga_rio_grande_testing",
+        "tables": 53,
+        "migrations": 43,
+        "pending": [],
+        "permissions": 123,
+        "role_permissions": 260,
+        "active_permissions": {
+            "administrador": 123,
+            "encargado": 96,
+            "consulta_auditor": 41
+        },
+        "business_fixtures_remaining": [],
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        }
+    },
+    "env_unchanged": true,
+    "previous_migrations_changed": [],
+    "frozen_source_count": 389,
+    "source_changes_since_freeze": [],
+    "main_maintenance": false
+}

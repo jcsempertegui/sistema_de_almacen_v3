@@ -29,6 +29,12 @@
                 @can($kind.'.view')<a href="{{ route('worker-operations.index', $kind) }}">{{ $label }}</a>@endcan
             @endforeach
             @can('availability.view')<a href="{{ route('availability.index') }}">Disponibilidad</a>@endcan
+            @can('adjustments.view')<a href="{{ route('corrections.index','adjustment') }}">Ajustes</a>@endcan
+            @can('compensations.view')<a href="{{ route('corrections.index','compensation') }}">Compensaciones</a>@endcan
+            @can('backups.view')<a href="{{ route('backups.index') }}">Respaldos</a>@endcan
+            @foreach(\App\Services\ControlReports::LABELS as $report=>$label)
+                @can(app(\App\Services\ControlReports::class)->permission($report))<a href="{{ route('control-reports.index',$report) }}">Reporte: {{ $label }}</a>@endcan
+            @endforeach
             <span>{{ auth()->user()->name }}</span>
             <form method="POST" action="{{ route('logout') }}">@csrf<button class="secondary" type="submit">Cerrar sesión</button></form>
         </nav>

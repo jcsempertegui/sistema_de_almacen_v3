@@ -2,6 +2,7 @@
 @section('title', $document->code)
 @section('content')
 <h1>{{ $document->code }} · {{ \App\Models\InventoryDocument::KINDS[$document->kind] }}</h1>
+@include('control.compensation-reference')
 <section class="card"><dl><dt>Estado</dt><dd>{{ \App\Models\InventoryDocument::STATES[$document->status] }}</dd><dt>Fecha del documento</dt><dd>{{ $document->document_date->format('Y-m-d') }}</dd>
 @if($document->cutoff_date)<dt>Fecha de corte</dt><dd>{{ $document->cutoff_date->format('Y-m-d') }}</dd>@endif
 <dt>Contraparte</dt><dd>{{ $document->counterparty_id }} {{ $document->counterparty_name }}</dd><dt>Referencia externa</dt><dd>{{ $document->external_reference ?? 'Sin referencia' }}</dd><dt>Observaciones</dt><dd>{{ $document->notes ?? 'Sin observaciones' }}</dd><dt>Origen</dt><dd>{{ $document->source === 'csv' ? 'CSV revisado' : 'Manual' }}</dd>

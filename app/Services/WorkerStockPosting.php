@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\ValidationException;
 
 class WorkerStockPosting
@@ -35,6 +36,12 @@ class WorkerStockPosting
                 throw ValidationException::withMessages(['lines' => 'La identidad no está disponible físicamente para esta operación.']);
             }
             $values = ['product_id' => $line['product_id'], 'is_present' => $incoming, 'location_id' => $incoming ? $line['location_id'] : null, 'last_document_line_id' => null, 'last_delivery_line_id' => null, 'last_loan_item_id' => null, 'last_return_item_id' => null, 'last_'.$source => $sourceId, 'lock_version' => ($position?->lock_version ?? 0) + 1, 'created_at' => $position?->created_at ?? $time, 'updated_at' => $time];
+            if (Schema::hasColumn('individual_unit_positions', 'last_correction_line_id')) {
+                $values['last_correction_line_id'] = null;
+            }
+            if (Schema::hasColumn('individual_unit_positions', 'last_correction_direction')) {
+                $values['last_correction_direction'] = null;
+            }
             DB::table('individual_unit_positions')->updateOrInsert(['individual_unit_id' => $id], $values);
         }
         DB::table('inventory_movements')->insert([$source => $sourceId, 'product_id' => $line['product_id'], 'location_id' => $line['location_id'], 'quantity' => $quantity, 'direction' => $incoming ? 'in' : 'out', 'created_by' => $actor->id, 'posted_at' => $time]);

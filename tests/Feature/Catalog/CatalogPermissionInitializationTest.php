@@ -25,7 +25,7 @@ class CatalogPermissionInitializationTest extends TestCase
         foreach (array_diff($codes, ['categories.view', 'measurement_units.view']) as $code) {
             $this->assertNotContains($code, $auditor);
         }
-        $this->assertDatabaseCount('permissions', 81);
+        $this->assertDatabaseCount('permissions', 123);
     }
 
     public function test_repeat_initialization_preserves_revocations_unknown_roles_users_and_audit(): void
@@ -66,7 +66,7 @@ class CatalogPermissionInitializationTest extends TestCase
             $this->assertSame($versions[$role->id] + 1, $role->permissions_version);
         }
         $this->assertSame($auditCount + 3, AdministrativeAuditLog::count());
-        $this->assertDatabaseCount('permission_role', 166);
+        $this->assertDatabaseCount('permission_role', 260);
         $migration->up();
         $this->assertSame($auditCount + 3, AdministrativeAuditLog::count());
     }

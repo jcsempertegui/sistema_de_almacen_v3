@@ -14,9 +14,9 @@ class WorkerOperationPermissionTest extends TestCase
 {
     public function test_defaults_and_repeat_migration_preserve_revocations_unknown_roles_and_people(): void
     {
-        $this->assertDatabaseCount('permissions', 81);
-        $this->assertDatabaseCount('permission_role', 166);
-        foreach ([1 => 81, 2 => 66, 3 => 19] as $id => $count) {
+        $this->assertDatabaseCount('permissions', 123);
+        $this->assertDatabaseCount('permission_role', 260);
+        foreach ([1 => 123, 2 => 96, 3 => 41] as $id => $count) {
             $this->assertCount($count, Role::findOrFail($id)->assignedPermissionCodes());
         }
         foreach (array_keys(WorkerOperationPermissions::LABELS) as $code) {

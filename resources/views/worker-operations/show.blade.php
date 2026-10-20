@@ -2,11 +2,12 @@
 @section('title', $document->code)
 @section('content')
 <h1>{{ $label }} · {{ $document->code }}</h1>
+@include('control.compensation-reference')
 <p>Estado: {{ ['draft'=>'Borrador','confirmed'=>'Confirmado','cancelled'=>'Cancelado'][$document->status] }} · Fecha: {{ $document->document_date->format('Y-m-d') }}</p>
 <p>Trabajador: {{ $document->worker_snapshot['codigo'] ?? $document->worker->codigo }} · {{ $document->worker_snapshot['nombres'] ?? $document->worker->nombres }} {{ $document->worker_snapshot['apellidos'] ?? $document->worker->apellidos }}</p>
 @if($document->confirmed_at)<p>Confirmado por usuario #{{ $document->confirmed_by }} el {{ $document->confirmed_at->timezone('America/La_Paz')->format('Y-m-d H:i:s') }}.</p>@endif
 @if($document->cancelled_at)<p>Cancelado por usuario #{{ $document->cancelled_by }}. Motivo: {{ $document->cancellation_reason }}</p>@endif
-@if($kind==='loans')<p>Responsabilidad: {{ ['pending'=>'Pendiente','partial'=>'Parcialmente devuelto','returned'=>'Devuelto','draft'=>'Borrador','cancelled'=>'Cancelado'][$document->responsibility_status] }} · Vencimiento: {{ $document->due_date?->format('Y-m-d') ?? 'Sin vencimiento' }}</p>@endif
+@if($kind==='loans')<p>Responsabilidad: {{ ['compensated'=>'Compensado','pending'=>'Pendiente','partial'=>'Parcialmente devuelto','returned'=>'Devuelto','draft'=>'Borrador','cancelled'=>'Cancelado'][$document->responsibility_status] }} · Vencimiento: {{ $document->due_date?->format('Y-m-d') ?? 'Sin vencimiento' }}</p>@endif
 @if($kind==='returns')<p>Préstamo original: {{ $document->loan->code }}</p>@endif
 <p>{{ $document->notes }}</p>
 <div class="card table-wrap"><table><thead><tr><th>Línea / ítem</th><th>Producto</th><th>Ubicación</th><th>Cantidad</th><th>Identidades</th></tr></thead><tbody>@foreach($document->lines as $line)<tr><td>{{ $line->line_number ?? $line->id }}</td><td>{{ $line->product->internal_code }} · {{ $line->product->name }}</td><td>{{ $line->location->code }}</td><td>{{ $line->quantity ?? '1' }}</td><td>{{ $kind==='deliveries' ? ($line->units->pluck('identifier')->join(', ') ?: 'Por cantidad') : $line->unit->identifier }}</td></tr>@endforeach</tbody></table></div>

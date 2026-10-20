@@ -31,7 +31,7 @@ class InventoryReferences
 
     public function hasProductHistory(int $productId): bool
     {
-        foreach (['inventory_document_lines', 'material_delivery_lines', 'tool_loan_items', 'tool_return_items'] as $table) {
+        foreach (['inventory_document_lines', 'material_delivery_lines', 'tool_loan_items', 'tool_return_items', 'inventory_correction_lines'] as $table) {
             if (Schema::hasTable($table) && DB::table($table)->where('product_id', $productId)->lockForUpdate()->first(['id']) !== null) {
                 return true;
             }

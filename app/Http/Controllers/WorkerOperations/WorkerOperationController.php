@@ -52,7 +52,7 @@ class WorkerOperationController extends Controller
         $filters = $this->validated($request, ['worker_id' => 'nullable|integer|min:1', 'status' => 'nullable|in:draft,confirmed,cancelled', 'q' => 'nullable|string|max:100', 'pending' => 'nullable|in:1']);
         $query = $this->model($kind)::with('worker')->when($filters['worker_id'] ?? null, fn ($q, $id) => $q->where('worker_id', $id))->when($filters['status'] ?? null, fn ($q, $status) => $q->where('status', $status))->when($filters['q'] ?? null, fn ($q, $term) => $q->whereHas('worker', fn ($w) => $w->where(fn ($w) => $w->where('nombres', 'like', '%'.$term.'%')->orWhere('apellidos', 'like', '%'.$term.'%')->orWhere('codigo', 'like', '%'.$term.'%'))));
         if ($kind === 'loans' && ($filters['pending'] ?? null)) {
-            $query->where('status', 'confirmed')->whereHas('lines', fn ($q) => $q->whereNotExists(fn ($s) => $s->selectRaw('1')->from('loan_item_settlements')->whereColumn('loan_item_settlements.loan_item_id', 'tool_loan_items.id')));
+            $query->where('status', 'confirmed')->whereHas('lines', fn ($q) => $q->pending());
         }
 
         return view('worker-operations.index', ['kind' => $kind, 'label' => WorkerOperationTypes::LABELS[$kind], 'documents' => $query->latest('id')->paginate(30)->withQueryString()]);
@@ -92,7 +92,7 @@ class WorkerOperationController extends Controller
             'locations' => Location::where('is_active', true)->where('is_storable', true)->orderBy('code')->get(),
             'units' => IndividualUnit::with('product')->where('is_active', true)->whereHas('product', fn ($q) => $q->where('is_active', true)->where('is_loanable', $kind === 'loans'))->orderBy('identifier')->get(),
             'loans' => ToolLoan::with('worker')->where('status', 'confirmed')->latest('id')->get(),
-            'loanItems' => ToolLoanItem::with('unit', 'product')->whereHas('document', fn ($q) => $q->where('status', 'confirmed'))->whereNotExists(fn ($q) => $q->selectRaw('1')->from('loan_item_settlements')->whereColumn('loan_item_settlements.loan_item_id', 'tool_loan_items.id'))->get()]);
+            'loanItems' => ToolLoanItem::with('unit', 'product')->whereHas('document', fn ($q) => $q->where('status', 'confirmed'))->pending()->get()]);
     }
 
     public function store(WorkerOperationRequest $request, string $kind)

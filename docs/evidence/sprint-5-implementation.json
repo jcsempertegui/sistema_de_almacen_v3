@@ -1,0 +1,268 @@
+{
+    "recorded_at": "2026-10-20T13:27:49-04:00",
+    "base_commit": "3d368275383ee472e1e58cdb57ed94b0a6e9cd96",
+    "branch": "feature/sprint-5-control-and-close",
+    "status": "implemented_locally_tested_not_published_not_deployed",
+    "stories": [
+        "HU-24",
+        "HU-25",
+        "HU-26",
+        "HU-27",
+        "HU-28",
+        "HU-29"
+    ],
+    "new_tables": 11,
+    "new_migrations": 8,
+    "full_regression": {
+        "tests": 429,
+        "assertions": 3406,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "seconds": 1192.864878,
+        "sha256": "a10b53940542d08adee9df8fa02a2235592461163c1e91f4ffa7174627c6e5fe"
+    },
+    "full_regression_source_files": 389,
+    "full_regression_sources_unchanged_during_run": true,
+    "initial_manifest_excluded_language_directory": true,
+    "final_source_files": 390,
+    "post_regression_changes": {
+        "scope": "Spanish presentation, visible date filters, and their HTTP assertions only",
+        "files": [
+            "lang/es/control.php",
+            "resources/views/control/corrections/show.blade.php",
+            "resources/views/control/reports.blade.php",
+            "tests/Feature/Inventory/ControlHttpTest.php"
+        ],
+        "verification": {
+            "tests": 3,
+            "assertions": 75,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 13.273818,
+            "sha256": "673004b1499e1c2105f4fb809a70ad7bca2c40830d70880aca80bfe2160f0e04"
+        }
+    },
+    "executions": {
+        "concurrency-and-backup.xml": {
+            "tests": 11,
+            "assertions": 126,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 92.285936,
+            "sha256": "8669f527828679c47cadaba17d9edc4255e48be69544e5451286a1d1bfb14715"
+        },
+        "control-expanded.xml": {
+            "tests": 12,
+            "assertions": 117,
+            "errors": 0,
+            "failures": 1,
+            "skipped": 0,
+            "seconds": 36.584883,
+            "sha256": "52013d55931329bf128ea763b3149cebdb23f3ef3ab7fb388f0b8ccbd5ac6653"
+        },
+        "control-final-targeted.xml": {
+            "tests": 16,
+            "assertions": 133,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 51.959181,
+            "sha256": "96edce2bdc857a585ba4000ddf6d6f46039b1d08753c117296e68b7016fa3a0a"
+        },
+        "control-http-recheck.xml": {
+            "tests": 5,
+            "assertions": 78,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 23.38931,
+            "sha256": "d2285f64c0cdc23227972b8b9faf06918bf9420da3934eb1bef06c2b29562855"
+        },
+        "control-targeted.xml": {
+            "tests": 9,
+            "assertions": 43,
+            "errors": 1,
+            "failures": 2,
+            "skipped": 0,
+            "seconds": 63.180833,
+            "sha256": "7d7fabdd5579b458b3477bc8707f430bc9b0e7f295d9399df948aa66f1bb7c01"
+        },
+        "corrections.xml": {
+            "tests": 4,
+            "assertions": 20,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 6.566203,
+            "sha256": "26b6186b06144838b78ff4e533114a58736787793b04610f6fb360535e1baa5b"
+        },
+        "cycles-regression.xml": {
+            "tests": 9,
+            "assertions": 40,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 54.798697,
+            "sha256": "3b022368666a277e58cc11d9f32dd01fd18e5e227c6780683619b64384792b59"
+        },
+        "presentation-final.xml": {
+            "tests": 3,
+            "assertions": 75,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 13.273818,
+            "sha256": "673004b1499e1c2105f4fb809a70ad7bca2c40830d70880aca80bfe2160f0e04"
+        },
+        "regression-final.xml": {
+            "tests": 429,
+            "assertions": 3406,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 1192.864878,
+            "sha256": "a10b53940542d08adee9df8fa02a2235592461163c1e91f4ffa7174627c6e5fe"
+        },
+        "stability-control.xml": {
+            "tests": 28,
+            "assertions": 262,
+            "errors": 0,
+            "failures": 0,
+            "skipped": 0,
+            "seconds": 220.927975,
+            "sha256": "6f8ba0d48e50035ceb93ee3f5a522cfe4c714ef1192d01b693eb186ca8f9c555"
+        }
+    },
+    "verification": {
+        "recorded_at": "2026-10-20T13:26:02-04:00",
+        "php": "8.3.10",
+        "laravel": "13.35.0",
+        "main": {
+            "database": "sga_rio_grande",
+            "tables": 42,
+            "migrations": 35,
+            "pending": [
+                "2026_10_20_000001_create_inventory_corrections",
+                "2026_10_20_000002_extend_correction_movement_sources",
+                "2026_10_20_000003_create_loan_custody_cycles",
+                "2026_10_20_000004_create_backup_and_critical_audit_tables",
+                "2026_10_20_000005_add_control_permissions",
+                "2026_10_20_000006_harden_correction_and_cycle_membership",
+                "2026_10_20_000007_bind_reopened_cycles_to_return_movements",
+                "2026_10_20_000008_bind_correction_position_direction"
+            ],
+            "permissions": 81,
+            "role_permissions": 166,
+            "users": 0,
+            "workers": 0,
+            "data_changes": [],
+            "schema_changes": [],
+            "integrity": {
+                "foreign_keys": 110,
+                "checks": 71,
+                "unique_indexes": 100,
+                "orphans": 0,
+                "check_violations": 0,
+                "duplicate_groups": 0
+            }
+        },
+        "testing": {
+            "database": "sga_rio_grande_testing",
+            "tables": 53,
+            "migrations": 43,
+            "pending": [],
+            "permissions": 123,
+            "role_permissions": 260,
+            "active_permissions": {
+                "administrador": 123,
+                "encargado": 96,
+                "consulta_auditor": 41
+            },
+            "business_fixtures_remaining": [],
+            "integrity": {
+                "foreign_keys": 166,
+                "checks": 103,
+                "unique_indexes": 143,
+                "orphans": 0,
+                "check_violations": 0,
+                "duplicate_groups": 0
+            }
+        },
+        "env_unchanged": true,
+        "previous_migrations_changed": [],
+        "frozen_source_count": 389,
+        "source_changes_since_freeze": [
+            "resources/views/control/corrections/show.blade.php",
+            "resources/views/control/reports.blade.php",
+            "tests/Feature/Inventory/ControlHttpTest.php"
+        ],
+        "main_maintenance": false
+    },
+    "real_backup_final": {
+        "database": "sga_rio_grande_testing",
+        "real_mariadb_dump_executed": true,
+        "size_bytes": 238775,
+        "sha256": "c24c438669857b787697c77139a297fbe3b0c22aabc1992f9cfa2fe46c26e842",
+        "tables": 53,
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "source_manifest_matches": true,
+        "credentials_removed": true,
+        "real_restore_executed": false,
+        "main_touched": false,
+        "fixtures_cleaned_afterward": true
+    },
+    "schema_upgrade_rehearsal": {
+        "database": "sga_rio_grande_testing",
+        "migrations_before": 35,
+        "migrations_after": 40,
+        "historical_rows_preserved": {
+            "inventory_documents": 2,
+            "inventory_document_lines": 2,
+            "inventory_document_line_units": 1,
+            "inventory_movements": 5,
+            "stock_positions": 2,
+            "individual_unit_positions": 1,
+            "tool_loans": 2,
+            "tool_loan_items": 2,
+            "tool_returns": 1,
+            "tool_return_items": 1,
+            "individual_unit_custodies": 1,
+            "loan_item_settlements": 1
+        },
+        "cycles": 2,
+        "closures": 1,
+        "success": true
+    },
+    "main_migrations_executed": false,
+    "main_backups_created": false,
+    "real_accounts_created": false,
+    "real_module_restore_executed": false,
+    "main_automated_tests_executed": false,
+    "human_browser_acceptance": "pending_not_executed",
+    "academic_module_catalog_external": "not_available_pending_contrast",
+    "commit_created": false,
+    "merge_executed": false,
+    "push_executed": false,
+    "artifacts": {
+        "final-source.json": "a0d305bb42c0979605fe4e235bb5d1720ae74cbbeb16feb7045e12cacabe291f",
+        "final-verification.json": "964fb7e7ec68cdcda6b405eebcd2cb30be1bce59104648fc405e0c73b98ff6cc",
+        "frozen-source.json": "830f3550afb6820a7abf2b7e8a3629d02d6d4dee15e359034d06e6356d8f307c",
+        "presentation-final.xml": "673004b1499e1c2105f4fb809a70ad7bca2c40830d70880aca80bfe2160f0e04",
+        "real-backup-final.json": "e7a732dbf0efca3551bc949dd17a5fef126a99c8d02b0edc869c3013f2454d24",
+        "real-backup-initial.json": "12df2c1eaf34ad38a19a5384a9e60fd521208ecb5b3949cec732ca83da68e238",
+        "regression-final.xml": "a10b53940542d08adee9df8fa02a2235592461163c1e91f4ffa7174627c6e5fe",
+        "stability-control.xml": "6f8ba0d48e50035ceb93ee3f5a522cfe4c714ef1192d01b693eb186ca8f9c555",
+        "upgrade.json": "cb8af93e6a0bcffcb5dc1bd80ba3928e4fe40a2b8760479d7e87d957a9d8275a",
+        "verification-after-full.json": "41d1abc41eed6200a75de1625bc0c74169f43e1aec662283b317cf9dc895f8d0"
+    }
+}

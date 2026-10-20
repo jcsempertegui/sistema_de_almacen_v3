@@ -74,6 +74,12 @@ class ConfirmInventoryDocument
                     }
                     $newSources = Schema::hasColumn('individual_unit_positions', 'last_loan_item_id')
                         ? ['last_delivery_line_id' => null, 'last_loan_item_id' => null, 'last_return_item_id' => null] : [];
+                    if (Schema::hasColumn('individual_unit_positions', 'last_correction_line_id')) {
+                        $newSources['last_correction_line_id'] = null;
+                    }
+                    if (Schema::hasColumn('individual_unit_positions', 'last_correction_direction')) {
+                        $newSources['last_correction_direction'] = null;
+                    }
                     DB::table('individual_unit_positions')->updateOrInsert(['individual_unit_id' => $unit->id], $newSources + [
                         'product_id' => $line->product_id, 'is_present' => $incoming, 'location_id' => $incoming ? $line->location_id : null,
                         'last_document_line_id' => $line->id, 'lock_version' => ($position?->lock_version ?? 0) + 1,

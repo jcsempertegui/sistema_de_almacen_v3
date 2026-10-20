@@ -9,3 +9,7 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+
+# Preserve exact bytes of Sprint 5 evidence used by SHA-256 manifests.
+/docs/evidence/sprint-5/** -text whitespace=cr-at-eol
+/docs/evidence/sprint-5-implementation.json -text whitespace=cr-at-eol

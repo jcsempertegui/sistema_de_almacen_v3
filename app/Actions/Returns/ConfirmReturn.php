@@ -5,6 +5,7 @@ namespace App\Actions\Returns;
 use App\Models\ToolLoan;
 use App\Models\ToolReturn;
 use App\Models\User;
+use App\Services\LoanCycles;
 use App\Services\ReturnRegularization;
 use App\Services\SecurityMutation;
 use App\Services\WorkerStockPosting;
@@ -31,8 +32,16 @@ class ConfirmReturn
             foreach ($items as $item) {
                 $authorization = app(ReturnRegularization::class)->approvedFor($item->toArray(), $doc);
                 app(WorkerStockPosting::class)->post($operator, ['product_id' => $item->product_id, 'location_id' => $item->location_id, 'quantity' => '1'], [$item->individual_unit_id], 'return_item_id', $item->id, true, $item->loan_item_id);
-                DB::table('loan_item_settlements')->insert(['loan_item_id' => $item->loan_item_id, 'return_item_id' => $item->id, 'individual_unit_id' => $item->individual_unit_id, 'regularization_authorization_id' => $authorization, 'created_at' => now()]);
-                if (DB::table('individual_unit_custodies')->where('individual_unit_id', $item->individual_unit_id)->where('current_loan_item_id', $item->loan_item_id)->update(['current_loan_item_id' => null, 'lock_version' => DB::raw('lock_version+1'), 'updated_at' => now()]) !== 1) {
+                $cycles = app(LoanCycles::class);
+                $cycle = $cycles->enabled() ? $cycles->current($item->individual_unit_id, $item->loan_item_id) : null;
+                if (! $cycle || $cycle->opening_loan_item_id !== null) {
+                    DB::table('loan_item_settlements')->insert(['loan_item_id' => $item->loan_item_id, 'return_item_id' => $item->id, 'individual_unit_id' => $item->individual_unit_id, 'regularization_authorization_id' => $authorization, 'created_at' => now()]);
+                }
+                if ($cycle) {
+                    $cycles->close($cycle, $item->id, null, $authorization);
+                }
+                $cycleValues = $cycle ? ['current_cycle_id' => null] : [];
+                if (DB::table('individual_unit_custodies')->where('individual_unit_id', $item->individual_unit_id)->where('current_loan_item_id', $item->loan_item_id)->update($cycleValues + ['current_loan_item_id' => null, 'lock_version' => DB::raw('lock_version+1'), 'updated_at' => now()]) !== 1) {
                     throw ValidationException::withMessages(['lines' => 'La custodia cambió.']);
                 }
                 if ($authorization) {

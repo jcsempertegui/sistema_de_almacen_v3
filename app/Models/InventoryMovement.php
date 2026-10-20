@@ -43,19 +43,32 @@ class InventoryMovement extends Model
         return $this->belongsTo(ToolReturnItem::class, 'return_item_id');
     }
 
-    public function getOriginAttribute(): InventoryDocumentLine|MaterialDeliveryLine|ToolLoanItem|ToolReturnItem
+    public function getOriginAttribute(): InventoryDocumentLine|MaterialDeliveryLine|ToolLoanItem|ToolReturnItem|InventoryCorrectionLine
     {
+        if ($this->correction_line_id !== null) {
+            return $this->correctionLine;
+        }
+
         return $this->document_line_id !== null ? $this->line : ($this->delivery_line_id !== null ? $this->deliveryLine : ($this->loan_item_id !== null ? $this->loanItem : $this->returnItem));
     }
 
     public function getOriginKindAttribute(): string
     {
+        if ($this->correction_line_id !== null) {
+            return 'corrections';
+        }
+
         return $this->document_line_id !== null ? 'inventory-documents' : ($this->delivery_line_id !== null ? 'deliveries' : ($this->loan_item_id !== null ? 'loans' : 'returns'));
     }
 
     public function getIdentifiersAttribute(): string
     {
-        return in_array($this->origin_kind, ['inventory-documents', 'deliveries'], true) ? $this->origin->units->pluck('identifier')->join(', ') : $this->origin->unit->identifier;
+        return in_array($this->origin_kind, ['inventory-documents', 'deliveries', 'corrections'], true) ? $this->origin->units->pluck('identifier')->join(', ') : $this->origin->unit->identifier;
+    }
+
+    public function correctionLine(): BelongsTo
+    {
+        return $this->belongsTo(InventoryCorrectionLine::class, 'correction_line_id');
     }
 
     public function product(): BelongsTo

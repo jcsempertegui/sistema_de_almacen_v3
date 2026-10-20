@@ -6,6 +6,7 @@ use App\Models\ToolLoan;
 use App\Models\ToolLoanItem;
 use App\Models\ToolReturn;
 use App\Models\User;
+use App\Services\LoanCycles;
 use App\Services\ReturnEligibility;
 use App\Services\ReturnRegularization;
 use App\Services\SecurityMutation;
@@ -47,6 +48,9 @@ class SaveReturn
             foreach ($data['lines'] as $input) {
                 $original = ToolLoanItem::whereKey($input['loan_item_id'])->lockForUpdate()->firstOrFail();
                 $item = ['return_id' => $doc->id, 'loan_id' => $loan->id, 'loan_item_id' => $original->id, 'individual_unit_id' => $original->individual_unit_id, 'product_id' => $original->product_id, 'location_id' => (int) $input['location_id']];
+                if (app(LoanCycles::class)->enabled()) {
+                    $item['custody_cycle_id'] = app(LoanCycles::class)->current($original->individual_unit_id, $original->id)->id;
+                }
                 app(ReturnEligibility::class)->inspect($item, $doc);
                 if (isset($old[$original->id])) {
                     $id = $old[$original->id]->id;

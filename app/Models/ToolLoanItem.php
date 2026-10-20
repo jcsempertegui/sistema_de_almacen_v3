@@ -48,4 +48,9 @@ class ToolLoanItem extends Model
     {
         return $this->hasOne(LoanItemSettlement::class, 'loan_item_id');
     }
+
+    public function scopePending($query)
+    {
+        return $query->whereExists(fn ($q) => $q->selectRaw('1')->from('individual_unit_custodies')->whereColumn('individual_unit_custodies.current_loan_item_id', 'tool_loan_items.id'));
+    }
 }

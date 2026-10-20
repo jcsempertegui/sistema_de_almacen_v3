@@ -27,8 +27,8 @@ class LocationPermissionInitializationTest extends TestCase
         foreach (array_diff($this->codes(), ['locations.view']) as $code) {
             $this->assertNotContains($code, $auditor);
         }
-        $this->assertDatabaseCount('permissions', 81);
-        $this->assertDatabaseCount('permission_role', 166);
+        $this->assertDatabaseCount('permissions', 123);
+        $this->assertDatabaseCount('permission_role', 260);
     }
 
     public function test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people(): void

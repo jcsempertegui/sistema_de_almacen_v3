@@ -1,0 +1,20 @@
+{
+    "database":  "sga_rio_grande_testing",
+    "real_mariadb_dump_executed":  true,
+    "size_bytes":  235199,
+    "sha256":  "1db1b559ab35a81626f6846a218f911720f677bee7acaec0a66e6e76ee1432d9",
+    "tables":  53,
+    "integrity":  {
+                      "foreign_keys":  159,
+                      "checks":  100,
+                      "unique_indexes":  138,
+                      "orphans":  0,
+                      "check_violations":  0,
+                      "duplicate_groups":  0
+                  },
+    "source_manifest_matches":  true,
+    "credentials_removed":  true,
+    "real_restore_executed":  false,
+    "main_touched":  false,
+    "fixtures_cleaned_afterward":  true
+}

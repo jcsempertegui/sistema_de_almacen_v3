@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ToolLoan extends WorkerOperationDocument
 {
@@ -20,7 +21,10 @@ class ToolLoan extends WorkerOperationDocument
             return $this->status;
         }
         $total = $this->lines()->count();
-        $closed = DB::table('loan_item_settlements')->whereIn('loan_item_id', $this->lines()->select('id'))->count();
+        if (Schema::hasTable('document_compensations') && DB::table('document_compensations')->where('loan_id', $this->id)->exists()) {
+            return 'compensated';
+        }
+        $closed = $total - $this->lines()->pending()->count();
 
         return $closed === $total ? 'returned' : ($closed > 0 ? 'partial' : 'pending');
     }

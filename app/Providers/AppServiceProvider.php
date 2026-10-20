@@ -7,6 +7,7 @@ use App\Models\CatalogAttribute;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
 use App\Models\IndividualUnit;
+use App\Models\InventoryCorrection;
 use App\Models\InventoryDocument;
 use App\Models\Location;
 use App\Models\MaterialDelivery;
@@ -23,6 +24,7 @@ use App\Policies\CatalogAttributePolicy;
 use App\Policies\CategoryAttributePolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\IndividualUnitPolicy;
+use App\Policies\InventoryCorrectionPolicy;
 use App\Policies\InventoryDocumentPolicy;
 use App\Policies\LocationPolicy;
 use App\Policies\MaterialDeliveryPolicy;
@@ -53,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(InventoryCorrection::class, InventoryCorrectionPolicy::class);
         foreach ([MaterialDelivery::class => MaterialDeliveryPolicy::class, ToolLoan::class => ToolLoanPolicy::class, ToolReturn::class => ToolReturnPolicy::class] as $model => $policy) {
             Gate::policy($model, $policy);
         }
