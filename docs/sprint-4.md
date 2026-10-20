@@ -48,4 +48,4 @@ CSV: casos nuevos ejecutados para 1 MiB, 1000 filas, 500 combinaciones, BOM, UTF
 
 ## Despliegue
 
-La principal conserva las 29 migraciones previas. Cualquier migración principal futura requiere prevalidación, respaldo nuevo, restauración de ensayo y autorización específica. El DDL de MariaDB no se trata como una transacción reversible; no ejecutar rollback destructivo.
+Las seis migraciones S4 se aplicaron con autorización el 20 de octubre de 2026 en lote 14, con respaldo nuevo y restauración de ensayo verificada. Principal: 42 tablas, 35 migraciones, ninguna pendiente, 81 permisos y 166 vínculos. Véase [despliegue](sprint-4-deployment.md). La autorización inicial de este documento es histórica y fue ampliada por autorizaciones posteriores. No repetir las migraciones. El DDL de MariaDB no es una transacción reversible; cualquier intervención futura requiere procedimiento y autorización propios.

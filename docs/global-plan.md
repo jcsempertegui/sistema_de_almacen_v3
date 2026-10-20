@@ -14,8 +14,8 @@ Actualización del 19 de octubre: HU-10 implementada y aplicada a la principal c
 |---|---|---|---|
 | 1 | Acceso y personas | Autenticación, usuarios, trabajadores y cierre del correctivo de roles/permisos configurables. | Correctivo HU-03 implementado, probado y migrado con autorización; primer administrador y aceptación visual pendientes. |
 | 2 | Catálogo y organización física | Categorías, unidades de medida, atributos por categoría, productos, ubicaciones y unidades individualizadas. | HU-05/HU-06/HU-07/HU-09/HU-08/HU-10 aplicadas a la principal con autorización y respaldo. HU-10 se aplicó el 19 de octubre de 2026, lote 12: 27 migraciones, ninguna pendiente, 24 tablas, 48 permisos y 95 vínculos. Regresión previa en testing: 315 pruebas y 2.411 verificaciones aprobadas. Aceptación declarada por el usuario; evidencia personal pendiente en los casos reservados. Evidencia en [Etapa 5](sprint-2-stage-5.md). |
-| 3 | Recepción y existencias | Recepción, remitos, aperturas y existencias por ubicación, con movimientos únicos por documento confirmado. | Publicado y desplegado en lote 13: 31 tablas, 29 migraciones, ninguna pendiente, 62 permisos y 126 vínculos. Aceptación declarada del usuario con reservas de evidencia humana, casos de borde CSV y TEST-S3-01. Despliegue principal limitado a Sprint 3. Véase [despliegue](sprint-3-deployment.md). |
-| 4 | Entregas y préstamos | HU-18 a HU-23: entregas, préstamos, devoluciones, responsabilidades y disponibilidad. | Implementado en `feature/sprint-4-worker-operations`: regresión de 401 pruebas/3.143 aserciones aprobada. Once tablas y seis migraciones aplicadas solo en testing. Principal conservada con 31 tablas/29 migraciones. Aceptación declarada por el usuario e integración/publicación autorizadas; despliegue pendiente y reservas de evidencia humana conservadas. Véanse [informe](sprint-4-implementation.md) y [registro de publicación](sprint-4-publication.md). |
+| 3 | Recepción y existencias | Recepción, remitos, aperturas y existencias por ubicación, con movimientos únicos por documento confirmado. | Publicado y desplegado en lote 13. Estado histórico: 31 tablas, 29 migraciones, 62 permisos y 126 vínculos. Aceptación declarada con reservas de evidencia humana. El seguimiento posterior de CSV y TEST-S3-01 está en la [matriz S4](sprint-4-test-matrix.md). Véase [despliegue S3](sprint-3-deployment.md); el lote 14 amplió posteriormente el esquema para Sprint 4. |
+| 4 | Entregas y préstamos | HU-18 a HU-23: entregas, préstamos, devoluciones, responsabilidades y disponibilidad. | Publicado y desplegado el 20 de octubre con autorización, respaldo nuevo y restauración de ensayo. Seis migraciones en lote 14: 42 tablas, 35 migraciones, ninguna pendiente, 81 permisos y 166 vínculos. Regresión previa en testing: 401 pruebas/3.143 aserciones. Aceptación declarada y reservas de evidencia humana conservadas. Véase [despliegue](sprint-4-deployment.md). |
 | 5 | Control y cierre | Ajustes/anulaciones autorizadas, reportes, auditoría, regresión y documentación académica final. | Planificación general; sin implementar. |
 
 El correctivo de HU-03 se incluye en el cierre del Sprint 1, sin crear un sexto sprint. No se asignan fechas o estimaciones de esfuerzo sin revisar disponibilidad y velocidad del equipo.
@@ -56,7 +56,7 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 2. Completar la aceptación visual de las etapas entregadas. HU-08 y HU-10 ya se aplicaron a la principal con autorizaciones y respaldos propios, el 18 y 19 de octubre de 2026 respectivamente. La aplicación de HU-10 conserva datos e identidades; no inicia el Sprint 3.
 3. La comparación exacta por categoría/unidad/modo/identificadores fue aprobada para advertencias con revisión humana. Conversiones, tolerancias y equivalencia certificada permanecen fuera de alcance.
 4. Confirmar la numeración provisional HU-05 a HU-10 con el backlog académico.
-5. Sprint 3 autorizado según su diseño detallado; refinar los sprints 4 y 5 antes de programarlos.
+5. Sprints 3 y 4 publicados y desplegados con autorización. El Sprint 5 permanece sin implementar y requiere diseño y aprobación propios.
 
 ## Referencias internas
 
@@ -67,3 +67,5 @@ En cada sprint se entregarán historias y criterios de aceptación, tareas y dep
 - [Alcance autorizado del Sprint 3](sprint-3.md).
 - [Implementación, conservación de datos y despliegue pendiente](sprint-3-implementation.md).
 - [Guion funcional pendiente del Sprint 3](sprint-3-acceptance.md).
+- [Implementación del Sprint 4](sprint-4-implementation.md).
+- [Despliegue verificado del Sprint 4](sprint-4-deployment.md).

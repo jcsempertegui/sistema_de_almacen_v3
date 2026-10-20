@@ -18,9 +18,11 @@ Esta conformidad no aporta resultados individuales de navegador, capturas ni una
 
 Comparar el remoto `main` con la base `cd7b4eabc0319c0322be929db0de1af1a16675d5`, comprobar los hashes de las 323 fuentes congeladas y revisar el contenido preparado. Crear el commit de implementación, integrar mediante avance rápido y publicar `main` sin forzar. Verificar después la igualdad entre HEAD local y `refs/heads/main` remoto y el árbol de trabajo limpio. El resultado efectivo se comunica tras ejecutar esos pasos.
 
-## Despliegue reservado
+## Reserva de despliegue al publicar el código
 
 La última verificación de solo lectura conserva **31 tablas, 29 migraciones aplicadas, 62 permisos y 126 relaciones rol–permiso** en la principal. Las seis migraciones del Sprint 4 siguen pendientes. Su futura aplicación requiere prevalidación, respaldo actual verificado, ensayo de recuperación y autorización específica. No ejecutar un `migrate` general ni repetir migraciones del Sprint 3.
+
+Este párrafo registra el estado del 19 de octubre al publicar el código. Posteriormente el usuario autorizó el procedimiento y el **20 de octubre de 2026** se completó el [despliegue](sprint-4-deployment.md) con respaldo nuevo y restauración de ensayo verificada: 42 tablas, 35 migraciones, ninguna pendiente, 81 permisos y 166 vínculos. Las seis migraciones están aplicadas en lote 14; no repetirlas. La autorización inicial de publicación no se utilizó como sustituto de esa autorización específica posterior.
 
 ## Resultado de publicación
 

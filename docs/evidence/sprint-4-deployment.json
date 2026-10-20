@@ -1,0 +1,122 @@
+{
+    "verified_at":  "2026-10-20T11:49:37-04:00",
+    "database":  "sga_rio_grande",
+    "code_commit":  "691d80f7e8af678b7c6ae707d945df365d6380c2",
+    "backup":  {
+                   "created_at":  "2026-10-20T11:48:52-04:00",
+                   "file":  "C:\\Users\\jcsem\\SGA-backups\\sprint4-deployment-20261020-99d4ebdc/sga_rio_grande_pre_sprint4.sql",
+                   "size_bytes":  119013,
+                   "sha256":  "66e46fa19774b48c2e88763c3dca4b44a5177adf805579a313b03f6f1595964d",
+                   "tables":  31,
+                   "rows":  244,
+                   "footer_complete":  true,
+                   "source_unchanged":  true,
+                   "restoration_verified":  true,
+                   "restore":  {
+                                   "database":  "sga_rio_grande_restore_s4_99d4ebdc",
+                                   "tables":  31,
+                                   "all_rows_match":  true,
+                                   "all_logical_schemas_match":  true,
+                                   "integrity":  {
+                                                     "foreign_keys":  63,
+                                                     "checks":  44,
+                                                     "unique_indexes":  63,
+                                                     "orphans":  0,
+                                                     "check_violations":  0,
+                                                     "duplicate_groups":  0,
+                                                     "cross_schema_foreign_keys":  0
+                                                 }
+                               },
+                   "restore_database_retained":  true
+               },
+    "before":  {
+                   "tables":  31,
+                   "migrations":  29,
+                   "permissions":  62,
+                   "role_permissions":  126,
+                   "audits":  21,
+                   "users":  0,
+                   "workers":  0
+               },
+    "after":  {
+                  "tables":  42,
+                  "migrations":  35,
+                  "pending":  [
+
+                              ],
+                  "permissions":  81,
+                  "role_permissions":  166,
+                  "audits":  24,
+                  "users":  0,
+                  "workers":  0
+              },
+    "applied_migrations":  [
+                               {
+                                   "id":  30,
+                                   "migration":  "2026_10_19_000003_create_worker_operation_documents",
+                                   "batch":  14
+                               },
+                               {
+                                   "id":  31,
+                                   "migration":  "2026_10_19_000004_create_return_regularizations",
+                                   "batch":  14
+                               },
+                               {
+                                   "id":  32,
+                                   "migration":  "2026_10_19_000005_extend_inventory_movement_sources",
+                                   "batch":  14
+                               },
+                               {
+                                   "id":  33,
+                                   "migration":  "2026_10_19_000006_create_loan_custodies_and_settlements",
+                                   "batch":  14
+                               },
+                               {
+                                   "id":  34,
+                                   "migration":  "2026_10_19_000007_extend_individual_unit_position_sources",
+                                   "batch":  14
+                               },
+                               {
+                                   "id":  35,
+                                   "migration":  "2026_10_19_000008_add_worker_operation_permissions",
+                                   "batch":  14
+                               }
+                           ],
+    "role_active_permission_counts":  {
+                                          "administrador":  81,
+                                          "encargado":  66,
+                                          "consulta_auditor":  19
+                                      },
+    "checks":  {
+                   "exact_table_set":  true,
+                   "counts":  true,
+                   "env_unchanged":  true,
+                   "migration_files_unchanged":  true,
+                   "stored_objects_unchanged":  true,
+                   "old_rows_preserved":  true,
+                   "unchanged_schema_except_two_tables":  true,
+                   "new_tables_empty":  true,
+                   "historical_sources_preserved":  true,
+                   "new_and_changed_schemas_match_tested":  true,
+                   "only_expected_grants":  true,
+                   "only_expected_permission_codes":  true,
+                   "only_expected_audit":  true,
+                   "only_expected_migrations":  true,
+                   "sql_protections_enabled":  true,
+                   "expected_constraint_totals":  true,
+                   "backup_still_valid":  true
+               },
+    "integrity":  {
+                      "foreign_keys":  110,
+                      "checks":  71,
+                      "unique_indexes":  100,
+                      "orphans":  0,
+                      "check_violations":  0,
+                      "duplicate_groups":  0,
+                      "cross_schema_foreign_keys":  0
+                  },
+    "main_automated_tests_executed":  false,
+    "maintenance_verified_closed":  true,
+    "completed_at":  "2026-10-20T11:50:07-04:00",
+    "temporary_credentials_removed":  true
+}

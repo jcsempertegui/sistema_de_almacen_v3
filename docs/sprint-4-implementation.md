@@ -2,7 +2,7 @@
 
 ## Autorización
 
-El usuario aprobó expresamente HU-18 a HU-23, las once tablas y la alternativa A. Rama de trabajo: `feature/sprint-4-worker-operations`, base `cd7b4eabc031`. Autorización limitada a código y pruebas aisladas. No hay autorización de publicación ni migraciones principales.
+El usuario aprobó expresamente HU-18 a HU-23, las once tablas y la alternativa A. Rama de trabajo: `feature/sprint-4-worker-operations`, base `cd7b4eabc031`. La autorización inicial se limitó a código y pruebas aisladas. Posteriormente autorizó la publicación y, por separado, el respaldo, restauración de ensayo y despliegue principal completado el 20 de octubre. Véase [seguimiento de despliegue](sprint-4-deployment.md).
 
 Estado final: **HU-18 a HU-23 implementadas localmente y regresión completa aprobada: 401 pruebas, 3.143 aserciones, cero errores, fallos u omisiones**. Consola: 15:15,932; tiempo agregado JUnit: 915,473326 segundos. Fuentes congeladas: 323 archivos sin cambios durante la ejecución. No inferir aceptación humana ni autorización de despliegue.
 
@@ -82,8 +82,8 @@ El ensayo anterior se conserva en [sprint-4-upgrade.json](evidence/sprint-4-upgr
 
 ## Principal y publicación
 
-No aplicar las seis migraciones hasta prevalidación, respaldo actual, ensayo de restauración y autorización específica. No repetir las migraciones S3. No ejecutar comandos destructivos ni pruebas sobre la principal. No modificar `.env` o dependencias.
+El despliegue requirió prevalidación, respaldo actual, ensayo de restauración y autorización específica; esas condiciones se cumplieron antes de aplicarlo. No repetir las migraciones S3/S4 ni ejecutar comandos destructivos o pruebas sobre la principal. No modificar `.env` o dependencias.
 
 Al cerrar la implementación todavía no se había realizado commit, merge ni push. Posteriormente el usuario declaró «autorizado y aceptado. actualiza el repositorio», autorizando la integración y publicación. El [registro de seguimiento](sprint-4-publication.md) distingue esa aceptación declarada de los casos humanos sin evidencia y del despliegue principal todavía pendiente. El JSON de implementación conserva la captura histórica anterior a la publicación.
 
-Las seis migraciones enumeradas siguen pendientes en la principal. No ejecutar un migrate general: la futura autorización deberá limitarse a sus seis rutas, tras la prevalidación y respaldo nuevos. No hay otras migraciones pendientes del Sprint 3 ni datos reales creados.
+Actualización del 20 de octubre: las seis migraciones enumeradas ya se aplicaron con autorización en lote 14. Principal verificada: 42 tablas, 35 migraciones, ninguna pendiente, 81 permisos y 166 vínculos. Se conservaron datos y configuraciones previas. Véanse [despliegue y respaldo](sprint-4-deployment.md) y [evidencia](evidence/sprint-4-deployment.json). Las capturas anteriores de este informe y su JSON describen el cierre de implementación, antes del despliegue. No repetir las migraciones ni ejecutar pruebas automatizadas sobre la principal.

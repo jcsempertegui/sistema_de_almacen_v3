@@ -1,6 +1,6 @@
 # Diccionario de datos — Sprint 4
 
-Estado: implementación local autorizada; despliegue principal no autorizado. No sustituye el diccionario histórico del Sprint 3.
+Estado: implementación publicada y desplegada con autorización el 20 de octubre de 2026, lote 14. Principal: 42 tablas y 35 migraciones sin pendientes. Véase [despliegue](sprint-4-deployment.md). No sustituye el diccionario histórico del Sprint 3.
 
 ## Entidades nuevas
 
@@ -54,4 +54,4 @@ erDiagram
 
 IDs BIGINT UNSIGNED, InnoDB, FK RESTRICT y cantidades DECIMAL. No se usa FLOAT, índices parciales, conversiones automáticas ni un segundo inventario. El ensayo de las seis migraciones se ejecutó en MariaDB 10.4.32/testing con seis documentos y movimientos S3; conservó los campos históricos originales.
 
-Las migraciones nuevas rechazan rollback destructivo. El futuro despliegue principal requiere respaldo actual y restauración de ensayo autorizados, mantenimiento y recuperación revisada ante DDL parcial. No repetir migraciones S3 ni usar fresh/reset/wipe.
+Las migraciones nuevas rechazan rollback destructivo. El despliegue principal se completó con autorización, respaldo nuevo y restauración de ensayo verificada. No repetir migraciones S3/S4 ni usar fresh/reset/wipe. Toda modificación futura requiere prevalidación, respaldo y autorización propios; el DDL parcial exige recuperación específica revisada.

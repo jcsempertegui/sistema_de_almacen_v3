@@ -9,13 +9,13 @@ Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora d
 - Blade y CSS local para las historias implementadas de los Sprints 1 y 2; no se requiere npm ni compilación.
 - La consola utiliza PHP 8.3.10 de Laragon. Apache de XAMPP carga PHP 8.2.12 y no puede ejecutar Laravel 13. Usa el servidor integrado de PHP 8.3 manteniendo MariaDB de XAMPP.
 
-## Sprint 3 — Desplegado con aceptación declarada
+## Sprint 4 — Publicado y desplegado con aceptación declarada
 
-**Sprint 4:** implementado y verificado con 401 pruebas/3.143 aserciones. El usuario declaró su aceptación y autorizó su integración y publicación; véase el [registro de aceptación y publicación](docs/sprint-4-publication.md). Las verificaciones humanas sin evidencia conservan sus reservas. Consulta el [informe S4](docs/sprint-4-implementation.md), el [diccionario](docs/data-dictionary-sprint-4.md) y la [matriz](docs/sprint-4-test-matrix.md). Testing tiene 42 tablas/35 migraciones; la principal conserva 31 tablas/29 migraciones. Los conteos de cierre de Sprint 2 que aparecen más abajo son históricos. Las seis migraciones S4 están pendientes en la principal; no ejecutarlas sin autorización y respaldo propios.
+**Sprint 4:** HU-18 a HU-23 implementadas, publicadas y desplegadas el 20 de octubre de 2026 con autorización, respaldo nuevo y restauración de ensayo verificados. Estado principal: **42 tablas, 35 migraciones aplicadas, ninguna pendiente, 81 permisos y 166 relaciones rol–permiso**. Las seis migraciones se aplicaron en lote 14; no repetirlas. Véanse [despliegue y evidencia](docs/sprint-4-deployment.md), [implementación](docs/sprint-4-implementation.md), [diccionario](docs/data-dictionary-sprint-4.md) y [matriz](docs/sprint-4-test-matrix.md). Regresión previa exclusiva en testing: **401 pruebas/3.143 aserciones**; no se ejecutaron pruebas automatizadas en la principal. La aceptación declarada conserva las reservas de evidencia humana. Los conteos de Sprints 2 y 3 que aparecen más abajo son históricos.
 
 Recepción mediante remitos, borradores, confirmación transaccional e idempotente, saldos por ubicación, trazabilidad individual y apertura manual/CSV. Véanse [alcance](docs/sprint-3.md), [implementación y migraciones pendientes](docs/sprint-3-implementation.md), [diccionario](docs/data-dictionary-sprint-3.md) y [matriz](docs/sprint-3-test-matrix.md).
 
-Las dos migraciones del Sprint 3 se aplicaron con autorización, respaldo nuevo y restauración de ensayo, lote 13. Estado principal verificado: **31 tablas, 29 migraciones aplicadas, ninguna pendiente del Sprint 3, 62 permisos y 126 vínculos**. No repetir sus migraciones. Véase [despliegue y aceptación declarada](docs/sprint-3-deployment.md). La conformidad del usuario no completa los casos personales sin evidencia; se conservan esas reservas y TEST-S3-01. El despliegue principal no incluye Sprint 4.
+Las dos migraciones del Sprint 3 se aplicaron con autorización, respaldo y restauración de ensayo en lote 13. Su estado histórico fue 31 tablas, 29 migraciones, 62 permisos y 126 vínculos. No repetir sus migraciones. Véase [despliegue S3](docs/sprint-3-deployment.md). El Sprint 4 amplió después el esquema en lote 14. El seguimiento de TEST-S3-01 y los casos CSV figura en la [matriz S4](docs/sprint-4-test-matrix.md); las revisiones personales sin evidencia permanecen pendientes.
 
 ## Sprint 1
 
@@ -64,7 +64,7 @@ php artisan sga:create-admin
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local tiene **29 migraciones aplicadas, sin pendientes de Sprints 1–3**. Las seis nuevas del Sprint 4 no están autorizadas para la principal. Las Etapas 4 y 5 y el despliegue S3 registran sus respaldos y verificaciones. Otras aplicaciones requieren prevalidación, respaldo y autorización propios. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La base principal local sigue sin cuentas: esta creación explícita está pendiente.
+La base principal local tiene **35 migraciones aplicadas, ninguna pendiente de Sprints 1–4**. Las seis del Sprint 4 se aplicaron con autorización, respaldo nuevo y restauración verificada; no repetirlas. Véase [despliegue S4](docs/sprint-4-deployment.md). Otras aplicaciones requieren prevalidación, respaldo y autorización propios. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La principal continúa sin cuentas reales: su creación explícita está pendiente.
 
 Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
 
@@ -93,4 +93,4 @@ HU-08 añade siete carreras de productos a las seis anteriores; HU-10 incorpora 
 
 ## Restricciones
 
-La principal incluye acceso, personas, catálogo, recepción, remitos, apertura y existencias de Sprints 1–3. El Sprint 4 añade entregas, préstamos y devoluciones en código/testing, con publicación autorizada; su despliegue requiere prevalidación, respaldo y autorización específica posteriores. No incluye ajustes ni anulaciones críticas del Sprint 5. La auditoría administrativa conserva su alcance; las regularizaciones de devolución tienen historial propio. No se instalan paquetes, no se actualiza Node y no se modifica `.env`.
+La principal incluye acceso, personas, catálogo, recepción, remitos, apertura, existencias, entregas, préstamos, devoluciones, responsabilidades y disponibilidad de Sprints 1–4. No incluye ajustes ni anulaciones críticas del Sprint 5. La auditoría administrativa conserva su alcance; las regularizaciones de devolución tienen historial propio. No se instalan paquetes, no se actualiza Node y no se modifica `.env`.
