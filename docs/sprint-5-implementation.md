@@ -62,3 +62,7 @@ Para una futura aplicación autorizada: comprobar nuevamente Git, destino y pend
 Reutilizar el mutex y el ledger permitió mantener una sola contabilización. Los ciclos conservaron cierres antiguos y resolvieron la reapertura sin borrar obligaciones. El ensayo temprano detectó las necesidades de pertenencia que se reforzaron mediante migraciones adicionales, sin editar las anteriores. Las pruebas HTTP detectaron errores de compilación/traducción y una selección vacía normalizada por Laravel; los fallos originales se conservaron y las repeticiones se registraron por separado.
 
 Mejoras para próximas revisiones: incluir lang desde el primer manifiesto congelado, preparar un destino autorizado para ensayar todo el upgrade histórico y completar aceptación personal antes del cierre académico. La conformidad del diseño no se presenta como aprobación funcional del Sprint 5.
+
+## Aceptación posterior del usuario
+
+El usuario confirmó «aceptadas, y actualiza el repositorio». Se registra la aceptación declarada de la entrega en el [acta documental](sprint-5-acceptance.md), con [evidencia](evidence/sprint-5-acceptance.json). Esta declaración sucede a los estados históricos anteriores; las comprobaciones de navegador no documentadas, el contraste académico y el despliegue principal conservan sus pendientes específicos. No se ejecutaron nuevas pruebas ni operaciones de base de datos en esta actualización.

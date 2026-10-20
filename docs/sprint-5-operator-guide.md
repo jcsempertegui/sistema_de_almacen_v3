@@ -1,6 +1,6 @@
 # Sprint 5 — Recorrido personal pendiente
 
-Guion preparado; no acredita pruebas de navegador ejecutadas ni aceptación formal. Autorizar primero un entorno de aceptación separado, con esquema S5 y datos mínimos. No usar la principal para demostraciones ni interferir con PHPUnit/testing.
+La entrega fue [aceptada por declaración del usuario](sprint-5-acceptance.md). Este guion conserva pendiente la evidencia de ejecución de cada caso de navegador. Autorizar primero un entorno de aceptación separado, con esquema S5 y datos mínimos. No usar la principal para demostraciones ni interferir con PHPUnit/testing.
 
 1. Acceso: comprobar Administrador, Encargado y Consulta/Auditor con permisos configurables. Crear el primer administrador real únicamente con autorización específica; no hay contraseña predeterminada.
 2. Conteo: recibir 10 unidades de un producto por cantidad, preparar ajuste a 8, comprobar que guardar/solicitar no cambia saldo. Otra persona autoriza y el Encargado ejecuta tras verificar físicamente el conteo. Saldo 8 y un movimiento de salida 2.

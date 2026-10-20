@@ -23,7 +23,7 @@ Escrituras automatizadas únicamente en sga_rio_grande_testing, con controles de
 | MIG-01 | historial S3/S4, backfill y custodia pendiente | migraciones 1–5 | ensayo único verify-sprint5-upgrade.php desde 35 migraciones |
 | MIG-02 | pertenencia reforzada sin editar lo anterior | migraciones 6–8 | regresión y SQL sobre esquema actualizado; ensayo completo desde copia antigua reservado para predespliegue |
 | REG-01 | HU-29 regresión Sprints 1–5 | suite completa | resultado final registrado en informe/evidencia, sin sustituirlo por sumas de tandas |
-| HUM-01 | aceptación funcional personal | Blade y guion | pendiente; no inferida de HTTP ni PHPUnit |
+| HUM-01 | aceptación funcional personal | Blade y guion | aceptación declarada por el usuario; ejecución detallada y capturas pendientes, no inferidas de HTTP ni PHPUnit |
 
 ## Ejecuciones históricas de desarrollo
 
@@ -42,4 +42,4 @@ Escrituras automatizadas únicamente en sga_rio_grande_testing, con controles de
 
 Estas tandas se superponen y no se suman como casos distintos. JUnit/logs originales fuera del repositorio: C:\Users\jcsem\SGA-evidence\sprint-5. El informe final distinguirá fuente congelada, regresión completa y reservas.
 
-Resultados completos, hashes y conservación: [evidencia agregada](evidence/sprint-5-implementation.json). La aceptación de navegador, el ensayo real del módulo de restauración y el contraste del catálogo académico siguen pendientes; no se marcan aprobados a partir de PHPUnit.
+Resultados completos, hashes y conservación: [evidencia agregada](evidence/sprint-5-implementation.json). La [aceptación declarada](sprint-5-acceptance.md) se registra por confirmación expresa del usuario. Las evidencias por caso de navegador, el ensayo real del módulo de restauración y el contraste del catálogo académico siguen pendientes; no se marcan ejecutados a partir de PHPUnit.

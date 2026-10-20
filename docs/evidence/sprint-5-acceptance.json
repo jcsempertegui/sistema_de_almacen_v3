@@ -1,0 +1,21 @@
+{
+    "recorded_on": "2026-10-20",
+    "timezone": "America/La_Paz",
+    "status": "delivery_accepted_by_user_declaration",
+    "user_statement": "aceptadas, y actualiza el repositorio",
+    "scope": "Sprint 5 delivery HU-24 through HU-29 and publication of acceptance documentation",
+    "implementation_commit": "1585a28d69de83a28626c279b83356e627a4d67d",
+    "previous_publication_commit": "f43cc407b284a41d58cc8f1bb596ed95592087d6",
+    "automated_results_reference": "sprint-5-implementation.json",
+    "new_tests_executed": false,
+    "browser_cases_verified_in_this_update": false,
+    "new_screenshots_provided": false,
+    "external_academic_catalog_verified": false,
+    "main_database_modified": false,
+    "main_migrations_executed": false,
+    "backups_or_restores_executed": false,
+    "real_accounts_created": false,
+    "main_sprint_5_pending_migrations_last_documented": 8,
+    "deployment_authorized_by_this_statement": false,
+    "acceptance_record": "../sprint-5-acceptance.md"
+}
