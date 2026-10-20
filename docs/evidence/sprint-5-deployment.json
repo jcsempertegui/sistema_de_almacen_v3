@@ -1,0 +1,309 @@
+{
+    "recorded_at": "2026-10-20T17:24:36-04:00",
+    "status": "deployed_verified_incident_resolved_not_committed_not_pushed",
+    "base_commit": "0382ea2dec7088747b1c5898a2f04dcf5b7e368e",
+    "authorizations": {
+        "main_migrations": "autorizado y autorizo las migraciones",
+        "exact_fixture_removal": "Sí, retirar exclusivamente esos 12 registros ficticios"
+    },
+    "previous_pending_evidence": "sprint-5-final-validation.json",
+    "incident_resolution": {
+        "specific_user_approval_required": true,
+        "removed": 12,
+        "targets": {
+            "product_locations": [
+                1,
+                2
+            ],
+            "products": [
+                1
+            ],
+            "categories": [
+                1
+            ],
+            "measurement_units": [
+                1
+            ],
+            "locations": [
+                1,
+                2
+            ],
+            "workers": [
+                1,
+                2
+            ],
+            "users": [
+                1,
+                2,
+                3
+            ]
+        },
+        "all_42_table_data_and_logical_schema_hashes_restored": true,
+        "integrity": {
+            "foreign_keys": 110,
+            "checks": 71,
+            "unique_indexes": 100,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "auto_increment_counters_not_reset": true
+    },
+    "fresh_clean_backup": {
+        "file": "C:/Users/jcsem/SGA-isolated/sprint-5/run-20261020-144814-b08338ec/backups/principal-clean-predeploy.sql",
+        "bytes": 165288,
+        "sha256": "793eb9bdade623110bdc8254e8a3b2481b96a14b2de2ba89b7f6847967242f5c",
+        "tables": 42,
+        "generated_at": "2026-10-20T19:19:40+00:00",
+        "after_authorized_incident_removal": true,
+        "auto_increment_counters_retained": true
+    },
+    "fresh_clean_backup_restoration": {
+        "passed": true,
+        "backup_sha256": "793eb9bdade623110bdc8254e8a3b2481b96a14b2de2ba89b7f6847967242f5c",
+        "identity": {
+            "db": "sga_rio_grande_rehearsal_4d142bb8691dae22",
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        },
+        "tables": 42,
+        "all_data_and_structures_match": true,
+        "raw_ddl_and_auto_increment_match": true,
+        "integrity": {
+            "foreign_keys": 110,
+            "checks": 71,
+            "unique_indexes": 100,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        }
+    },
+    "complete_eight_migration_rehearsal": {
+        "passed": true,
+        "identity": {
+            "db": "sga_rio_grande_testing",
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        },
+        "migrations_before": 35,
+        "migrations_after": 43,
+        "tables": 53,
+        "historical_tables_compared": 37,
+        "historical_rows_unchanged": true,
+        "movements_preserved": 14,
+        "cycles": 4,
+        "closures": 3,
+        "pending_custodies": 1,
+        "revocation_preserved": true,
+        "unknown_role_unchanged": true,
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "fixtures_retained": true
+    },
+    "real_module_backup_restoration": {
+        "passed": true,
+        "identity": {
+            "db": "sga_rio_grande_testing",
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        },
+        "backup_id": 3,
+        "backup_bytes": 280599,
+        "backup_sha256": "848381910a60b45f99814587602c36a19dfd089ff27aedcc59f8b5f6a6baaac5",
+        "tables": 53,
+        "rehearsal_id": 4,
+        "restored_database": "sga_rio_grande_rehearsal_72c54660797df012",
+        "requested_by": 2,
+        "approved_by": 1,
+        "executed_by": 3,
+        "result": {
+            "tables_match": true,
+            "data_match": true,
+            "integrity": {
+                "foreign_keys": 166,
+                "checks": 103,
+                "unique_indexes": 143,
+                "orphans": 0,
+                "check_violations": 0,
+                "duplicate_groups": 0
+            },
+            "database_retained": true
+        },
+        "negative_cases": {
+            "manager_cannot_download": {
+                "passed": true,
+                "exception": "Illuminate\\Auth\\Access\\AuthorizationException"
+            },
+            "self_authorization": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "expired_authorization": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "revoked_authorization": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "manager_cannot_authorize": {
+                "passed": true,
+                "exception": "Illuminate\\Auth\\Access\\AuthorizationException"
+            },
+            "wrong_confirmation": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "repeated_execution": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "existing_destination": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            }
+        },
+        "expiry_case_uses_simulated_clock": true,
+        "existing_empty_destination_retained": "sga_rio_grande_rehearsal_7e3a515d8a49f72a",
+        "credentials_removed": true,
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        }
+    },
+    "main_migration_execution": {
+        "passed": true,
+        "completed_at": "2026-10-20T21:22:52+00:00",
+        "identity": {
+            "db": "sga_rio_grande",
+            "port": 3306,
+            "datadir": "C:\\xampp\\mysql\\data\\"
+        },
+        "tables": 53,
+        "migrations": 43,
+        "pending": [],
+        "permissions": 123,
+        "role_permissions": 260,
+        "active_permissions": {
+            "administrador": 123,
+            "encargado": 96,
+            "consulta_auditor": 41
+        },
+        "people_created": false,
+        "historical_data_preserved": true,
+        "all_prior_configuration_rows_preserved": true,
+        "schema_matches_complete_rehearsal": true,
+        "fresh_backup_sha256": "793eb9bdade623110bdc8254e8a3b2481b96a14b2de2ba89b7f6847967242f5c",
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "env_and_old_migrations_unchanged": true,
+        "no_operator_grant_configuration_on_main": true
+    },
+    "final_readonly_verification": {
+        "verified_at": "2026-10-20T17:23:45-04:00",
+        "identity": {
+            "db": "sga_rio_grande",
+            "port": 3306,
+            "datadir": "C:\\xampp\\mysql\\data\\"
+        },
+        "tables": 53,
+        "migrations": 43,
+        "pending": [],
+        "sprint_5_batch": 15,
+        "sprint_5_migrations": [
+            {
+                "id": 36,
+                "migration": "2026_10_20_000001_create_inventory_corrections",
+                "batch": 15
+            },
+            {
+                "id": 37,
+                "migration": "2026_10_20_000002_extend_correction_movement_sources",
+                "batch": 15
+            },
+            {
+                "id": 38,
+                "migration": "2026_10_20_000003_create_loan_custody_cycles",
+                "batch": 15
+            },
+            {
+                "id": 39,
+                "migration": "2026_10_20_000004_create_backup_and_critical_audit_tables",
+                "batch": 15
+            },
+            {
+                "id": 40,
+                "migration": "2026_10_20_000005_add_control_permissions",
+                "batch": 15
+            },
+            {
+                "id": 41,
+                "migration": "2026_10_20_000006_harden_correction_and_cycle_membership",
+                "batch": 15
+            },
+            {
+                "id": 42,
+                "migration": "2026_10_20_000007_bind_reopened_cycles_to_return_movements",
+                "batch": 15
+            },
+            {
+                "id": 43,
+                "migration": "2026_10_20_000008_bind_correction_position_direction",
+                "batch": 15
+            }
+        ],
+        "permissions": 123,
+        "role_permissions": 260,
+        "users": 0,
+        "workers": 0,
+        "products": 0,
+        "documents": 0,
+        "movements": 0,
+        "audit_logs": 27,
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "env_and_35_old_migrations_unchanged": true,
+        "maintenance": false,
+        "all_postdeployment_table_hashes_match": true
+    },
+    "isolated_shutdown": {
+        "identity": {
+            "db": null,
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        },
+        "requested_at": "2026-10-20T21:23:46+00:00",
+        "data_retained": true
+    },
+    "code_dependencies_and_env_modified": false,
+    "old_migrations_modified": false,
+    "main_phpunit_or_browser_tests_executed": false,
+    "new_full_regression_executed": false,
+    "main_backup_workflow_role_configuration": "initial migration grants only; operational manager grants tested exclusively in isolated instance",
+    "human_case_screenshots": "pending",
+    "academic_catalog_contrast": "pending",
+    "commit_created": false,
+    "push_executed": false
+}

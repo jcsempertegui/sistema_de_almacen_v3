@@ -1,0 +1,236 @@
+{
+    "recorded_at": "2026-10-20T19:02:34+00:00",
+    "status": "isolated_rehearsals_passed_main_deployment_held_for_incident_removal_authorization",
+    "base_commit": "0382ea2dec7088747b1c5898a2f04dcf5b7e368e",
+    "historical_artifact_hashes_match": true,
+    "source_files_verified": 390,
+    "env_and_35_old_migrations_unchanged": true,
+    "main_backup": {
+        "file": "C:/Users/jcsem/SGA-isolated/sprint-5/run-20261020-144814-b08338ec/backups/principal-pre-sprint5.sql",
+        "bytes": 165169,
+        "sha256": "83e04642d6b01e0c144711840442048d52adf7aae697d6c404cd9d87abdd1339",
+        "tables": 42,
+        "new_backup": true,
+        "footer_and_content_verified": true
+    },
+    "historical_copy": {
+        "all_tables_and_data_match": true,
+        "tables": 42,
+        "migrations": 35,
+        "integrity": {
+            "foreign_keys": 110,
+            "checks": 71,
+            "unique_indexes": 100,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "identity": {
+            "db": "sga_rio_grande_testing",
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        }
+    },
+    "upgrade": {
+        "passed": true,
+        "identity": {
+            "db": "sga_rio_grande_testing",
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        },
+        "migrations_before": 35,
+        "migrations_after": 43,
+        "tables": 53,
+        "historical_tables_compared": 37,
+        "historical_rows_unchanged": true,
+        "movements_preserved": 14,
+        "cycles": 4,
+        "closures": 3,
+        "pending_custodies": 1,
+        "revocation_preserved": true,
+        "unknown_role_unchanged": true,
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        },
+        "fixtures_retained": true
+    },
+    "module": {
+        "passed": true,
+        "identity": {
+            "db": "sga_rio_grande_testing",
+            "port": 3315,
+            "datadir": "C:\\Users\\jcsem\\SGA-isolated\\sprint-5\\run-20261020-144814-b08338ec\\data\\"
+        },
+        "backup_id": 3,
+        "backup_bytes": 280599,
+        "backup_sha256": "848381910a60b45f99814587602c36a19dfd089ff27aedcc59f8b5f6a6baaac5",
+        "tables": 53,
+        "rehearsal_id": 4,
+        "restored_database": "sga_rio_grande_rehearsal_72c54660797df012",
+        "requested_by": 2,
+        "approved_by": 1,
+        "executed_by": 3,
+        "result": {
+            "tables_match": true,
+            "data_match": true,
+            "integrity": {
+                "foreign_keys": 166,
+                "checks": 103,
+                "unique_indexes": 143,
+                "orphans": 0,
+                "check_violations": 0,
+                "duplicate_groups": 0
+            },
+            "database_retained": true
+        },
+        "negative_cases": {
+            "manager_cannot_download": {
+                "passed": true,
+                "exception": "Illuminate\\Auth\\Access\\AuthorizationException"
+            },
+            "self_authorization": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "expired_authorization": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "revoked_authorization": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "manager_cannot_authorize": {
+                "passed": true,
+                "exception": "Illuminate\\Auth\\Access\\AuthorizationException"
+            },
+            "wrong_confirmation": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "repeated_execution": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            },
+            "existing_destination": {
+                "passed": true,
+                "exception": "Illuminate\\Validation\\ValidationException"
+            }
+        },
+        "expiry_case_uses_simulated_clock": true,
+        "existing_empty_destination_retained": "sga_rio_grande_rehearsal_7e3a515d8a49f72a",
+        "credentials_removed": true,
+        "integrity": {
+            "foreign_keys": 166,
+            "checks": 103,
+            "unique_indexes": 143,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        }
+    },
+    "incident": {
+        "caused_by": "External rehearsal executor retained original internal connection alias; factories resolved mysql",
+        "main_inserted_fixture_rows": 12,
+        "delta": {
+            "categories": {
+                "before": 0,
+                "now": 1,
+                "inserted_ids": [
+                    1
+                ]
+            },
+            "locations": {
+                "before": 0,
+                "now": 2,
+                "inserted_ids": [
+                    1,
+                    2
+                ]
+            },
+            "measurement_units": {
+                "before": 0,
+                "now": 1,
+                "inserted_ids": [
+                    1
+                ]
+            },
+            "product_locations": {
+                "before": 0,
+                "now": 2,
+                "inserted_ids": [
+                    1,
+                    2
+                ]
+            },
+            "products": {
+                "before": 0,
+                "now": 1,
+                "inserted_ids": [
+                    1
+                ]
+            },
+            "users": {
+                "before": 0,
+                "now": 3,
+                "inserted_ids": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "workers": {
+                "before": 0,
+                "now": 2,
+                "inserted_ids": [
+                    1,
+                    2
+                ]
+            }
+        },
+        "preexisting_rows_modified": false,
+        "documents_created": 0,
+        "movements_created": 0,
+        "backup": {
+            "file": "C:/Users/jcsem/SGA-isolated/sprint-5/run-20261020-144814-b08338ec/backups/principal-incident-preservation.sql",
+            "sha256": "fbc0d44b6ecaa3e25d8f4f19f3fe3d59c77505eecd7e5a7d4c4493261fbab3f8",
+            "bytes": 168939
+        },
+        "removal_requested": true,
+        "removal_authorized": false,
+        "removal_executed": false,
+        "main_maintenance": true
+    },
+    "main": {
+        "tables": 42,
+        "migrations": 35,
+        "pending": [
+            "2026_10_20_000001_create_inventory_corrections",
+            "2026_10_20_000002_extend_correction_movement_sources",
+            "2026_10_20_000003_create_loan_custody_cycles",
+            "2026_10_20_000004_create_backup_and_critical_audit_tables",
+            "2026_10_20_000005_add_control_permissions",
+            "2026_10_20_000006_harden_correction_and_cycle_membership",
+            "2026_10_20_000007_bind_reopened_cycles_to_return_movements",
+            "2026_10_20_000008_bind_correction_position_direction"
+        ],
+        "permissions": 81,
+        "role_permissions": 166,
+        "integrity": {
+            "foreign_keys": 110,
+            "checks": 71,
+            "unique_indexes": 100,
+            "orphans": 0,
+            "check_violations": 0,
+            "duplicate_groups": 0
+        }
+    },
+    "new_full_phpunit_regression_executed": false,
+    "human_browser_cases_executed": false,
+    "commit_or_push_executed": false
+}

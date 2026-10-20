@@ -1,6 +1,6 @@
 # Diccionario de datos — Sprint 5
 
-Implementación local autorizada. Principal sin migrar. Se conservan los diccionarios S3/S4 y las 35 migraciones publicadas. Once tablas nuevas; ocho migraciones aditivas, incluidas las restricciones de pertenencia reforzadas durante la revisión. IDs BIGINT UNSIGNED, InnoDB, FK RESTRICT, cantidades DECIMAL(18,6).
+Implementación publicada y migraciones aplicadas a la principal con autorización, lote 15. Véase [despliegue](sprint-5-deployment.md). Se conservan los diccionarios S3/S4 y las 35 migraciones publicadas. Once tablas nuevas; ocho migraciones aditivas, incluidas las restricciones de pertenencia reforzadas durante la revisión. IDs BIGINT UNSIGNED, InnoDB, FK RESTRICT, cantidades DECIMAL(18,6).
 
 | Entidad | Campos principales | Integridad |
 |---|---|---|
@@ -32,7 +32,7 @@ Una devolución compensada conserva su cierre antiguo; la salida compensatoria a
 
 Las relaciones entre filas y las condiciones de permisos/estado se revalidan transaccionalmente. Los CHECK no reemplazan esas comprobaciones ni impiden cambios hechos por un administrador SQL fuera de la aplicación.
 
-## Migraciones previstas en la principal, todavía no aplicadas
+## Migraciones aplicadas en la principal, lote 15
 
 1. 2026_10_20_000001_create_inventory_corrections.php
 2. 2026_10_20_000002_extend_correction_movement_sources.php
@@ -43,4 +43,4 @@ Las relaciones entre filas y las condiciones de permisos/estado se revalidan tra
 7. 2026_10_20_000007_bind_reopened_cycles_to_return_movements.php
 8. 2026_10_20_000008_bind_correction_position_direction.php
 
-Los métodos down rechazan retiradas destructivas. La futura aplicación requiere respaldo nuevo, restauración de ensayo y autorización específica; no usar rollback, fresh, reset o wipe.
+Los métodos down rechazan retiradas destructivas. La aplicación se completó con respaldo nuevo, restauración de ensayo y autorización específica; no repetir las migraciones ni usar rollback, fresh, reset o wipe.

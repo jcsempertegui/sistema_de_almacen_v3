@@ -21,7 +21,7 @@ Escrituras automatizadas únicamente en sga_rio_grande_testing, con controles de
 | BAK-03 | separación de aprobación y restauración | request/approve/restoreRehearsal | approval_are_distinct; PHPUnit rechaza crear otros esquemas |
 | AUD-01 | HU-28 autoría, motivos y secuencia conservada | CriticalAudit/events | pruebas de correcciones y respaldos; reporte audit |
 | MIG-01 | historial S3/S4, backfill y custodia pendiente | migraciones 1–5 | ensayo único verify-sprint5-upgrade.php desde 35 migraciones |
-| MIG-02 | pertenencia reforzada sin editar lo anterior | migraciones 6–8 | regresión y SQL sobre esquema actualizado; ensayo completo desde copia antigua reservado para predespliegue |
+| MIG-02 | pertenencia reforzada sin editar lo anterior | migraciones 6–8 | regresión y SQL previos; ensayo íntegro de las ocho desde S4 ejecutado y verificado, véase despliegue S5 |
 | REG-01 | HU-29 regresión Sprints 1–5 | suite completa | resultado final registrado en informe/evidencia, sin sustituirlo por sumas de tandas |
 | HUM-01 | aceptación funcional personal | Blade y guion | aceptación declarada por el usuario; ejecución detallada y capturas pendientes, no inferidas de HTTP ni PHPUnit |
 
@@ -42,4 +42,20 @@ Escrituras automatizadas únicamente en sga_rio_grande_testing, con controles de
 
 Estas tandas se superponen y no se suman como casos distintos. JUnit/logs originales fuera del repositorio: C:\Users\jcsem\SGA-evidence\sprint-5. El informe final distinguirá fuente congelada, regresión completa y reservas.
 
-Resultados completos, hashes y conservación: [evidencia agregada](evidence/sprint-5-implementation.json). La [aceptación declarada](sprint-5-acceptance.md) se registra por confirmación expresa del usuario. Las evidencias por caso de navegador, el ensayo real del módulo de restauración y el contraste del catálogo académico siguen pendientes; no se marcan ejecutados a partir de PHPUnit.
+Resultados completos, hashes y conservación: [evidencia agregada](evidence/sprint-5-implementation.json). La [aceptación declarada](sprint-5-acceptance.md) se registra por confirmación expresa del usuario. Las evidencias por caso de navegador y el contraste del catálogo académico siguen pendientes. El ensayo real del módulo se ejecutó posteriormente con evidencia propia, descrita abajo; no se infiere de PHPUnit.
+
+## Ensayos operativos posteriores y despliegue
+
+Resultados propios, separados de PHPUnit: [informe de despliegue](sprint-5-deployment.md) y [evidencia](evidence/sprint-5-deployment.json). No se repitió la regresión completa y no se ejecutaron pruebas de escritura ni casos de navegador en la principal.
+
+| Caso | Requisito | Resultado ejecutado |
+|---|---|---|
+| MIG-03 | Ocho migraciones juntas desde copia histórica S4 | Aprobado: 35 a 43 migraciones, 42 a 53 tablas, 14 movimientos preservados; cuatro ciclos, tres cierres y una custodia pendiente; revocación y rol desconocido conservados |
+| BAK-04 | Restauración física real del módulo, tres personas | Aprobado en puerto 3315: solicita Encargado 1, autoriza Administrador, ejecuta Encargado 2; 53 tablas y datos coincidentes |
+| BAK-05 | Ocho rechazos de seguridad | Aprobados: descarga no autorizada, autoautorización, vencimiento con reloj del proceso simulado, revocación, autorización por Encargado, destino incorrecto, repetición y destino existente |
+| REC-01 | Incidente y retirada exacta autorizada | Resuelto: 12 filas ficticias retiradas en transacción, valores comprobados, 42 tablas devueltas a sus hashes previos; identificadores no reiniciados |
+| BAK-06 | Respaldo nuevo después de resolver el incidente | Aprobado: 165.288 bytes; restauración nueva con datos, DDL completo y contadores coincidentes |
+| DEP-01 | Aplicación principal limitada y conservación | Aprobado: ocho migraciones en lote 15, 53 tablas, 43 migraciones, cero pendientes, 123 permisos/260 vínculos; 166 FK/103 CHECK/143 índices únicos sin infracciones |
+| HUM-02 | Evidencia personal y contraste académico | Pendientes; no se infieren de los ensayos operativos |
+
+Los fallos de preparación, la escritura accidental del ejecutor y su resolución se conservan en el informe; no se presentan como una ejecución sin incidentes. La configuración adicional de permisos del flujo Backup se probó únicamente en la copia aislada.

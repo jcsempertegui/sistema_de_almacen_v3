@@ -30,3 +30,13 @@ Publicación ejecutada el 20 de octubre de 2026: commit de implementación [`158
 ## Aceptación posterior del usuario
 
 El usuario confirmó «aceptadas, y actualiza el repositorio». Se registra la aceptación declarada de la entrega en el [acta documental](sprint-5-acceptance.md), con [evidencia](evidence/sprint-5-acceptance.json). Esta declaración sucede a los estados históricos anteriores; las comprobaciones de navegador no documentadas, el contraste académico y el despliegue principal conservan sus pendientes específicos. No se ejecutaron nuevas pruebas ni operaciones de base de datos en esta actualización.
+
+## Actualización posterior: despliegue del 20 de octubre
+
+Los estados pendientes anteriores corresponden a la fecha de cada registro. Posteriormente se completaron el ensayo íntegro desde S4 y la restauración real del módulo Backup en la instancia aislada. El incidente de 12 registros ficticios en la principal se resolvió con retirada transaccional expresamente autorizada y verificación del estado original; después se aplicaron las ocho migraciones, lote 15. Estado final: 53 tablas, 43 migraciones, ninguna pendiente, 123 permisos y 260 vínculos; cero usuarios y trabajadores. Mantenimiento retirado. Véanse [despliegue e incidencia resuelta](sprint-5-deployment.md) y [evidencia actual](evidence/sprint-5-deployment.json). No se hicieron commit ni push. La aceptación visual por caso, el primer administrador y el contraste académico conservan sus pendientes.
+
+## Publicación de los resultados de despliegue
+
+Después de consultar si GitHub estaba actualizado, el usuario autorizó expresamente commit y push con «hazlo esta autorizado». Se publican los informes del despliegue, su evidencia, la resolución del incidente y las correcciones de finales de línea de los tres JSON. Se comprobaron los diez hashes de artefactos, los 390 archivos del manifiesto y la conservación de bytes por los filtros de Git; no hay diferencias. No se incluyen SQL, credenciales ni ejecutores privados.
+
+Las capturas `sprint-5-final-validation.json` y `sprint-5-deployment.json` conservan el estado de sus respectivos momentos: incidente pendiente y despliegue resuelto, ambos anteriores a esta publicación. Los indicadores de commit/push en falso son históricos. Esta actualización de Git no repite migraciones ni realiza operaciones sobre bases de datos.

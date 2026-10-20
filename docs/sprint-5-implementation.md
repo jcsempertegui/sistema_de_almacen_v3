@@ -66,3 +66,7 @@ Mejoras para próximas revisiones: incluir lang desde el primer manifiesto conge
 ## Aceptación posterior del usuario
 
 El usuario confirmó «aceptadas, y actualiza el repositorio». Se registra la aceptación declarada de la entrega en el [acta documental](sprint-5-acceptance.md), con [evidencia](evidence/sprint-5-acceptance.json). Esta declaración sucede a los estados históricos anteriores; las comprobaciones de navegador no documentadas, el contraste académico y el despliegue principal conservan sus pendientes específicos. No se ejecutaron nuevas pruebas ni operaciones de base de datos en esta actualización.
+
+## Actualización posterior: despliegue del 20 de octubre
+
+Los estados pendientes anteriores corresponden a la fecha de cada registro. Posteriormente se completaron el ensayo íntegro desde S4 y la restauración real del módulo Backup en la instancia aislada. El incidente de 12 registros ficticios en la principal se resolvió con retirada transaccional expresamente autorizada y verificación del estado original; después se aplicaron las ocho migraciones, lote 15. Estado final: 53 tablas, 43 migraciones, ninguna pendiente, 123 permisos y 260 vínculos; cero usuarios y trabajadores. Mantenimiento retirado. Véanse [despliegue e incidencia resuelta](sprint-5-deployment.md) y [evidencia actual](evidence/sprint-5-deployment.json). No se hicieron commit ni push. La aceptación visual por caso, el primer administrador y el contraste académico conservan sus pendientes.
