@@ -58,6 +58,8 @@ Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-
 
 ## Arranque local
 
+**Continuidad en otro PC (23 de octubre):** consulta el [registro del entorno local](docs/local-environment-2026-10-23.md). En este equipo se utiliza `D:\PHP83\php.exe`; los registros de despliegue anteriores describen el PC de origen.
+
 Desde la raíz con PHP 8.3 de Laragon:
 
 ```powershell

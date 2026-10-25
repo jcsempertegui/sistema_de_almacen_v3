@@ -97,6 +97,8 @@ class IndividualUnitConcurrencyTest extends TestCase
             $this->assertGreaterThan(0, $waitingConnection);
             // Release the winner only AFTER MariaDB confirms the second connection is blocked.
             $await(function () use ($pdo, $waitingConnection) {
+                // MariaDB refreshes this cache only after more than 100 ms without reads.
+                usleep(150000);
                 $q = $pdo->prepare('SELECT COUNT(*) FROM information_schema.INNODB_LOCK_WAITS w JOIN information_schema.INNODB_TRX t ON t.trx_id=w.requesting_trx_id WHERE t.trx_mysql_thread_id=?');
                 $q->execute([$waitingConnection]);
 

@@ -104,6 +104,8 @@ class ProductConcurrencyTest extends TestCase
                 if (! $processes[1]->isRunning()) {
                     $this->fail('El competidor terminó antes de observar su bloqueo: '.$processes[1]->getOutput().' '.$processes[1]->getErrorOutput());
                 }
+                // MariaDB refreshes this cache only after more than 100 ms without reads.
+                usleep(150000);
                 $q = $pdo->prepare('SELECT COUNT(*) FROM information_schema.INNODB_LOCK_WAITS w JOIN information_schema.INNODB_TRX t ON t.trx_id=w.requesting_trx_id WHERE t.trx_mysql_thread_id=?');
                 $q->execute([$waitingConnection]);
 

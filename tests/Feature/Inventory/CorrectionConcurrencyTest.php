@@ -141,6 +141,9 @@ class CorrectionConcurrencyTest extends TestCase
                     $this->fail('Premature competitor: '.$processes[1]->getOutput().$processes[1]->getErrorOutput());
                 }
 
+                // MariaDB refreshes this cache only after more than 100 ms without reads.
+                usleep(150000);
+
                 return DB::selectOne('SELECT COUNT(*) AS n FROM information_schema.INNODB_LOCK_WAITS w JOIN information_schema.INNODB_TRX t ON t.trx_id=w.requesting_trx_id WHERE t.trx_mysql_thread_id=?', [$connection])->n > 0;
             });
             usleep(150000);
