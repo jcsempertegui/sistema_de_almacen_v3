@@ -8,21 +8,17 @@ use App\Models\Role;
 use App\Models\ToolLoan;
 use App\Models\User;
 use App\Services\InventoryCorrections;
+use App\Support\TestingDatabaseGuard;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-require dirname(__DIR__, 2).'/vendor/autoload.php';
-if (getenv('APP_ENV') !== 'testing' || getenv('DB_DATABASE') !== 'sga_rio_grande_testing' || getenv('DB_CONNECTION') !== 'mysql' || getenv('DB_URL') || is_file(dirname(__DIR__, 2).'/bootstrap/cache/config.php')) {
-    throw new RuntimeException('Isolation rejected');
-}
+require dirname(__DIR__).'/bootstrap.php';
 $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
-if (! $app->environment('testing') || DB::selectOne('SELECT DATABASE() AS db')->db !== 'sga_rio_grande_testing') {
-    throw new RuntimeException('Isolation rejected');
-}
+TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $job = json_decode($argv[1], true, flags: JSON_THROW_ON_ERROR);
 $actor = User::with('role')->findOrFail($job['actor']);
 DB::beginTransaction();

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Catalog;
 
+use App\Support\TestingDatabaseGuard;
 use PDO;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -33,7 +34,7 @@ class IndividualUnitConcurrencyTest extends TestCase
     public function test_writers_use_current_references_and_permissions_after_waiting(array $operations, array $expected, bool $sameSerial): void
     {
         $this->assertTrue(app()->environment('testing'));
-        $pdo = new PDO('mysql:host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'].';dbname=sga_rio_grande_testing', $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $pdo = TestingDatabaseGuard::pdo();
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         $this->assertSame('REPEATABLE-READ', $pdo->query('SELECT @@tx_isolation')->fetchColumn());
         $nonce = bin2hex(random_bytes(7));
@@ -62,6 +63,7 @@ class IndividualUnitConcurrencyTest extends TestCase
                 $ids['individual'] = $insert('INSERT INTO individual_units (identifier,product_id,location_id,is_active) VALUES (?,?,?,1)', [$code.'-BASE', $ids['product'], $ids['location']]);
             }
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
+            $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
             foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
                 $env[$name] = $_ENV[$name];
             }

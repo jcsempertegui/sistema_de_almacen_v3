@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-25",
+  "timezone": "America/La_Paz",
+  "request": "Add relevant charts to the approved visual dashboard",
+  "data_sources": {
+    "activity": "inventory_movements: COUNT(*) by local day and direction, last 30 local calendar days through current time; last 7 dates displayed",
+    "pending_tools": "individual_unit_custodies.current_loan_item_id -> confirmed tool_loans -> workers; top five workers and Others"
+  },
+  "permissions": {
+    "activity": "movements.view",
+    "pending_tools": "loans.view",
+    "checked_before_query": true
+  },
+  "implementation": {
+    "rendering": "server-rendered SVG/CSS, accessible values, no external chart dependencies",
+    "quantities_summed": false,
+    "units_mixed": false,
+    "includes_executed_corrections": true,
+    "counts_drafts": false,
+    "filters_future_posted_times": true
+  },
+  "validation": {
+    "selected": {
+      "command": "D:\\PHP83\\php.exe vendor/bin/phpunit --colors=never --filter 'DashboardChartsTest|VisualNavigationTest|AuthenticationTest' --stop-on-failure",
+      "tests": 22,
+      "assertions": 132,
+      "seconds": 4.119,
+      "result": "passed"
+    },
+    "full": {
+      "command": "D:\\PHP83\\php.exe vendor/bin/phpunit --colors=never --stop-on-failure",
+      "tests": 472,
+      "assertions": 3562,
+      "seconds": 107.224,
+      "memory_mb": 88,
+      "result": "passed"
+    },
+    "pint": "passed for affected PHP files",
+    "git_diff_check": "passed",
+    "javascript_syntax": "passed",
+    "browser_visual_review": "Not executed in this phase; previous phase's Computer Use ended on browser-URL policy verification.",
+    "selected_initial": {
+      "command": "D:\\PHP83\\php.exe vendor/bin/phpunit --colors=never --filter 'DashboardChartsTest|VisualNavigationTest|AuthenticationTest' --stop-on-failure",
+      "tests": 22,
+      "assertions": 130,
+      "seconds": 5.141,
+      "result": "passed"
+    },
+    "full_initial": {
+      "command": "D:\\PHP83\\php.exe vendor/bin/phpunit --colors=never --stop-on-failure",
+      "tests": 472,
+      "assertions": 3561,
+      "seconds": 107.381,
+      "memory_mb": 86,
+      "result": "passed"
+    }
+  },
+  "preservation": {
+    "before": "2026-10-25T20:07:43-04:00",
+    "after": "2026-10-25T20:18:58-04:00",
+    "primary_identity": {
+      "database_name": "sga_rio_grande",
+      "server": "DESKTOP-L0DMVPG",
+      "port": 3306,
+      "data_directory": "D:\\XAMPP\\mysql\\data\\",
+      "version": "10.4.32-MariaDB"
+    },
+    "primary_tables_checked": 53,
+    "primary_changed_tables": [],
+    "protected_files_unchanged": {
+      ".env": true,
+      "composer.json": true,
+      "composer.lock": true,
+      "package.json": true
+    },
+    "migration_files_unchanged": true,
+    "testing_nonempty_tables": {
+      "administrative_audit_logs": 27,
+      "migrations": 43,
+      "permissions": 123,
+      "permission_role": 260,
+      "roles": 3
+    }
+  },
+  "files_for_charts": [
+    "app/Http/Controllers/DashboardController.php",
+    "app/Services/DashboardCharts.php",
+    "routes/web.php",
+    "resources/views/dashboard.blade.php",
+    "resources/views/dashboard/charts.blade.php",
+    "public/css/sga.css",
+    "tests/Feature/DashboardChartsTest.php",
+    "tests/Support/render-visual-preview.php",
+    "README.md",
+    "docs/dashboard-charts-2026-10-25.md",
+    "docs/evidence/dashboard-charts-2026-10-25.json"
+  ],
+  "publication": {
+    "commit_created": false,
+    "push_performed": false
+  }
+}

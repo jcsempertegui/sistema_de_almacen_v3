@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Catalog;
 
+use App\Support\TestingDatabaseGuard;
 use PDO;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Process\InputStream;
@@ -24,7 +25,7 @@ class LocationConcurrencyTest extends TestCase
     public function test_concurrent_mutations_keep_an_acyclic_active_hierarchy(string $mode, bool $snapshot): void
     {
         $this->assertTrue(app()->environment('testing'));
-        $pdo = new PDO('mysql:host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'].';dbname=sga_rio_grande_testing', $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $pdo = TestingDatabaseGuard::pdo();
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         $this->assertSame('REPEATABLE-READ', $pdo->query('SELECT @@tx_isolation')->fetchColumn());
         $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn());
@@ -51,6 +52,7 @@ class LocationConcurrencyTest extends TestCase
             $query->execute([$codes[1], 'Otra ubicación de prueba', $mode === 'activate' ? $a : null, $mode === 'activate' ? 0 : 1]);
             $b = (int) $pdo->lastInsertId();
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
+            $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
             foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
                 $env[$name] = $_ENV[$name];
             }

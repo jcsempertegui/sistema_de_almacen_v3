@@ -272,7 +272,7 @@ class DatabaseBackups
             $this->options($db, $client);
             $db->statement('CREATE DATABASE '.$this->ident($confirmation).' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
             app(SqlBackupClient::class)->restore($client, $path, $confirmation, $root.'/rehearsal-'.$id.'.log');
-            config(['database.connections.sga_rehearsal' => array_replace($db->getConfig(), ['database' => $confirmation, 'url' => null])]);
+            config(['database.connections.sga_rehearsal' => array_replace($db->getConfig(), ['name' => 'sga_rehearsal', 'database' => $confirmation, 'url' => null])]);
             DB::purge('sga_rehearsal');
             $restored = DB::connection('sga_rehearsal');
             $this->need($restored->selectOne('SELECT DATABASE() AS name')->name === $confirmation, 'Destino incorrecto.');

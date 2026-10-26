@@ -4,27 +4,17 @@ use App\Actions\Roles\SaveRole;
 use App\Actions\Users\UpdateUser;
 use App\Models\Permission;
 use App\Models\User;
+use App\Support\TestingDatabaseGuard;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 // Standalone subprocess. Reject any destination other than the test database
 // before loading Laravel or performing a write.
-require dirname(__DIR__, 2).'/vendor/autoload.php';
-if (getenv('APP_ENV') !== 'testing' || getenv('DB_CONNECTION') !== 'mysql'
-    || getenv('DB_DATABASE') !== 'sga_rio_grande_testing' || getenv('DB_URL')
-    || is_file(dirname(__DIR__, 2).'/bootstrap/cache/config.php')) {
-    throw new RuntimeException('Destino de concurrencia no autorizado.');
-}
-$pdo = new PDO('mysql:host='.getenv('DB_HOST').';port='.getenv('DB_PORT').';dbname=sga_rio_grande_testing', getenv('DB_USERNAME'), getenv('DB_PASSWORD'), [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-if ($pdo->query('SELECT DATABASE()')->fetchColumn() !== 'sga_rio_grande_testing') {
-    throw new RuntimeException('La conexión de concurrencia no está aislada.');
-}
+require dirname(__DIR__).'/bootstrap.php';
 $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
-if (! $app->environment('testing') || $app->make('db')->connection()->selectOne('SELECT DATABASE() AS name')->name !== 'sga_rio_grande_testing') {
-    throw new RuntimeException('Laravel no conserva el aislamiento.');
-}
+TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $actor = User::with('role')->findOrFail((int) $argv[1]);
 echo "READY\n";
 flush();

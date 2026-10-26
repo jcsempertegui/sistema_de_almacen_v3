@@ -4,48 +4,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Panel') · SGA CONFIPETROL</title>
-    <link rel="stylesheet" href="{{ asset('css/sga.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sga.css') }}?v={{ filemtime(public_path('css/sga.css')) }}">
+    <script src="{{ asset('js/sga-ui.js') }}?v={{ filemtime(public_path('js/sga-ui.js')) }}" defer></script>
 </head>
-<body>
-<header class="site-header">
-    <div class="brand"><strong>SGA CONFIPETROL</strong><span>Planta Separadora de Líquidos Río Grande</span></div>
-    @auth
-        <nav aria-label="Navegación principal">
-            @can('access-panel')<a href="{{ route('dashboard') }}">Panel</a>@endcan
-            @can('viewAny', \App\Models\Role::class)<a href="{{ route('roles.index') }}">Roles y permisos</a>@endcan
-            @can('viewAny', \App\Models\AdministrativeAuditLog::class)<a href="{{ route('audit.index') }}">Auditoría</a>@endcan
-            @can('viewAny', \App\Models\User::class)<a href="{{ route('users.index') }}">Usuarios</a>@endcan
-            @can('viewAny', \App\Models\Worker::class)<a href="{{ route('workers.index') }}">Trabajadores</a>@endcan
-            @can('viewAny', \App\Models\Category::class)<a href="{{ route('categories.index') }}">Categorías</a>@endcan
-            @can('viewAny', \App\Models\MeasurementUnit::class)<a href="{{ route('measurement-units.index') }}">Unidades de medida</a>@endcan
-            @can('viewAny', \App\Models\CatalogAttribute::class)<a href="{{ route('attributes.index') }}">Atributos técnicos</a>@endcan
-            @can('viewAny', \App\Models\Location::class)<a href="{{ route('locations.index') }}">Ubicaciones</a>@endcan
-            @can('viewAny', \App\Models\Product::class)<a href="{{ route('products.index') }}">Productos</a>@endcan
-            @can('viewAny', \App\Models\IndividualUnit::class)<a href="{{ route('individual-units.index') }}">Unidades individualizadas</a>@endcan
-            @can('viewAny', \App\Models\InventoryDocument::class)<a href="{{ route('inventory-documents.index') }}">Remitos y aperturas</a>@endcan
-            @can('stock.view')<a href="{{ route('stock.index') }}">Existencias</a>@endcan
-            @can('movements.view')<a href="{{ route('movements.index') }}">Movimientos</a>@endcan
-            @foreach(\App\Support\WorkerOperationTypes::LABELS as $kind => $label)
-                @can($kind.'.view')<a href="{{ route('worker-operations.index', $kind) }}">{{ $label }}</a>@endcan
-            @endforeach
-            @can('availability.view')<a href="{{ route('availability.index') }}">Disponibilidad</a>@endcan
-            @can('adjustments.view')<a href="{{ route('corrections.index','adjustment') }}">Ajustes</a>@endcan
-            @can('compensations.view')<a href="{{ route('corrections.index','compensation') }}">Compensaciones</a>@endcan
-            @can('backups.view')<a href="{{ route('backups.index') }}">Respaldos</a>@endcan
-            @foreach(\App\Services\ControlReports::LABELS as $report=>$label)
-                @can(app(\App\Services\ControlReports::class)->permission($report))<a href="{{ route('control-reports.index',$report) }}">Reporte: {{ $label }}</a>@endcan
-            @endforeach
-            <span>{{ auth()->user()->name }}</span>
-            <form method="POST" action="{{ route('logout') }}">@csrf<button class="secondary" type="submit">Cerrar sesión</button></form>
-        </nav>
-    @endauth
-</header>
-<main class="container">
+<body class="@auth app-shell @else guest-shell @endauth @yield('body-class')">
+<a class="skip-link" href="#main-content">Ir al contenido</a>
+@auth
+    <aside class="sidebar" id="main-navigation" aria-label="Menú del sistema">
+        <div class="sidebar-brand">
+            <img src="{{ asset('images/confipetrol.png') }}" width="42" height="42" alt="">
+            <div><strong>CONFIPETROL</strong><span>Gestión de almacén</span></div>
+            <button type="button" class="icon-button sidebar-close" data-nav-close aria-label="Cerrar menú"><x-icon name="close" /></button>
+        </div>
+        @include('layouts.navigation')
+        <div class="sidebar-footer"><x-icon name="location" /><div><strong>Río Grande</strong><span>Planta Separadora de Líquidos</span></div></div>
+    </aside>
+    <button type="button" class="nav-backdrop" data-nav-close aria-label="Cerrar menú" tabindex="-1" hidden></button>
+    <header class="topbar">
+        <div class="topbar-context">
+            <button type="button" id="nav-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-navigation" aria-expanded="false" aria-label="Abrir menú" hidden><x-icon name="menu" /></button>
+            <div><span class="topbar-eyebrow">SISTEMA DE GESTIÓN DE ALMACÉN</span><span class="topbar-title">@yield('title', 'Panel')</span></div>
+        </div>
+        <div class="topbar-account">
+            <span class="user-avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}</span>
+            <div class="user-copy"><strong>{{ auth()->user()->name }}</strong><span>{{ auth()->user()->role->name }}</span></div>
+            <form method="POST" action="{{ route('logout') }}">@csrf<button class="logout-button" type="submit"><x-icon name="logout" /><span>Cerrar sesión</span></button></form>
+        </div>
+    </header>
+@else
+    <header class="guest-header"><img src="{{ asset('images/confipetrol.png') }}" alt="" width="35" height="35"><strong>SGA CONFIPETROL</strong></header>
+@endauth
+<main class="container" id="main-content" tabindex="-1">
     @if(session('status'))<div class="notice success" role="status">{{ session('status') }}</div>@endif
     @if($errors->any())
         <div class="notice error" role="alert"><strong>Revisa los siguientes datos:</strong><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>
     @endif
     @yield('content')
 </main>
+@auth<footer class="app-footer"><span>SGA CONFIPETROL</span><span>Planta Separadora de Líquidos Río Grande</span></footer>@endauth
 </body>
 </html>

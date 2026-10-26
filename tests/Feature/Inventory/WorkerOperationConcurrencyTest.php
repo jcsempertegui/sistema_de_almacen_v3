@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Worker;
 use App\Services\ReturnRegularization;
+use App\Support\TestingDatabaseGuard;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -105,6 +106,7 @@ class WorkerOperationConcurrencyTest extends TestCase
                 }
             }
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_CONNECTION' => 'mysql', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
+            $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
             foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $key) {
                 $env[$key] = $_ENV[$key];
             }

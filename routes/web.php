@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministrativeAuditController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
@@ -10,7 +11,7 @@ Route::get('/', function () {
     return redirect()->route(auth()->check() ? 'dashboard' : 'login');
 });
 
-Route::view('/panel', 'dashboard')->middleware(['auth', 'active', 'can:access-panel'])->name('dashboard');
+Route::get('/panel', DashboardController::class)->middleware(['auth', 'active', 'can:access-panel'])->name('dashboard');
 
 Route::middleware(['auth', 'active'])->group(function () {
     Route::resource('usuarios', UserController::class)->parameters(['usuarios' => 'user'])->names('users')->only(['index', 'create', 'store', 'edit', 'update']);

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Models\User;
+use App\Support\TestingDatabaseGuard;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -17,6 +18,7 @@ abstract class TestCase extends BaseTestCase
     {
         $app = parent::createApplication();
         $connection = $app->make('db')->connection();
+        TestingDatabaseGuard::assertConnection($connection);
         if (! $app->environment('testing') || $connection->getDatabaseName() !== 'sga_rio_grande_testing' || $connection->selectOne('SELECT DATABASE() AS name')->name !== 'sga_rio_grande_testing') {
             throw new \RuntimeException('Se bloqueó el acceso a una base ajena a las pruebas.');
         }

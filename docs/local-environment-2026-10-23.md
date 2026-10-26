@@ -69,3 +69,7 @@ php artisan serve
 ```
 
 Si el servidor ya está iniciado en el puerto 8000, abrir su URL o detener primero esa ejecución con Ctrl+C antes de iniciar otra en el mismo puerto.
+
+## Estabilización posterior del 25 de octubre
+
+La revisión posterior corrigió la selección de binarios Backup, el nombre interno de la conexión de ensayo y el aislamiento de pruebas con el alias exclusivo `sga_testing`. El diagnóstico encontró los clientes MariaDB 10.4.32 de `D:\XAMPP\mysql\bin` sin generar ni restaurar respaldos reales. La regresión completa final aprobó **458 pruebas/3.485 aserciones**. La comparación de las 53 tablas principales no mostró cambios; `.env`, dependencias y las 43 migraciones se conservaron. Véanse el [informe de estabilización](environment-stabilization-2026-10-25.md), el [manual actualizado](installation.md) y el [guion de aceptación pendiente](final-functional-acceptance.md). Los resultados anteriores de este registro conservan sus fechas y no se sustituyen.

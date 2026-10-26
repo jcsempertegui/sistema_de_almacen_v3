@@ -8,6 +8,9 @@ use Tests\Support\CreatesInventory;
 
 // Standalone upgrade rehearsal. Never resets schemas or touches the application DB.
 require dirname(__DIR__, 2).'/vendor/autoload.php';
+if (! in_array('--authorized-real-backup', $argv, true)) {
+    throw new RuntimeException('Este ensayo genera un respaldo real y requiere autorización específica antes de ejecutarlo.');
+}
 foreach (['APP_ENV' => 'testing', 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'BCRYPT_ROUNDS' => '4', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'] as $k => $v) {
     $_ENV[$k] = $_SERVER[$k] = $v;
     putenv($k.'='.$v);
@@ -40,7 +43,6 @@ $fixtures = new class
 $actor = null;
 $run = null;
 try {
-    config(['sga.backup_directory' => 'C:/Users/jcsem/SGA-evidence/sprint-5/real-backup-'.bin2hex(random_bytes(6))]);
     $actor = User::factory()->create(['role_id' => 1]);
     $service = app(DatabaseBackups::class);
     $run = $service->request($actor);

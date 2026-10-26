@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Catalog;
 
+use App\Support\TestingDatabaseGuard;
 use PDO;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -22,7 +23,7 @@ class ProductConcurrencyTest extends TestCase
     public function test_concurrent_writers_revalidate_current_state_after_the_mutex(array $operations): void
     {
         $this->assertTrue(app()->environment('testing'));
-        $pdo = new PDO('mysql:host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'].';dbname=sga_rio_grande_testing', $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $pdo = TestingDatabaseGuard::pdo();
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         $this->assertSame('REPEATABLE-READ', $pdo->query('SELECT @@tx_isolation')->fetchColumn());
         $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn());
@@ -56,6 +57,7 @@ class ProductConcurrencyTest extends TestCase
                 $ids['product'] = $insert("INSERT INTO products (internal_code,name,category_id,measurement_unit_id,control_mode,is_active) VALUES (?,?,?,?,'quantity',1)", [$code.'-BASE', 'Base', $ids['category'], $ids['unit']]);
             }
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
+            $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
             foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
                 $env[$name] = $_ENV[$name];
             }

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use PDO;
+use App\Support\TestingDatabaseGuard;
 use Symfony\Component\Process\InputStream;
 use Symfony\Component\Process\Process;
 use Tests\TestCase;
@@ -22,7 +22,7 @@ class AdministrativeConcurrencyTest extends TestCase
     private function race(string $mode): void
     {
         $this->assertTrue(app()->environment('testing'));
-        $pdo = new PDO('mysql:host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'].';dbname=sga_rio_grande_testing', $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $pdo = TestingDatabaseGuard::pdo();
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         // Independent processes require committed fixtures, invisible inside
         // the default transaction. Remove ONLY IDs created by this test.
@@ -44,6 +44,7 @@ class AdministrativeConcurrencyTest extends TestCase
                 $users[] = (int) $pdo->lastInsertId();
             }
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
+            $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
             foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
                 $env[$name] = $_ENV[$name];
             }

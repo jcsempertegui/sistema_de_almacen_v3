@@ -2,12 +2,23 @@
 
 Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora de Líquidos Río Grande.
 
-## Entorno
+## Estado actual — equipo D: (25 de octubre de 2026)
+
+Los cinco sprints están implementados. Esta instalación es nueva: **53 tablas y 43 migraciones en lote 1**, sin pendientes; no se restauraron los datos del equipo anterior. El administrador local se creó el 24 de octubre. La última regresión de estabilización aprobó **458 pruebas/3.485 aserciones**, exclusivamente en testing. Los resultados anteriores de 429/3.406 (PC anterior) y 429/3.414 (preparación de este PC) son históricos y se conservan por separado.
+
+Consulta el [informe de estabilización](docs/environment-stabilization-2026-10-25.md), el [manual de instalación](docs/installation.md), el [guion de aceptación](docs/final-functional-acceptance.md) y la [propuesta de matriz académica](docs/academic-traceability-proposal.md). La aceptación visual final y el contraste académico siguen pendientes. No se inicia otro sprint.
+
+## Entorno actual
+
+El panel visual incorpora [gráficas operativas](docs/dashboard-charts-2026-10-25.md): actividad de siete días, entradas/salidas de 30 días y herramientas pendientes por trabajador, según permisos. La regresión completa posterior, que incluye apariencia y gráficas, aprobó **472 pruebas/3.562 aserciones** exclusivamente en testing. No se alteraron los datos principales ni se publicaron estos cambios locales.
 
 - Laravel 13.35.0 y PHP 8.3 o superior.
 - MariaDB 10.4.32, base de desarrollo `sga_rio_grande`.
-- Blade y CSS local para las historias implementadas de los Sprints 1 y 2; no se requiere npm ni compilación.
-- La consola utiliza PHP 8.3.10 de Laragon. Apache de XAMPP carga PHP 8.2.12 y no puede ejecutar Laravel 13. Usa el servidor integrado de PHP 8.3 manteniendo MariaDB de XAMPP.
+- Blade y CSS local; el arranque actual no requiere npm ni compilación.
+- Consola: `D:\PHP83\php.exe` (8.3.36). El `php` del PATH resuelve a XAMPP 8.2.12; usar el ejecutable explícito. No mezclar sus extensiones ni modificar el PATH global como parte del arranque.
+- Binarios MariaDB: detección en la unidad de PHP/XAMPP y PATH, o variable de proceso `SGA_MARIADB_BIN`. Serie compatible configurada: 10.4; validación mediante `--version`. Diagnóstico sin SQL: `D:\PHP83\php.exe artisan sga:check-backup-client`.
+
+## Historial de los sprints — equipo anterior
 
 **Sprint 5 — publicado, aceptado y desplegado con autorización:** diseño aprobado e implementación de ajustes, compensaciones, ciclos de custodia, reportes, respaldos y auditoría. Pruebas exclusivamente en testing: **429 pruebas/3.406 aserciones aprobadas**, más 3 pruebas HTTP/75 aserciones posteriores de presentación. Testing tiene 53 tablas/43 migraciones. Las ocho migraciones S5 se aplicaron en lote 15: principal con 53 tablas, 43 migraciones, ninguna pendiente, 123 permisos y 260 vínculos. Véase [despliegue e incidente resuelto](docs/sprint-5-deployment.md). Aceptación declarada por el usuario; véase [registro de aceptación](docs/sprint-5-acceptance.md). Sin cuentas reales nuevas. Véase [seguimiento de publicación](docs/sprint-5-publication.md). Véanse [informe S5](docs/sprint-5-implementation.md), [diccionario](docs/data-dictionary-sprint-5.md), [matriz](docs/sprint-5-test-matrix.md) y [recuperación](docs/sprint-5-backup-recovery.md).
 
@@ -60,15 +71,14 @@ Las etapas entregadas y migradas a la principal comprenden HU-05/HU-06/HU-07/HU-
 
 **Continuidad en otro PC (23 de octubre):** consulta el [registro del entorno local](docs/local-environment-2026-10-23.md). En este equipo se utiliza `D:\PHP83\php.exe`; los registros de despliegue anteriores describen el PC de origen.
 
-Desde la raíz con PHP 8.3 de Laragon:
+Desde la raíz con PHP 8.3 de este equipo:
 
 ```powershell
-php --version
-php artisan sga:create-admin
-php artisan serve --host=127.0.0.1 --port=8000
+& "D:\PHP83\php.exe" --version
+& "D:\PHP83\php.exe" artisan serve --host=127.0.0.1 --port=8000
 ```
 
-La base principal local tiene **43 migraciones aplicadas, ninguna pendiente de Sprints 1–5**. Las ocho de S5 se aplicaron en lote 15, con respaldo nuevo, restauración de ensayo y autorización; véase [despliegue S5](docs/sprint-5-deployment.md). Las seis del Sprint 4 se aplicaron con autorización, respaldo nuevo y restauración verificada; no repetirlas. Véase [despliegue S4](docs/sprint-4-deployment.md). Otras aplicaciones requieren prevalidación, respaldo y autorización propios. El comando de administrador solicita nombre, correo y contraseña oculta de al menos 12 caracteres con mayúscula, minúscula y número. Solo crea la primera cuenta con acceso administrativo completo; las siguientes se gestionan desde el sistema. La principal continúa sin cuentas reales: su creación explícita está pendiente.
+La principal de este equipo tiene **43 migraciones aplicadas en lote 1, ninguna pendiente**. Los lotes 14 y 15 de los [despliegues S4](docs/sprint-4-deployment.md) y [S5](docs/sprint-5-deployment.md) corresponden al equipo anterior; no se repiten aquí. El administrador local ya existe; las siguientes cuentas se gestionan desde el sistema. No se publican credenciales ni se ejecuta el comando de creación como parte del arranque.
 
 Abre `http://127.0.0.1:8000/login`. Apartados de las etapas publicadas: `/panel`, `/usuarios`, `/roles`, `/trabajadores`, `/auditoria`, `/categorias`, `/unidades-de-medida`, `/atributos-tecnicos`, `/categorias/{category}/atributos`, `/ubicaciones` y `/ubicaciones/arbol`, según permisos.
 
@@ -78,23 +88,23 @@ HU-10 tiene sus tablas y permisos aplicados: `/unidades-individualizadas` está 
 
 **Configuración local:** `APP_KEY` se generó con autorización específica y se verificó que fuera el único cambio en `.env`. Laravel utiliza esa clave para cifrar las cookies de sesión. No regeneres una clave existente sin autorización. Las pruebas usan una clave temporal independiente.
 
-Las cuatro migraciones originales del Sprint 1 y las cinco del correctivo son aditivas. La migración original del rol obligatorio se detiene si encuentra usuarios previos: hay que planificar su asignación explícita. El correctivo conserva identificadores y asignaciones existentes. `php artisan db:seed` asegura registros del catálogo sin crear cuentas o trabajadores, conceder permisos ni restaurar revocaciones.
+Las migraciones anteriores se conservan intactas. No ejecutar seeders ni comandos de migración sobre la principal durante la estabilización.
 
-Evita `composer setup`: el script inicial instala dependencias, cambia configuración y ejecuta migraciones. `composer dev` intenta iniciar Vite, incompatible con Node 18.8.0. Utiliza `php artisan serve` para este Sprint.
+Evita `composer setup`: instala dependencias, cambia configuración y ejecuta migraciones. El arranque actual utiliza el servidor integrado de PHP; no necesita `composer dev` ni Vite. No se verificó ni actualizó Node en esta estabilización.
 
 ## Pruebas
 
 ```powershell
-php vendor/bin/phpunit
-php vendor/bin/pint --test app routes tests
+& "D:\PHP83\php.exe" vendor/bin/phpunit --colors=never
+& "D:\PHP83\php.exe" vendor/bin/pint --test app config scripts tests
 ```
 
 Se usa exclusivamente `sga_rio_grande_testing`, que debe existir previamente, con servidor y credenciales locales o variables proporcionadas al proceso. El usuario MariaDB necesita permiso para aplicar sus migraciones. No se copian ni borran datos de `sga_rio_grande`.
 
-El bootstrap rechaza configuración cacheada, valida el entorno, exige que la base exclusiva exista y genera una clave efímera. Antes de migrar, comprueba la configuración y `SELECT DATABASE()`. Aplica migraciones normales una vez por ejecución y aísla los casos con transacciones, sin `RefreshDatabase` ni `migrate:fresh`. Las pruebas de concurrencia usan procesos independientes con datos de prueba confirmados; limpian exclusivamente los identificadores o códigos únicos que crearon. HU-09 añade cuatro carreras a las dos administrativas existentes. Su informe detalla también la verificación de estilo de las migraciones nuevas, sin reformatear las anteriores.
+El bootstrap rechaza configuración cacheada y destinos no verificados, exige que testing exista y genera una clave efímera. Laravel utiliza exclusivamente el alias `sga_testing`; el selector de entrada `DB_CONNECTION=mysql` del XML no conserva una conexión Laravel llamada `mysql`. Se verifican alias, nombre interno, host, puerto, `SELECT DATABASE()`, servidor y directorio real de datos antes de consultar o escribir. Los siete procesos concurrentes heredan la identidad comprobada. Se aplican migraciones normales solo en testing una vez por ejecución y se aíslan los casos mediante transacciones y limpieza por identificadores propios. Véase el [procedimiento de aislamiento](docs/installation.md#pruebas-aisladas).
 
-HU-08 añade siete carreras de productos a las seis anteriores; HU-10 incorpora once más: veinticuatro escenarios concurrentes en total. Ejecuta la suite en un solo proceso, sin pruebas paralelas sobre esa misma base. El total de aserciones puede variar según las ramas válidas de las carreras de ubicaciones; los resultados y la diferencia con la ejecución anterior se explican en el informe de aceptación.
+Ejecuta la suite en un solo proceso, sin ejecuciones paralelas sobre esa base. Se conservan las barreras entre procesos, las comprobaciones de bloqueos InnoDB y los límites de tiempo existentes. No ejecutar los ensayos operativos históricos de actualización ni Backup como parte de PHPUnit.
 
 ## Restricciones
 
-La principal incluye acceso, personas, catálogo, recepción, remitos, apertura, existencias, entregas, préstamos, devoluciones, responsabilidades y disponibilidad de Sprints 1–4. No incluye ajustes ni anulaciones críticas del Sprint 5. La auditoría administrativa conserva su alcance; las regularizaciones de devolución tienen historial propio. No se instalan paquetes, no se actualiza Node y no se modifica `.env`.
+El código y el esquema local incluyen Sprints 1–5: ajustes, compensaciones, reportes, Backup y auditoría, además del inventario y las operaciones con trabajadores. La portabilidad de Backup se validó sin generar ni restaurar respaldos reales. En esta estabilización no se modifica `.env`, no se regeneran claves, no se actualizan dependencias y no se escribe en la principal. Commit y push requieren autorización posterior.

@@ -37,6 +37,7 @@ use App\Policies\ToolReturnPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\WorkerPolicy;
 use App\Support\PermissionCatalog;
+use App\Support\TestingDatabaseGuard;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -47,7 +48,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if ($this->app->environment('testing')) {
+            TestingDatabaseGuard::install($this->app);
+        }
     }
 
     /**
