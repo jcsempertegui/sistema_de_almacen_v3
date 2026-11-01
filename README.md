@@ -2,7 +2,21 @@
 
 Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora de Líquidos Río Grande.
 
-## Estado actual — equipo D: (25 de octubre de 2026)
+## Estado actual — 31 de octubre de 2026
+
+Los cinco sprints están implementados. El proyecto se sincronizó nuevamente en `C:\laragon\www\sistema_de_almacen_v3`, conservando la base local: **53 tablas, 43 migraciones y ninguna pendiente**, con 123 permisos y 260 relaciones rol–permiso. No se repitieron migraciones al volver a este PC.
+
+Esta actualización incorpora:
+
+- [Panel de operaciones](docs/dashboard-operations-2026-10-31.md): existencias, herramientas prestadas/vencidas, borradores, últimos movimientos y gráficas por permisos.
+- [Reportes agrupados y detallados](docs/reports-2026-10-31.md): cinco grupos de navegación, detalle por línea, kardex con saldo posterior, filtros por nombres, CSV completo e impresión agrupada para guardar PDF desde el navegador.
+- [Simulación anual autorizada](docs/annual-plant-scenario.md): 20 operativos y 4 personas de staff, catálogo de EPP/herramientas, dotaciones semestrales, consumos y préstamos/devoluciones. El comando específico verifica destino, respaldo y catálogo vacío; no se ejecuta automáticamente ni reemplaza datos existentes.
+
+La regresión seleccionada final de panel, navegación y reportes aprobó **32 pruebas/276 aserciones** en `sga_rio_grande_testing`. El ensayo del generador anual aprobó por separado **3 pruebas/34 aserciones**, incluido rollback. No se suman estas tandas a las regresiones completas históricas ni se presentan como aceptación humana. Las evidencias privadas y los respaldos están fuera del repositorio.
+
+Los datos cargados, las cuentas y sus contraseñas pertenecen a la base local y **no se transfieren mediante Git**. El repositorio contiene el código, las pruebas y el procedimiento documentado; no incluye `.env`, volcados SQL ni credenciales.
+
+## Referencia histórica — equipo D: 25 de octubre de 2026
 
 Los cinco sprints están implementados. Esta instalación es nueva: **53 tablas y 43 migraciones en lote 1**, sin pendientes; no se restauraron los datos del equipo anterior. El administrador local se creó el 24 de octubre. La última regresión de estabilización aprobó **458 pruebas/3.485 aserciones**, exclusivamente en testing. Los resultados anteriores de 429/3.406 (PC anterior) y 429/3.414 (preparación de este PC) son históricos y se conservan por separado.
 
@@ -10,13 +24,14 @@ Consulta el [informe de estabilización](docs/environment-stabilization-2026-10-
 
 ## Entorno actual
 
-El panel visual incorpora [gráficas operativas](docs/dashboard-charts-2026-10-25.md): actividad de siete días, entradas/salidas de 30 días y herramientas pendientes por trabajador, según permisos. La regresión completa posterior, que incluye apariencia y gráficas, aprobó **472 pruebas/3.562 aserciones** exclusivamente en testing. No se alteraron los datos principales ni se publicaron estos cambios locales.
+El panel visual conserva las [gráficas operativas](docs/dashboard-charts-2026-10-25.md): actividad de siete días, entradas/salidas de 30 días y herramientas pendientes por trabajador, según permisos. La regresión completa histórica del otro equipo, que incluye apariencia y gráficas, aprobó **472 pruebas/3.562 aserciones** exclusivamente en testing. Sus resultados se conservan separados de las pruebas seleccionadas de esta actualización.
 
 - Laravel 13.35.0 y PHP 8.3 o superior.
 - MariaDB 10.4.32, base de desarrollo `sga_rio_grande`.
 - Blade y CSS local; el arranque actual no requiere npm ni compilación.
-- Consola: `D:\PHP83\php.exe` (8.3.36). El `php` del PATH resuelve a XAMPP 8.2.12; usar el ejecutable explícito. No mezclar sus extensiones ni modificar el PATH global como parte del arranque.
-- Binarios MariaDB: detección en la unidad de PHP/XAMPP y PATH, o variable de proceso `SGA_MARIADB_BIN`. Serie compatible configurada: 10.4; validación mediante `--version`. Diagnóstico sin SQL: `D:\PHP83\php.exe artisan sga:check-backup-client`.
+- Consola de este PC: `C:\laragon\bin\php\php-8.3.10-Win32-vs16-x64\php.exe` (8.3.10), también disponible como `php` en el PATH verificado. En el equipo D se utilizó `D:\PHP83\php.exe` (8.3.36); esa ruta pertenece a aquel equipo.
+- MariaDB de este PC: `C:\xampp\mysql\bin`, puerto 3306. La detección de clientes admite la unidad de PHP/XAMPP y PATH, o variable de proceso `SGA_MARIADB_BIN`; no modifica la configuración permanente. Serie compatible: 10.4. Diagnóstico sin SQL: `php artisan sga:check-backup-client`.
+- Acceso local: `http://127.0.0.1:8000`. Para iniciar el servidor desde el proyecto: `php artisan serve --host=127.0.0.1 --port=8000`.
 
 ## Historial de los sprints — equipo anterior
 

@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Panel')
 @section('content')
-<div class="page-intro"><div><h1>Panel de inicio</h1><p>Tu punto de partida para la gestión del almacén.</p></div><span class="site-badge"><x-icon name="location" /> Río Grande</span></div>
-<section class="dashboard-hero"><div><span class="eyebrow">CENTRO DE CONTROL DEL ALMACÉN</span><h2>Bienvenido, {{ auth()->user()->name }}</h2><p>Consulta tus materiales, gestiona documentos y sigue cada operación. Selecciona una opción del menú para comenzar.</p></div><div class="hero-actions">@can('stock.view')<a class="button" href="{{ route('stock.index') }}">Ver existencias <x-icon name="arrow" /></a>@endcan @can('viewAny', \App\Models\Product::class)<a class="button secondary" href="{{ route('products.index') }}">Catálogo</a>@endcan</div></section>
-<p class="role">Rol: <strong>{{ auth()->user()->role->name }}</strong></p>
-@include('dashboard.charts', ['charts' => $charts ?? ['movements' => null, 'loans' => null]])
+<div class="page-intro"><div><h1>Panel de operaciones</h1><p class="dashboard-date">{{ $operations['date'] }} · Hora de Bolivia</p></div><span class="site-badge"><x-icon name="location" /> Río Grande</span></div>
+<section class="dashboard-hero operational-hero"><div><span class="eyebrow">CONFIPETROL · ALMACÉN RÍO GRANDE</span><h2>Bienvenido, {{ auth()->user()->name }}</h2><p>Existencias, documentos y herramientas: lo que necesitas para organizar la jornada.</p></div><div class="hero-actions">@can('stock.view')<a class="button" href="{{ route('stock.index') }}">Consultar existencias <x-icon name="arrow" /></a>@endcan @can('availability.view')<a class="button secondary" href="{{ route('availability.index') }}">Ver disponibilidad</a>@endcan</div></section>
+@include('dashboard.operations')
 @if(\Illuminate\Support\Facades\Gate::any(['stock.view', 'deliveries.view', 'loans.view', 'returns.view']) || \Illuminate\Support\Facades\Gate::allows('viewAny', \App\Models\InventoryDocument::class))
 <section aria-labelledby="daily-heading">
     <div class="section-heading"><h2 id="daily-heading">Operación diaria</h2><p>Accede directamente a los documentos y consultas que necesitas.</p></div>
@@ -16,7 +15,8 @@
     </div>
 </section>
 @endif
-<div class="section-heading"><h2>Accesos disponibles</h2><p>Catálogo, organización y administración según tus permisos.</p></div>
+@include('dashboard.charts', ['charts' => $charts ?? ['movements' => null, 'loans' => null]])
+<details class="dashboard-modules"><summary>Catálogo y administración <span>Ver accesos disponibles</span></summary>
 <div class="cards">
     @can('viewAny', \App\Models\IndividualUnit::class)<section class="card"><span class="module-icon"><x-icon name="tool" /></span><h2>Unidades individualizadas</h2><p>Consulta las identidades de herramientas y equipos.</p><a href="{{ route('individual-units.index') }}">Consultar unidades individualizadas <x-icon name="arrow" /></a></section>@endcan
     @can('viewAny', \App\Models\Product::class)<section class="card"><span class="module-icon"><x-icon name="box" /></span><h2>Productos</h2><p>Consulta el catálogo, sus características técnicas e historial.</p><a href="{{ route('products.index') }}">Consultar productos <x-icon name="arrow" /></a></section>@endcan
@@ -29,4 +29,5 @@
     @can('viewAny', \App\Models\Worker::class)<section class="card"><span class="module-icon"><x-icon name="users" /></span><h2>Trabajadores</h2><p>Consulta las personas registradas para el almacén.</p><a href="{{ route('workers.index') }}">Consultar trabajadores <x-icon name="arrow" /></a></section>@endcan
     @can('viewAny', \App\Models\User::class)<section class="card"><span class="module-icon"><x-icon name="users" /></span><h2>Usuarios</h2><p>Administra las cuentas y sus permisos de acceso.</p><a href="{{ route('users.index') }}">Gestionar usuarios <x-icon name="arrow" /></a></section>@endcan
 </div>
+</details>
 @endsection

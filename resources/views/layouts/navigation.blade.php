@@ -33,8 +33,10 @@
     foreach (\App\Support\WorkerOperationTypes::LABELS as $kind => $label) {
         $groups['Personas y herramientas'][] = $item($label, 'worker-operations.index', $kind.'.view', [], 'transfer', ['kind' => $kind], 'worker-operations.*');
     }
-    foreach (\App\Services\ControlReports::LABELS as $kind => $label) {
-        $groups['Reportes'][] = $item('Reporte: '.$label, 'control-reports.index', app(\App\Services\ControlReports::class)->permission($kind), [], 'chart', ['kind' => $kind]);
+    foreach (app(\App\Services\ReportCatalog::class)->navigation() as $group) {
+        $entry = $item($group['label'], 'control-reports.index', app(\App\Services\ControlReports::class)->permission($group['first']), [], 'chart', ['kind' => $group['first']]);
+        $entry['report_kinds'] = $group['kinds'];
+        $groups['Reportes'][] = $entry;
     }
 @endphp
 <nav class="sidebar-nav" aria-label="Navegación principal">
@@ -44,7 +46,7 @@
             <section class="nav-group" aria-label="{{ $heading }}">
                 <h2>{{ $heading }}</h2>
                 @foreach($visible as $entry)
-                    @php($active = request()->routeIs($entry['match'] ?? $entry['route']) && (!isset($entry['parameters']['kind']) || request()->route('kind') === $entry['parameters']['kind']))
+                    @php($active = isset($entry['report_kinds']) ? request()->routeIs('control-reports.index') && in_array(request()->route('kind'), $entry['report_kinds'], true) : request()->routeIs($entry['match'] ?? $entry['route']) && (!isset($entry['parameters']['kind']) || request()->route('kind') === $entry['parameters']['kind']))
                     <a href="{{ route($entry['route'], $entry['parameters']) }}" @class(['nav-link', 'is-active' => $active]) @if($active) aria-current="page" @endif><x-icon :name="$entry['icon']" /><span>{{ $entry['label'] }}</span></a>
                 @endforeach
             </section>
