@@ -1,0 +1,2055 @@
+{
+  "modalidad": "Resultados consolidados por caso de la fase previa y dos lotes de esta etapa; no representa una ejecucion unica ni aceptacion humana.",
+  "casos": 510,
+  "aprobados": 510,
+  "aserciones_consolidadas": 3890,
+  "lote_nuevo_casos": 86,
+  "lote_nuevo_aserciones": 546,
+  "fuentes": {
+    "regresion-consolidada.xml": "075725238a40a5029705c32091d3135ee2417ff4c61052c7f91214420cb6b2d6",
+    "regresion-final.xml": "2f646ac6603bf8696abed7df03f15487490091ee7cac61375ab7794e2bf01960",
+    "auditoria-corregida.xml": "61eae985dfd8dec2113345f322be10458cf8f2dbab4907f19de6d04ac6de4f27"
+  },
+  "procedencia_por_caso": [
+    {
+      "id": "Tests\\Feature\\AdministrativeAuditTest::test_audit_access_is_read_only_and_permission_controlled",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AdministrativeAuditTest::test_audit_model_cannot_be_deleted",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AdministrativeAuditTest::test_audit_model_cannot_be_updated",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AdministrativeAuditTest::test_user_audit_captures_actor_before_after_and_password_flag_without_secrets",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AdministrativeConcurrencyTest::test_simultaneous_deactivation_keeps_one_full_administrator",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AdministrativeConcurrencyTest::test_simultaneous_role_revocation_keeps_one_full_administrator",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AnnualPlantScenarioTest::test_failure_during_generation_rolls_back_all_scenario_records_and_restores_clock",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AnnualPlantScenarioTest::test_full_year_preserves_admin_permissions_and_reconciles_stock_and_custody",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AnnualPlantScenarioTest::test_wrong_identity_is_rejected_before_any_insert",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_guests_see_login_and_cannot_open_the_panel",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_inactive_or_revoked_sessions_are_rejected",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_invalid_credentials_and_inactive_accounts_are_rejected",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_login_is_limited_by_normalized_email_and_ip",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_login_requires_a_csrf_token",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_login_validates_input_and_never_flashes_passwords",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_logout_invalidates_session_and_csrf_token",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthenticationTest::test_valid_credentials_regenerate_the_session_and_open_the_panel",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthorizedRenewalTest::test_failure_after_replacing_records_restores_the_previous_records_and_access",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthorizedRenewalTest::test_invalid_backup_never_grants_capability_or_executes_callback",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\AuthorizedRenewalTest::test_tampered_backup_is_rejected_before_opening_a_deployment_scope",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\AttributePermissionInitializationTest::test_initial_roles_receive_approved_capabilities_and_auditor_only_reads",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\AttributePermissionInitializationTest::test_new_links_invalidate_affected_sessions_and_preserve_existing_records_and_permissions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\AttributePermissionInitializationTest::test_reinitialization_preserves_revoked_old_and_new_permissions_unknown_roles_and_users",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_auditor_has_read_access_but_all_direct_mutations_are_forbidden",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_catalog_post_requires_csrf",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_guests_and_inactive_accounts_cannot_access_the_catalog",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_permissions_are_visible_and_editable_through_existing_role_management",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_permissions_control_independent_actions_and_role_names_do_not_grant_access",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_revocation_invalidates_session_and_rejects_catalog_writes_in_flight",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogAuthorizationTest::test_status_permission_does_not_allow_editing_other_fields",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_binary_collation_distinguishes_symbols_and_precision_defaults_to_zero",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_exact_duplicate_symbols_are_rejected_in_mariadb",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_enforces_unique_category_codes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_enforces_unique_category_names",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_enforces_unique_unit_codes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria author FK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria editor FK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria state CHECK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad author FK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad dimension CHECK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad precision CHECK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad state CHECK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_referenced_authors_cannot_be_deleted",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogIntegrityTest::test_scope_does_not_create_future_tables_and_catalogs_start_empty",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogPermissionInitializationTest::test_initial_role_capabilities_include_only_the_approved_catalog_permissions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogPermissionInitializationTest::test_initialization_of_missing_links_versions_and_audits_only_changed_roles",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogPermissionInitializationTest::test_new_grants_invalidate_existing_sessions_without_touching_other_roles",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_users_and_audit",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogUniqueConflictTest::test_category_database_collisions_are_translated_and_rolled_back",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CatalogUniqueConflictTest::test_unit_database_collisions_are_translated_and_rolled_back",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_admin_and_manager_associate_edit_and_toggle_without_changing_identity_or_authors",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_decimal_format_range_and_order_are_exact_and_do_not_round_invalid_values",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_duplicate_associations_are_rejected_even_when_inactive_and_picker_excludes_them",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_historical_impact_guards_with_simulated_future_dependencies_rollback_all_changes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_inactive_category_attribute_or_unit_prevents_new_or_reactivated_associations",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_list_is_scoped_ordered_filtered_and_preserves_inactive_configuration",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_non_decimal_types_reject_any_bound_including_zero",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_required_flags_order_and_attribute_references_are_validated",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_unit_precision_zero_accepts_padded_integers_but_rejects_significant_fraction",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryAttributeManagementTest::test_wrong_parent_returns_404_for_edit_update_and_state_and_parent_input_is_prohibited",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_administrator_and_manager_can_register_edit_and_change_status",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_category_fields_are_required_and_lengths_and_state_are_validated_in_spanish",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_category_html_is_escaped",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_deactivation_dependency_guard_blocks_both_endpoints_and_keeps_data",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_duplicate_codes_and_names_are_rejected_even_when_inactive",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_editing_ignores_own_unique_fields_and_preserves_creator",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_search_filter_and_pagination_keep_filters_and_treat_wildcards_literally",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\CategoryManagementTest::test_without_future_tables_deactivation_is_allowed_and_records_are_retained",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitAuthorizationTest::test_auditor_reads_and_direct_mutations_are_forbidden",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitAuthorizationTest::test_custom_role_names_grant_nothing_and_update_does_not_grant_status",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitAuthorizationTest::test_guests_inactive_accounts_and_csrf_are_protected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitAuthorizationTest::test_revocation_invalidates_sessions_and_stale_action_actor",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before link disable",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before producto disable",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before revoke",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before ubicacion disable",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable link first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable producto first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable ubicacion first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#identificador collision",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#revoke first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#serial collision",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#stale edits",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitHistoryTest::test_failed_association_validation_rolls_back_metadata_and_version",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitHistoryTest::test_real_assigned_units_even_inactive_prevent_link_and_location_history_changes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitHistoryTest::test_real_units_protect_product_structure_and_active_units_prevent_both_deactivation_endpoints",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_composite_fk_rejects_cross_product_association_on_insert_and_update",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#author",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#blank id",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#blank series",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#producto",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#state",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#ubicacion",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#version",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitIntegrityTest::test_sql_unique_keys_and_restrict_preserve_identity_and_assigned_pair",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitManagementTest::test_identity_product_and_initial_location_are_fixed_and_stale_edits_fail",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitManagementTest::test_initial_location_requires_active_storable_location_and_matching_active_link",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitManagementTest::test_managers_register_search_edit_and_toggle_without_stock_side_effects",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitManagementTest::test_required_fields_types_lengths_and_product_mode_are_enforced",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitManagementTest::test_series_are_optional_case_sensitive_unique_per_product_and_zero_is_not_empty",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\IndividualUnitPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_auditor_can_read_index_and_tree_but_all_direct_mutations_are_forbidden",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_create_status_and_metadata_permissions_are_independent",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_each_action_requires_its_permission_even_with_an_administrator_role_name",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_editor_preserves_creator_and_server_sets_updated_by",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_forms_require_csrf_and_new_permissions_are_configurable_with_existing_roles",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_guests_and_inactive_users_cannot_access_locations",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationAuthorizationTest::test_revocation_invalidates_sessions_and_rejects_an_in_flight_action",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-04 crossed parents",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-04 crossed parents with earlier snapshot",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-05 child activation versus padre deactivation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-05 child creation versus padre deactivation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#active flag",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#author FK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#editor FK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#padre FK",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#storable flag",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#tipo",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#tipo case",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_parent_and_authors_are_restricted_against_deletion_and_key_updates",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_schema_defaults_and_scope_are_correct",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationIntegrityTest::test_unique_code_is_case_insensitive_even_for_inactive_rows",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_active_children_block_both_deactivation_endpoints_and_inactive_links_are_kept",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_administrator_and_manager_create_edit_and_toggle_with_server_authors",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_existing_cycle_is_reported_without_infinite_traversal_or_partial_write",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_fields_types_flags_and_lengths_are_validated_in_spanish",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_inactive_code_is_not_reused_but_names_may_repeat",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_inactive_parents_ancestors_and_reactivation_are_checked_with_historical_exception",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_parent_options_exclude_self_and_descendants_and_omit_inactive_locations",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_real_inactive_units_protect_location_and_subtree_history",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_search_filters_pagination_literal_wildcards_and_html_escape",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_self_and_descendants_including_inactive_nodes_are_rejected_without_partial_edits",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_stale_action_inputs_are_rechecked_and_duplicate_collision_is_translated",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationManagementTest::test_three_types_hierarchy_and_non_storable_parent_are_supported",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\LocationPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_active_references_block_status_patch_and_form_deactivation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_all_six_dimensions_are_accepted_without_conversions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_duplicate_unit_updates_are_rejected_without_partial_changes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_initial_examples_can_be_registered_by_administrator_and_manager",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_required_fields_precision_dimensions_and_lengths_are_validated",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_symbols_are_case_sensitive_trimmed_and_exact_duplicates_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_unit_can_be_edited_without_references_and_creator_is_preserved",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_unit_names_and_symbols_are_escaped_in_blade",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_unit_search_status_and_pagination_are_consistent",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_units_are_deactivated_reactivated_and_never_deleted_or_reused",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\MeasurementUnitManagementTest::test_used_unit_cannot_change_code_symbol_dimension_or_precision_but_name_can_change",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAttributeValueTest::test_all_four_types_zero_false_negative_decimal_and_dates_are_saved_exactly",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAttributeValueTest::test_inactive_definitions_cannot_be_written_and_required_values_are_checked_on_reactivation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAttributeValueTest::test_invalid_boolean_text_and_calendar_dates_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAttributeValueTest::test_required_types_ranges_precision_and_category_membership_are_enforced",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAuthorizationTest::test_auditor_reads_but_direct_writes_are_forbidden",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAuthorizationTest::test_custom_role_names_do_not_grant_capabilities_and_status_requires_its_own_permission",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAuthorizationTest::test_guests_and_csrf_are_checked_on_product_and_location_mutations",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAuthorizationTest::test_initial_links_cannot_bypass_location_permission_and_atomic_save_is_preserved",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductAuthorizationTest::test_permission_changes_invalidate_sessions_and_stale_action_operators",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#disable versus link",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#link versus disable",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#producto versus required",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#required versus producto",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#revocation versus producto",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#same codigo",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#stale edit",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductDuplicateTest::test_browser_form_round_trip_reviews_false_decimal_and_date_identity_without_merging",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductDuplicateTest::test_equivalent_identity_warns_including_inactive_candidates_and_requires_review_of_current_payload",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductDuplicateTest::test_text_identity_is_case_sensitive_and_empty_identity_never_claims_equivalence",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductHistoryTest::test_edit_clear_and_reactivate_preserve_all_revisions_and_one_value_identity",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductHistoryTest::test_existing_category_and_unit_guards_now_detect_real_product_references",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductHistoryTest::test_failure_after_first_value_and_revision_rolls_back_the_entire_product",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductHistoryTest::test_historical_configuration_and_product_structure_cannot_be_reinterpreted",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductHistoryTest::test_required_association_reactivation_is_checked_on_both_endpoints",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductHistoryTest::test_revisions_have_no_update_or_delete_application_path",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_both_composite_keys_reject_cross_category_values_even_with_valid_individual_ids",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#active",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#author",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#case",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#categoria",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#mode",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#prestamo",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#prestamo flag",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#unidad",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_products#version",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#boolean",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#missing association",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#missing producto",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#none",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#precision overflow",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#state",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_mariadb_rejects_invalid_values#two",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_revision_constraints_and_parent_restriction_preserve_snapshots",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_schema_types_engines_foreign_keys_and_excluded_scope",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductIntegrityTest::test_unique_codes_values_links_and_restrict_rules_preserve_inactive_history",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductLocationManagementTest::test_failure_of_an_initial_association_rolls_back_the_new_product_and_prior_links",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductLocationManagementTest::test_inactive_non_storable_and_duplicate_associations_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductLocationManagementTest::test_inactive_product_cannot_receive_active_location_links_and_link_history_freezes_structure",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductLocationManagementTest::test_location_deactivation_is_blocked_until_links_are_inactive_and_history_remains",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductLocationManagementTest::test_multiple_locations_are_registered_toggled_and_searched_without_quantities",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductLocationManagementTest::test_nested_ownership_stale_versions_and_assigned_unit_guard_are_enforced",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductManagementTest::test_codes_remain_reserved_and_immutable_and_stale_edits_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductManagementTest::test_inactive_catalog_references_are_rejected_without_creating_products",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductManagementTest::test_managers_register_edit_search_toggle_and_render_all_product_screens",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductManagementTest::test_required_fields_lengths_flags_references_and_loan_mode_are_validated",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductManagementTest::test_validation_after_review_returns_to_a_get_form_with_input_and_errors",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\ProductPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_actions_recheck_current_parent_state_and_parent_ownership",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_auditor_can_read_but_cannot_mutate_either_entity_through_direct_requests",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_both_forms_require_csrf",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_create_and_status_permissions_do_not_grant_metadata_editing",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_custom_permissions_are_independent_and_role_name_does_not_grant_privileges",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_guests_and_inactive_accounts_cannot_read_or_write",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_new_permissions_are_configurable_through_existing_role_form_and_navigation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeAuthorizationTest::test_revocation_invalidates_sessions_and_rejects_in_flight_mutations_for_both_entities",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_all_referenced_entities_and_authors_are_restricted_against_deletion",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_codes_and_pairs_remain_unique_even_for_inactive_rows",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#active check",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#atributo foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#author foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#bound check",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#categoria foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#decimal overflow",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#editor foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#identity check",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#order overflow",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#required check",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#unsigned order",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#author foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#case-sensitive tipo",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#editor foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#invalid tipo",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#state check",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#unidad foreign key",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_mariadb_rejects_unit_on_non_decimal_definition",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeIntegrityTest::test_schema_is_innodb_decimal_is_exact_and_future_modules_are_absent",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_active_association_blocks_global_deactivation_from_both_endpoints",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_actual_attribute_references_protect_unit_state_and_semantics",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_admin_and_manager_create_edit_and_change_state_with_server_authors",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_all_four_types_are_accepted_and_only_decimal_may_have_a_unit",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_any_association_freezes_type_and_unit_even_if_inactive_and_rollback_preserves_metadata",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_duplicate_codes_are_rejected_even_when_inactive_but_names_may_repeat",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_inactive_unit_blocks_new_attributes_and_activation_but_allows_historical_name_correction",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_required_lengths_type_unit_and_state_are_validated_in_spanish",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_search_type_state_pagination_wildcards_and_escaped_help",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeManagementTest::test_type_and_unit_can_change_before_association_and_creator_is_preserved",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeTransactionTest::test_action_rechecks_associations_added_after_the_attribute_was_loaded",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeTransactionTest::test_action_rechecks_unit_state_after_validation_and_does_not_create_partial_data",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeTransactionTest::test_action_rejects_raw_decimal_overprecision_before_eloquent_can_round",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Catalog\\TechnicalAttributeTransactionTest::test_duplicate_definitions_and_associations_are_translated_when_collision_reaches_the_action",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\CompatibilidadFirmasHistoricasTest::test_la_regularizacion_conserva_el_contrato_de_firma_anterior_y_no_reactiva_la_herramienta",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\CompatibilidadFirmasHistoricasTest::test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma#cantidad",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\CompatibilidadFirmasHistoricasTest::test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma#individual",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_days_use_bolivia_time_instead_of_utc_midnight",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_empty_charts_show_real_zeroes_and_no_division_errors",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_movement_charts_count_confirmed_rows_instead_of_quantities_or_drafts",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_pending_tools_follow_current_custody_after_return_and_reopening",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_thirty_day_window_has_inclusive_local_start_and_excludes_future_rows",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_top_workers_keep_remaining_tools_in_an_other_group_and_escape_names",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardChartsTest::test_without_permissions_the_server_does_not_query_or_render_chart_data",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardOperationsTest::test_due_dates_use_bolivia_day_and_returns_remove_current_obligations",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardOperationsTest::test_empty_dashboard_has_real_zeroes_and_actionable_empty_states",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardOperationsTest::test_recent_movements_are_limited_ordered_and_product_names_are_escaped",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardOperationsTest::test_restricted_modules_are_neither_queried_nor_returned_and_openings_are_separate",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DashboardOperationsTest::test_stock_counts_distinct_active_products_and_drafts_never_count_as_stock",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_category_and_type_filters_preserve_document_numbers_and_distinct_summary",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_delivery_details_keep_historical_worker_and_line_units_with_named_filters",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_empty_csv_has_spanish_headers_and_unsafe_values_remain_escaped",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_group_navigation_uses_first_allowed_report_and_denies_other_tabs_and_exports",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_kardex_preserves_opening_balance_before_local_date_filter",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_multiple_identifiers_do_not_multiply_document_quantities",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_pending_reports_follow_reopened_custody_after_a_compensated_return",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_print_and_csv_include_the_full_filtered_result_instead_of_the_first_page",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_report_access_does_not_grant_document_access_or_display_a_forbidden_link",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\DetailedReportsTest::test_two_document_lines_keep_their_own_quantities_and_count_the_document_once",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\ExampleTest::test_the_application_returns_a_successful_response",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\ExpiredRequestPageTest::test_authenticated_invalid_token_cannot_create_a_category",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\ExpiredRequestPageTest::test_guest_csrf_failure_uses_the_spanish_page_and_keeps_status_419",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\ExpiredRequestPageTest::test_json_csrf_failure_keeps_the_native_json_response",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\ExpiredRequestPageTest::test_valid_csrf_token_still_allows_a_normal_login",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlHttpTest::test_control_pages_reports_and_exports_respect_permissions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlHttpTest::test_csv_neutralizes_formulas_and_filters_cutoff_without_writing",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlHttpTest::test_http_adjustment_workflow_and_invalid_nested_form",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlIntegrityTest::test_new_write_routes_keep_csrf_protection",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlIntegrityTest::test_permissions_initialization_preserves_revocations_people_and_unknown_roles",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlIntegrityTest::test_revoked_control_permission_invalidates_session",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ControlIntegrityTest::test_sql_rejects_fifth_source_without_matching_metadata_and_wrong_product_units",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#authorizer rol disabled",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#competing counts",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#duplicate compensation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#execution first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#idempotent retry",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#new prestamo first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#permiso revoked",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#return compensation first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#revocation first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DatabaseBackupsTest::test_download_and_generation_reject_a_read_only_profile",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DatabaseBackupsTest::test_private_generation_integrity_download_and_rehearsal_approval_are_distinct",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DatabaseBackupsTest::test_tampering_and_failure_do_not_produce_a_verified_backup_or_keep_credentials",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DeliveryManagementTest::test_delivery_draft_edit_confirm_retry_and_historical_worker",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DeliveryManagementTest::test_failure_after_posting_rolls_back_stock_and_movement",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DeliveryManagementTest::test_individual_delivery_records_only_one_physical_outgoing_and_source",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DeliveryManagementTest::test_insufficient_stock_rolls_back_and_loanables_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\DeliveryManagementTest::test_revoked_permission_is_checked_inside_confirmation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockCsvBoundaryTest::test_encoding_structure_and_decimal_boundaries",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockCsvBoundaryTest::test_exact_byte_and_pair_limits",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockCsvBoundaryTest::test_exact_row_limit_for_individuals_and_repetition_across_locations",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockImportTest::test_csv_preview_is_read_only_and_save_only_creates_a_draft",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockImportTest::test_import_rejects_unknown_catalog_formulas_duplicates_and_changed_catalog",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockImportTest::test_import_token_rejects_tampering_expiration_and_another_operator",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InitialStockImportTest::test_individual_import_aggregates_existing_identifiers_and_rejects_repeated_identity",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#cancellation blocks confirmation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#competing issues",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#confirmation protects cancellation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#idempotent retry",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#individual disable blocks receipt",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#opening once",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#pair disable blocks receipt",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#producto disable blocks receipt",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects individual",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects pair",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects producto",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#revocation blocks receipt",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#same individual twice",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_adjustment_requires_different_authorizer_and_posts_once",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_changed_count_revocation_expiration_and_rollback_are_effective",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_compensation_preserves_original_and_rejects_duplicate_or_negative_balance",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_editing_invalidates_approval_and_cancellation_never_changes_stock",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_insufficient_stock_rolls_back_an_authorized_compensation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_loan_compensation_receives_tool_and_closes_custody_without_fabricating_return",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_permission_loss_of_authorizer_blocks_execution_even_after_operator_relogin",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_regranting_authorization_permission_does_not_revive_an_old_approval",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryCorrectionsTest::test_return_compensation_reopens_cycle_and_second_return_preserves_first_closure",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryIntegrityTest::test_confirmed_document_and_movement_models_are_immutable",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryIntegrityTest::test_csrf_rejects_confirmation_without_a_token",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryIntegrityTest::test_new_permissions_preserve_revocations_unknown_roles_and_initial_configuration",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryIntegrityTest::test_sql_constraints_reject_negative_stock_duplicate_movements_and_wrong_unit_membership",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_cancelled_draft_has_no_stock_and_cannot_confirm",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_decimal_capacity_overflow_does_not_add_a_movement",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_direct_actions_and_http_respect_permissions_and_revocation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_external_reference_is_optional_and_matches_warn_without_blocking",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_failure_after_posting_a_line_rolls_back_every_effect_including_opening_marker",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_http_draft_edit_confirm_retry_and_queries",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_individual_catalog_is_not_stock_and_units_can_exit_and_reenter",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#0",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#1",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#2",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#3",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#4",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#5",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#6",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#7",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#8",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_issue_insufficient_stock_and_exact_decimal_arithmetic",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_missing_pair_inactive_product_and_precision_are_revalidated_at_confirmation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_opening_is_once_per_product_even_after_full_issue_and_prior_movements_block_it",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_opening_spans_multiple_locations_with_one_product_marker",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_required_header_fields_duplicate_pairs_and_truncated_forms_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_stock_protects_catalog_product_pair_and_individual_identity",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\InventoryManagementTest::test_wrong_unit_product_duplicate_selection_and_count_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\LoanManagementTest::test_loan_claims_custody_once_and_blocks_external_reentry",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\LoanManagementTest::test_nonloanable_and_inactive_worker_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_editing_draft_revokes_approval_without_erasing_its_history",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_exceptional_return_requires_specific_approval_and_never_reactivates_catalog",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_inactive_existing_pair_can_be_authorized_but_inactive_destination_cannot",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_injected_failure_rolls_back_return_custody_closure_and_authorization",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_partial_then_final_return_with_inactive_worker_and_different_destination",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_revocation_expiration_and_content_changes_invalidate_exception",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\ReturnManagementTest::test_sql_rejects_closure_without_movement_and_competing_draft_cannot_return_twice",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_a_directory_without_clients_is_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_a_process_failure_is_reported_without_exposing_process_details",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_an_explicit_directory_with_spaces_accepts_compatible_patch_versions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_an_invalid_explicit_directory_does_not_fall_back_to_another_installation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#0",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#1",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#2",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_restoration_to_primary_or_testing_is_rejected_before_opening_any_file",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\SqlBackupClientConfigurationTest::test_the_diagnostic_command_uses_only_inspection",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#authorization revoked first",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#competing deliveries",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#competing returns",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#exclusive custody",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#inactive identity blocks ordinary return",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#permiso revocation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#prestamo retry",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#received identity blocks deactivation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#return protects used approval",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#return retry",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#trabajador deactivation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationHttpTest::test_auditor_and_revoked_permissions_block_direct_requests",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationHttpTest::test_csrf_rejects_worker_confirmation_without_token",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationHttpTest::test_delivery_forms_validation_edit_cancel_confirmation_history_and_availability",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationHttpTest::test_invalid_nested_input_can_be_redisplayed_without_a_server_error",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationHttpTest::test_loan_return_forms_http_and_source_history",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationHttpTest::test_manager_can_request_and_receive_but_only_admin_approves_regularization",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationPermissionTest::test_defaults_and_repeat_migration_preserve_revocations_unknown_roles_and_people",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationPermissionTest::test_revocation_invalidates_worker_operation_session",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationSchemaTest::test_position_rejects_multiple_sources_and_missing_source",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\Inventory\\WorkerOperationSchemaTest::test_sources_are_exclusive_unique_and_directional_with_composite_membership",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PaginationPresentationTest::test_default_pagination_has_compact_arrows_and_correct_page_boundaries",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PaginationPresentationTest::test_pagination_preserves_search_filters_and_independent_page_parameter",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PaginationPresentationTest::test_single_page_has_no_pagination_controls",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_grants_also_invalidate_old_sessions_and_missing_session_version_is_denied",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_inactive_roles_cannot_login_and_old_sessions_do_not_return_after_reactivation",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_partial_admin_cannot_grant_or_assign_permissions_it_does_not_have",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_permission_change_mid_request_is_rechecked_under_lock",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_revocation_invalidates_all_previous_role_sessions_and_fresh_login_uses_new_permissions",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_role_editing_does_not_implicitly_allow_permission_or_status_changes",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_user_edit_permission_does_not_allow_role_status_or_password_changes",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_worker_mutations_recheck_revocation_during_request",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\PermissionAuthorizationTest::test_worker_permissions_are_independent_for_read_create_edit_and_status",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_audit_failure_rolls_back_the_administrative_change",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_full_access_in_custom_role_counts_as_administrator_and_can_take_over",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_invalid_roles_and_permissions_have_spanish_messages",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_last_full_administrative_role_cannot_be_disabled_or_lose_any_core_permission",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_permissions_are_granted_revoked_and_links_preserved",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_role_creation_editing_and_author_are_audited",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_role_names_have_no_authorization_effect",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_role_status_and_search_preserve_accounts",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_two_administrators_in_same_role_do_not_bypass_last_role_guard",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_unprivileged_roles_cannot_use_any_role_mutation_endpoint",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacManagementTest::test_user_can_be_assigned_a_custom_role_but_cannot_be_activated_under_inactive_role",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_audit_rejects_two_subjects",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_audit_rejects_unknown_subject_foreign_keys",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_audit_requires_exactly_one_existing_subject",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_duplicate_permission_codes_are_rejected_by_mariadb",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_duplicate_role_permission_links_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_initial_catalog_and_role_ids_are_preserved",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_initialization_preserves_unknown_roles_users_workers_and_revocations",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_permissions_with_history_cannot_be_deleted",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_unknown_permission_foreign_keys_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RbacSchemaTest::test_unknown_role_permission_foreign_keys_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RenewalAuditTest::test_renewal_audit_can_be_saved_in_the_existing_schema_without_exposing_secrets",
+      "fuente": "auditoria-corregida.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RolesTest::test_database_rejects_unknown_role_ids",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RolesTest::test_each_active_role_can_open_panel_but_only_admin_manages_users",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RolesTest::test_inactive_administrator_has_no_permissions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RolesTest::test_initial_catalog_and_seeding_do_not_create_users",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\RolesTest::test_non_catalog_role_is_denied_panel_access",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\SimplifiedInterfaceTest::test_active_tools_section_opens_and_read_only_users_cannot_see_creation_shortcuts",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\SimplifiedInterfaceTest::test_nine_sections_and_four_daily_actions_keep_secondary_options_collapsed",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\SimplifiedInterfaceTest::test_product_form_keeps_optional_inputs_and_reopens_on_validation_errors",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\SimplifiedInterfaceTest::test_return_shortcut_selects_only_pending_confirmed_loan_without_writing",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\SimplifiedInterfaceTest::test_secondary_report_filters_preserve_values_and_open_when_applied",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_a_factory_cannot_reuse_the_old_mysql_alias_even_if_it_points_to_testing",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_a_primary_configuration_is_rejected_without_opening_its_pdo",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#0",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#1",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#2",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#3",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#4",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#5",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#6",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_factories_and_artisan_share_only_the_verified_testing_connection",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#0",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#1",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#2",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#3",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#4",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_the_query_hook_blocks_a_harmless_reference_to_the_primary",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#0",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#1",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#2",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#3",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TraduccionEsquemaTest::test_el_archivo_del_cliente_mariadb_conserva_sus_claves_obligatorias",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TraduccionEsquemaTest::test_el_diccionario_coincide_con_las_tablas_y_columnas_reales",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TraduccionEsquemaTest::test_la_migracion_rechaza_una_conexion_principal_antes_de_abrir_pdo",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TraduccionEsquemaTest::test_la_traduccion_conserva_espacios_en_la_contrasena",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\TraduccionEsquemaTest::test_las_claves_historicas_se_leen_en_espanol_sin_reescribir_el_original",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_accounts_are_deactivated_and_reactivated_without_deleting_them",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_administrator_can_create_users_and_password_is_hashed",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_an_administrator_can_be_disabled_when_another_remains_active",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_bootstrap_command_creates_an_administrator_and_refuses_a_second_run",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_bootstrap_command_rejects_weak_credentials",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_last_active_administrator_cannot_be_disabled_or_demoted",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_name_only_changes_preserve_access_and_duplicate_updates_are_rejected",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_non_administrators_cannot_access_any_user_operation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_password_change_invalidates_previous_password_and_sessions",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_permission_changes_during_a_request_are_rechecked_before_mutation",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_update_preserves_blank_password_and_revokes_access_when_role_changes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_user_list_filters_and_paginates_without_losing_filters",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_user_names_are_escaped_and_delete_route_is_absent",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\UserManagementTest::test_validation_rejects_duplicate_email_unknown_roles_and_weak_passwords",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_login_keeps_its_post_csrf_and_autocomplete_contract_without_private_navigation",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#administrador",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#auditor",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#encargado",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_only_the_matching_parameterized_menu_item_is_active#0",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_only_the_matching_parameterized_menu_item_is_active#1",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\VisualNavigationTest::test_revoked_permission_hides_the_link_and_the_server_still_denies_access",
+      "fuente": "regresion-final.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_auditor_can_read_but_cannot_change_workers",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_edits_preserve_creator_and_record_the_actual_editor",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_guests_and_inactive_accounts_cannot_read_or_write_workers",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_lists_search_and_paginate_and_escape_worker_names",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_mariadb_enforces_unique_worker_codes",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_worker_documents_are_optional_but_unique_when_present",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_worker_validation_rejects_duplicates_and_invalid_fields",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_workers_are_registered_without_accounts_and_author_is_server_controlled",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Feature\\WorkerManagementTest::test_workers_can_be_disabled_and_reenabled_without_deletion",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\ExampleTest::test_that_true_is_true",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#0",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#1",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#2",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#3",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#4",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#5",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#6",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_significant_precision_is_not_rounded_to_fit_the_unit",
+      "fuente": "regresion-consolidada.xml"
+    },
+    {
+      "id": "Tests\\Unit\\TechnicalDecimalTest::test_zero_and_trailing_zeros_are_normalized_without_floats",
+      "fuente": "regresion-consolidada.xml"
+    }
+  ]
+}

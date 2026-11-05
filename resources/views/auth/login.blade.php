@@ -15,10 +15,10 @@
         <p>Ingresa con tu cuenta para acceder al sistema de gestión de almacén.</p>
         <form method="POST" action="{{ route('login.store') }}">
             @csrf
-            <label for="email">Correo electrónico</label>
-            <input id="email" name="email" type="email" value="{{ old('email') }}" maxlength="255" autocomplete="username" placeholder="tu.correo@empresa.com" required autofocus>
-            <label for="password">Contraseña</label>
-            <input id="password" name="password" type="password" maxlength="255" autocomplete="current-password" placeholder="Ingresa tu contraseña" required>
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" value="{{ old('correo') }}" maxlength="255" autocomplete="username" placeholder="tu.correo@empresa.com" required autofocus>
+            <label for="contrasena">Contraseña</label>
+            <input id="contrasena" name="contrasena" type="password" maxlength="255" autocomplete="current-password" placeholder="Ingresa tu contraseña" required>
             <button type="submit" class="login-submit">Ingresar <x-icon name="arrow" /></button>
         </form>
         <div class="login-help"><x-icon name="shield" /><span>Si necesitas una cuenta o ayuda para ingresar, contacta al administrador del sistema.</span></div>

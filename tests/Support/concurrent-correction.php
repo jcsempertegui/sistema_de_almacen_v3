@@ -1,13 +1,13 @@
 <?php
 
-use App\Actions\Loans\ConfirmLoan;
-use App\Actions\Roles\SaveRole;
-use App\Models\InventoryCorrection;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\ToolLoan;
-use App\Models\User;
-use App\Services\InventoryCorrections;
+use App\Actions\Prestamos\ConfirmarPrestamo;
+use App\Actions\Roles\GuardarRol;
+use App\Models\CorreccionInventario;
+use App\Models\Permiso;
+use App\Models\PrestamoHerramienta;
+use App\Models\Rol;
+use App\Models\Usuario;
+use App\Services\CorreccionesInventario;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Console\Kernel;
@@ -20,14 +20,14 @@ $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $job = json_decode($argv[1], true, flags: JSON_THROW_ON_ERROR);
-$actor = User::with('role')->findOrFail($job['actor']);
+$actor = Usuario::with('rol')->findOrFail($job['actor']);
 DB::beginTransaction();
-DB::table('stock_positions')->get();
-$class = InventoryCorrection::class;
-$doc = $class::findOrFail($job['document']);
+DB::table('existencias_ubicacion')->get();
+$class = CorreccionInventario::class;
+$doc = $class::findOrFail($job['documento']);
 $wait = 0;
 DB::listen(function ($query) use ($job, &$wait) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+    if (str_contains($query->sql, '`permisos`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
         $wait = max($wait, $query->time);
         echo "LOCKED\n";
         flush();
@@ -46,15 +46,15 @@ flush();
 
 try {
     if ($job['operation'] === 'revoke') {
-        app(InventoryCorrections::class)->transition($actor, $doc, 'revoke', 1, 'Revocación concurrente');
+        app(CorreccionesInventario::class)->transition($actor, $doc, 'revoke', 1, 'Revocación concurrente');
     } elseif ($job['operation'] === 'revoke_role') {
-        app(SaveRole::class)->handle($actor, Role::findOrFail($job['role']), ['permissions' => Permission::where('code', '<>', 'adjustments.execute')->pluck('id')->all()]);
+        app(GuardarRol::class)->handle($actor, Rol::findOrFail($job['rol']), ['permisos' => Permiso::where('codigo', '<>', 'adjustments.execute')->pluck('id')->all()]);
     } elseif ($job['operation'] === 'disable_authorizer_role') {
-        app(SaveRole::class)->handle($actor, Role::findOrFail($job['role']), ['is_active' => false]);
+        app(GuardarRol::class)->handle($actor, Rol::findOrFail($job['rol']), ['activo' => false]);
     } elseif ($job['operation'] === 'reloan') {
-        app(ConfirmLoan::class)->handle($actor, ToolLoan::findOrFail($job['authorization']), 1);
+        app(ConfirmarPrestamo::class)->handle($actor, PrestamoHerramienta::findOrFail($job['authorization']), 1);
     } else {
-        app(InventoryCorrections::class)->execute($actor, $doc, 1);
+        app(CorreccionesInventario::class)->execute($actor, $doc, 1);
     }
     DB::commit();
     echo "RESULT:changed\n";

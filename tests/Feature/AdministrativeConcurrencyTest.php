@@ -11,12 +11,12 @@ class AdministrativeConcurrencyTest extends TestCase
 {
     public function test_simultaneous_deactivation_keeps_one_full_administrator(): void
     {
-        $this->race('user');
+        $this->race('usuario');
     }
 
     public function test_simultaneous_role_revocation_keeps_one_full_administrator(): void
     {
-        $this->race('role');
+        $this->race('rol');
     }
 
     private function race(string $mode): void
@@ -26,29 +26,29 @@ class AdministrativeConcurrencyTest extends TestCase
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         // Independent processes require committed fixtures, invisible inside
         // the default transaction. Remove ONLY IDs created by this test.
-        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn());
+        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM usuarios')->fetchColumn());
         $roles = [];
-        $users = [];
+        $usuarios = [];
         $processes = [];
         $streams = [];
         try {
             $nonce = bin2hex(random_bytes(8));
             for ($i = 0; $i < 2; $i++) {
-                $statement = $pdo->prepare('INSERT INTO roles (code, name, is_active, permissions_version, created_at, updated_at) VALUES (?, ?, 1, 1, NOW(), NOW())');
+                $statement = $pdo->prepare('INSERT INTO roles (codigo, nombre, activo, version_permisos, fecha_creacion, fecha_actualizacion) VALUES (?, ?, 1, 1, NOW(), NOW())');
                 $statement->execute(['race_'.$nonce.'_'.$i, 'Prueba concurrente']);
                 $roles[] = $roleId = (int) $pdo->lastInsertId();
-                $statement = $pdo->prepare('INSERT INTO permission_role (role_id, permission_id, is_active, created_at, updated_at) SELECT ?, id, 1, NOW(), NOW() FROM permissions');
+                $statement = $pdo->prepare('INSERT INTO permiso_rol (rol_id, permiso_id, activo, fecha_creacion, fecha_actualizacion) SELECT ?, id, 1, NOW(), NOW() FROM permisos');
                 $statement->execute([$roleId]);
-                $statement = $pdo->prepare('INSERT INTO users (name, email, password, role_id, is_active, session_version, created_at, updated_at) VALUES (?, ?, ?, ?, 1, 1, NOW(), NOW())');
+                $statement = $pdo->prepare('INSERT INTO usuarios (nombre, correo, contrasena, rol_id, activo, version_sesion, fecha_creacion, fecha_actualizacion) VALUES (?, ?, ?, ?, 1, 1, NOW(), NOW())');
                 $statement->execute(['Cuenta de prueba', $nonce.'_'.$i.'@example.test', password_hash('ClaveSoloPruebas2026!', PASSWORD_BCRYPT, ['cost' => 4]), $roleId]);
-                $users[] = (int) $pdo->lastInsertId();
+                $usuarios[] = (int) $pdo->lastInsertId();
             }
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
             $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
-            foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
-                $env[$name] = $_ENV[$name];
+            foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $nombre) {
+                $env[$nombre] = $_ENV[$nombre];
             }
-            foreach ($users as $id) {
+            foreach ($usuarios as $id) {
                 $stream = new InputStream;
                 $process = new Process([PHP_BINARY, base_path('tests/Support/concurrent-administration.php'), (string) $id, $mode], base_path(), $env, $stream, 30);
                 $process->start();
@@ -97,15 +97,15 @@ class AdministrativeConcurrencyTest extends TestCase
             sort($results);
             $this->assertSame(['changed', 'protected'], $results);
             $this->assertGreaterThanOrEqual(100, max($waits), 'Una conexión debe esperar el bloqueo de la otra.');
-            if ($mode === 'user') {
-                $this->assertSame(1, (int) $pdo->query('SELECT COUNT(*) FROM users WHERE is_active = 1')->fetchColumn());
+            if ($mode === 'usuario') {
+                $this->assertSame(1, (int) $pdo->query('SELECT COUNT(*) FROM usuarios WHERE activo = 1')->fetchColumn());
             } else {
-                $statement = $pdo->prepare("SELECT COUNT(*) FROM permission_role pr JOIN permissions p ON p.id = pr.permission_id WHERE pr.role_id IN (?, ?) AND pr.is_active = 1 AND p.code = 'users.update'");
+                $statement = $pdo->prepare("SELECT COUNT(*) FROM permiso_rol pr JOIN permisos p ON p.id = pr.permiso_id WHERE pr.rol_id IN (?, ?) AND pr.activo = 1 AND p.codigo = 'users.update'");
                 $statement->execute($roles);
                 $this->assertSame(1, (int) $statement->fetchColumn());
             }
-            $statement = $pdo->prepare('SELECT COUNT(*) FROM administrative_audit_logs WHERE actor_id IN (?, ?)');
-            $statement->execute($users);
+            $statement = $pdo->prepare('SELECT COUNT(*) FROM registros_auditoria_administrativa WHERE actor_id IN (?, ?)');
+            $statement->execute($usuarios);
             $this->assertSame(1, (int) $statement->fetchColumn());
         } finally {
             foreach ($processes as $process) {
@@ -114,18 +114,18 @@ class AdministrativeConcurrencyTest extends TestCase
                 }
             }
             foreach ($roles as $roleId) {
-                $statement = $pdo->prepare('UPDATE roles SET created_by = NULL, updated_by = NULL WHERE id = ?');
+                $statement = $pdo->prepare('UPDATE roles SET creado_por = NULL, modificado_por = NULL WHERE id = ?');
                 $statement->execute([$roleId]);
-                $statement = $pdo->prepare('DELETE FROM administrative_audit_logs WHERE role_id = ? OR user_id IN (SELECT id FROM users WHERE role_id = ?) OR actor_id IN (SELECT id FROM users WHERE role_id = ?)');
+                $statement = $pdo->prepare('DELETE FROM registros_auditoria_administrativa WHERE rol_id = ? OR usuario_id IN (SELECT id FROM usuarios WHERE rol_id = ?) OR actor_id IN (SELECT id FROM usuarios WHERE rol_id = ?)');
                 $statement->execute([$roleId, $roleId, $roleId]);
-                $statement = $pdo->prepare('DELETE FROM users WHERE role_id = ?');
+                $statement = $pdo->prepare('DELETE FROM usuarios WHERE rol_id = ?');
                 $statement->execute([$roleId]);
-                $statement = $pdo->prepare('DELETE FROM permission_role WHERE role_id = ?');
+                $statement = $pdo->prepare('DELETE FROM permiso_rol WHERE rol_id = ?');
                 $statement->execute([$roleId]);
                 $statement = $pdo->prepare('DELETE FROM roles WHERE id = ?');
                 $statement->execute([$roleId]);
             }
         }
-        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn());
+        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM usuarios')->fetchColumn());
     }
 }

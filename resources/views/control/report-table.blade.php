@@ -7,7 +7,7 @@
         @foreach($fields as $field)
             @if($field !== 'unidad' && ($row->$field ?? null) !== null && ($row->$field ?? '') !== '')
                 @php($value = $catalog->cell($field, $row->$field))
-                @php($documentUrl = in_array($field, ['documento', 'prestamo']) ? $catalog->documentUrl($value, $documentPermissions, $row->tipo ?? $row->_correction_kind ?? null) : null)
+                @php($documentUrl = in_array($field, ['documento', 'prestamo']) ? $catalog->documentUrl($value, $documentPermissions, $row->tipo ?? $row->_tipo_correccion ?? null) : null)
                 <div @class(['report-cell-value', 'report-cell-primary' => $loop->first, 'report-cell-number' => in_array($field, ['cantidad', 'saldo', 'conteo', 'saldo_observado'])])>
                     @if(!$loop->first)<span class="report-cell-label">{{ $columns[$field] }}:</span>@endif
                     @if($documentUrl)<a href="{{ $documentUrl }}">{{ $value }}</a>@elseif(in_array($field, ['estado', 'situacion', 'sentido']))<span @class(['report-badge', 'report-badge-alert' => $value === 'Vencido', 'report-badge-positive' => in_array($value, ['Confirmado', 'Devuelto', 'Ingreso'])])>{{ $value }}</span>@else<span>{{ $value }}</span>@endif

@@ -2,11 +2,11 @@
 
 namespace Tests\Support;
 
-use App\Actions\Catalog\SaveProduct;
-use App\Models\Category;
-use App\Models\MeasurementUnit;
-use App\Models\Product;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarProducto;
+use App\Models\Categoria;
+use App\Models\Producto;
+use App\Models\UnidadMedida;
+use App\Models\Usuario;
 
 trait CreatesProductCatalog
 {
@@ -14,16 +14,16 @@ trait CreatesProductCatalog
 
     private function productData(array $changes = []): array
     {
-        return array_replace(['internal_code' => 'P-'.strtoupper(bin2hex(random_bytes(4))), 'name' => 'Producto técnico', 'description' => null, 'category_id' => Category::factory()->create()->id, 'measurement_unit_id' => MeasurementUnit::factory()->create()->id, 'brand' => null, 'manufacturer_reference' => null, 'control_mode' => 'quantity', 'is_loanable' => 0, 'is_active' => 1, 'values' => []], $changes);
+        return array_replace(['codigo_interno' => 'P-'.strtoupper(bin2hex(random_bytes(4))), 'nombre' => 'Producto técnico', 'descripcion' => null, 'categoria_id' => Categoria::factory()->create()->id, 'unidad_medida_id' => UnidadMedida::factory()->create()->id, 'marca' => null, 'referencia_fabricante' => null, 'modo_control' => 'quantity', 'prestable' => 0, 'activo' => 1, 'values' => []], $changes);
     }
 
-    private function productPayload(Product $product, array $changes = []): array
+    private function productPayload(Producto $producto, array $changes = []): array
     {
-        return array_replace(array_intersect_key($product->getAttributes(), array_flip($product->getFillable())), ['lock_version' => $product->lock_version, 'values' => []], $changes);
+        return array_replace(array_intersect_key($producto->getAttributes(), array_flip($producto->getFillable())), ['version_bloqueo' => $producto->version_bloqueo, 'values' => []], $changes);
     }
 
-    private function savedProduct(User $actor, array $data = []): Product
+    private function savedProduct(Usuario $actor, array $data = []): Producto
     {
-        return app(SaveProduct::class)->handle($actor, null, $this->productData($data));
+        return app(GuardarProducto::class)->handle($actor, null, $this->productData($data));
     }
 }

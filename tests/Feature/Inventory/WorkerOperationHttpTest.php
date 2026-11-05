@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Inventory;
 
-use App\Actions\Loans\ConfirmLoan;
-use App\Actions\Loans\SaveLoan;
-use App\Models\MaterialDelivery;
-use App\Models\ReturnRegularizationAuthorization;
-use App\Models\ToolReturn;
-use App\Models\User;
-use App\Models\Worker;
+use App\Actions\Prestamos\ConfirmarPrestamo;
+use App\Actions\Prestamos\GuardarPrestamo;
+use App\Models\AutorizacionRegularizacionDevolucion;
+use App\Models\DevolucionHerramienta;
+use App\Models\EntregaMaterial;
+use App\Models\Trabajador;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\DB;
 use Tests\Support\CreatesInventory;
 use Tests\TestCase;
@@ -21,76 +21,76 @@ class WorkerOperationHttpTest extends TestCase
     {
         $c = $this->inventoryContext('individual');
         $this->signIn($c['actor']);
-        $url = route('worker-operations.create', 'deliveries');
-        $this->from($url)->post(route('worker-operations.store', 'deliveries'), ['worker_id' => ['invalid'], 'document_date' => ['invalid'], 'notes' => ['invalid'], 'lines' => 'invalid', 'expected_line_count' => 1])->assertSessionHasErrors();
+        $url = route('operaciones-trabajadores.create', 'deliveries');
+        $this->from($url)->post(route('operaciones-trabajadores.store', 'deliveries'), ['trabajador_id' => ['invalid'], 'fecha_documento' => ['invalid'], 'observaciones' => ['invalid'], 'lineas' => 'invalid', 'expected_line_count' => 1])->assertSessionHasErrors();
         $this->get($url)->assertOk()->assertSee('Guardar borrador');
-        $data = ['worker_id' => Worker::factory()->create()->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['product_id' => $c['product']->id, 'location_id' => $c['location']->id, 'quantity' => '1', 'unit_ids' => 'invalid']]];
-        $this->from($url)->post(route('worker-operations.store', 'deliveries'), $data)->assertSessionHasErrors();
+        $data = ['trabajador_id' => Trabajador::factory()->create()->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['producto_id' => $c['producto']->id, 'ubicacion_id' => $c['ubicacion']->id, 'cantidad' => '1', 'unit_ids' => 'invalid']]];
+        $this->from($url)->post(route('operaciones-trabajadores.store', 'deliveries'), $data)->assertSessionHasErrors();
         $this->get($url)->assertOk();
         $data['expected_line_count'] = 2;
-        $data['lines'][0]['unit_ids'] = [];
-        $data['lines'][2] = $data['lines'][0];
-        $data['lines'][2]['quantity'] = '0';
-        $this->from($url)->post(route('worker-operations.store', 'deliveries'), $data)->assertSessionHasErrors();
-        $this->get($url)->assertOk()->assertSee('lines[1][quantity]', false);
-        $this->assertDatabaseCount('material_deliveries', 0);
+        $data['lineas'][0]['unit_ids'] = [];
+        $data['lineas'][2] = $data['lineas'][0];
+        $data['lineas'][2]['cantidad'] = '0';
+        $this->from($url)->post(route('operaciones-trabajadores.store', 'deliveries'), $data)->assertSessionHasErrors();
+        $this->get($url)->assertOk()->assertSee('lineas[1][cantidad]', false);
+        $this->assertDatabaseCount('entregas_materiales', 0);
     }
 
     public function test_delivery_forms_validation_edit_cancel_confirmation_history_and_availability(): void
     {
         $c = $this->inventoryContext();
         $this->postInventory($c, 'receipt', '5');
-        $worker = Worker::factory()->create();
+        $trabajador = Trabajador::factory()->create();
         $this->signIn($c['actor']);
-        $this->get(route('worker-operations.create', 'deliveries'))->assertOk()->assertSee('Guardar borrador');
-        $data = ['worker_id' => $worker->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['product_id' => $c['product']->id, 'location_id' => $c['location']->id, 'quantity' => '2']]];
-        $this->post(route('worker-operations.store', 'deliveries'), $data)->assertSessionHasNoErrors();
-        $doc = MaterialDelivery::firstOrFail();
-        $this->get(route('worker-operations.edit', ['deliveries', $doc->id]))->assertOk();
-        $this->get(route('worker-operations.show', ['deliveries', $doc->id]))->assertOk();
-        $this->post(route('worker-operations.confirm', ['deliveries', $doc->id]), ['lock_version' => 1])->assertSessionHasNoErrors();
-        $this->get(route('movements.index'))->assertOk()->assertSee($doc->code);
+        $this->get(route('operaciones-trabajadores.create', 'deliveries'))->assertOk()->assertSee('Guardar borrador');
+        $data = ['trabajador_id' => $trabajador->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['producto_id' => $c['producto']->id, 'ubicacion_id' => $c['ubicacion']->id, 'cantidad' => '2']]];
+        $this->post(route('operaciones-trabajadores.store', 'deliveries'), $data)->assertSessionHasNoErrors();
+        $doc = EntregaMaterial::firstOrFail();
+        $this->get(route('operaciones-trabajadores.edit', ['deliveries', $doc->id]))->assertOk();
+        $this->get(route('operaciones-trabajadores.show', ['deliveries', $doc->id]))->assertOk();
+        $this->post(route('operaciones-trabajadores.confirm', ['deliveries', $doc->id]), ['version_bloqueo' => 1])->assertSessionHasNoErrors();
+        $this->get(route('movements.index'))->assertOk()->assertSee($doc->codigo);
         $this->get(route('stock.index'))->assertOk();
         $this->get(route('availability.index'))->assertOk()->assertSee('3.000000');
-        $this->get(route('worker-operations.index', 'deliveries'))->assertOk()->assertSee($doc->code);
-        $this->post(route('worker-operations.cancel', ['deliveries', $doc->id]), ['lock_version' => 2, 'reason' => 'No permitido'])->assertStatus(409);
-        $this->post(route('worker-operations.store', 'deliveries'), $data)->assertSessionHasNoErrors();
-        $draft = MaterialDelivery::latest('id')->firstOrFail();
-        $this->post(route('worker-operations.cancel', ['deliveries', $draft->id]), ['lock_version' => 1, 'reason' => 'Prueba de conservación'])->assertSessionHasNoErrors();
-        $this->assertSame('cancelled', $draft->fresh()->status);
+        $this->get(route('operaciones-trabajadores.index', 'deliveries'))->assertOk()->assertSee($doc->codigo);
+        $this->post(route('operaciones-trabajadores.cancel', ['deliveries', $doc->id]), ['version_bloqueo' => 2, 'motivo' => 'No permitido'])->assertStatus(409);
+        $this->post(route('operaciones-trabajadores.store', 'deliveries'), $data)->assertSessionHasNoErrors();
+        $draft = EntregaMaterial::latest('id')->firstOrFail();
+        $this->post(route('operaciones-trabajadores.cancel', ['deliveries', $draft->id]), ['version_bloqueo' => 1, 'motivo' => 'Prueba de conservación'])->assertSessionHasNoErrors();
+        $this->assertSame('cancelled', $draft->fresh()->estado);
     }
 
     public function test_auditor_and_revoked_permissions_block_direct_requests(): void
     {
-        $user = User::factory()->create(['role_id' => 3]);
-        $this->signIn($user);
-        foreach (['deliveries', 'loans', 'returns'] as $kind) {
-            $this->get(route('worker-operations.index', $kind))->assertOk();
-            $this->get(route('worker-operations.create', $kind))->assertForbidden();
-            $this->post(route('worker-operations.store', $kind), [])->assertForbidden();
+        $usuario = Usuario::factory()->create(['rol_id' => 3]);
+        $this->signIn($usuario);
+        foreach (['deliveries', 'loans', 'returns'] as $clase) {
+            $this->get(route('operaciones-trabajadores.index', $clase))->assertOk();
+            $this->get(route('operaciones-trabajadores.create', $clase))->assertForbidden();
+            $this->post(route('operaciones-trabajadores.store', $clase), [])->assertForbidden();
         }
         $this->get(route('availability.index'))->assertOk();
-        $this->assertDatabaseCount('material_deliveries', 0);
+        $this->assertDatabaseCount('entregas_materiales', 0);
     }
 
     public function test_loan_return_forms_http_and_source_history(): void
     {
         $c = $this->inventoryContext('individual');
-        $c['product']->update(['is_loanable' => true]);
+        $c['producto']->update(['prestable' => true]);
         $this->postInventory($c, 'receipt', '1');
         $this->signIn($c['actor']);
-        $loan = app(SaveLoan::class)->handle($c['actor'], null, ['worker_id' => Worker::factory()->create()->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['individual_unit_id' => $c['unit']->id, 'location_id' => $c['location']->id]]]);
-        $loan = app(ConfirmLoan::class)->handle($c['actor'], $loan, 1);
-        $this->get(route('worker-operations.create', 'loans'))->assertOk();
-        $this->get(route('worker-operations.create', 'returns'))->assertOk();
-        $this->get(route('worker-operations.show', ['loans', $loan->id]))->assertOk();
-        $data = ['loan_id' => $loan->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['loan_item_id' => $loan->lines()->first()->id, 'location_id' => $c['location']->id]]];
-        $this->post(route('worker-operations.store', 'returns'), $data)->assertSessionHasNoErrors();
-        $doc = ToolReturn::firstOrFail();
-        $this->get(route('worker-operations.show', ['returns', $doc->id]))->assertOk();
-        $this->post(route('worker-operations.confirm', ['returns', $doc->id]), ['lock_version' => 1])->assertSessionHasNoErrors();
-        $this->get(route('movements.index'))->assertOk()->assertSee($loan->code)->assertSee($doc->code);
-        $this->get(route('availability.index'))->assertOk()->assertSee($c['unit']->identifier);
+        $prestamo = app(GuardarPrestamo::class)->handle($c['actor'], null, ['trabajador_id' => Trabajador::factory()->create()->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['unidad_individual_id' => $c['unidad']->id, 'ubicacion_id' => $c['ubicacion']->id]]]);
+        $prestamo = app(ConfirmarPrestamo::class)->handle($c['actor'], $prestamo, 1);
+        $this->get(route('operaciones-trabajadores.create', 'loans'))->assertOk();
+        $this->get(route('operaciones-trabajadores.create', 'returns'))->assertOk();
+        $this->get(route('operaciones-trabajadores.show', ['loans', $prestamo->id]))->assertOk();
+        $data = ['prestamo_id' => $prestamo->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['item_prestamo_id' => $prestamo->lineas()->first()->id, 'ubicacion_id' => $c['ubicacion']->id]]];
+        $this->post(route('operaciones-trabajadores.store', 'returns'), $data)->assertSessionHasNoErrors();
+        $doc = DevolucionHerramienta::firstOrFail();
+        $this->get(route('operaciones-trabajadores.show', ['returns', $doc->id]))->assertOk();
+        $this->post(route('operaciones-trabajadores.confirm', ['returns', $doc->id]), ['version_bloqueo' => 1])->assertSessionHasNoErrors();
+        $this->get(route('movements.index'))->assertOk()->assertSee($prestamo->codigo)->assertSee($doc->codigo);
+        $this->get(route('availability.index'))->assertOk()->assertSee($c['unidad']->identificador);
     }
 
     public function test_csrf_rejects_worker_confirmation_without_token(): void
@@ -98,33 +98,33 @@ class WorkerOperationHttpTest extends TestCase
         $c = $this->inventoryContext();
         $this->app['env'] = 'local';
         try {
-            $this->signIn($c['actor'])->post(route('worker-operations.confirm', ['deliveries', 1]), ['lock_version' => 1])->assertStatus(419);
+            $this->signIn($c['actor'])->post(route('operaciones-trabajadores.confirm', ['deliveries', 1]), ['version_bloqueo' => 1])->assertStatus(419);
         } finally {
             $this->app['env'] = 'testing';
         }
-        $this->assertDatabaseCount('inventory_movements', 0);
+        $this->assertDatabaseCount('movimientos_inventario', 0);
     }
 
     public function test_manager_can_request_and_receive_but_only_admin_approves_regularization(): void
     {
         $c = $this->inventoryContext('individual');
-        $c['product']->update(['is_loanable' => true]);
+        $c['producto']->update(['prestable' => true]);
         $this->postInventory($c, 'receipt', '1');
-        $manager = User::factory()->create(['role_id' => 2]);
-        $data = ['worker_id' => Worker::factory()->create()->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['individual_unit_id' => $c['unit']->id, 'location_id' => $c['location']->id]]];
-        $loan = app(SaveLoan::class)->handle($manager, null, $data);
-        $loan = app(ConfirmLoan::class)->handle($manager, $loan, 1);
-        DB::table('individual_units')->where('id', $c['unit']->id)->update(['is_active' => false]);
-        $this->signIn($manager)->post(route('worker-operations.store', 'returns'), ['loan_id' => $loan->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['loan_item_id' => $loan->lines()->first()->id, 'location_id' => $c['location']->id]]])->assertSessionHasNoErrors();
-        $doc = ToolReturn::firstOrFail();
-        $item = $doc->lines()->first();
-        $this->post(route('return-regularizations.request', $item), ['lock_version' => 1, 'reason' => 'Recepción física de herramienta inactiva'])->assertSessionHasNoErrors();
-        $auth = ReturnRegularizationAuthorization::firstOrFail();
-        $this->post(route('return-regularizations.decide', [$auth, 'approve']), ['reason' => 'Intento sin permiso'])->assertForbidden();
-        $this->signIn($c['actor'])->post(route('return-regularizations.decide', [$auth, 'approve']), ['reason' => 'Identidad verificada'])->assertSessionHasNoErrors();
-        $this->get(route('worker-operations.show', ['returns', $doc->id]))->assertOk()->assertSee('Aprobada');
-        $this->signIn($manager)->post(route('worker-operations.confirm', ['returns', $doc->id]), ['lock_version' => 1])->assertSessionHasNoErrors();
+        $manager = Usuario::factory()->create(['rol_id' => 2]);
+        $data = ['trabajador_id' => Trabajador::factory()->create()->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['unidad_individual_id' => $c['unidad']->id, 'ubicacion_id' => $c['ubicacion']->id]]];
+        $prestamo = app(GuardarPrestamo::class)->handle($manager, null, $data);
+        $prestamo = app(ConfirmarPrestamo::class)->handle($manager, $prestamo, 1);
+        DB::table('unidades_individuales')->where('id', $c['unidad']->id)->update(['activo' => false]);
+        $this->signIn($manager)->post(route('operaciones-trabajadores.store', 'returns'), ['prestamo_id' => $prestamo->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['item_prestamo_id' => $prestamo->lineas()->first()->id, 'ubicacion_id' => $c['ubicacion']->id]]])->assertSessionHasNoErrors();
+        $doc = DevolucionHerramienta::firstOrFail();
+        $item = $doc->lineas()->first();
+        $this->post(route('regularizaciones-devolucion.request', $item), ['version_bloqueo' => 1, 'motivo' => 'Recepción física de herramienta inactiva'])->assertSessionHasNoErrors();
+        $auth = AutorizacionRegularizacionDevolucion::firstOrFail();
+        $this->post(route('regularizaciones-devolucion.decide', [$auth, 'approve']), ['motivo' => 'Intento sin permiso'])->assertForbidden();
+        $this->signIn($c['actor'])->post(route('regularizaciones-devolucion.decide', [$auth, 'approve']), ['motivo' => 'Identidad verificada'])->assertSessionHasNoErrors();
+        $this->get(route('operaciones-trabajadores.show', ['returns', $doc->id]))->assertOk()->assertSee('Aprobada');
+        $this->signIn($manager)->post(route('operaciones-trabajadores.confirm', ['returns', $doc->id]), ['version_bloqueo' => 1])->assertSessionHasNoErrors();
         $this->get(route('availability.index'))->assertOk()->assertSee('inactiva');
-        $this->assertDatabaseCount('loan_item_settlements', 1);
+        $this->assertDatabaseCount('cierres_item_prestamo', 1);
     }
 }

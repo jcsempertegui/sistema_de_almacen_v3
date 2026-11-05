@@ -1,8 +1,8 @@
 <?php
 
-use App\Actions\Catalog\SaveLocation;
-use App\Models\Location;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarUbicacion;
+use App\Models\Ubicacion;
+use App\Models\Usuario;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
@@ -13,19 +13,19 @@ $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $job = json_decode($argv[1], true, flags: JSON_THROW_ON_ERROR);
-$actor = User::with('role')->findOrFail($job['actor']);
+$actor = Usuario::with('rol')->findOrFail($job['actor']);
 if ($job['snapshot']) {
     DB::beginTransaction();
-    Location::orderBy('id')->get(); // Force a read view BEFORE either mutation.
+    Ubicacion::orderBy('id')->get(); // Force a read view BEFORE either mutation.
 }
 $targetId = $job['mode'] === 'cycle' && $job['index'] === 1 ? $job['b'] : $job['a'];
 if ($job['mode'] === 'activate' && $job['index'] === 1) {
     $targetId = $job['b'];
 }
-$target = Location::findOrFail($targetId);
+$target = Ubicacion::findOrFail($targetId);
 $wait = 0;
 DB::listen(function ($query) use (&$wait) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+    if (str_contains($query->sql, '`permisos`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
         $wait = max($wait, $query->time);
         usleep(300000);
     }
@@ -37,13 +37,13 @@ if (trim((string) fgets(STDIN)) !== 'GO') {
 }
 try {
     if ($job['mode'] === 'cycle') {
-        app(SaveLocation::class)->handle($actor, $target, ['parent_id' => $job['index'] === 0 ? $job['b'] : $job['a']]);
+        app(GuardarUbicacion::class)->handle($actor, $target, ['padre_id' => $job['index'] === 0 ? $job['b'] : $job['a']]);
     } elseif ($job['index'] === 0) {
-        app(SaveLocation::class)->handle($actor, $target, ['is_active' => false], statusOnly: true);
+        app(GuardarUbicacion::class)->handle($actor, $target, ['activo' => false], statusOnly: true);
     } elseif ($job['mode'] === 'create') {
-        app(SaveLocation::class)->handle($actor, null, ['code' => $job['child_code'], 'name' => 'Hijo concurrente', 'type' => 'cabinet', 'parent_id' => $job['a'], 'is_storable' => true, 'is_active' => true]);
+        app(GuardarUbicacion::class)->handle($actor, null, ['codigo' => $job['child_code'], 'nombre' => 'Hijo concurrente', 'tipo' => 'cabinet', 'padre_id' => $job['a'], 'permite_almacenar' => true, 'activo' => true]);
     } else {
-        app(SaveLocation::class)->handle($actor, $target, ['is_active' => true], statusOnly: true);
+        app(GuardarUbicacion::class)->handle($actor, $target, ['activo' => true], statusOnly: true);
     }
     if ($job['snapshot']) {
         DB::commit();

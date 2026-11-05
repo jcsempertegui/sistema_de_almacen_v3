@@ -2,97 +2,98 @@
 
 namespace Tests\Feature;
 
-use App\Models\AdministrativeAuditLog;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Worker;
-use App\Support\PermissionCatalog;
+use App\Models\Permiso;
+use App\Models\RegistroAuditoriaAdministrativa;
+use App\Models\Rol;
+use App\Models\Trabajador;
+use App\Models\Usuario;
+use App\Support\CatalogoPermisos;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Tests\Support\CargadorMigracionArchivada;
 use Tests\TestCase;
 
 class RbacSchemaTest extends TestCase
 {
     public function test_initial_catalog_and_role_ids_are_preserved(): void
     {
-        $this->assertSame([1, 2, 3], Role::whereIn('code', array_keys(Role::LABELS))->orderBy('id')->pluck('id')->all());
-        $this->assertDatabaseCount('permissions', count(PermissionCatalog::LABELS));
-        $this->assertCount(count(PermissionCatalog::LABELS), Role::where('code', Role::ADMINISTRATOR)->firstOrFail()->assignedPermissionCodes());
-        $this->assertCount(96, Role::where('code', Role::WAREHOUSE_MANAGER)->firstOrFail()->assignedPermissionCodes());
-        $this->assertCount(41, Role::where('code', Role::AUDITOR)->firstOrFail()->assignedPermissionCodes());
-        $this->assertDatabaseCount('users', 0);
+        $this->assertSame([1, 2, 3], Rol::whereIn('codigo', array_keys(Rol::LABELS))->orderBy('id')->pluck('id')->all());
+        $this->assertDatabaseCount('permisos', count(CatalogoPermisos::LABELS));
+        $this->assertCount(count(CatalogoPermisos::LABELS), Rol::where('codigo', Rol::ADMINISTRATOR)->firstOrFail()->codigosPermisosAsignados());
+        $this->assertCount(96, Rol::where('codigo', Rol::WAREHOUSE_MANAGER)->firstOrFail()->codigosPermisosAsignados());
+        $this->assertCount(41, Rol::where('codigo', Rol::AUDITOR)->firstOrFail()->codigosPermisosAsignados());
+        $this->assertDatabaseCount('usuarios', 0);
     }
 
     public function test_initialization_preserves_unknown_roles_users_workers_and_revocations(): void
     {
-        $role = Role::create(['code' => 'custom_without_grants', 'name' => 'Rol sin privilegios']);
-        $user = User::factory()->create(['role_id' => $role->id]);
-        $worker = Worker::factory()->create();
-        $worker->forceFill(['created_by' => $user->id, 'updated_by' => $user->id])->save();
-        $userBefore = $user->fresh()->getAttributes();
-        $workerBefore = $worker->fresh()->getAttributes();
-        $admin = Role::where('code', Role::ADMINISTRATOR)->firstOrFail();
-        $permission = Permission::where('code', 'workers.create')->firstOrFail();
-        $admin->permissions()->updateExistingPivot($permission->id, ['is_active' => false]);
-        $auditCount = AdministrativeAuditLog::count();
-        $migration = require database_path('migrations/2026_10_12_000005_initialize_existing_role_permissions.php');
+        $rol = Rol::create(['codigo' => 'custom_without_grants', 'nombre' => 'Rol sin privilegios']);
+        $usuario = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $trabajador = Trabajador::factory()->create();
+        $trabajador->forceFill(['creado_por' => $usuario->id, 'modificado_por' => $usuario->id])->save();
+        $userBefore = $usuario->fresh()->getAttributes();
+        $workerBefore = $trabajador->fresh()->getAttributes();
+        $admin = Rol::where('codigo', Rol::ADMINISTRATOR)->firstOrFail();
+        $permiso = Permiso::where('codigo', 'workers.create')->firstOrFail();
+        $admin->permisos()->updateExistingPivot($permiso->id, ['activo' => false]);
+        $auditCount = RegistroAuditoriaAdministrativa::count();
+        $migration = CargadorMigracionArchivada::cargar(database_path('migrations/2026_10_12_000005_initialize_existing_role_permissions.php'));
         $migration->up();
         $this->seed(DatabaseSeeder::class);
-        $this->assertSame([], $role->assignedPermissionCodes());
-        $this->assertSame($userBefore, $user->fresh()->getAttributes());
-        $this->assertSame($workerBefore, $worker->fresh()->getAttributes());
-        $this->assertNotContains('workers.create', $admin->assignedPermissionCodes());
-        $this->assertSame($auditCount, AdministrativeAuditLog::count());
+        $this->assertSame([], $rol->codigosPermisosAsignados());
+        $this->assertSame($userBefore, $usuario->fresh()->getAttributes());
+        $this->assertSame($workerBefore, $trabajador->fresh()->getAttributes());
+        $this->assertNotContains('workers.create', $admin->codigosPermisosAsignados());
+        $this->assertSame($auditCount, RegistroAuditoriaAdministrativa::count());
     }
 
     public function test_duplicate_permission_codes_are_rejected_by_mariadb(): void
     {
         $this->expectException(QueryException::class);
-        Permission::create(['code' => 'panel.view', 'name' => 'Duplicado']);
+        Permiso::create(['codigo' => 'panel.view', 'nombre' => 'Duplicado']);
     }
 
     public function test_duplicate_role_permission_links_are_rejected(): void
     {
         $this->expectException(QueryException::class);
-        DB::table('permission_role')->insert(['role_id' => 1, 'permission_id' => Permission::where('code', 'panel.view')->value('id'), 'is_active' => true]);
+        DB::table('permiso_rol')->insert(['rol_id' => 1, 'permiso_id' => Permiso::where('codigo', 'panel.view')->value('id'), 'activo' => true]);
     }
 
     public function test_unknown_permission_foreign_keys_are_rejected(): void
     {
         $this->expectException(QueryException::class);
-        DB::table('permission_role')->insert(['role_id' => 1, 'permission_id' => 999999, 'is_active' => true]);
+        DB::table('permiso_rol')->insert(['rol_id' => 1, 'permiso_id' => 999999, 'activo' => true]);
     }
 
     public function test_audit_requires_exactly_one_existing_subject(): void
     {
         $this->expectException(QueryException::class);
-        DB::table('administrative_audit_logs')->insert(['action' => 'invalid', 'origin' => 'test', 'after_data' => '{}']);
+        DB::table('registros_auditoria_administrativa')->insert(['accion' => 'invalid', 'origen' => 'test', 'datos_posteriores' => '{}']);
     }
 
     public function test_unknown_role_permission_foreign_keys_are_rejected(): void
     {
         $this->expectException(QueryException::class);
-        DB::table('permission_role')->insert(['role_id' => 999999, 'permission_id' => Permission::firstOrFail()->id, 'is_active' => true]);
+        DB::table('permiso_rol')->insert(['rol_id' => 999999, 'permiso_id' => Permiso::firstOrFail()->id, 'activo' => true]);
     }
 
     public function test_permissions_with_history_cannot_be_deleted(): void
     {
         $this->expectException(QueryException::class);
-        DB::table('permissions')->where('code', 'panel.view')->delete();
+        DB::table('permisos')->where('codigo', 'panel.view')->delete();
     }
 
     public function test_audit_rejects_unknown_subject_foreign_keys(): void
     {
         $this->expectException(QueryException::class);
-        DB::table('administrative_audit_logs')->insert(['role_id' => 999999, 'action' => 'invalid', 'origin' => 'test', 'after_data' => '{}']);
+        DB::table('registros_auditoria_administrativa')->insert(['rol_id' => 999999, 'accion' => 'invalid', 'origen' => 'test', 'datos_posteriores' => '{}']);
     }
 
     public function test_audit_rejects_two_subjects(): void
     {
-        $user = User::factory()->create(['role_id' => 1]);
+        $usuario = Usuario::factory()->create(['rol_id' => 1]);
         $this->expectException(QueryException::class);
-        DB::table('administrative_audit_logs')->insert(['role_id' => 1, 'user_id' => $user->id, 'action' => 'invalid', 'origin' => 'test', 'after_data' => '{}']);
+        DB::table('registros_auditoria_administrativa')->insert(['rol_id' => 1, 'usuario_id' => $usuario->id, 'accion' => 'invalid', 'origen' => 'test', 'datos_posteriores' => '{}']);
     }
 }

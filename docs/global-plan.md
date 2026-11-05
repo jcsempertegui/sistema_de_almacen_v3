@@ -2,6 +2,8 @@
 
 Fecha de revisión: 20 de octubre de 2026, America/La_Paz.
 
+Actualización de mantenimiento — 2 de noviembre de 2026: se autorizó y aplicó la traducción del esquema y las clases propias al español, además del reemplazo de la simulación anterior por un año nuevo con 116 productos. La principal tiene ahora 53 tablas y 44 migraciones, sin pendientes, con 123 permisos y 260 asignaciones. Se mantienen los cinco sprints; esta adaptación no crea un sexto sprint ni modifica las evidencias históricas de los lotes 13–15. Véase el [informe de renovación](renovacion-espanol-2026-11-02.md). Las reservas de aceptación humana y revisión académica siguen siendo independientes.
+
 Estado: planificación general con avances aprobados y verificados por etapas. La distribución global debe contrastarse con la planificación académica existente, si la hubiera. Publicar este documento no autoriza implementar las funcionalidades pendientes.
 
 Validación de cierre del 19 de octubre: evidencia histórica de 315 pruebas/2.409 aserciones y correctivo UI-S2-02 con 39 pruebas/306 aserciones, más recorridos asistidos. El usuario declaró aceptación funcional para avanzar, con reservas de evidencia humana conservadas en la [aceptación](sprint-2-acceptance.md) y el [guion personal](sprint-2-human-acceptance.md). Después se publicó el Sprint 3 y el usuario autorizó y aceptó su despliegue: dos migraciones aplicadas en lote 13, con respaldo actual y restauración de ensayo. Véase [despliegue y aceptación declarada](sprint-3-deployment.md).

@@ -1,0 +1,11 @@
+{
+  "2026_10_12_000005_initialize_existing_role_permissions.php": "54ae0b4df3ba7c19f8c40970cea2f291f0bd8fdc37ca7ab36cb7f5f5735fdbb0",
+  "2026_10_13_000003_add_category_and_measurement_unit_permissions.php": "bc56b3bde37c9ba20b962a0cd6e58ea88a4c971456b2c5bec85038f92b54990a",
+  "2026_10_14_000003_add_attribute_permissions.php": "f6485db57e17731a62569fd31e8252ae04e8f1500dfbce8a1794c5adafa1b896",
+  "2026_10_14_000005_add_location_permissions.php": "60b78cf26d6a488a7861bed9e3e6a5f10419119c587af021c7e008e2f18f1868",
+  "2026_10_15_000005_add_product_permissions.php": "8728468c92269567db8333bb4770366a3844ecac5bb2ee5d1db5cfa08d2cbdf7",
+  "2026_10_18_000002_add_individual_unit_permissions.php": "f5d82926d4f40f5f6277ec55477c3402c695fad7fedbe68667620120c5f3ac19",
+  "2026_10_19_000002_add_inventory_permissions.php": "c496b2f5f1acf8b9022167ada601cc4e3a3e2ca7e7cafb0ee4b464881286966f",
+  "2026_10_19_000008_add_worker_operation_permissions.php": "7b54189967ea59e3e0b923ecdc17141817ab457ca17c5d2c827801b947c2be7b",
+  "2026_10_20_000005_add_control_permissions.php": "df4bf798d6e6feaaabecacd72ecaec33699f58f064a75a4267c7677be586cac2"
+}

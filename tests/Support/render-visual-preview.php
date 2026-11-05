@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Category;
-use App\Models\MeasurementUnit;
-use App\Models\Product;
-use App\Models\User;
-use App\Services\DashboardCharts;
+use App\Models\Categoria;
+use App\Models\Producto;
+use App\Models\UnidadMedida;
+use App\Models\Usuario;
+use App\Services\GraficasPanel;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Http\Request;
@@ -31,27 +31,27 @@ foreach (['css/sga.css', 'js/sga-ui.js', 'images/confipetrol.png'] as $asset) {
 }
 $db->beginTransaction();
 try {
-    $user = User::factory()->create(['role_id' => 1, 'name' => 'Operador de demostración', 'email' => 'visual@example.test']);
-    auth()->setUser($user);
+    $usuario = Usuario::factory()->create(['rol_id' => 1, 'nombre' => 'Operador de demostración', 'correo' => 'visual@example.test']);
+    auth()->setUser($usuario);
     $request = Request::create('http://127.0.0.1:8010/panel.html');
     $dashboardRoute = app('router')->getRoutes()->getByName('dashboard')->bind($request);
     $request->setRouteResolver(fn () => $dashboardRoute);
     $app->instance('request', $request);
     app('url')->setRequest($request);
     $errors = new ViewErrorBag;
-    $charts = app(DashboardCharts::class)->forUser($user);
-    file_put_contents($directory.'/panel.html', view('dashboard', compact('errors', 'charts'))->render());
-    $category = Category::factory()->create(['name' => 'Herramientas y materiales']);
-    $unit = MeasurementUnit::factory()->create(['name' => 'Unidad', 'symbol' => 'und']);
-    foreach (['Llave combinada 24 mm', 'Guantes de seguridad', 'Válvula de compuerta'] as $index => $name) {
-        Product::factory()->create(['name' => $name, 'internal_code' => 'VISUAL-'.($index + 1), 'category_id' => $category->id, 'measurement_unit_id' => $unit->id]);
+    $charts = app(GraficasPanel::class)->paraUsuario($usuario);
+    file_put_contents($directory.'/panel.html', view('panel', compact('errors', 'charts'))->render());
+    $categoria = Categoria::factory()->create(['nombre' => 'Herramientas y materiales']);
+    $unidad = UnidadMedida::factory()->create(['nombre' => 'Unidad', 'simbolo' => 'und']);
+    foreach (['Llave combinada 24 mm', 'Guantes de seguridad', 'Válvula de compuerta'] as $index => $nombre) {
+        Producto::factory()->create(['nombre' => $nombre, 'codigo_interno' => 'VISUAL-'.($index + 1), 'categoria_id' => $categoria->id, 'unidad_medida_id' => $unidad->id]);
     }
-    $productsRoute = app('router')->getRoutes()->getByName('products.index')->bind($request);
+    $productsRoute = app('router')->getRoutes()->getByName('productos.index')->bind($request);
     $request->setRouteResolver(fn () => $productsRoute);
-    $products = Product::with(['category', 'measurementUnit'])->paginate(20);
-    $categories = Category::all();
-    $units = MeasurementUnit::all();
-    file_put_contents($directory.'/productos.html', view('catalog.products.index', compact('errors', 'products', 'categories', 'units'))->render());
+    $productos = Producto::with(['categoria', 'unidadMedida'])->paginate(20);
+    $categorias = Categoria::all();
+    $unidades = UnidadMedida::all();
+    file_put_contents($directory.'/productos.html', view('catalogo.productos.index', compact('errors', 'productos', 'categorias', 'unidades'))->render());
     auth()->forgetGuards();
     file_put_contents($directory.'/login.html', view('auth.login', compact('errors'))->render());
     echo json_encode(['connection' => $db->getName(), 'database' => $db->getDatabaseName(), 'static_preview_directory' => $directory, 'fixtures' => 'rolled back in finally', 'pages' => ['login.html', 'panel.html', 'productos.html']], JSON_THROW_ON_ERROR).PHP_EOL;

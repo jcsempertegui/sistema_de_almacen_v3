@@ -2,13 +2,14 @@
 
 namespace Tests\Feature\Catalog;
 
-use App\Actions\Roles\SaveRole;
-use App\Models\AdministrativeAuditLog;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Actions\Roles\GuardarRol;
+use App\Models\Permiso;
+use App\Models\RegistroAuditoriaAdministrativa;
+use App\Models\Rol;
+use App\Models\Usuario;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\Facades\DB;
+use Tests\Support\CargadorMigracionArchivada;
 use Tests\TestCase;
 
 class CatalogPermissionInitializationTest extends TestCase
@@ -17,76 +18,76 @@ class CatalogPermissionInitializationTest extends TestCase
     {
         $codes = ['categories.view', 'categories.create', 'categories.update', 'categories.change_status', 'measurement_units.view', 'measurement_units.create', 'measurement_units.update', 'measurement_units.change_status'];
         foreach ([1, 2] as $id) {
-            $this->assertSame([], array_diff($codes, Role::findOrFail($id)->assignedPermissionCodes()));
+            $this->assertSame([], array_diff($codes, Rol::findOrFail($id)->codigosPermisosAsignados()));
         }
-        $auditor = Role::findOrFail(3)->assignedPermissionCodes();
+        $auditor = Rol::findOrFail(3)->codigosPermisosAsignados();
         $this->assertContains('categories.view', $auditor);
         $this->assertContains('measurement_units.view', $auditor);
-        foreach (array_diff($codes, ['categories.view', 'measurement_units.view']) as $code) {
-            $this->assertNotContains($code, $auditor);
+        foreach (array_diff($codes, ['categories.view', 'measurement_units.view']) as $codigo) {
+            $this->assertNotContains($codigo, $auditor);
         }
-        $this->assertDatabaseCount('permissions', 123);
+        $this->assertDatabaseCount('permisos', 123);
     }
 
     public function test_repeat_initialization_preserves_revocations_unknown_roles_users_and_audit(): void
     {
-        $admin = User::factory()->create(['role_id' => 1]);
-        $manager = Role::findOrFail(2);
-        $codes = array_diff($manager->assignedPermissionCodes(), ['categories.create', 'measurement_units.update']);
-        app(SaveRole::class)->handle($admin, $manager, ['permissions' => Permission::whereIn('code', $codes)->pluck('id')->all()]);
-        $unknown = Role::create(['code' => 'desconocido', 'name' => 'Administrador']);
-        $user = User::factory()->create(['role_id' => $unknown->id]);
-        $userBefore = $user->fresh()->getAttributes();
-        $version = $manager->fresh()->permissions_version;
-        $logs = AdministrativeAuditLog::count();
-        $links = DB::table('permission_role')->count();
-        $migration = require database_path('migrations/2026_10_13_000003_add_category_and_measurement_unit_permissions.php');
+        $admin = Usuario::factory()->create(['rol_id' => 1]);
+        $manager = Rol::findOrFail(2);
+        $codes = array_diff($manager->codigosPermisosAsignados(), ['categories.create', 'measurement_units.update']);
+        app(GuardarRol::class)->handle($admin, $manager, ['permisos' => Permiso::whereIn('codigo', $codes)->pluck('id')->all()]);
+        $unknown = Rol::create(['codigo' => 'desconocido', 'nombre' => 'Administrador']);
+        $usuario = Usuario::factory()->create(['rol_id' => $unknown->id]);
+        $userBefore = $usuario->fresh()->getAttributes();
+        $version = $manager->fresh()->version_permisos;
+        $logs = RegistroAuditoriaAdministrativa::count();
+        $links = DB::table('permiso_rol')->count();
+        $migration = CargadorMigracionArchivada::cargar(database_path('migrations/2026_10_13_000003_add_category_and_measurement_unit_permissions.php'));
         $migration->up();
         $migration->up();
         $this->seed(DatabaseSeeder::class);
-        $this->assertNotContains('categories.create', $manager->fresh()->assignedPermissionCodes());
-        $this->assertNotContains('measurement_units.update', $manager->fresh()->assignedPermissionCodes());
-        $this->assertSame($version, $manager->fresh()->permissions_version);
-        $this->assertSame($logs, AdministrativeAuditLog::count());
-        $this->assertSame($links, DB::table('permission_role')->count());
-        $this->assertSame([], $unknown->assignedPermissionCodes());
-        $this->assertSame($userBefore, $user->fresh()->getAttributes());
+        $this->assertNotContains('categories.create', $manager->fresh()->codigosPermisosAsignados());
+        $this->assertNotContains('measurement_units.update', $manager->fresh()->codigosPermisosAsignados());
+        $this->assertSame($version, $manager->fresh()->version_permisos);
+        $this->assertSame($logs, RegistroAuditoriaAdministrativa::count());
+        $this->assertSame($links, DB::table('permiso_rol')->count());
+        $this->assertSame([], $unknown->codigosPermisosAsignados());
+        $this->assertSame($userBefore, $usuario->fresh()->getAttributes());
     }
 
     public function test_initialization_of_missing_links_versions_and_audits_only_changed_roles(): void
     {
         // Simulate the pre-rollout state in this rollback-only test transaction.
-        $ids = Permission::where('code', 'like', 'categories.%')->orWhere('code', 'like', 'measurement_units.%')->pluck('id')->all();
-        DB::table('permission_role')->whereIn('permission_id', $ids)->delete();
-        $versions = Role::orderBy('id')->pluck('permissions_version', 'id')->all();
-        $auditCount = AdministrativeAuditLog::count();
-        $migration = require database_path('migrations/2026_10_13_000003_add_category_and_measurement_unit_permissions.php');
+        $ids = Permiso::where('codigo', 'like', 'categories.%')->orWhere('codigo', 'like', 'measurement_units.%')->pluck('id')->all();
+        DB::table('permiso_rol')->whereIn('permiso_id', $ids)->delete();
+        $versions = Rol::orderBy('id')->pluck('version_permisos', 'id')->all();
+        $auditCount = RegistroAuditoriaAdministrativa::count();
+        $migration = CargadorMigracionArchivada::cargar(database_path('migrations/2026_10_13_000003_add_category_and_measurement_unit_permissions.php'));
         $migration->up();
-        foreach (Role::orderBy('id')->get() as $role) {
-            $this->assertSame($versions[$role->id] + 1, $role->permissions_version);
+        foreach (Rol::orderBy('id')->get() as $rol) {
+            $this->assertSame($versions[$rol->id] + 1, $rol->version_permisos);
         }
-        $this->assertSame($auditCount + 3, AdministrativeAuditLog::count());
-        $this->assertDatabaseCount('permission_role', 260);
+        $this->assertSame($auditCount + 3, RegistroAuditoriaAdministrativa::count());
+        $this->assertDatabaseCount('permiso_rol', 260);
         $migration->up();
-        $this->assertSame($auditCount + 3, AdministrativeAuditLog::count());
+        $this->assertSame($auditCount + 3, RegistroAuditoriaAdministrativa::count());
     }
 
     public function test_new_grants_invalidate_existing_sessions_without_touching_other_roles(): void
     {
-        $manager = User::factory()->create(['role_id' => 2]);
+        $manager = Usuario::factory()->create(['rol_id' => 2]);
         $this->signIn($manager);
-        $versions = Role::orderBy('id')->pluck('permissions_version', 'id')->all();
-        $ids = Permission::where('code', 'like', 'categories.%')->orWhere('code', 'like', 'measurement_units.%')->pluck('id')->all();
-        DB::table('permission_role')->where('role_id', 2)->whereIn('permission_id', $ids)->delete();
-        $logs = AdministrativeAuditLog::count();
-        $migration = require database_path('migrations/2026_10_13_000003_add_category_and_measurement_unit_permissions.php');
+        $versions = Rol::orderBy('id')->pluck('version_permisos', 'id')->all();
+        $ids = Permiso::where('codigo', 'like', 'categories.%')->orWhere('codigo', 'like', 'measurement_units.%')->pluck('id')->all();
+        DB::table('permiso_rol')->where('rol_id', 2)->whereIn('permiso_id', $ids)->delete();
+        $logs = RegistroAuditoriaAdministrativa::count();
+        $migration = CargadorMigracionArchivada::cargar(database_path('migrations/2026_10_13_000003_add_category_and_measurement_unit_permissions.php'));
         $migration->up();
-        $this->assertSame($versions[2] + 1, Role::findOrFail(2)->permissions_version);
+        $this->assertSame($versions[2] + 1, Rol::findOrFail(2)->version_permisos);
         foreach ([1, 3] as $id) {
-            $this->assertSame($versions[$id], Role::findOrFail($id)->permissions_version);
+            $this->assertSame($versions[$id], Rol::findOrFail($id)->version_permisos);
         }
-        $this->assertSame($logs + 1, AdministrativeAuditLog::count());
-        $this->getJson(route('categories.index'))->assertUnauthorized();
-        $this->signIn($manager->fresh())->get(route('categories.create'))->assertOk();
+        $this->assertSame($logs + 1, RegistroAuditoriaAdministrativa::count());
+        $this->getJson(route('categorias.index'))->assertUnauthorized();
+        $this->signIn($manager->fresh())->get(route('categorias.create'))->assertOk();
     }
 }

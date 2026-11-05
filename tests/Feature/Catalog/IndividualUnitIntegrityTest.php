@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Catalog;
 
-use App\Models\IndividualUnit;
-use App\Models\Location;
-use App\Models\Product;
-use App\Models\ProductLocation;
-use App\Models\User;
+use App\Models\Producto;
+use App\Models\Ubicacion;
+use App\Models\UbicacionProducto;
+use App\Models\UnidadIndividual;
+use App\Models\Usuario;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -19,59 +19,59 @@ class IndividualUnitIntegrityTest extends TestCase
 
     public static function invalidRows(): array
     {
-        return ['blank id' => [['identifier' => ' ']], 'state' => [['is_active' => 2]], 'version' => [['lock_version' => 0]], 'blank series' => [['serial_number' => ' ']], 'product' => [['product_id' => 999999]], 'location' => [['location_id' => 999999]], 'author' => [['created_by' => 999999]]];
+        return ['blank id' => [['identificador' => ' ']], 'state' => [['activo' => 2]], 'version' => [['version_bloqueo' => 0]], 'blank series' => [['numero_serie' => ' ']], 'producto' => [['producto_id' => 999999]], 'ubicacion' => [['ubicacion_id' => 999999]], 'author' => [['creado_por' => 999999]]];
     }
 
     #[DataProvider('invalidRows')]
     public function test_sql_constraints_reject_invalid_rows(array $changes): void
     {
         $this->expectException(QueryException::class);
-        DB::table('individual_units')->insert(array_replace($this->individualData(), $changes));
+        DB::table('unidades_individuales')->insert(array_replace($this->individualData(), $changes));
     }
 
     public function test_composite_fk_rejects_cross_product_association_on_insert_and_update(): void
     {
-        $product = Product::factory()->create(['control_mode' => 'individual']);
-        $location = Location::factory()->create();
-        ProductLocation::factory()->create(['location_id' => $location->id]);
-        $data = $this->individualData(['product_id' => $product->id, 'location_id' => $location->id]);
+        $producto = Producto::factory()->create(['modo_control' => 'individual']);
+        $ubicacion = Ubicacion::factory()->create();
+        UbicacionProducto::factory()->create(['ubicacion_id' => $ubicacion->id]);
+        $data = $this->individualData(['producto_id' => $producto->id, 'ubicacion_id' => $ubicacion->id]);
         try {
-            DB::table('individual_units')->insert($data);
+            DB::table('unidades_individuales')->insert($data);
             $this->fail('Debe rechazar una pareja que no existe.');
         } catch (QueryException $e) {
             $this->assertSame(1452, $e->errorInfo[1]);
         }
-        $unit = IndividualUnit::factory()->create(['product_id' => $product->id]);
+        $unidad = UnidadIndividual::factory()->create(['producto_id' => $producto->id]);
         $this->expectException(QueryException::class);
-        $unit->update(['location_id' => $location->id]);
+        $unidad->update(['ubicacion_id' => $ubicacion->id]);
     }
 
     public function test_sql_unique_keys_and_restrict_preserve_identity_and_assigned_pair(): void
     {
-        $actor = User::factory()->create(['role_id' => 1]);
-        $product = Product::factory()->create(['control_mode' => 'individual']);
-        $location = Location::factory()->create();
-        $link = ProductLocation::factory()->create(['product_id' => $product->id, 'location_id' => $location->id]);
-        $unit = $this->savedIndividual($actor, ['product_id' => $product->id, 'location_id' => $location->id, 'serial_number' => 'SN', 'is_active' => 0]);
-        foreach (['identifier', 'serial_number'] as $key) {
-            $data = $this->individualData(['product_id' => $product->id, $key => $unit->$key]);
+        $actor = Usuario::factory()->create(['rol_id' => 1]);
+        $producto = Producto::factory()->create(['modo_control' => 'individual']);
+        $ubicacion = Ubicacion::factory()->create();
+        $link = UbicacionProducto::factory()->create(['producto_id' => $producto->id, 'ubicacion_id' => $ubicacion->id]);
+        $unidad = $this->savedIndividual($actor, ['producto_id' => $producto->id, 'ubicacion_id' => $ubicacion->id, 'numero_serie' => 'SN', 'activo' => 0]);
+        foreach (['identificador', 'numero_serie'] as $key) {
+            $data = $this->individualData(['producto_id' => $producto->id, $key => $unidad->$key]);
             try {
-                DB::table('individual_units')->insert($data);
+                DB::table('unidades_individuales')->insert($data);
                 $this->fail('Debe respetar la unicidad.');
             } catch (QueryException $e) {
                 $this->assertSame(1062, $e->errorInfo[1]);
             }
         }
-        foreach ([$link, $product, $location, $actor] as $parent) {
+        foreach ([$link, $producto, $ubicacion, $actor] as $padre) {
             try {
-                $parent->delete();
+                $padre->delete();
                 $this->fail('Debe conservar las referencias.');
             } catch (QueryException $e) {
                 $this->assertSame(1451, $e->errorInfo[1]);
             }
         }
-        $foreignKeys = DB::select("SELECT CONSTRAINT_NAME FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA=DATABASE() AND TABLE_NAME='individual_units' AND DELETE_RULE='RESTRICT' AND UPDATE_RULE='RESTRICT'");
+        $foreignKeys = DB::select("SELECT CONSTRAINT_NAME FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA=DATABASE() AND TABLE_NAME='unidades_individuales' AND DELETE_RULE='RESTRICT' AND UPDATE_RULE='RESTRICT'");
         $this->assertCount(5, $foreignKeys);
-        $this->assertSame(1, DB::table('individual_units')->count());
+        $this->assertSame(1, DB::table('unidades_individuales')->count());
     }
 }

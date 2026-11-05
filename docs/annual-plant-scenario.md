@@ -1,5 +1,9 @@
 # Simulación anual del contrato — Río Grande
 
+## Actualización — 2 de noviembre de 2026
+
+La carga anterior descrita en este informe fue reemplazada expresamente con autorización del propietario. La versión activa utiliza `EscenarioAnualPlanta`, conserva el administrador y la configuración de permisos y contiene 116 productos, 192 unidades individualizadas y 24 trabajadores. El [informe de renovación](renovacion-espanol-2026-11-02.md) registra el nuevo período, respaldo, ensayos, eliminación transaccional autorizada y resultados. Los conteos de 31 productos y 64 unidades que aparecen a continuación pertenecen a la primera carga histórica; no son el estado actual.
+
 ## Autorización y naturaleza de los datos
 
 El usuario solicitó cargar usuarios, trabajadores y artículos con un año de actividad verosímil, para un contrato de provisión de personal en una planta separadora de líquidos. Indicó 20 trabajadores operativos y 4 personas de staff, incluyendo responsable de almacén y referente técnico. Se ofreció un destino independiente; el usuario pidió realizarlo como si fuera real. Se informó que se cargaría en la base local actual, preservando la cuenta existente y registrando expresamente su naturaleza simulada.

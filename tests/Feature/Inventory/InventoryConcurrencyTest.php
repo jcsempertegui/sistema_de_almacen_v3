@@ -22,8 +22,8 @@ class InventoryConcurrencyTest extends TestCase
             'same individual twice' => ['individual', ['confirm', 'confirm']],
             'receipt protects individual' => ['individual', ['confirm', 'disable_unit']],
             'individual disable blocks receipt' => ['individual', ['disable_unit', 'confirm']],
-            'receipt protects product' => ['receipt', ['confirm', 'disable_product']],
-            'product disable blocks receipt' => ['receipt', ['disable_product', 'confirm']],
+            'receipt protects producto' => ['receipt', ['confirm', 'disable_product']],
+            'producto disable blocks receipt' => ['receipt', ['disable_product', 'confirm']],
             'receipt protects pair' => ['receipt', ['confirm', 'disable_pair']],
             'pair disable blocks receipt' => ['receipt', ['disable_pair', 'confirm']],
             'revocation blocks receipt' => ['receipt', ['revoke', 'confirm']],
@@ -39,12 +39,12 @@ class InventoryConcurrencyTest extends TestCase
         $pdo = TestingDatabaseGuard::pdo();
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         $this->assertSame('REPEATABLE-READ', $pdo->query('SELECT @@tx_isolation')->fetchColumn());
-        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn());
+        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM usuarios')->fetchColumn());
         $nonce = bin2hex(random_bytes(7));
-        $code = 'RACE-I-'.$nonce;
+        $codigo = 'RACE-I-'.$nonce;
         $ids = [];
         $roles = [];
-        $users = [];
+        $usuarios = [];
         $documents = [];
         $processes = [];
         $streams = [];
@@ -56,50 +56,50 @@ class InventoryConcurrencyTest extends TestCase
         };
         try {
             for ($i = 0; $i < 2; $i++) {
-                $roles[] = $role = $insert('INSERT INTO roles (code,name,is_active,permissions_version) VALUES (?,?,1,1)', ['inventory_race_'.$nonce.'_'.$i, 'Prueba aislada']);
-                $q = $pdo->prepare('INSERT INTO permission_role (role_id,permission_id,is_active) SELECT ?,id,1 FROM permissions');
-                $q->execute([$role]);
-                $users[] = $insert('INSERT INTO users (name,email,password,role_id,is_active,session_version) VALUES (?,?,?,?,1,1)', ['Prueba', $nonce.'_'.$i.'@example.test', password_hash('Prueba2026!', PASSWORD_BCRYPT, ['cost' => 4]), $role]);
+                $roles[] = $rol = $insert('INSERT INTO roles (codigo,nombre,activo,version_permisos) VALUES (?,?,1,1)', ['inventory_race_'.$nonce.'_'.$i, 'Prueba aislada']);
+                $q = $pdo->prepare('INSERT INTO permiso_rol (rol_id,permiso_id,activo) SELECT ?,id,1 FROM permisos');
+                $q->execute([$rol]);
+                $usuarios[] = $insert('INSERT INTO usuarios (nombre,correo,contrasena,rol_id,activo,version_sesion) VALUES (?,?,?,?,1,1)', ['Prueba', $nonce.'_'.$i.'@example.test', password_hash('Prueba2026!', PASSWORD_BCRYPT, ['cost' => 4]), $rol]);
             }
-            $ids['category'] = $insert('INSERT INTO categories (code,name,is_active) VALUES (?,?,1)', [$code, $code]);
-            $ids['unit'] = $insert("INSERT INTO measurement_units (code,name,symbol,dimension,decimal_places,is_active) VALUES (?,?,?,'count',0,1)", [$code, 'Unidad', $nonce]);
-            $ids['location'] = $insert("INSERT INTO locations (code,name,type,is_active,is_storable) VALUES (?,?,'sector',1,1)", [$code, 'Ubicación']);
+            $ids['categoria'] = $insert('INSERT INTO categorias (codigo,nombre,activo) VALUES (?,?,1)', [$codigo, $codigo]);
+            $ids['unidad'] = $insert("INSERT INTO unidades_medida (codigo,nombre,simbolo,dimension,decimales,activo) VALUES (?,?,?,'count',0,1)", [$codigo, 'Unidad', $nonce]);
+            $ids['ubicacion'] = $insert("INSERT INTO ubicaciones (codigo,nombre,tipo,activo,permite_almacenar) VALUES (?,?,'sector',1,1)", [$codigo, 'Ubicación']);
             $mode = $scenario === 'individual' ? 'individual' : 'quantity';
-            $ids['product'] = $insert('INSERT INTO products (internal_code,name,category_id,measurement_unit_id,control_mode,is_active) VALUES (?,?,?,?,?,1)', [$code, 'Producto', $ids['category'], $ids['unit'], $mode]);
-            $ids['pair'] = $insert('INSERT INTO product_locations (product_id,location_id,is_active) VALUES (?,?,1)', [$ids['product'], $ids['location']]);
+            $ids['producto'] = $insert('INSERT INTO productos (codigo_interno,nombre,categoria_id,unidad_medida_id,modo_control,activo) VALUES (?,?,?,?,?,1)', [$codigo, 'Producto', $ids['categoria'], $ids['unidad'], $mode]);
+            $ids['pair'] = $insert('INSERT INTO ubicaciones_producto (producto_id,ubicacion_id,activo) VALUES (?,?,1)', [$ids['producto'], $ids['ubicacion']]);
             if ($mode === 'individual') {
-                $ids['individual'] = $insert('INSERT INTO individual_units (identifier,product_id,is_active) VALUES (?,?,1)', [$code, $ids['product']]);
+                $ids['individual'] = $insert('INSERT INTO unidades_individuales (identificador,producto_id,activo) VALUES (?,?,1)', [$codigo, $ids['producto']]);
             }
-            $makeDocument = function (string $kind, string $quantity, bool $confirmed = false) use (&$documents, $insert, $pdo, $ids, $users, $mode, $nonce): int {
-                $doc = $insert("INSERT INTO inventory_documents (uuid,kind,status,document_date,cutoff_date,counterparty_id,counterparty_name,created_by,confirmed_by,confirmed_at) VALUES (?,?,?,'2026-10-19','2026-10-18','TEST','Contraparte',?,?,?)", [Str::uuid()->toString(), $kind, $confirmed ? 'confirmed' : 'draft', $users[0], $confirmed ? $users[0] : null, $confirmed ? '2026-10-19 10:00:00' : null]);
+            $makeDocument = function (string $clase, string $cantidad, bool $confirmed = false) use (&$documents, $insert, $pdo, $ids, $usuarios, $mode, $nonce): int {
+                $doc = $insert("INSERT INTO documentos_inventario (uuid,tipo,estado,fecha_documento,fecha_corte,identificacion_contraparte,nombre_contraparte,creado_por,confirmado_por,fecha_confirmacion) VALUES (?,?,?,'2026-10-19','2026-10-18','TEST','Contraparte',?,?,?)", [Str::uuid()->toString(), $clase, $confirmed ? 'confirmed' : 'draft', $usuarios[0], $confirmed ? $usuarios[0] : null, $confirmed ? '2026-10-19 10:00:00' : null]);
                 $documents[] = $doc;
-                $line = $insert('INSERT INTO inventory_document_lines (document_id,line_number,product_id,location_id,quantity,measurement_unit_id,unit_symbol,decimal_places,control_mode) VALUES (?,1,?,?,?,?,?,0,?)', [$doc, $ids['product'], $ids['location'], $quantity, $ids['unit'], $nonce, $mode]);
+                $line = $insert('INSERT INTO lineas_documento_inventario (documento_id,numero_linea,producto_id,ubicacion_id,cantidad,unidad_medida_id,simbolo_unidad,decimales,modo_control) VALUES (?,1,?,?,?,?,?,0,?)', [$doc, $ids['producto'], $ids['ubicacion'], $cantidad, $ids['unidad'], $nonce, $mode]);
                 if (isset($ids['individual'])) {
-                    $q = $pdo->prepare('INSERT INTO inventory_document_line_units (document_line_id,document_id,product_id,individual_unit_id) VALUES (?,?,?,?)');
-                    $q->execute([$line, $doc, $ids['product'], $ids['individual']]);
+                    $q = $pdo->prepare('INSERT INTO unidades_linea_documento (linea_documento_id,documento_id,producto_id,unidad_individual_id) VALUES (?,?,?,?)');
+                    $q->execute([$line, $doc, $ids['producto'], $ids['individual']]);
                 }
                 if ($confirmed) {
-                    $q = $pdo->prepare("INSERT INTO inventory_movements (document_line_id,product_id,location_id,direction,quantity,created_by,posted_at) VALUES (?,?,?,'in',?,?,'2026-10-19 10:00:00')");
-                    $q->execute([$line, $ids['product'], $ids['location'], $quantity, $users[0]]);
+                    $q = $pdo->prepare("INSERT INTO movimientos_inventario (linea_documento_id,producto_id,ubicacion_id,direccion,cantidad,creado_por,fecha_registro) VALUES (?,?,?,'in',?,?,'2026-10-19 10:00:00')");
+                    $q->execute([$line, $ids['producto'], $ids['ubicacion'], $cantidad, $usuarios[0]]);
                 }
 
                 return $doc;
             };
             if ($scenario === 'issue') {
-                $insert('INSERT INTO stock_positions (product_id,location_id,quantity) VALUES (?,?,10)', [$ids['product'], $ids['location']]);
+                $insert('INSERT INTO existencias_ubicacion (producto_id,ubicacion_id,cantidad) VALUES (?,?,10)', [$ids['producto'], $ids['ubicacion']]);
                 $makeDocument('receipt', '10', true);
             }
-            $kind = $scenario === 'opening' ? 'opening' : ($scenario === 'issue' ? 'issue' : 'receipt');
-            $quantity = $mode === 'individual' ? '1' : ($scenario === 'issue' ? '7' : '3');
-            $first = $makeDocument($kind, $quantity);
-            $second = $scenario === 'same' ? $first : $makeDocument($kind, $quantity);
+            $clase = $scenario === 'opening' ? 'opening' : ($scenario === 'issue' ? 'issue' : 'receipt');
+            $cantidad = $mode === 'individual' ? '1' : ($scenario === 'issue' ? '7' : '3');
+            $first = $makeDocument($clase, $cantidad);
+            $second = $scenario === 'same' ? $first : $makeDocument($clase, $cantidad);
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
             $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
-            foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
-                $env[$name] = $_ENV[$name];
+            foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $nombre) {
+                $env[$nombre] = $_ENV[$nombre];
             }
             foreach ($operations as $i => $operation) {
-                $job = ['actor' => $users[$i], 'other_role' => $roles[1], 'document' => $i === 0 ? $first : $second, 'product' => $ids['product'], 'pair' => $ids['pair'], 'unit' => $ids['individual'] ?? null, 'operation' => $operation, 'index' => $i];
+                $job = ['actor' => $usuarios[$i], 'other_role' => $roles[1], 'documento' => $i === 0 ? $first : $second, 'producto' => $ids['producto'], 'pair' => $ids['pair'], 'unidad' => $ids['individual'] ?? null, 'operation' => $operation, 'index' => $i];
                 $stream = new InputStream;
                 $process = new Process([PHP_BINARY, base_path('tests/Support/concurrent-inventory.php'), json_encode($job, JSON_THROW_ON_ERROR)], base_path(), $env, $stream, 90);
                 $process->start();
@@ -146,12 +146,12 @@ class InventoryConcurrencyTest extends TestCase
             }
             preg_match('/LOCK_WAIT:([0-9.]+)/', $processes[1]->getOutput(), $matches);
             $this->assertGreaterThanOrEqual(100, (float) ($matches[1] ?? 0));
-            $q = $pdo->prepare('SELECT COALESCE(SUM(quantity),0) FROM stock_positions WHERE product_id=?');
-            $q->execute([$ids['product']]);
+            $q = $pdo->prepare('SELECT COALESCE(SUM(cantidad),0) FROM existencias_ubicacion WHERE producto_id=?');
+            $q->execute([$ids['producto']]);
             $expected = $operations[0] === 'confirm' ? ($mode === 'individual' ? '1.000000' : '3.000000') : '0.000000';
             $this->assertSame($expected, (string) $q->fetchColumn());
-            $q = $pdo->prepare("SELECT COALESCE(SUM(CASE WHEN direction='in' THEN quantity ELSE -quantity END),0) FROM inventory_movements WHERE product_id=?");
-            $q->execute([$ids['product']]);
+            $q = $pdo->prepare("SELECT COALESCE(SUM(CASE WHEN direccion='in' THEN cantidad ELSE -cantidad END),0) FROM movimientos_inventario WHERE producto_id=?");
+            $q->execute([$ids['producto']]);
             $this->assertSame($expected, (string) $q->fetchColumn());
         } finally {
             foreach ($processes as $process) {
@@ -160,41 +160,41 @@ class InventoryConcurrencyTest extends TestCase
                 }
             }
             // Cleanup only fixtures created here, after verifying the dedicated database.
-            if (isset($ids['product'])) {
-                foreach (['individual_unit_positions', 'inventory_movements', 'initial_stock_products', 'inventory_document_line_units', 'inventory_document_lines', 'stock_positions', 'individual_units', 'product_locations'] as $table) {
-                    $q = $pdo->prepare('DELETE FROM '.$table.' WHERE product_id=?');
-                    $q->execute([$ids['product']]);
+            if (isset($ids['producto'])) {
+                foreach (['posiciones_unidad_individual', 'movimientos_inventario', 'productos_existencia_inicial', 'unidades_linea_documento', 'lineas_documento_inventario', 'existencias_ubicacion', 'unidades_individuales', 'ubicaciones_producto'] as $table) {
+                    $q = $pdo->prepare('DELETE FROM '.$table.' WHERE producto_id=?');
+                    $q->execute([$ids['producto']]);
                 }
-                $q = $pdo->prepare('DELETE FROM products WHERE id=?');
-                $q->execute([$ids['product']]);
+                $q = $pdo->prepare('DELETE FROM productos WHERE id=?');
+                $q->execute([$ids['producto']]);
             }
-            foreach ($documents as $document) {
-                $q = $pdo->prepare('DELETE FROM inventory_documents WHERE id=?');
-                $q->execute([$document]);
+            foreach ($documents as $documento) {
+                $q = $pdo->prepare('DELETE FROM documentos_inventario WHERE id=?');
+                $q->execute([$documento]);
             }
-            foreach (['location' => 'locations', 'category' => 'categories', 'unit' => 'measurement_units'] as $key => $table) {
+            foreach (['ubicacion' => 'ubicaciones', 'categoria' => 'categorias', 'unidad' => 'unidades_medida'] as $key => $table) {
                 if (isset($ids[$key])) {
                     $q = $pdo->prepare('DELETE FROM '.$table.' WHERE id=?');
                     $q->execute([$ids[$key]]);
                 }
             }
-            foreach ($roles as $role) {
-                $q = $pdo->prepare('DELETE FROM administrative_audit_logs WHERE role_id=?');
-                $q->execute([$role]);
-                $q = $pdo->prepare('UPDATE roles SET created_by=NULL,updated_by=NULL WHERE id=?');
-                $q->execute([$role]);
+            foreach ($roles as $rol) {
+                $q = $pdo->prepare('DELETE FROM registros_auditoria_administrativa WHERE rol_id=?');
+                $q->execute([$rol]);
+                $q = $pdo->prepare('UPDATE roles SET creado_por=NULL,modificado_por=NULL WHERE id=?');
+                $q->execute([$rol]);
             }
-            foreach ($users as $user) {
-                $q = $pdo->prepare('DELETE FROM users WHERE id=?');
-                $q->execute([$user]);
+            foreach ($usuarios as $usuario) {
+                $q = $pdo->prepare('DELETE FROM usuarios WHERE id=?');
+                $q->execute([$usuario]);
             }
-            foreach ($roles as $role) {
-                $q = $pdo->prepare('DELETE FROM permission_role WHERE role_id=?');
-                $q->execute([$role]);
+            foreach ($roles as $rol) {
+                $q = $pdo->prepare('DELETE FROM permiso_rol WHERE rol_id=?');
+                $q->execute([$rol]);
                 $q = $pdo->prepare('DELETE FROM roles WHERE id=?');
-                $q->execute([$role]);
+                $q->execute([$rol]);
             }
         }
-        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn());
+        $this->assertSame(0, (int) $pdo->query('SELECT COUNT(*) FROM usuarios')->fetchColumn());
     }
 }

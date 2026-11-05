@@ -1,0 +1,87 @@
+{
+  "fecha": "2026-11-02T22:42:41.453470-04:00",
+  "autorizacion": "Traduccion y reemplazo por un nuevo historial ficticio, autorizado expresamente por el propietario. Sin publicacion Git.",
+  "base": "sga_rio_grande",
+  "periodo": {
+    "desde": "2025-11-03",
+    "hasta": "2026-11-02"
+  },
+  "resumen": {
+    "trabajadores": 24,
+    "usuarios": 5,
+    "categorias": 6,
+    "productos": 116,
+    "unidades_individuales": 192,
+    "documentos_inventario": 14,
+    "entregas_materiales": 778,
+    "prestamos_herramientas": 33,
+    "devoluciones_herramientas": 25,
+    "movimientos_inventario": 2206,
+    "existencias_ubicacion": 116,
+    "current_custodies": 39,
+    "stock_mismatches": 0,
+    "custody_presence_conflicts": 0
+  },
+  "tablas": 53,
+  "migraciones": 44,
+  "pendientes": [],
+  "permisos": 123,
+  "asignaciones": 260,
+  "restricciones": {
+    "foraneas": 166,
+    "check": 103,
+    "indices_unicos": 143,
+    "fk_activas": 1,
+    "check_activos": 1
+  },
+  "huerfanos": 0,
+  "violaciones_check": 0,
+  "duplicados": 0,
+  "administrador_conservado": true,
+  "configuracion_y_migraciones_anteriores_conservadas": true,
+  "respaldo": {
+    "archivo": "sga_rio_grande_antes.sql",
+    "bytes": 871239,
+    "sha256": "c20853f28fe8a002101dae9fd1b3edbe0ecd8a6a37ea50c4d00bf4d5fc1f2ede",
+    "restauracion_53_tablas_identicas": true
+  },
+  "ensayo_y_principal_con_mismos_resultados": true,
+  "traduccion_conserva_52_huellas": true,
+  "pruebas_nuevas": {
+    "casos": 86,
+    "aserciones": 546,
+    "errores": 0,
+    "fallos": 0,
+    "archivos": [
+      "regresion-final.xml",
+      "auditoria-corregida.xml"
+    ]
+  },
+  "verificacion_http": {
+    "perfiles": 2,
+    "comprobaciones": 43,
+    "aceptacion_humana": false
+  },
+  "git_publicado": false,
+  "artefactos_privados": {
+    "antes.json": "ad22dfc0e02f6f2f1c2328b811be98dc810b4e9642657523ba8cdfbf8c503fce",
+    "respaldo.json": "29b977b504717d59947bd74b14e88c5b25cc5f254629bd5b08580794f9d518a2",
+    "restauracion.json": "c8883dc84818ff34089599bead243980b18141800223bfbdf9ca648e810124e9",
+    "preflight-principal.json": "e7976fe945ae0627c8b22fb45ffc2ad06a29828d51a68e030b4f7b5aacb2c26d",
+    "sga_rg_ensayo_espanol_20261102-traduccion.json": "e60fc46723871c2db2e148c58929c7e66e115468b14c3a27e7e28e16651d0bbd",
+    "sga_rg_ensayo_espanol_20261102-resultado.json": "544b205187a6da4f8c42fca470abe9a0897175b94b881d5103f8e757c7f15862",
+    "sga_rg_ensayo_espanol_20261102-integridad.json": "92011b6bc8d52731654e51f515052cf0ad6d930db40d0d2af304e6faa70fae91",
+    "sga_rg_ensayo_espanol_20261102-http.json": "e7390bef87819fa109a8ecce5b326a9f1ac45ecb30fb4dbb50412620a68fdbc2",
+    "sga_rio_grande-traduccion.json": "34b6e8f2d09fff26fafe020d65a7fcf26acd340677b80a288303cf53ed7dedca",
+    "sga_rio_grande-resultado.json": "544b205187a6da4f8c42fca470abe9a0897175b94b881d5103f8e757c7f15862",
+    "sga_rio_grande-integridad.json": "9ff88a47b36afc33daa1eea63a68c610f67322fcdc4ea8ea8ed878c4e61be641",
+    "sga_rio_grande-http.json": "cf82606da7e060f3b1eab99ecbf9f245608e6fd64172ee84dcce81723b6fbc2e",
+    "regresion-final.xml": "2f646ac6603bf8696abed7df03f15487490091ee7cac61375ab7794e2bf01960",
+    "catalogo-ampliado.xml": "1e0a2d9f1fcdbd000da759c5a8683dedd2b34cbbc49a766bc33658cefcbf36c4",
+    "formato.txt": "e9d6f79de157b815c74d2ca1a40c52bd72e82a3e9f84c4562b4a1ca835c84a8f",
+    "activacion-codigo.json": "fe9c3bd2f261605ed5c5a6490a8e66ee50f26da6e6dd6bdf7233def423bb4f3b",
+    "auditoria-ensayo.json": "2dffe310442107de42be1ff3710f0d83e06ef1e405cf19d58bca302b42976776",
+    "reversion-verificada.json": "e3ba089d9ec7f0ca56ec4a863e0e9a7d979b8dd57b427135563e4ebf48b8e2e6",
+    "auditoria-corregida.xml": "61eae985dfd8dec2113345f322be10458cf8f2dbab4907f19de6d04ac6de4f27"
+  }
+}

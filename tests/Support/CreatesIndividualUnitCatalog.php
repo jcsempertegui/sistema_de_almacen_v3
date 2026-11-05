@@ -2,25 +2,25 @@
 
 namespace Tests\Support;
 
-use App\Actions\Catalog\SaveIndividualUnit;
-use App\Models\IndividualUnit;
-use App\Models\Product;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarUnidadIndividual;
+use App\Models\Producto;
+use App\Models\UnidadIndividual;
+use App\Models\Usuario;
 
 trait CreatesIndividualUnitCatalog
 {
     private function individualData(array $changes = []): array
     {
-        return array_replace(['identifier' => 'IND-'.strtoupper(bin2hex(random_bytes(6))), 'product_id' => $changes['product_id'] ?? Product::factory()->create(['control_mode' => 'individual'])->id, 'serial_number' => null, 'location_id' => null, 'notes' => null, 'is_active' => 1], $changes);
+        return array_replace(['identificador' => 'IND-'.strtoupper(bin2hex(random_bytes(6))), 'producto_id' => $changes['producto_id'] ?? Producto::factory()->create(['modo_control' => 'individual'])->id, 'numero_serie' => null, 'ubicacion_id' => null, 'observaciones' => null, 'activo' => 1], $changes);
     }
 
-    private function individualPayload(IndividualUnit $unit, array $changes = []): array
+    private function individualPayload(UnidadIndividual $unidad, array $changes = []): array
     {
-        return array_replace(array_intersect_key($unit->getAttributes(), array_flip($unit->getFillable())), ['lock_version' => $unit->lock_version], $changes);
+        return array_replace(array_intersect_key($unidad->getAttributes(), array_flip($unidad->getFillable())), ['version_bloqueo' => $unidad->version_bloqueo], $changes);
     }
 
-    private function savedIndividual(User $actor, array $changes = []): IndividualUnit
+    private function savedIndividual(Usuario $actor, array $changes = []): UnidadIndividual
     {
-        return app(SaveIndividualUnit::class)->handle($actor, null, $this->individualData($changes));
+        return app(GuardarUnidadIndividual::class)->handle($actor, null, $this->individualData($changes));
     }
 }

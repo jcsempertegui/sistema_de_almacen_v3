@@ -1,0 +1,3017 @@
+{
+  "rama": "refactor/sga-en-espanol",
+  "nota": "Cambios locales de esta rama, incluidas mejoras locales preservadas de navegaci?n y paginaci?n. Las sustituciones de clases aparecen como ruta anterior eliminada y ruta espa?ola nueva; v?ase la equivalencia de clases. No incluye su propio archivo.",
+  "archivos": [
+    {
+      "estado_git": " M",
+      "archivo": "README.md",
+      "sha256_actual": "ca45e385f9619f153e4a12bed23d8cb042bb95075c4f72027bc24f4d020038b3"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveCatalogAttribute.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveCategory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveCategoryAttribute.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveIndividualUnit.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveLocation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveMeasurementUnit.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveProduct.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Catalog/SaveProductLocation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Deliveries/ConfirmDelivery.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Deliveries/SaveDelivery.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Inventory/CancelInventoryDocument.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Inventory/ConfirmInventoryDocument.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Inventory/SaveInventoryDocument.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Loans/ConfirmLoan.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Loans/SaveLoan.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Returns/ConfirmReturn.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Returns/SaveReturn.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Roles/SaveRole.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Users/CreateUser.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Users/UpdateUser.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/WorkerOperations/CancelWorkerOperation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Actions/Workers/SaveWorker.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Console/Commands/CheckBackupClient.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Console/Commands/CreateAdministrator.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Console/Commands/GenerateBackup.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Console/Commands/LoadAnnualPlantScenario.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Console/Commands/RestoreBackupRehearsal.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/AdministrativeAuditController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Auth/AuthenticatedSessionController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/CatalogAttributeController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/CategoryAttributeController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/CategoryController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/IndividualUnitController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/LocationController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/MeasurementUnitController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/ProductController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Catalog/ProductLocationController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Control/BackupController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Control/CorrectionController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Control/ReportController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/DashboardController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Inventory/InitialStockImportController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Inventory/InventoryDocumentController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/Inventory/InventoryQueryController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/RoleController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/UserController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/WorkerController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Controllers/WorkerOperations/WorkerOperationController.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Middleware/EnsureUserIsActive.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Auth/LoginRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/AttributeSearchRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/CatalogAttributeRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/CatalogAttributeStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/CategoryAttributeRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/CategoryAttributeStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/CategoryRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/CategoryStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/IndividualUnitRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/IndividualUnitSearchRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/IndividualUnitStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/LocationRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/LocationSearchRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/LocationStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/MeasurementUnitRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/MeasurementUnitStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductCategoryRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductLocationRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductLocationSearchRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductLocationStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductSearchRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Catalog/ProductStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/CorrectionRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/Inventory/InventoryDocumentRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/RoleRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/RoleStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/SearchRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/SgaFormRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/UserRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/UserStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/WorkerOperations/WorkerOperationRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/WorkerRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Http/Requests/WorkerStatusRequest.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/AdministrativeAuditLog.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/BackupRun.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/CatalogAttribute.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Category.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/CategoryAttribute.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Concerns/HasCompensation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/CorrectionAuthorization.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/IndividualUnit.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/IndividualUnitPosition.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/InventoryCorrection.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/InventoryCorrectionLine.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/InventoryDocument.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/InventoryDocumentLine.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/InventoryMovement.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/LoanItemSettlement.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Location.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/MaterialDelivery.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/MaterialDeliveryLine.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/MeasurementUnit.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Permission.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Product.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ProductAttributeValue.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ProductAttributeValueRevision.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ProductLocation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ReturnRegularizationAuthorization.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ReturnRegularizationEvent.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Role.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/StockPosition.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ToolLoan.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ToolLoanItem.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ToolReturn.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/ToolReturnItem.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/User.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/Worker.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Models/WorkerOperationDocument.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/AdministrativeAuditLogPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/CatalogAttributePolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/CategoryAttributePolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/CategoryPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/IndividualUnitPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/InventoryCorrectionPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/InventoryDocumentPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/LocationPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/MaterialDeliveryPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/MeasurementUnitPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/ProductLocationPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/ProductPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/RolePolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/ToolLoanPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/ToolReturnPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/UserPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/WorkerOperationPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Policies/WorkerPolicy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "app/Providers/AppServiceProvider.php",
+      "sha256_actual": "1f6de3ee80b6c8e4753c1bfd4e6d71162caaec230b82898f3e16e1cebd3f74f5"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/AdministrativeAudit.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/AnnualPlantScenario.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ApprovalAccess.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/AttributeReferences.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/CatalogReferences.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ControlReports.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/CriticalAudit.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/DashboardCharts.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/DashboardOperations.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/DatabaseBackups.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/DatabaseIntegrity.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/DetailedReportQuery.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/InitialStockCsv.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/InventoryCorrections.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/InventoryDraftValidator.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/InventoryReferences.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/LoanCycles.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/LocationHierarchy.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/LocationReferences.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ProductAttributeHistory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ProductAttributeValidator.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ProductDuplicateFinder.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ProductReferences.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ReportCatalog.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ReturnEligibility.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/ReturnRegularization.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/SecurityMutation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/SqlBackupClient.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Services/WorkerStockPosting.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/ControlPermissions.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/InventoryPermissions.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/InventoryValidation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/OperationForm.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/OperationValidation.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/PermissionCatalog.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/TechnicalDecimal.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/WorkerOperationPermissions.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "app/Support/WorkerOperationTypes.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "bootstrap/app.php",
+      "sha256_actual": "75f93dd84d7dc81f046e8c4642f5ab9d5f0d99d896f224e0ac78abd63015f091"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "config/auth.php",
+      "sha256_actual": "ae53dbd0cdbaad2776c4a7bf18f315b6762399792820a5222ec62df77e655068"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "config/cache.php",
+      "sha256_actual": "93cf561cd401d90f30b1e137a75302b2ac6004627b1f326a0af7d287eaf2db0d"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "config/queue.php",
+      "sha256_actual": "8015896ba9c70f283f72afa0c71c4b556efe6a46ebf4f2d7f7f0a9ea41dae577"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "config/session.php",
+      "sha256_actual": "41fb27e3ce2d30aa4a90a0a51417f796539ff0a2d2056bc5adc80c4303c2affb"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/CategoryFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/IndividualUnitFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/LocationFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/MeasurementUnitFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/ProductAttributeValueFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/ProductFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/ProductLocationFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/UserFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "database/factories/WorkerFactory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "database/seeders/PermissionSeeder.php",
+      "sha256_actual": "37552f7131cd8ac61129d8dbe4b527fd1ca836c2c538c934050b9e398d271e7a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "database/seeders/RoleSeeder.php",
+      "sha256_actual": "478f79bfa776c7bc21755b2ddc820ec6c6f2fec1c23cdf2b540a2c25d318b49f"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "public/css/sga.css",
+      "sha256_actual": "0e0d5c7a7152ed0afb3444629c7973ea1e54bd6dbf58bd35394e0c6d762e6685"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "public/js/sga-ui.js",
+      "sha256_actual": "a45d95dd7979d58978132fd7a0ec3b41906b7964cbc408fa25b1b2ecd9e060af"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/audit/index.blade.php",
+      "sha256_actual": "97963895b35a5cebc2c094ad39d1e894235608550ba415434e32aecfcb61d1aa"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/auth/login.blade.php",
+      "sha256_actual": "4bf22aa9a8f190a4defa21e7cda022cd469c21e3500c7d36b92b6c25f981b3e4"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/attributes/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/attributes/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/categories/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/categories/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/category-attributes/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/category-attributes/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/individual-units/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/individual-units/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/individual-units/show.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/locations/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/locations/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/locations/tree.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/measurement-units/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/measurement-units/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/product-locations/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/product-locations/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/products/_attributes.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/products/_values-history.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/products/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/products/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/products/preview.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/catalog/products/show.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/components/icon.blade.php",
+      "sha256_actual": "b4dca6c26864c6dc86c5eab25ebe814ba93921af243f399de8e30504a4aad77f"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/backups.blade.php",
+      "sha256_actual": "4382b25dcb00285975343f587baaf636dca4a74a629e5d426820326ebf3b2120"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/compensation-reference.blade.php",
+      "sha256_actual": "9426e7e43a2cb39a966cff81f11ad7b7ebf897bc578120f781167de37d0fd4e1"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/corrections/form.blade.php",
+      "sha256_actual": "e1fe2dbc061c9649a26f75fb496ddf16c4b87c1dfb2cca311367fe84edb0302c"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/corrections/index.blade.php",
+      "sha256_actual": "f94b5bfb1adf443f89b2c0a50fae55700a6516cfcc2e4e631b9d667015250fc2"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/corrections/show.blade.php",
+      "sha256_actual": "73c24cc4b2b91e690cafb8e713a1f6c35844c2f30cf0f5c13c74f75b68b640a1"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/report-print-documents.blade.php",
+      "sha256_actual": "760c9d706def34d304fb4575bcd162f3b8c1a3a4d5435f1dfa7e89ada52c621d"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/report-table.blade.php",
+      "sha256_actual": "a38cb53d2e8bce801f8f176b8330ac8dcef6c8764336bff52e7bdaa3aaed1f5b"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/control/reports.blade.php",
+      "sha256_actual": "c728bffbb7e9b107068da2407e6266e06bb9122bc72905765b0b59de4dc2c7f8"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/dashboard.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/dashboard/charts.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/dashboard/operations.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/errors/409.blade.php",
+      "sha256_actual": "28e3e94a651c3cf6c31797af157cd9a4bfe35f2d7f574aeceb5ef94e371dc75a"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/documents/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/documents/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/documents/line.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/documents/show.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/import-preview.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/import.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/movements.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/query-filters.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/inventory/stock.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/layouts/app.blade.php",
+      "sha256_actual": "91c9d3f16cc72de0597b4f2293f23e54d8001f8ab6f081f6cfaaf79fa0023389"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/layouts/navigation.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/pagination/simple.blade.php",
+      "sha256_actual": "f5f7710f98f33d3f08afdfbecadbde47bfecedfdd0465102eef4c2b99f66a2bd"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/roles/form.blade.php",
+      "sha256_actual": "49c25a542c46c85cd3f688ef57a3969778be4c2d6fdbd27c28152a1c8727148f"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/roles/index.blade.php",
+      "sha256_actual": "13630ab4d96ff0da53aca45579aba2ab7a18c3909409045483dafcaecde37d8b"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/users/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/users/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "resources/views/welcome.blade.php",
+      "sha256_actual": "e077b86bad3d5298d853857e5c7f41af1f62da5b68daca22fffd7c39eee77bd7"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/worker-operations/availability.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/worker-operations/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/worker-operations/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/worker-operations/line.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/worker-operations/show.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/workers/form.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/workers/index.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " D",
+      "archivo": "resources/views/workers/show.blade.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "routes/auth.php",
+      "sha256_actual": "b9e0a5b564859075caaee9facdfab4bd7c6b405d347028c8af26f93bef3b81df"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "routes/catalog.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "routes/control.php",
+      "sha256_actual": "efc2443b6cd84187ebadd9bf32a0586ee7b466de8592a6f7d06cfdd9ae9b3887"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "routes/inventory.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "routes/web.php",
+      "sha256_actual": "9296e9f2614c42dba00d5e35216b9d6ea269914fd9113987c7067481325de8e4"
+    },
+    {
+      "estado_git": " D",
+      "archivo": "routes/worker-operations.php",
+      "sha256_actual": null
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/AdministrativeAuditTest.php",
+      "sha256_actual": "215d33eb56c212b22ebdaec76f6f71d57c3df8f493f8a0a50a037d386d51e6c4"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/AdministrativeConcurrencyTest.php",
+      "sha256_actual": "5af449c09c147c2838da42d5f855ce1585faf55112148325c386d3334c8bc700"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/AnnualPlantScenarioTest.php",
+      "sha256_actual": "2525db03edf6fac3e46e4fe0b292d69c10516ba14cf84c76dd215c6c275c28ad"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/AuthenticationTest.php",
+      "sha256_actual": "9bc091a01921155f4a4844106e416d811d10551c0ccd9bee8190983334d0f4b9"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/AttributePermissionInitializationTest.php",
+      "sha256_actual": "12d67aacc4848fe5821f37f8b4af91269d79cfd7e04f09143fc23ec8ea9d6c98"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/CatalogAuthorizationTest.php",
+      "sha256_actual": "6273d8bcf18b502420970fe4c4cadd8a6d25d3b053d2930cbdd6b50f53566acf"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/CatalogIntegrityTest.php",
+      "sha256_actual": "4f174b6c39390e0fd15f40861723f25e602cceb5d9493797d60b986c5288796d"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/CatalogPermissionInitializationTest.php",
+      "sha256_actual": "5df7895d29b141de40b64dc84e58cde0245c8a8459d2e6b1ce2fcea2544618b9"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/CatalogUniqueConflictTest.php",
+      "sha256_actual": "dfd28ddf4301899a842af29dd30106d3982af3f2d944889571fcfa89d8dace5b"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/CategoryAttributeManagementTest.php",
+      "sha256_actual": "49a4b50252320f7352a7b958ecc1b3e91106c8c6255a26efaeff85c133f39c51"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/CategoryManagementTest.php",
+      "sha256_actual": "f3a58015fc639fe9a2e6b0573359fc1ba6d78d68aa5c0b3fb8536448537e34b9"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/IndividualUnitAuthorizationTest.php",
+      "sha256_actual": "2537760192bdd339a1c1b1602946330dde68cd89051b480cabbc135bf1b45645"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/IndividualUnitConcurrencyTest.php",
+      "sha256_actual": "9e8609dd78af922d3ecedb3b859c039286a5abae52a1123362d9c5b4e25e4c4d"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/IndividualUnitHistoryTest.php",
+      "sha256_actual": "65904b15abf2195672a2322e1ee07986f6776626a56aa5b5ea4f17223ac19231"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/IndividualUnitIntegrityTest.php",
+      "sha256_actual": "8f0ad70d36ed4c900e8626ca37cdfe22473ac0aa1c4db76ce627180c124344c4"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/IndividualUnitManagementTest.php",
+      "sha256_actual": "e2478e71c13f66e83c68fcf85e94f955a18070a44322c4d6150898fa49288fe2"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/IndividualUnitPermissionInitializationTest.php",
+      "sha256_actual": "6082d2c8af1bb5fb23dc48b666dd583dac281f584c95675a9adc1f3e104d725a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/LocationAuthorizationTest.php",
+      "sha256_actual": "f5b0270bacc4c04605cabcac1f1b39fe4b33346a7bf80bf782c4c63f5df7cdb3"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/LocationConcurrencyTest.php",
+      "sha256_actual": "a0c4a7c162bc9e402b84271b58699924f7cec07d8f827cdb3865463e3aa69120"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/LocationIntegrityTest.php",
+      "sha256_actual": "515f6198d2f426c72a886e2bb220e24ed5cb5b5ebe1f5a2b604500fa19534ab1"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/LocationManagementTest.php",
+      "sha256_actual": "b4a84962594d2365fa29e9f86118257c30df845dea48aec5e9b9a2bd8c2976a5"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/LocationPermissionInitializationTest.php",
+      "sha256_actual": "861a10e5c5c8baadb14330a231386b07b4bfdcd7ef9df5b9859b179b1384fa91"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/MeasurementUnitManagementTest.php",
+      "sha256_actual": "901d4ff8c7f0492e2a23a15fae42c51f775ffef343032d37792db9d2c145c3ae"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductAttributeValueTest.php",
+      "sha256_actual": "f819593ce59296c38fdc559f47bafe42a946b8d0ce9510c3f808bb78b85c3a0b"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductAuthorizationTest.php",
+      "sha256_actual": "405c0b688b66b86cf711333a5e67eb7d64ab4d5ebc1e1d6c22e51e69cc5a8123"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductConcurrencyTest.php",
+      "sha256_actual": "d359073d39c912fa4924e8263d9f40c9b4bd84aeb6e417476f0433a87c4ac22f"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductDuplicateTest.php",
+      "sha256_actual": "74eb2cd95a609b7799b2191a6b47a90c7a406e604bc42452004c8b421c492b0f"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductHistoryTest.php",
+      "sha256_actual": "f68e4ba3199b69e70985ce9fc4340b57b56fa77b1eb0b75b0d6981d215895f3c"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductIntegrityTest.php",
+      "sha256_actual": "a450d5da718b6410770a37d02998bf8a893fd02b9baec79d7ce2ddada73238fc"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductLocationManagementTest.php",
+      "sha256_actual": "34fccfdff09928327a4faf0c26106f7afd3154fd3aca8660fa60be998d4d286d"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductManagementTest.php",
+      "sha256_actual": "2217a54600b4b975e364a193a024583635d9f831a9a5454d01a7d73e2687d256"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/ProductPermissionInitializationTest.php",
+      "sha256_actual": "949b9112dd825f10c841c7e200adc74f7b416af94188402ddb9e39c8b6596181"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/TechnicalAttributeAuthorizationTest.php",
+      "sha256_actual": "074123bf0edbf177568fa3c5888d15a273a55edf83bd70237bac5c3fc1c0171c"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/TechnicalAttributeIntegrityTest.php",
+      "sha256_actual": "21a79ec8b6d4852f5ae0bb4465c05b5c00646cae7ddf1feae892a48032c7f9f9"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/TechnicalAttributeManagementTest.php",
+      "sha256_actual": "84a94d6ed88a3136503010c759dd7589d98d8ed2d8eddec9be1bce3f226f9ddb"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Catalog/TechnicalAttributeTransactionTest.php",
+      "sha256_actual": "d67e886f5b70697807e651697487509cc5d1a21941900298b9ca088af9ac01fb"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/DashboardChartsTest.php",
+      "sha256_actual": "f07507ea93e19ff10e247b3a2805670d3f566f5f000210e6ee53548041fa17af"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/DashboardOperationsTest.php",
+      "sha256_actual": "13275181f2d36881286bbf52b7256cdd5aff24998aa70d22e5494c5260959d24"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/DetailedReportsTest.php",
+      "sha256_actual": "f74d231afec69f209a39b63112c44258b5acbaed859f54f8264ee0fa96b2c631"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/ExpiredRequestPageTest.php",
+      "sha256_actual": "d0421075c3fe143189911a2470d75d6405083734e42782d4389f69cbd52a644a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/ControlHttpTest.php",
+      "sha256_actual": "5d5a481b7dbe90f05bc2c2da0e6bf115413be7b554feeb2e638bd2a1e3dbadf7"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/ControlIntegrityTest.php",
+      "sha256_actual": "287075e7bdad7946d7353134f7d093a70051ffe012ec866f06db15ad38d93b0e"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/CorrectionConcurrencyTest.php",
+      "sha256_actual": "7bd34a3e58ca1088498c67647a37ff0fff3fc9c2b7e6dbb9601f9dbb60cb8c1e"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/DatabaseBackupsTest.php",
+      "sha256_actual": "ce8d4cd481dca3f580e7bb2c10d0b4f505db0659a6c488b00e333ca8839d8ee1"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/DeliveryManagementTest.php",
+      "sha256_actual": "90b9b0158b959506ca713ed0f53a020a9250f997de21ca26f9518d4859430d8c"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/InitialStockCsvBoundaryTest.php",
+      "sha256_actual": "1acc1ac548d8704b12a45ab4f5673642ef42ba89ffa65cce1390afe99bf4b1cd"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/InitialStockImportTest.php",
+      "sha256_actual": "7877f74ce5a06f6fc5e5e9957244c2e53b2bce97a5e3c1c17d001bd17717cb84"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/InventoryConcurrencyTest.php",
+      "sha256_actual": "4f2691506d0854d078f43fdb50f2aa2a7f1af1e997410fafb86cb621ea0a345a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/InventoryCorrectionsTest.php",
+      "sha256_actual": "b8dd2225c423147edb22cce6ebc189dbedf816f856c1d1679bb1091a15d2a559"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/InventoryIntegrityTest.php",
+      "sha256_actual": "de450a9aa64dcd38d08fbf6a4e4b17638bb55efcfc9b9137ed219eff25c710ff"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/InventoryManagementTest.php",
+      "sha256_actual": "3a89c7b7adc1cbfb2088ad035902792899ce83c72df8ce695b5f8e50ac44625d"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/LoanManagementTest.php",
+      "sha256_actual": "0971dabf46fe61454de7f55e04b54e171b3da1b1d374fdef470966171cf8bd8a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/ReturnManagementTest.php",
+      "sha256_actual": "79e066b783b296bf808412af5eb310e7e4081cc72a588f177d8bfc48a71d1b75"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/SqlBackupClientConfigurationTest.php",
+      "sha256_actual": "c5323b42b376ac7019cc7338d0de96260ca1a67d21384b58f90a95782d0d5547"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/WorkerOperationConcurrencyTest.php",
+      "sha256_actual": "363b2be224595dc2a931d7a8838d8daff364800a180c061e863b06796b1f07d2"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/WorkerOperationHttpTest.php",
+      "sha256_actual": "087b821256178d28d41436670c294d3ed3f7bcd3ee9ce1d5daf7474c6aa21fdb"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/WorkerOperationPermissionTest.php",
+      "sha256_actual": "0863e96b207359609201032b4c892e03aebcc46eb5e7926089795fb97ae5362a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/Inventory/WorkerOperationSchemaTest.php",
+      "sha256_actual": "5be164ab4ae3fac47ba2ea27c8ac64c69ae3334d5257fcd2cfeb65a43fbf16de"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/PermissionAuthorizationTest.php",
+      "sha256_actual": "422bd6455e6f6659397d6dcb6bdab1f790a3c7ecfe7e661a2e4986ecfc7bb1d5"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/RbacManagementTest.php",
+      "sha256_actual": "d67689b276eafb85b8f998fa847890dbec3e508b499bec3bb022bbf033bf81c2"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/RbacSchemaTest.php",
+      "sha256_actual": "132823b6957cee40570a9a2f27089eb6a51641fd00e2284c6e68e9d2a360de3e"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/RolesTest.php",
+      "sha256_actual": "df662a478adcfb224a03914186661d74a72a0fdddd8f3503befd07cd9fdf8788"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/TestingDatabaseIsolationTest.php",
+      "sha256_actual": "9b812b713dfad78721baa5541215c8c05113badd0378aa14fd1ee8301a3f49ed"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/UserManagementTest.php",
+      "sha256_actual": "beebb435c7e45ef1ac40970713126aff194dbe90710c1d4d70fdb0039c73ef8f"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/VisualNavigationTest.php",
+      "sha256_actual": "ac937eac37ff77dfda4ee7290e979813f779a379c9758884f0bcd04776184158"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Feature/WorkerManagementTest.php",
+      "sha256_actual": "8d89f512d941e5e6b363d4ee73fafeb75dcfb202f74400e7871a5f94448aa4bb"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/CreatesIndividualUnitCatalog.php",
+      "sha256_actual": "eb99ecea08aa9be4b8d939b904731d5207ea2a0436af8d157f47d38355911812"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/CreatesInventory.php",
+      "sha256_actual": "13676b205635be2957693cb4a90023f75cc2ef526e3b58ada7236bb6e307f0f8"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/CreatesProductCatalog.php",
+      "sha256_actual": "e2d5fe1ee275d9e467b169cd4554d3b489128df2baacde1a19b91f3ed2037d4b"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/CreatesTechnicalCatalog.php",
+      "sha256_actual": "d0243bca78cc99a97b9168e3fc7495806e02db0a74d4ea4d1a11536b8d09796e"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/FakeSqlBackupClient.php",
+      "sha256_actual": "162865577113c3298dcca81f16614e1e6f5325977cbb2db75f0eaae79b3c1eb2"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-administration.php",
+      "sha256_actual": "9006574b800cb4dab547fe6bd1e64caa5ad5f22375a64c3d0f34468dcba7ca2b"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-correction.php",
+      "sha256_actual": "8ecd4480f91fa5c9b8a6626cc9d4b4b0c60f4d144baab78801a50c3c18892eac"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-individual-unit.php",
+      "sha256_actual": "8a1e4853bc9b69ca7cec18bb69781defc653b23b95bb79557231409acf0a049a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-inventory.php",
+      "sha256_actual": "c0d8ffbf398f0caab561175104bfb1501a20ff00de4243c2e9ec2cedac78b4bc"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-location.php",
+      "sha256_actual": "9f936a0fef60660f3a9cd6ee6ce9cfd486867d447c077c388c08f41a36fdc44a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-product.php",
+      "sha256_actual": "af2e3adb1edec10fb5547e48fe7af97438b4a91b73fcdb8cbe8bcb3663bf64f9"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/concurrent-worker-operation.php",
+      "sha256_actual": "f04078a641c93602d3bf2dbbdc317453ce023484737c621e010058926afb2894"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/inspect-inventory.php",
+      "sha256_actual": "e9795d1be239a6c6ef43b99e42e8ce3392f1d4afd9b0c05300b6b41cb3d0ee6a"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/render-visual-preview.php",
+      "sha256_actual": "b0f3d62f395d585820b44b4ee1dac6ba57c176db397bfb09ca06feaaad60005b"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/verify-sprint4-upgrade.php",
+      "sha256_actual": "cd0c9a01e3b4cca70ba7f1358fda7e86d5c2c05ebc152150a2f213c0c7fc5147"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/verify-sprint5-backup.php",
+      "sha256_actual": "63e181ce31465e74c59baef3786906d992e967a1cbc1c70524531983f20ca51e"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Support/verify-sprint5-upgrade.php",
+      "sha256_actual": "61fd06f49b1f83f619fa915eb2c2e74844bb5d615b1ba71383818adb51b8653c"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/TestCase.php",
+      "sha256_actual": "546f617081a0d74523f0bc48e4fd8569d4d7d2e46988a6dd1508320c63fa0163"
+    },
+    {
+      "estado_git": " M",
+      "archivo": "tests/Unit/TechnicalDecimalTest.php",
+      "sha256_actual": "0370059b767d6113d2f4b917ddbfd7133c5f0149880f7b50898233d0947b47fc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarAtributoCatalogo.php",
+      "sha256_actual": "1ebaeb6bc8842af2ed51e6b1520c69cfbc997618bd48325d5d8fb61ea41309dc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarAtributoCategoria.php",
+      "sha256_actual": "9f8f4477f13aba062f857316d0c28aee87bedcadd88b3a907a8caaa2d0f47950"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarCategoria.php",
+      "sha256_actual": "c9d539a8235ada862eaa477f273ee2b7d75b8dcc99844baa238f6c56a6e507c2"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarProducto.php",
+      "sha256_actual": "03a358e7286cbad2dfaaba6c1ededc875aca6a7834264a376ae7f26ff0e85403"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarUbicacion.php",
+      "sha256_actual": "b71b1673092869d7b2e6c960f686d87c32bd334010d5cba914295142f4c1426b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarUbicacionProducto.php",
+      "sha256_actual": "0d876c5e190917c24957e376abbae422dbf2b8599eeb43fddf075b7576601104"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarUnidadIndividual.php",
+      "sha256_actual": "59359b93c07c02ddc9f3f83f59ec11032f4d04b2cd69cf29b73e64b12bbab022"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Catalogo/GuardarUnidadMedida.php",
+      "sha256_actual": "28b34b5c761abbd9027281af4c12c7fc01e33bd41d967e0a08dc5e01b875763e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Devoluciones/ConfirmarDevolucion.php",
+      "sha256_actual": "6b64cd59984dce027eb8ed1085802be5f297ac9c5dfad511f476779cbcc19c8b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Devoluciones/GuardarDevolucion.php",
+      "sha256_actual": "4413aa660380cce44fb0366b65934c8799440dedad17b993cec59feee64c0394"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Entregas/ConfirmarEntrega.php",
+      "sha256_actual": "f7e5b34eb56dbfe515b327175ff41532556afdb219eb9ba7fd86c174a3d051a8"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Entregas/GuardarEntrega.php",
+      "sha256_actual": "c71561637da7cc48e8db8eaa6f31bb98d24836936c358cc288207fcca4909119"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Inventario/CancelarDocumentoInventario.php",
+      "sha256_actual": "233c415704ed3a9371d7bf7dc0e7b846cc67198442e7d46a9ad67f74b0f00558"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Inventario/ConfirmarDocumentoInventario.php",
+      "sha256_actual": "ca4bb30e67151b4e80181879cdc762478ecfcd22b0086ec19dd0334df0508dd3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Inventario/GuardarDocumentoInventario.php",
+      "sha256_actual": "1119376e19c8987405809c075d5e6b8c524b33f38fb7aeec229e135614443c9e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/OperacionesTrabajadores/CancelarOperacionTrabajador.php",
+      "sha256_actual": "ac4461076e4df203e3a8710f0da8f721839ed379b016bf71b694ea31633ac665"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Prestamos/ConfirmarPrestamo.php",
+      "sha256_actual": "d37e467c1be8ca3cf75f48dd7800674923b365e6ed3ecdbe9f1b34ba55a862d9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Prestamos/GuardarPrestamo.php",
+      "sha256_actual": "bab3e2fea11a11a854e931796eabb251b6352ee1fb345351ff2c9051beaa63b6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Roles/GuardarRol.php",
+      "sha256_actual": "1250c7e0f0ff901891d009270db8efb9e5bcb6c7a816dcdaf9aff1f71cf01b95"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Trabajadores/GuardarTrabajador.php",
+      "sha256_actual": "437243c0c6adebde3eb5974149897ff2e178b7c55040e5ea3cdfcadc9179098b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Usuarios/ActualizarUsuario.php",
+      "sha256_actual": "b028b9b63683303732a79d2c721515fdd84a498c18aebcd240e8da5f82b8a86d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Actions/Usuarios/CrearUsuario.php",
+      "sha256_actual": "8d46763bff2d0565845cf7dbb96beb2a12dcf482c33352e50d358c66fbfff938"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Casts/DatosHistoricosEnEspanol.php",
+      "sha256_actual": "cc43d66e011b920f9d1f51828d4cddeb1aa243b35a6a13b0affc4a44e78859f2"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Console/Commands/CargarEscenarioAnualPlanta.php",
+      "sha256_actual": "a7e8577f812f1d218bd9f9f4aecd8010cc662576b5b01550fd6c098e5694bf2c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Console/Commands/CrearAdministrador.php",
+      "sha256_actual": "091906dd1db9627b1320d48bf248e05510f3078d4a15d8bf89063b2cb071c855"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Console/Commands/EnsayarRestauracionRespaldo.php",
+      "sha256_actual": "53ab0669231593cc6273f7439c054b9a456f4e24d2f43ad17c708d6042435ce3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Console/Commands/GenerarRespaldo.php",
+      "sha256_actual": "765c6f714289140e2097a63b4552e01c183456a9f00bee4e5279a56f14c33fc6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Console/Commands/VerificarClienteRespaldo.php",
+      "sha256_actual": "bfb8875d1c5b7f3a5ba887b8f9a51ee8826449d2d03db12d08a87fc860d1151f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Auth/ControladorSesionAutenticada.php",
+      "sha256_actual": "ae781df011fce4a991b1b6e56b21d2ba8cd69ff4a8a4e60da3c226ed609561b9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorAtributoCatalogo.php",
+      "sha256_actual": "ad52acd82c0bbd48bba2a53dc30632eac16fca39308c279fec42ec176f12e819"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorAtributoCategoria.php",
+      "sha256_actual": "64eb1554548da9fa9d85d8a70ffbfb10639468563d62ec5535f85259ac16aece"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorCategoria.php",
+      "sha256_actual": "dd8f4d37bed002d0c624b1224c5d330aa2ffaedaa37c4ced8b859559160ac097"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorProducto.php",
+      "sha256_actual": "a2d5c0fc654c156ac72f09ae7eeba182f72ad689ce83e6b8e1fdba1d3df2133b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorUbicacion.php",
+      "sha256_actual": "fb1c0c30fb733d607c38ae53651c66750ffc98f241f8e7a1c12ad2f9843436d2"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorUbicacionProducto.php",
+      "sha256_actual": "018134dab85c010230ee6af0339b9e6c03fb5aa5ce703235cb5435ad2a9e8f65"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorUnidadIndividual.php",
+      "sha256_actual": "200d1ab9607425f62e8f5d8f4ed8a061ffbc71d136ea4f409e99860204c5dc9a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Catalogo/ControladorUnidadMedida.php",
+      "sha256_actual": "540ef8d5889916ade542bd43654126af9a25efe373a3668955427ffb3ada0da6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Control/ControladorCorreccion.php",
+      "sha256_actual": "bd2d84089bb0ad543679d5368d6f9031c18db190267a9d30d797360a97df4a69"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Control/ControladorReporte.php",
+      "sha256_actual": "429f19dbddac397bd1c44123252d8337da2e9519baf3eb83dda27d93e8fb12c8"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Control/ControladorRespaldo.php",
+      "sha256_actual": "8c52019007a08ed173bdd9410d46a2a4134c2ad2a635662d337755e73378c239"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/ControladorAuditoriaAdministrativa.php",
+      "sha256_actual": "a150d60cadb6f62395270c16cca05bc430323c75947a1a8ae2807111af429e30"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/ControladorPanel.php",
+      "sha256_actual": "3641e99d4a0a0e8c4ac9003e3063702ed2ecb20e073dc51b3e4b4c4ee0f6d433"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/ControladorRol.php",
+      "sha256_actual": "ab50d8a9022d9a0749489e41d11a03b738661823e68642d1cb6a87bb3b5bef81"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/ControladorTrabajador.php",
+      "sha256_actual": "60253560784cc18cef6a512fcfa08075c54988f3b5554a55051f2ecc50cf0543"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/ControladorUsuario.php",
+      "sha256_actual": "7b1a2a6bb07c9084d7ef2d6852ac4982495de5e5398a0296aed24faa64d20b12"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Inventario/ControladorConsultaInventario.php",
+      "sha256_actual": "0e94129eb20f7cee4e82c3b9b3f3518db7f92198cfede2e8233a05709636f7c4"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Inventario/ControladorDocumentoInventario.php",
+      "sha256_actual": "c0affaef1340e997644c9a1316cef5d7917b0442ed12e88aa9b35a3a1df57704"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/Inventario/ControladorImportacionExistenciasIniciales.php",
+      "sha256_actual": "2ea54dde727da3b4e5d1c34ba0ce8742ef483633348295cefdefad54d025f127"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Controllers/OperacionesTrabajadores/ControladorOperacionTrabajador.php",
+      "sha256_actual": "e93408fc771bb4b4844d7d8ce736e0bf67b70a6a60f3b63cff11540978a1eb1a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Middleware/VerificarUsuarioActivo.php",
+      "sha256_actual": "acb24b889d1e9e715bc60032ae40f0b7261b6a9f7c64dd1dcc3ee66952e47551"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Auth/SolicitudIngreso.php",
+      "sha256_actual": "9e639fffda03bbb0601a71acdd39b6d7fcd8537146d9f044d28d7c6107bff087"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudAtributoCatalogo.php",
+      "sha256_actual": "934f2c201c4f5f6e7a72dd35bdec8b81bf9ba0f29ad07a7b58af1f8d988f048d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudAtributoCategoria.php",
+      "sha256_actual": "cf9b366cd4c6e68f1f18f682e1761bb68624a8ad7a404478a3e50563c18fd9b8"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudBusquedaAtributo.php",
+      "sha256_actual": "45e336292bd30bbd1fb3c0db04cd60479a79ddbebfeaca0c968329488c2bbaf1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudBusquedaProducto.php",
+      "sha256_actual": "273c6ab97e555f9d8777cdba6c29056de3f60b625f421aaa4929e0e0110485a6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudBusquedaUbicacion.php",
+      "sha256_actual": "b4898fec0db58818983231bad63d4cfe560acf221a544d2e4363c56416716c76"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudBusquedaUbicacionProducto.php",
+      "sha256_actual": "386e50e7edb035d85720f4332f210f7d213718749466ee8bff4f719a1c6225af"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudBusquedaUnidadIndividual.php",
+      "sha256_actual": "8b0aa08f6e699b7dd2830415aa9988b2d26a7ea5501fdcb72bbb500f5245ff4d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudCategoria.php",
+      "sha256_actual": "4667226bbf074b4bbf3f86c24933daf56930fc448479fead3b1e58eb4e5e1cfb"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudCategoriaProducto.php",
+      "sha256_actual": "a5dbefbd697033c599318ceb9cb9f445f4693fee331c730e687f6fbf8fa34858"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoAtributoCatalogo.php",
+      "sha256_actual": "00931444a684afb134a1abccb61e7c732dd33483d23433c595b7eb9444e3812b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoAtributoCategoria.php",
+      "sha256_actual": "f07b35d083c227e036190ee843c2c812e342cc156c4448198a1c53ac9a1e0731"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoCategoria.php",
+      "sha256_actual": "cd634b3c73a85baa4c9c27d07fa3c15e3968b3f7c8a047a0d2dbd64351e1eb59"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoProducto.php",
+      "sha256_actual": "9a27a341a0809ec14f45a60dddd6fdf82812e01ecf32c2736d2c78620bfcce76"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoUbicacion.php",
+      "sha256_actual": "8ef9df83c6f60ce50e512e74d7475e00a2aeb6af489fa045d967ba52608f95e1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoUbicacionProducto.php",
+      "sha256_actual": "1dff2d717f098c6e578c3b724b0d6e34af2248d17001f476ab7dadf09235c75e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoUnidadIndividual.php",
+      "sha256_actual": "153b978cc40192a3b39c64fdb9518ec302d99478d1259639c184965650e916af"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudEstadoUnidadMedida.php",
+      "sha256_actual": "4ba1405ea5fe338c7dd7a7b7ec55a5f68d4352860aad8879658fbb9e8136e1b1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudProducto.php",
+      "sha256_actual": "f68af5c1dd43b8f09d7f24d4e85355bde929fe7c468396eb2d5feed47af9e87c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudUbicacion.php",
+      "sha256_actual": "07275616bdf86cdae259e14705accde98697f824135da9b3499e51a3bfac2173"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudUbicacionProducto.php",
+      "sha256_actual": "bcacf2ac28cad891ba75c7af892ae67c4ee567da2b1afa2cc6624c2f86ee608f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudUnidadIndividual.php",
+      "sha256_actual": "d7cfde82337ad17b025608267ffa6dcd76251ebc7a8e9ffa43cb7da9a79cd0e3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Catalogo/SolicitudUnidadMedida.php",
+      "sha256_actual": "4c89384bca6b53545bc6253484dbd38457da9a38836fc7c4e8d70195f6361a46"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/Inventario/SolicitudDocumentoInventario.php",
+      "sha256_actual": "168f9da9d939b39abd6a3ec800ea614a658bc46ff27a9ec55fb23c4f8a50bac0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/OperacionesTrabajadores/SolicitudOperacionTrabajador.php",
+      "sha256_actual": "a02ffc9e213be74dbda72a6af862035bc8aa3974942e0144937c3ff409f26546"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudBusqueda.php",
+      "sha256_actual": "e0708922559e88889dc23771cd3235d0a622172ef0d665502755fe3398151989"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudCorreccion.php",
+      "sha256_actual": "17b7c3e08d89f52e3459b0738a95941cc820eb150edbc7ec67c4161ec51b1b7d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudEstadoRol.php",
+      "sha256_actual": "b69339d74a358107c172d8d414b1b800c3feadd603e3f441f89613976941e74c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudEstadoTrabajador.php",
+      "sha256_actual": "750ad7a93cb4efb2c04b3cff28f64f212ca2f3e02d8d635388cd113b55c2de7c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudEstadoUsuario.php",
+      "sha256_actual": "39d102d26dd6bf4f7f1ea3c075b49a60d44579dbc2e62d76ff3584f1e2ad2530"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudFormularioSga.php",
+      "sha256_actual": "3195a4c2caf2c815eef9b4b417e52c7089b81d70468a6d74716859b26797757c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudRol.php",
+      "sha256_actual": "a5374b6ee21e354f43256f72c66b8365dd1744f5215352d172587a073d03afd0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudTrabajador.php",
+      "sha256_actual": "25d3a4fad080ac971a438f4dec81d7a389784ee3303a3bbb8427602527cf105d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Http/Requests/SolicitudUsuario.php",
+      "sha256_actual": "31477dc85a2b0dffa5db51454a4bd5000b376aed2505553e076d4acaeec2c524"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/AtributoCatalogo.php",
+      "sha256_actual": "33da6f2abcb3bb6670686677600a4982a413e8696f409afc0ec1e2009977f259"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/AtributoCategoria.php",
+      "sha256_actual": "2a665af61aec420f86c2ca7873a372121b2fcb7fb0124480fb53984951ce0ab2"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/AutorizacionCorreccion.php",
+      "sha256_actual": "701f92b487a4815185e2ba16d3bf9b3b33ac8d46bf0b8884478a4507e7ad6ebd"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/AutorizacionRegularizacionDevolucion.php",
+      "sha256_actual": "5df72c1bbd5a58c0cef5531eda584241263b3a520118e2a1b0cdfcdf52638b18"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Categoria.php",
+      "sha256_actual": "df4f9df17215457e0731e94a70ad1a850e6fabacdc498ecf30e8c0622551cf52"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/CierreItemPrestamo.php",
+      "sha256_actual": "4ad9cddc8497ff27811e8425d921aa59e54212b9004a5e04b51e89fdc2326e22"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Concerns/TieneCompensacion.php",
+      "sha256_actual": "9e161ea1220ee756efb862efc4c315845d79196f7e5e166afd212c3745049b0f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/CorreccionInventario.php",
+      "sha256_actual": "612a7704bb0ad30dfb60193ceff74f27e8f19c4a7e500168fd14ca8ce2eb0f89"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/DevolucionHerramienta.php",
+      "sha256_actual": "875af4c0e38edee594a5a5e19dbe5a9db4addf4c38cfc8c02d1dd5f404c087b2"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/DocumentoInventario.php",
+      "sha256_actual": "f2d82cc82d2578254c14c8f000f5d06627071f923803324eb5571fe27cd41444"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/DocumentoOperacionTrabajador.php",
+      "sha256_actual": "d98acb186ed30ebb2c1618cc8af6f6272ad73112436b3632a26d69de61d4e294"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/EjecucionRespaldo.php",
+      "sha256_actual": "b75f26124a4861659be5d3a62f709d3358251c44704e097f9cc27c6b4d023711"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/EntregaMaterial.php",
+      "sha256_actual": "f0475996480340d463505a9b470a5006c218f0764dafc013021e9fe56dcfde4e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/EventoRegularizacionDevolucion.php",
+      "sha256_actual": "4400973d1432715e9994dc5d923f67ed7a6312e1d3c309f0d3f6f7a5bbe05152"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/ExistenciaUbicacion.php",
+      "sha256_actual": "9e4c36fe533e86de7e552a7f76614b6b8fdf7c913ffa219563d64d6dabab6a33"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/ItemDevolucionHerramienta.php",
+      "sha256_actual": "ef6c5fe065adb614f23ae8aa813202294c0d674e30581938f48f466fb92012fc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/ItemPrestamoHerramienta.php",
+      "sha256_actual": "592656fdd6c9becd45534ae3a0d63a30d16e9fe93eac94d56ab863290188a060"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/LineaCorreccionInventario.php",
+      "sha256_actual": "fcc13798898fbec6bee1e0a62c6fe0500317479c67e1cf619a9556872ce618d0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/LineaDocumentoInventario.php",
+      "sha256_actual": "62d8de0b2986255c2626be1c9e392d49a5db88eba5a993e41200c4443bc549d6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/LineaEntregaMaterial.php",
+      "sha256_actual": "c8a7081f68ca3de5ee5ce67ca6b782dc4619dad5d4feda16df9fab0664654742"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/MovimientoInventario.php",
+      "sha256_actual": "43e8cc348ff956629cc0f5a17a058ee815a2b5c25c3246434c2a40c7154afa78"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Permiso.php",
+      "sha256_actual": "d7af725ef87003a358d944676fe0f6708f5ba4bc5cdf2e24d8a9780a9291e207"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/PosicionUnidadIndividual.php",
+      "sha256_actual": "2f658c98e3f41f17e347cc68db650cb599bd7335ae56face58273a6ae805ee83"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/PrestamoHerramienta.php",
+      "sha256_actual": "19c734d5434b898d631a877ed3e13dbce6bc4f4a277adbac13db3c6d36a9fc80"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Producto.php",
+      "sha256_actual": "a4a4a1fa7ca3b4d1bc2ee1b18f00049cde40646354392c7cb4c49dc4ba222ee4"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/RegistroAuditoriaAdministrativa.php",
+      "sha256_actual": "133cad670d7d6d4d2a91a6a6d9afcbc7d45fc79689a894dd5e08ea868b2c0732"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/RevisionValorAtributoProducto.php",
+      "sha256_actual": "1b4af7b6ab6c0813fd115689ba30fd603c2702c2142c8bd32dcb41d4b0d3edb9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Rol.php",
+      "sha256_actual": "54a2d182b3fb40f707d0abf6a1474223f1e05629ad2b6750311478ad98608bd3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Trabajador.php",
+      "sha256_actual": "673b69e2762c5a41e96508088a3893776d9cd582348b53055b1eb2f48c074976"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Ubicacion.php",
+      "sha256_actual": "b47ceac1b691a10127de0eeb97b72b2e2e1e9dae6bdf78fba13e8872ff2d805e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/UbicacionProducto.php",
+      "sha256_actual": "047053ec028c246552b4393022f1be83bfc14cbb461c6a980194b8fdcf76a2ec"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/UnidadIndividual.php",
+      "sha256_actual": "4fef580859057a8c2120c6c43f107f9dbd6a8ebef3a3cce28e6404b59d4105e0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/UnidadMedida.php",
+      "sha256_actual": "f984bf7ea82d815a7260d4cbb20321e9f196b84c11a03dc802326fe2498e929c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/Usuario.php",
+      "sha256_actual": "50dfebd5a8c961974502d76f099cda8f0346458430f12517f153ad9c5ec83d6e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Models/ValorAtributoProducto.php",
+      "sha256_actual": "7f58a59a70483cc10f2f9e317e17a7509bc3f34248cd009d770453f43581dce9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaAtributoCatalogo.php",
+      "sha256_actual": "92d30458c432a13c57046ded612606cccc2f13aa5b4e17ccd98a06dd2135bb18"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaAtributoCategoria.php",
+      "sha256_actual": "dfb4236df1f1b308651a4c50f72cb8b90ac440830395d88bfd79d111a94e07aa"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaCategoria.php",
+      "sha256_actual": "d8b206211a97c0cb65b7987365747cdb95c74194dadef04a42b79925cb5259b9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaCorreccionInventario.php",
+      "sha256_actual": "b857fb667fd42ea6f395f59e9934ae61f24af221e1907024b12f16b1ef9b43f7"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaDevolucionHerramienta.php",
+      "sha256_actual": "c9f64c92b17983ce0b8a91d260414c627b64134fbdd1df8c07d39b07bbbc31d7"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaDocumentoInventario.php",
+      "sha256_actual": "8bf576985cd00dc9f2d3370536e1dc45b23b57d110b7d2bee46b792a47c69d73"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaEntregaMaterial.php",
+      "sha256_actual": "24e664d94e850657ed1da276d1da43e7568dd7c3d9de41640f801fad111bd28a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaOperacionTrabajador.php",
+      "sha256_actual": "46935e3f7a682089387a06f8fd48d025a1301777f6cf3a48dd263539d10f0cb3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaPrestamoHerramienta.php",
+      "sha256_actual": "11a77fbd117c2a37a3f45c5a2dcae3d40206ffab06b04505646360bb14af53b6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaProducto.php",
+      "sha256_actual": "40c41fc012f22879dd05b3f15070262fd56d187cc434e715e2da7431ac3ad84c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaRegistroAuditoriaAdministrativa.php",
+      "sha256_actual": "77815f8c41819080d57e0f3844e68f4daa50698776bb5d86583db1d2c8fdb36b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaRol.php",
+      "sha256_actual": "16d192f5dcd50b59993ef16bc90c0c975cb50f0dc7036f189f1cee72c4011c8c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaTrabajador.php",
+      "sha256_actual": "ea0da5c7751dcae9d7edee822818c8eb7bb841e9cd8fbcb793f52eeb1d9bfcac"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaUbicacion.php",
+      "sha256_actual": "793644bcd1945a658bfff5714ff91fa4af2803244e0f465f8cd0b9b60d9747dd"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaUbicacionProducto.php",
+      "sha256_actual": "ad1b03190bf0b2e57d6b7091c35ba06548bb3e88ebc0b22e4531d5cb8c03b72b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaUnidadIndividual.php",
+      "sha256_actual": "488cb40af7b3ac59e68c150d5522cea9eecc0aba6c590d49cc9fbf2f6ded716e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaUnidadMedida.php",
+      "sha256_actual": "1b993e7948374ca9d5647f929d297461b36c08ac1c37c6c98a3e116d053968dc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Policies/PoliticaUsuario.php",
+      "sha256_actual": "63a224776aa18f5b90f8090ce0505b9359b70eb7113d6fb93c89c33858c04fc2"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/AccesoAutorizacion.php",
+      "sha256_actual": "55fe8fd4b36d9fd7fd88cb0509cad5424cf968097cfa84b1f97075710fe25906"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/AuditoriaAdministrativa.php",
+      "sha256_actual": "cf5b19cc120c4adeab9d75ae93acc4f220aa2f09c1acbe3c88be11f8a8b523f3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/AuditoriaCritica.php",
+      "sha256_actual": "c20adfe1ec6f957c5279694c26cf500a04bd2aadd23cd1c00154df32f77ba83b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/BuscadorDuplicadosProducto.php",
+      "sha256_actual": "043612a1e15d6943850b5242dac4f4c2d8a78424c166dcc2deab54dedcd4482f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/CatalogoReportes.php",
+      "sha256_actual": "03b74b6435cefa7aaa9dac803bd4e90db5b3e65ea7378e441f043e819f7c284f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/CiclosPrestamo.php",
+      "sha256_actual": "af61e5c77d5b2a97c3038289709134fcf6fb4a2e38fc8b9ccf917e2cb193f54a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ClienteRespaldoSql.php",
+      "sha256_actual": "73658338e8f0e3499a7347dc19fee99a3daa578ca20c3ec34d5855709fff0fac"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ConsultaReporteDetallado.php",
+      "sha256_actual": "d367acbe6e9329a0c83ea097b8842bc9a5dcd7c846cebe3bdbd00449a711b305"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/CorreccionesInventario.php",
+      "sha256_actual": "a4d6b7002296028fed7f52ece0d928944d0b0ea5206f527e29e8770a054f6337"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/CsvExistenciasIniciales.php",
+      "sha256_actual": "e58341fd4b1aca281b3dc02fdd8dc4715859038e0d5e454e081bc6d38b2a3167"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/EscenarioAnualPlanta.php",
+      "sha256_actual": "9f51e06f65130cd2388decbfec11b208def30fa361d0cc5635671f01e064d422"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/GraficasPanel.php",
+      "sha256_actual": "ac50d8cc46d6a4bfdfc5bc1bc64a600ac8c8b532ca058712d3e23b9c3f808e38"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/HabilitacionDevolucion.php",
+      "sha256_actual": "0d28d03f7d67bdfc7f79e8d5857aaaac565bf95f79389614e73acb31be0da166"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/HistorialAtributosProducto.php",
+      "sha256_actual": "6366067abd0728f2af1b6c0b28a70dabeb93867203da6c37bd2123493512e642"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/IntegridadBaseDatos.php",
+      "sha256_actual": "7b8cef5908e790164c37952c22aa56543ce87528e242185a82b4c96b37b60f21"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/JerarquiaUbicaciones.php",
+      "sha256_actual": "000951fec4deb777f2fbd8af5413315fa2035706fae00127e09d84dadeb14410"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ModificacionSegura.php",
+      "sha256_actual": "297c87fdec78c5b8e3505128189250bbab910dcfcbb5094e301d4bc59c5a8a8c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/OperacionesPanel.php",
+      "sha256_actual": "a83a414bf00562fcb04ca0755e7f33d668384e7b414d9dfda87a73c19f41aed1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ReferenciasAtributo.php",
+      "sha256_actual": "08813ce4635963f790f18eb7aa4578d7b68df80c7332e4bf1158277110cffc61"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ReferenciasCatalogo.php",
+      "sha256_actual": "920e30679b9d4ff14b5d67ad6978a5b87362e64929d5fdd029ecbbba1bde314a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ReferenciasInventario.php",
+      "sha256_actual": "35062714748f125e88f3fba43004bafad0e3775fa1b8a9d4556f8cd8ac9a50c1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ReferenciasProducto.php",
+      "sha256_actual": "bef1af2f2d32562d2a62165609509a5056018ce6f15eccce21d4dc88a6c4cbb9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ReferenciasUbicacion.php",
+      "sha256_actual": "ba256bc39ad929507964fdde493e87c4cdad5b57489792df383ee1b99e1829e9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/RegistroExistenciasTrabajador.php",
+      "sha256_actual": "f7aa5c453ef4a6035407b1f3043d2bf05af2d3490525f39149afe3be16a5565e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/RegularizacionDevolucion.php",
+      "sha256_actual": "c1061f6daa1921bdb8249f45a215a7991e54a7cf0583e378a8bd894cf92cece7"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ReportesControl.php",
+      "sha256_actual": "2a66c0c79292a5a3ddb5993ad69cfd31be31f29a82e8cef7f32d14ed16e896e5"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/RespaldosBaseDatos.php",
+      "sha256_actual": "dbd5f713e04ec39ccb84260e7625ef13012b2bff338c8b17db0fa7bd8070dbd8"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ValidadorAtributosProducto.php",
+      "sha256_actual": "aef198e70c4c1dc8f360a3780e4d2fd66adb81f9ad5b873ba5a152457ee5ba35"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Services/ValidadorBorradorInventario.php",
+      "sha256_actual": "7b1d60ddac047b1ac0e2716b50756531763cd3f1e44d6072ff38e8fa0fbf664e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/CatalogoPermisos.php",
+      "sha256_actual": "c9d20436f57e2409e2ba3cba80c500cdeb1132e116caf5c8dd93fc2927d490bc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/DecimalTecnico.php",
+      "sha256_actual": "f9931f20a4577d6fbce71fc6c6187bfeac91c6840cda7197da8e27953a33c3a0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/EsquemaEspanol.php",
+      "sha256_actual": "f2545f9910fece1c7ccf40ceb398bd2914efd75f13f37af0d1c2c4aa5cb7da37"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/FirmaHistorica.php",
+      "sha256_actual": "2ca612bda9622742eb31a4b7c7657e5d14c85c5ca016df81f2cdecbef81e1c86"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/FormularioOperacion.php",
+      "sha256_actual": "1bd9285953795a709ccb5a43ae1af9140f40af4f67755e0b014571cb27dd88d3"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/PermisosControl.php",
+      "sha256_actual": "26beffec2f1231ebd632cb361065f2ef3c2be9182dd73e948bb67b5ccda32b5f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/PermisosInventario.php",
+      "sha256_actual": "57699227456f6f53584130ac18be325f37843de92b5efb18837a6fd649d6900b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/PermisosOperacionTrabajador.php",
+      "sha256_actual": "0abd88a94270463eec3cfb0b0825acd4b6b98cc4e4adf6fe4e2811caef614afc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/TiposOperacionTrabajador.php",
+      "sha256_actual": "0c501a2224a990a09595de1444a38fc88464195f56d2a8faf87898ada946c215"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/ValidacionInventario.php",
+      "sha256_actual": "6b98605cb5e33fea594673c617f560d2950db8abe83a302005207cdd7dbc0b79"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "app/Support/ValidacionOperacion.php",
+      "sha256_actual": "2dae4c806b50b52b3677c775059588a9f3a6f77d9546e661835a342b3280e0cd"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/esquema_espanol.json",
+      "sha256_actual": "712eb0ee5acdabbcd2a170b33f0fcb8f6c6b8a762e9805d2e90d7143c2ee4f66"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/estructura_anterior.json",
+      "sha256_actual": "f4ad78a97cc04c1756a53ec866dbc214eaaf3fece5f3cf69e6d5516fbd771897"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/CategoriaFactory.php",
+      "sha256_actual": "92a96ce4276588b4769b75f7c9409df2049b1c7d598463c6b367845d544c501c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/ProductoFactory.php",
+      "sha256_actual": "b40d89e963232e437c7c4df001e6774a45339dfab3f92a72285779f9f6854812"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/TrabajadorFactory.php",
+      "sha256_actual": "bb13146c9fc06c4bdd0050903488dab3183fd8b741572df0d826f3f2ef13b1b1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/UbicacionFactory.php",
+      "sha256_actual": "699b20472d422f7f924061220e44243cc519d493e0830215c7a808f227a0e8b6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/UbicacionProductoFactory.php",
+      "sha256_actual": "d653b78c127c42502406d7d60f59d3aef1a9332f0dbd24c62e952eafc0bb7dfe"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/UnidadIndividualFactory.php",
+      "sha256_actual": "d610aec662fc8155c3d36408581c43330049cdad1d1c567e5ff8f73adbe21226"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/UnidadMedidaFactory.php",
+      "sha256_actual": "72deea1199586b6dc7bba5e65237bab1190523c707f4910dd4c4b53a9a5fff8d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/UsuarioFactory.php",
+      "sha256_actual": "0ff4f8cf49bd013ccad0478171aae57118496e1ff2e14b8352501c305cbacf2a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/factories/ValorAtributoProductoFactory.php",
+      "sha256_actual": "61e23ec0029f1dab8fa9063f9902eeebcae1fdf921dd7edc821a13fb6aa96749"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/huellas_migraciones_anteriores.json",
+      "sha256_actual": "a0eda503d738685e439909ddf3b80a7da639a8f5a7af72e2eba916be0657eab5"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "database/migrations/2026_11_01_000001_traducir_esquema_del_sga.php",
+      "sha256_actual": "3023c70c7103509f7728b559b8bc6bd22d32939d38d08d0fec0ad4b9b9fb9afb"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/correspondencia-clases-espanol.md",
+      "sha256_actual": "fb9ab532c30d279cc940b4ffc94b8a56c227dc95eb1225e68147acddd41a9860"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/diccionario-datos-espanol.md",
+      "sha256_actual": "94b13cf667777e0db41167cbceccdd5cd12d1f8ff569cfb188e51ccd2e39eee5"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/evidence/traduccion-espanol.json",
+      "sha256_actual": "941324e314c6a194c54f7174a06bcaf0db966a4610dc58a291089d3f87ca1d64"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/evidence/traduccion-espanol/cobertura.json",
+      "sha256_actual": "e9690922285fd54abecd9597374c426d6f52556f2609e18f63e7cd7339e69cab"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/evidence/traduccion-espanol/corpus.xml",
+      "sha256_actual": "172f9e724106da2c4e8682c95c4def910aa0bf693f2c22294a8e527c3f42ae6a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/evidence/traduccion-espanol/regresion-consolidada.xml",
+      "sha256_actual": "075725238a40a5029705c32091d3135ee2417ff4c61052c7f91214420cb6b2d6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/modelo-datos-espanol.md",
+      "sha256_actual": "5cfe849ea145ca71d52d38491d9dd9a63234d3b9f65acd3f3747791889e7969d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/simplified-interface-2026-11-01.md",
+      "sha256_actual": "1ecda83d87663fc600b66a25c46f0541e62d7e533f0a59348131747f5a80ad3a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "docs/traduccion-espanol.md",
+      "sha256_actual": "e4af5014853fc1c2f05f5c7f744437cbc384accf202b63732f4ca7a7baccedb8"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/atributos-categoria/form.blade.php",
+      "sha256_actual": "9d22059e51c96f1bb68efba75fb6861330cf5416ad0ab89b4e351ca00de3d8f6"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/atributos-categoria/index.blade.php",
+      "sha256_actual": "4cd2592a6696283e6f74c1c471f9f6fa2e2706fcef5c6e4a7cf75ec1f856c555"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/atributos/form.blade.php",
+      "sha256_actual": "654b503bb12f9006a3dcea77291178546dd36836e6ce1d1eea28f7559ccde5e9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/atributos/index.blade.php",
+      "sha256_actual": "20bf14eb6a8ee28f2e83d88b99bd44a8dd2a101f1e8caf511e37cf6c47a017d1"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/categorias/form.blade.php",
+      "sha256_actual": "5684d9ad61607123e5f13b225de677907603253bd98fbb6a57c17ca440c3121e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/categorias/index.blade.php",
+      "sha256_actual": "6a20bf0ab5af6f7596ed4a03d2ce574925ee8fd5be2ada02602096f31cd330e9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/productos/_attributes.blade.php",
+      "sha256_actual": "826a3077ab836c6bf1a7f72219dfe1bb7e038a1044e4fb7b7fe9933b43222a81"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/productos/_values-history.blade.php",
+      "sha256_actual": "74ac10b6a64298e485ff537f2308fc68b1f210616785750d7d68f4e0021181cb"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/productos/form.blade.php",
+      "sha256_actual": "cdc0ddea459dfd66ecc45539db751bb711483cb78c44afd96035f74768746160"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/productos/index.blade.php",
+      "sha256_actual": "18413176cdc58fd93a2e5f59936f5d7837631e3e0929a233aa784eb3e27a63ce"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/productos/preview.blade.php",
+      "sha256_actual": "c61fa47bb53c35b3e460039991aa5e10ba7a700ff9afcfe54e3b7d88aec09802"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/productos/show.blade.php",
+      "sha256_actual": "63cb903e2e84019322c2a19116ca1022b9e7015f8266eb70c112555124019d49"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/ubicaciones-producto/form.blade.php",
+      "sha256_actual": "5811d456c03a61a2eeeb9956b9c432441663c96100beb570f0554907f7773285"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/ubicaciones-producto/index.blade.php",
+      "sha256_actual": "652d867e55dbfbcd7636c04025b878960dcb4ef0d8457660779a30e23423db9f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/ubicaciones/form.blade.php",
+      "sha256_actual": "db0e0a276bf74d1c14fcbaa36a8bb1816cabe68d05d9d041975727719d8cec4d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/ubicaciones/index.blade.php",
+      "sha256_actual": "ef3fa4fb568e8e003a6e1bed23500f7e1d53c8b9e38429d173a4c51b7524613d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/ubicaciones/tree.blade.php",
+      "sha256_actual": "dcced58c4d369373fdf03bbad7a5f36cb531b2a188e48bed4f800e3c8ce42cdc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/unidades-individuales/form.blade.php",
+      "sha256_actual": "ff00711291b721b012843049f2849227bc577f34a83c9ff3ff606bb3ffbed6f9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/unidades-individuales/index.blade.php",
+      "sha256_actual": "ed908f0756d8b9b565b44a027743d129950cfae33ec13eb0519af89d9148cdf0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/unidades-individuales/show.blade.php",
+      "sha256_actual": "46ce2be03b0ae3a8ac0da53f82bdf7c46742234b5f433b28c0b4fc732ce2bacc"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/unidades-medida/form.blade.php",
+      "sha256_actual": "f14d0cb54de29f1b14297f85dd7b2a801270c83a74f75c180bc3d9531aad4015"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/catalogo/unidades-medida/index.blade.php",
+      "sha256_actual": "a33e6be9b77ca0f8f28e110d768ff331ca807b6df95a377232141123526d6120"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/documents/form.blade.php",
+      "sha256_actual": "ff0e169cff12c7fc447ac115decda62069801eba54e7af494e973fdc9790f277"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/documents/index.blade.php",
+      "sha256_actual": "20265cf26137083478e460684b5c8e5cbde1dc972e145ed65d93547b3ff01188"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/documents/line.blade.php",
+      "sha256_actual": "3740ae255b6c3ef57ed14d3263ca294fc396cc01819a301828d45f0f73e0b350"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/documents/show.blade.php",
+      "sha256_actual": "337381d4dfdb1e4d25e0e60eef3b3ad575375da7bc30677df591df7d4bd6137d"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/import-preview.blade.php",
+      "sha256_actual": "8a9c0d0b9e04aea9fe543b28181a1e6766dfdb8563085d36b75d901b62eef319"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/import.blade.php",
+      "sha256_actual": "57a3cf6143b9c9f5ea02a33c4b72efb3e1803666e73cac1fb1b83cdd6905f74c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/movements.blade.php",
+      "sha256_actual": "c8e5206ac964a0da0418527f7cd88a908ad3561d00ddb149770eed486594af1c"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/query-filters.blade.php",
+      "sha256_actual": "0ab41440bf491e5dac01388fc16716a717d267352010726fc5fc683fb404d177"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/inventario/stock.blade.php",
+      "sha256_actual": "843634e0c222647a6ad7b962dceea0ad9c0babf3b50cf012749c060f9e4a97bd"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/layouts/navegacion.blade.php",
+      "sha256_actual": "681b96892fa6a81fae23232421c43966d7ee24d95976c4ffa5a3ce80817deea0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/operaciones-trabajadores/availability.blade.php",
+      "sha256_actual": "8e9b5b3d26fc03e8c2117b1b6cf620fc1fb22f9d900ca64ecee5812ecba8eb5f"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/operaciones-trabajadores/form.blade.php",
+      "sha256_actual": "53b39633fc73e2a3eaad77ba417c86195227e1956dba9d7752e5bae2a2bb3f0a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/operaciones-trabajadores/index.blade.php",
+      "sha256_actual": "6ac666f52d4f1cb71a3b78cb2d5963afe8f99935fde202cef1724e9c316075ae"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/operaciones-trabajadores/line.blade.php",
+      "sha256_actual": "e0563425751101faf2cab7006013ac349c655032d02615658279f24d88c43b50"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/operaciones-trabajadores/show.blade.php",
+      "sha256_actual": "a9302a27bc0632e6e0c846e60f38bd134e0c462aefcac017bf165cb2e2b8e8d9"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/operaciones-trabajadores/tabs.blade.php",
+      "sha256_actual": "87861c66f9ea27cca9b2ed76a13f2cf4f3fefd09ac5723070e8d42d11232b232"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/panel.blade.php",
+      "sha256_actual": "c0a05eea044fb8610d7f07643074e5cd75c2018d4918ac327db6943891678ccd"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/panel/charts.blade.php",
+      "sha256_actual": "c3586e7a38ca0a062adb911a8449ae1c8ec8ed3253e22551eda5b49c66a7bbf0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/panel/graficas.blade.php",
+      "sha256_actual": "c3586e7a38ca0a062adb911a8449ae1c8ec8ed3253e22551eda5b49c66a7bbf0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/panel/operaciones.blade.php",
+      "sha256_actual": "41e8fb8cc80372312720164444192fa4abc4923ae74a5fc6e6410af9965be75b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/panel/operations.blade.php",
+      "sha256_actual": "6d02057f0eb7c1566768c083d694ddd690bb09cb45525b2d35995a55c3258c10"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/trabajadores/form.blade.php",
+      "sha256_actual": "73222644924518c87f3385fe06ad9d95f714280583e5c81c17f9115cd1880d1b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/trabajadores/index.blade.php",
+      "sha256_actual": "f496f1509677ef65f5981a9b23a6d52f264b388a60cb0f906f4739246781066b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/trabajadores/show.blade.php",
+      "sha256_actual": "2064970f0f101c80157b66600a10c402cca8a3f329fa63b49ac698c590aa2d9e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/usuarios/form.blade.php",
+      "sha256_actual": "5636674e06e4b3b16a44960808aa30770ff1dec66ac228c7139243587cf27149"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "resources/views/usuarios/index.blade.php",
+      "sha256_actual": "28b2cb10dfe59c0b5ce2b44200c858d340283c109a45c811459851dbe687eb8e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "routes/catalogo.php",
+      "sha256_actual": "7700de74db6dd80c45feb123f9a1547b9a5918214790eb4b95b4def50f526fc0"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "routes/inventario.php",
+      "sha256_actual": "2934ce03d74de8b1c9199be0152d04f1ae3a38b8951e24f5d7a5d9259b49df60"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "routes/operaciones-trabajadores.php",
+      "sha256_actual": "e5d489a7d8a014cab6907547a1ca1341dc12b805ef417c71f14518761c060d61"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "tests/Feature/CompatibilidadFirmasHistoricasTest.php",
+      "sha256_actual": "28d2e82ace1fb3f10c426e7a04cff735872d172943d15035e5318f032ded2638"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "tests/Feature/PaginationPresentationTest.php",
+      "sha256_actual": "005aaa599b2bd296e0f1763557f71bf7de9f454ad6288e34c9b9d4bef7cf651e"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "tests/Feature/SimplifiedInterfaceTest.php",
+      "sha256_actual": "3d935406503edcc5967117a95eefa6e2e4007450ebb56311dcbd24867a6f506b"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "tests/Feature/TraduccionEsquemaTest.php",
+      "sha256_actual": "5738799b3717d2e4844dc81f2af4e86682537d35852c0525c68563e8d4df561a"
+    },
+    {
+      "estado_git": "??",
+      "archivo": "tests/Support/CargadorMigracionArchivada.php",
+      "sha256_actual": "f1fdf86c49ea45870c4ac7bf33138e9ebda6cdeddff2ba87862f3aaa3a6bf90f"
+    }
+  ],
+  "cantidad": 602
+}

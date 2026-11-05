@@ -1,0 +1,12 @@
+<fieldset><legend>Línea de la operación</legend>
+@if($clase==='deliveries')
+<label>Producto<select name="lineas[{{ $index }}][producto_id]" required><option value="">Selecciona un producto</option>@foreach($productos as $producto)<option value="{{ $producto->id }}" @selected((string)($row['producto_id']??'')===(string)$producto->id)>{{ $producto->codigo_interno }} · {{ $producto->nombre }} ({{ $producto->modo_control==='individual'?'individual':'por cantidad' }})</option>@endforeach</select></label>
+<label>Cantidad<input name="lineas[{{ $index }}][cantidad]" inputmode="decimal" required value="{{ $row['cantidad']??'' }}"></label>
+<label>Identidades, solo para control individual<select name="lineas[{{ $index }}][unit_ids][]" multiple size="4">@foreach($unidades as $unidad)<option value="{{ $unidad->id }}" @selected(in_array($unidad->id,$row['unit_ids']??[]))>{{ $unidad->identificador }} · {{ $unidad->producto->codigo_interno }}</option>@endforeach</select></label>
+@elseif($clase==='loans')
+<label>Herramienta individual prestable<select name="lineas[{{ $index }}][unidad_individual_id]" required><option value="">Selecciona una herramienta</option>@foreach($unidades as $unidad)<option value="{{ $unidad->id }}" @selected((string)($row['unidad_individual_id']??'')===(string)$unidad->id)>{{ $unidad->identificador }} · {{ $unidad->producto->codigo_interno }}</option>@endforeach</select></label>
+@else
+<label>Ítem pendiente del préstamo<select name="lineas[{{ $index }}][item_prestamo_id]" required><option value="">Selecciona la herramienta recibida</option>@foreach($loanItems as $item)<option data-prestamo="{{ $item->prestamo_id }}" value="{{ $item->id }}" @selected((string)($row['item_prestamo_id']??'')===(string)$item->id)>{{ $item->unidad->identificador }} · {{ $item->producto->codigo_interno }} · ítem {{ $item->id }}</option>@endforeach</select></label>
+@endif
+<label>{{ $clase==='returns'?'Ubicación de recepción':'Ubicación de retiro' }}<select name="lineas[{{ $index }}][ubicacion_id]" required><option value="">Selecciona manualmente una ubicación</option>@foreach($ubicaciones as $ubicacion)<option value="{{ $ubicacion->id }}" @selected((string)($row['ubicacion_id']??'')===(string)$ubicacion->id)>{{ $ubicacion->codigo }} · {{ $ubicacion->nombre }}</option>@endforeach</select></label>
+<button type="button" data-remove class="secondary">Quitar línea</button></fieldset>

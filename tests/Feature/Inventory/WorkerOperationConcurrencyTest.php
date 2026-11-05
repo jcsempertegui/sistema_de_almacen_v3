@@ -2,18 +2,18 @@
 
 namespace Tests\Feature\Inventory;
 
-use App\Actions\Deliveries\SaveDelivery;
-use App\Actions\Inventory\ConfirmInventoryDocument;
-use App\Actions\Inventory\SaveInventoryDocument;
-use App\Actions\Loans\ConfirmLoan;
-use App\Actions\Loans\SaveLoan;
-use App\Actions\Returns\SaveReturn;
-use App\Models\IndividualUnit;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Worker;
-use App\Services\ReturnRegularization;
+use App\Actions\Devoluciones\GuardarDevolucion;
+use App\Actions\Entregas\GuardarEntrega;
+use App\Actions\Inventario\ConfirmarDocumentoInventario;
+use App\Actions\Inventario\GuardarDocumentoInventario;
+use App\Actions\Prestamos\ConfirmarPrestamo;
+use App\Actions\Prestamos\GuardarPrestamo;
+use App\Models\Permiso;
+use App\Models\Rol;
+use App\Models\Trabajador;
+use App\Models\UnidadIndividual;
+use App\Models\Usuario;
+use App\Services\RegularizacionDevolucion;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -33,7 +33,7 @@ class WorkerOperationConcurrencyTest extends TestCase
 
     public static function races(): array
     {
-        return ['competing deliveries' => ['delivery'], 'exclusive custody' => ['loan'], 'loan retry' => ['loan_retry'], 'competing returns' => ['return'], 'return retry' => ['return_retry'], 'permission revocation' => ['revoke'], 'worker deactivation' => ['worker'], 'authorization revoked first' => ['regularization'], 'return protects used approval' => ['regularization_reverse'], 'inactive identity blocks ordinary return' => ['return_disable_first'], 'received identity blocks deactivation' => ['return_disable_last']];
+        return ['competing deliveries' => ['delivery'], 'exclusive custody' => ['prestamo'], 'prestamo retry' => ['loan_retry'], 'competing returns' => ['return'], 'return retry' => ['return_retry'], 'permiso revocation' => ['revoke'], 'trabajador deactivation' => ['trabajador'], 'authorization revoked first' => ['regularization'], 'return protects used approval' => ['regularization_reverse'], 'inactive identity blocks ordinary return' => ['return_disable_first'], 'received identity blocks deactivation' => ['return_disable_last']];
     }
 
     #[DataProvider('races')]
@@ -42,66 +42,66 @@ class WorkerOperationConcurrencyTest extends TestCase
         $this->assertTrue(app()->environment('testing'));
         $this->assertSame('sga_rio_grande_testing', DB::selectOne('SELECT DATABASE() AS db')->db);
         $this->assertSame(0, DB::transactionLevel());
-        $this->assertSame(0, DB::table('users')->count());
+        $this->assertSame(0, DB::table('usuarios')->count());
         $c = null;
         $other = null;
-        $role = null;
-        $worker = null;
+        $rol = null;
+        $trabajador = null;
         $processes = [];
         $streams = [];
         try {
             $c = $this->inventoryContext($scenario === 'delivery' ? 'quantity' : 'individual');
-            $role = Role::create(['code' => 's4_race_'.bin2hex(random_bytes(7)), 'name' => 'Prueba aislada', 'is_active' => true]);
-            foreach (Permission::pluck('id') as $id) {
-                DB::table('permission_role')->insert(['role_id' => $role->id, 'permission_id' => $id, 'is_active' => true]);
+            $rol = Rol::create(['codigo' => 's4_race_'.bin2hex(random_bytes(7)), 'nombre' => 'Prueba aislada', 'activo' => true]);
+            foreach (Permiso::pluck('id') as $id) {
+                DB::table('permiso_rol')->insert(['rol_id' => $rol->id, 'permiso_id' => $id, 'activo' => true]);
             }
-            $other = User::factory()->create(['role_id' => $role->id]);
-            $worker = Worker::factory()->create();
-            $kind = $scenario === 'delivery' ? 'deliveries' : 'loans';
+            $other = Usuario::factory()->create(['rol_id' => $rol->id]);
+            $trabajador = Trabajador::factory()->create();
+            $clase = $scenario === 'delivery' ? 'deliveries' : 'loans';
             $operation = ['confirm', 'confirm'];
             $authorization = null;
-            if ($kind === 'deliveries') {
+            if ($clase === 'deliveries') {
                 $this->postInventory($c, 'receipt', '10');
-                $data = ['worker_id' => $worker->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['product_id' => $c['product']->id, 'location_id' => $c['location']->id, 'quantity' => '7', 'unit_ids' => []]]];
-                $a = app(SaveDelivery::class)->handle($c['actor'], null, $data);
-                $b = app(SaveDelivery::class)->handle($other, null, $data);
+                $data = ['trabajador_id' => $trabajador->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['producto_id' => $c['producto']->id, 'ubicacion_id' => $c['ubicacion']->id, 'cantidad' => '7', 'unit_ids' => []]]];
+                $a = app(GuardarEntrega::class)->handle($c['actor'], null, $data);
+                $b = app(GuardarEntrega::class)->handle($other, null, $data);
             } else {
-                $c['product']->update(['is_loanable' => true]);
-                if (in_array($scenario, ['loan', 'loan_retry'], true)) {
-                    $extra = IndividualUnit::factory()->create(['product_id' => $c['product']->id, 'location_id' => null]);
+                $c['producto']->update(['prestable' => true]);
+                if (in_array($scenario, ['prestamo', 'loan_retry'], true)) {
+                    $extra = UnidadIndividual::factory()->create(['producto_id' => $c['producto']->id, 'ubicacion_id' => null]);
                     $receiptData = $this->inventoryData($c, 'receipt', '2');
-                    $receiptData['lines'][0]['unit_ids'][] = $extra->id;
-                    $receipt = app(SaveInventoryDocument::class)->handle($c['actor'], null, $receiptData);
-                    app(ConfirmInventoryDocument::class)->handle($c['actor'], $receipt, 1);
+                    $receiptData['lineas'][0]['unit_ids'][] = $extra->id;
+                    $receipt = app(GuardarDocumentoInventario::class)->handle($c['actor'], null, $receiptData);
+                    app(ConfirmarDocumentoInventario::class)->handle($c['actor'], $receipt, 1);
                 } else {
                     $this->postInventory($c, 'receipt', '1');
                 }
-                $data = ['worker_id' => $worker->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['individual_unit_id' => $c['unit']->id, 'location_id' => $c['location']->id]]];
-                $a = app(SaveLoan::class)->handle($c['actor'], null, $data);
-                $b = $scenario === 'loan_retry' ? $a : app(SaveLoan::class)->handle($other, null, $data);
+                $data = ['trabajador_id' => $trabajador->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['unidad_individual_id' => $c['unidad']->id, 'ubicacion_id' => $c['ubicacion']->id]]];
+                $a = app(GuardarPrestamo::class)->handle($c['actor'], null, $data);
+                $b = $scenario === 'loan_retry' ? $a : app(GuardarPrestamo::class)->handle($other, null, $data);
                 if (str_starts_with($scenario, 'return') || str_starts_with($scenario, 'regularization')) {
-                    $loan = app(ConfirmLoan::class)->handle($c['actor'], $a, 1);
-                    $kind = 'returns';
+                    $prestamo = app(ConfirmarPrestamo::class)->handle($c['actor'], $a, 1);
+                    $clase = 'returns';
                     if (str_starts_with($scenario, 'regularization')) {
-                        DB::table('individual_units')->where('id', $c['unit']->id)->update(['is_active' => false]);
+                        DB::table('unidades_individuales')->where('id', $c['unidad']->id)->update(['activo' => false]);
                     }
-                    $data = ['loan_id' => $loan->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['loan_item_id' => $loan->lines()->first()->id, 'location_id' => $c['location']->id]]];
-                    $a = app(SaveReturn::class)->handle($c['actor'], null, $data);
-                    $b = $scenario === 'return' ? app(SaveReturn::class)->handle($other, null, $data) : $a;
+                    $data = ['prestamo_id' => $prestamo->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['item_prestamo_id' => $prestamo->lineas()->first()->id, 'ubicacion_id' => $c['ubicacion']->id]]];
+                    $a = app(GuardarDevolucion::class)->handle($c['actor'], null, $data);
+                    $b = $scenario === 'return' ? app(GuardarDevolucion::class)->handle($other, null, $data) : $a;
                     if ($scenario === 'return_disable_first') {
                         $operation = ['disable_unit', 'confirm'];
                     }if ($scenario === 'return_disable_last') {
                         $operation = ['confirm', 'disable_unit'];
                     }
                     if (str_starts_with($scenario, 'regularization')) {
-                        $authorization = app(ReturnRegularization::class)->request($c['actor'], $a->lines()->first(), 1, 'Prueba concurrente');
-                        $authorization = app(ReturnRegularization::class)->decide($c['actor'], $authorization, true, 'Identidad revisada');
+                        $authorization = app(RegularizacionDevolucion::class)->request($c['actor'], $a->lineas()->first(), 1, 'Prueba concurrente');
+                        $authorization = app(RegularizacionDevolucion::class)->decide($c['actor'], $authorization, true, 'Identidad revisada');
                         $operation = $scenario === 'regularization' ? ['revoke_regularization', 'confirm'] : ['confirm', 'revoke_regularization'];
                     }
                 }
                 if ($scenario === 'revoke') {
                     $operation = ['revoke', 'confirm'];
-                }if ($scenario === 'worker') {
+                }if ($scenario === 'trabajador') {
                     $operation = ['disable_worker', 'confirm'];
                 }
             }
@@ -112,7 +112,7 @@ class WorkerOperationConcurrencyTest extends TestCase
             }
             foreach ([$a, $b] as $index => $doc) {
                 $stream = new InputStream;
-                $job = ['actor' => $index ? $other->id : $c['actor']->id, 'document' => $doc->id, 'kind' => $kind, 'operation' => $operation[$index], 'index' => $index, 'role' => $role->id, 'authorization' => $authorization?->id];
+                $job = ['actor' => $index ? $other->id : $c['actor']->id, 'documento' => $doc->id, 'tipo' => $clase, 'operation' => $operation[$index], 'index' => $index, 'rol' => $rol->id, 'authorization' => $authorization?->id];
                 $p = new Process([PHP_BINARY, base_path('tests/Support/concurrent-worker-operation.php'), json_encode($job, JSON_THROW_ON_ERROR)], base_path(), $env, $stream, 120);
                 $p->start();
                 $processes[] = $p;
@@ -166,12 +166,12 @@ class WorkerOperationConcurrencyTest extends TestCase
             }
             preg_match('/LOCK_WAIT:([0-9.]+)/', $processes[1]->getOutput(), $wait);
             $this->assertGreaterThanOrEqual(100, (float) ($wait[1] ?? 0));
-            $balance = (string) DB::table('stock_positions')->where('product_id', $c['product']->id)->sum('quantity');
-            $ledger = (string) DB::table('inventory_movements')->where('product_id', $c['product']->id)->selectRaw("SUM(CASE WHEN direction='in' THEN quantity ELSE -quantity END) AS total")->first()->total;
+            $balance = (string) DB::table('existencias_ubicacion')->where('producto_id', $c['producto']->id)->sum('cantidad');
+            $ledger = (string) DB::table('movimientos_inventario')->where('producto_id', $c['producto']->id)->selectRaw("SUM(CASE WHEN direccion='in' THEN cantidad ELSE -cantidad END) AS total")->first()->total;
             $this->assertSame($balance, $ledger);
-            $expectedBalance = $scenario === 'delivery' ? '3.000000' : (in_array($scenario, ['loan', 'loan_retry', 'return', 'return_retry', 'regularization_reverse', 'return_disable_last', 'revoke', 'worker'], true) ? '1.000000' : '0.000000');
+            $expectedBalance = $scenario === 'delivery' ? '3.000000' : (in_array($scenario, ['prestamo', 'loan_retry', 'return', 'return_retry', 'regularization_reverse', 'return_disable_last', 'revoke', 'trabajador'], true) ? '1.000000' : '0.000000');
             $this->assertSame($expectedBalance, $balance);
-            $this->assertSame(in_array($scenario, ['return', 'return_retry', 'regularization_reverse', 'return_disable_last'], true) ? 1 : 0, DB::table('loan_item_settlements')->count());
+            $this->assertSame(in_array($scenario, ['return', 'return_retry', 'regularization_reverse', 'return_disable_last'], true) ? 1 : 0, DB::table('cierres_item_prestamo')->count());
         } finally {
             foreach ($processes as $p) {
                 if ($p->isRunning()) {
@@ -179,46 +179,46 @@ class WorkerOperationConcurrencyTest extends TestCase
                 }
             }
             if ($c) {
-                $product = $c['product']->id;
-                $returnItems = DB::table('tool_return_items')->where('product_id', $product)->pluck('id');
-                $auth = DB::table('return_regularization_authorizations')->whereIn('return_item_id', $returnItems)->pluck('id');
+                $producto = $c['producto']->id;
+                $returnItems = DB::table('items_devolucion_herramienta')->where('producto_id', $producto)->pluck('id');
+                $auth = DB::table('autorizaciones_regularizacion_devolucion')->whereIn('item_devolucion_id', $returnItems)->pluck('id');
                 // Remove only cycles created by this committed race fixture.
-                $cycles = DB::table('loan_custody_cycles')->where('product_id', $product)->orderByDesc('id')->pluck('id');
-                DB::table('individual_unit_custodies')->where('product_id', $product)->delete();
-                DB::table('tool_return_items')->whereIn('id', $returnItems)->update(['custody_cycle_id' => null]);
-                DB::table('loan_cycle_closures')->whereIn('cycle_id', $cycles)->delete();
+                $cycles = DB::table('ciclos_custodia_prestamo')->where('producto_id', $producto)->orderByDesc('id')->pluck('id');
+                DB::table('custodias_unidad_individual')->where('producto_id', $producto)->delete();
+                DB::table('items_devolucion_herramienta')->whereIn('id', $returnItems)->update(['ciclo_custodia_id' => null]);
+                DB::table('cierres_ciclo_prestamo')->whereIn('ciclo_id', $cycles)->delete();
                 foreach ($cycles as $cycleId) {
-                    DB::table('loan_custody_cycles')->where('id', $cycleId)->delete();
+                    DB::table('ciclos_custodia_prestamo')->where('id', $cycleId)->delete();
                 }
-                DB::table('individual_unit_positions')->where('product_id', $product)->delete();
-                DB::table('loan_item_settlements')->whereIn('return_item_id', $returnItems)->delete();
-                DB::table('individual_unit_custodies')->where('product_id', $product)->delete();
-                DB::table('return_regularization_events')->whereIn('authorization_id', $auth)->delete();
-                DB::table('return_regularization_authorizations')->whereIn('id', $auth)->delete();
-                DB::table('inventory_movements')->where('product_id', $product)->delete();
-                foreach (['tool_return_items', 'tool_loan_items', 'material_delivery_line_units', 'material_delivery_lines', 'inventory_document_line_units', 'inventory_document_lines', 'initial_stock_products', 'stock_positions', 'individual_units', 'product_locations'] as $table) {
-                    DB::table($table)->where('product_id', $product)->delete();
+                DB::table('posiciones_unidad_individual')->where('producto_id', $producto)->delete();
+                DB::table('cierres_item_prestamo')->whereIn('item_devolucion_id', $returnItems)->delete();
+                DB::table('custodias_unidad_individual')->where('producto_id', $producto)->delete();
+                DB::table('eventos_regularizacion_devolucion')->whereIn('autorizacion_id', $auth)->delete();
+                DB::table('autorizaciones_regularizacion_devolucion')->whereIn('id', $auth)->delete();
+                DB::table('movimientos_inventario')->where('producto_id', $producto)->delete();
+                foreach (['items_devolucion_herramienta', 'items_prestamo_herramienta', 'unidades_linea_entrega', 'lineas_entrega_material', 'unidades_linea_documento', 'lineas_documento_inventario', 'productos_existencia_inicial', 'existencias_ubicacion', 'unidades_individuales', 'ubicaciones_producto'] as $table) {
+                    DB::table($table)->where('producto_id', $producto)->delete();
                 }
-                foreach (['tool_returns', 'tool_loans', 'material_deliveries', 'inventory_documents'] as $table) {
-                    DB::table($table)->whereIn('created_by', array_filter([$c['actor']->id, $other?->id]))->delete();
+                foreach (['devoluciones_herramientas', 'prestamos_herramientas', 'entregas_materiales', 'documentos_inventario'] as $table) {
+                    DB::table($table)->whereIn('creado_por', array_filter([$c['actor']->id, $other?->id]))->delete();
                 }
-                DB::table('products')->where('id', $product)->delete();
-                DB::table('locations')->where('id', $c['location']->id)->delete();
-                DB::table('categories')->where('id', $c['product']->category_id)->delete();
-                DB::table('measurement_units')->where('id', $c['product']->measurement_unit_id)->delete();
+                DB::table('productos')->where('id', $producto)->delete();
+                DB::table('ubicaciones')->where('id', $c['ubicacion']->id)->delete();
+                DB::table('categorias')->where('id', $c['producto']->categoria_id)->delete();
+                DB::table('unidades_medida')->where('id', $c['producto']->unidad_medida_id)->delete();
             }
-            if ($worker) {
-                DB::table('workers')->where('id', $worker->id)->delete();
-            }if ($role) {
-                DB::table('administrative_audit_logs')->where('role_id', $role->id)->delete();
-                DB::table('roles')->where('id', $role->id)->update(['created_by' => null, 'updated_by' => null]);
+            if ($trabajador) {
+                DB::table('trabajadores')->where('id', $trabajador->id)->delete();
+            }if ($rol) {
+                DB::table('registros_auditoria_administrativa')->where('rol_id', $rol->id)->delete();
+                DB::table('roles')->where('id', $rol->id)->update(['creado_por' => null, 'modificado_por' => null]);
             }
-            DB::table('users')->whereIn('id', array_filter([$c ? $c['actor']->id : null, $other?->id]))->delete();
-            if ($role) {
-                DB::table('permission_role')->where('role_id', $role->id)->delete();
-                DB::table('roles')->where('id', $role->id)->delete();
+            DB::table('usuarios')->whereIn('id', array_filter([$c ? $c['actor']->id : null, $other?->id]))->delete();
+            if ($rol) {
+                DB::table('permiso_rol')->where('rol_id', $rol->id)->delete();
+                DB::table('roles')->where('id', $rol->id)->delete();
             }
         }
-        $this->assertSame(0, DB::table('users')->count());
+        $this->assertSame(0, DB::table('usuarios')->count());
     }
 }

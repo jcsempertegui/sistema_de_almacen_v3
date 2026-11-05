@@ -2,31 +2,31 @@
 
 namespace Tests\Support;
 
-use App\Models\CatalogAttribute;
-use App\Models\Category;
-use App\Models\CategoryAttribute;
+use App\Models\AtributoCatalogo;
+use App\Models\AtributoCategoria;
+use App\Models\Categoria;
 
 trait CreatesTechnicalCatalog
 {
     private function attributeData(array $changes = []): array
     {
-        return array_replace(['code' => 'TEMP', 'name' => 'Temperatura', 'data_type' => 'decimal', 'measurement_unit_id' => null, 'help_text' => 'Temperatura técnica', 'is_active' => 1], $changes);
+        return array_replace(['codigo' => 'TEMP', 'nombre' => 'Temperatura', 'tipo_dato' => 'decimal', 'unidad_medida_id' => null, 'texto_ayuda' => 'Temperatura técnica', 'activo' => 1], $changes);
     }
 
     private function associationData(array $changes = []): array
     {
-        return array_replace(['is_required' => 0, 'is_identity' => 0, 'display_order' => 0, 'min_value' => null, 'max_value' => null, 'is_active' => 1], $changes);
+        return array_replace(['obligatorio' => 0, 'identificacion_tecnica' => 0, 'orden_presentacion' => 0, 'valor_minimo' => null, 'valor_maximo' => null, 'activo' => 1], $changes);
     }
 
-    private function technicalAttribute(array $changes = []): CatalogAttribute
+    private function technicalAttribute(array $changes = []): AtributoCatalogo
     {
-        return CatalogAttribute::create($this->attributeData(array_replace(['code' => 'ATTR-'.bin2hex(random_bytes(4))], $changes)));
+        return AtributoCatalogo::create($this->attributeData(array_replace(['codigo' => 'ATTR-'.bin2hex(random_bytes(4))], $changes)));
     }
 
-    private function association(Category $category, CatalogAttribute $attribute, array $changes = []): CategoryAttribute
+    private function association(Categoria $categoria, AtributoCatalogo $atributo, array $changes = []): AtributoCategoria
     {
-        $association = new CategoryAttribute($this->associationData(array_replace(['attribute_id' => $attribute->id], $changes)));
-        $association->category()->associate($category);
+        $association = new AtributoCategoria($this->associationData(array_replace(['atributo_id' => $atributo->id], $changes)));
+        $association->categoria()->associate($categoria);
         $association->save();
 
         return $association;

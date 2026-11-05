@@ -6,6 +6,7 @@
     <title>@yield('title', 'Panel') · SGA CONFIPETROL</title>
     <link rel="stylesheet" href="{{ asset('css/sga.css') }}?v={{ filemtime(public_path('css/sga.css')) }}">
     <script src="{{ asset('js/sga-ui.js') }}?v={{ filemtime(public_path('js/sga-ui.js')) }}" defer></script>
+    <script src="{{ asset('js/sga-selectores.js') }}?v={{ filemtime(public_path('js/sga-selectores.js')) }}" defer></script>
 </head>
 <body class="@auth app-shell @else guest-shell @endauth @yield('body-class')">
 <a class="skip-link" href="#main-content">Ir al contenido</a>
@@ -16,8 +17,8 @@
             <div><strong>CONFIPETROL</strong><span>Gestión de almacén</span></div>
             <button type="button" class="icon-button sidebar-close" data-nav-close aria-label="Cerrar menú"><x-icon name="close" /></button>
         </div>
-        @include('layouts.navigation')
-        <div class="sidebar-footer"><x-icon name="location" /><div><strong>Río Grande</strong><span>Planta Separadora de Líquidos</span></div></div>
+        @include('layouts.navegacion')
+        <div class="sidebar-footer"><x-icon name="ubicacion" /><div><strong>Río Grande</strong><span>Planta Separadora de Líquidos</span></div></div>
     </aside>
     <button type="button" class="nav-backdrop" data-nav-close aria-label="Cerrar menú" tabindex="-1" hidden></button>
     <header class="topbar">
@@ -26,8 +27,8 @@
             <div><span class="topbar-eyebrow">SISTEMA DE GESTIÓN DE ALMACÉN</span><span class="topbar-title">@yield('title', 'Panel')</span></div>
         </div>
         <div class="topbar-account">
-            <span class="user-avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}</span>
-            <div class="user-copy"><strong>{{ auth()->user()->name }}</strong><span>{{ auth()->user()->role->name }}</span></div>
+            <span class="user-avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(auth()->user()->nombre, 0, 1)) }}</span>
+            <div class="user-copy"><strong>{{ auth()->user()->nombre }}</strong><span>{{ auth()->user()->rol->nombre }}</span></div>
             <form method="POST" action="{{ route('logout') }}">@csrf<button class="logout-button" type="submit"><x-icon name="logout" /><span>Cerrar sesión</span></button></form>
         </div>
     </header>
@@ -35,7 +36,7 @@
     <header class="guest-header"><img src="{{ asset('images/confipetrol.png') }}" alt="" width="35" height="35"><strong>SGA CONFIPETROL</strong></header>
 @endauth
 <main class="container" id="main-content" tabindex="-1">
-    @if(session('status'))<div class="notice success" role="status">{{ session('status') }}</div>@endif
+    @if(session('estado'))<div class="notice success" role="status">{{ session('estado') }}</div>@endif
     @if($errors->any())
         <div class="notice error" role="alert"><strong>Revisa los siguientes datos:</strong><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>
     @endif

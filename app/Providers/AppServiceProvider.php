@@ -2,42 +2,43 @@
 
 namespace App\Providers;
 
-use App\Models\AdministrativeAuditLog;
-use App\Models\CatalogAttribute;
-use App\Models\Category;
-use App\Models\CategoryAttribute;
-use App\Models\IndividualUnit;
-use App\Models\InventoryCorrection;
-use App\Models\InventoryDocument;
-use App\Models\Location;
-use App\Models\MaterialDelivery;
-use App\Models\MeasurementUnit;
-use App\Models\Product;
-use App\Models\ProductLocation;
-use App\Models\Role;
-use App\Models\ToolLoan;
-use App\Models\ToolReturn;
-use App\Models\User;
-use App\Models\Worker;
-use App\Policies\AdministrativeAuditLogPolicy;
-use App\Policies\CatalogAttributePolicy;
-use App\Policies\CategoryAttributePolicy;
-use App\Policies\CategoryPolicy;
-use App\Policies\IndividualUnitPolicy;
-use App\Policies\InventoryCorrectionPolicy;
-use App\Policies\InventoryDocumentPolicy;
-use App\Policies\LocationPolicy;
-use App\Policies\MaterialDeliveryPolicy;
-use App\Policies\MeasurementUnitPolicy;
-use App\Policies\ProductLocationPolicy;
-use App\Policies\ProductPolicy;
-use App\Policies\RolePolicy;
-use App\Policies\ToolLoanPolicy;
-use App\Policies\ToolReturnPolicy;
-use App\Policies\UserPolicy;
-use App\Policies\WorkerPolicy;
-use App\Support\PermissionCatalog;
+use App\Models\AtributoCatalogo;
+use App\Models\AtributoCategoria;
+use App\Models\Categoria;
+use App\Models\CorreccionInventario;
+use App\Models\DevolucionHerramienta;
+use App\Models\DocumentoInventario;
+use App\Models\EntregaMaterial;
+use App\Models\PrestamoHerramienta;
+use App\Models\Producto;
+use App\Models\RegistroAuditoriaAdministrativa;
+use App\Models\Rol;
+use App\Models\Trabajador;
+use App\Models\Ubicacion;
+use App\Models\UbicacionProducto;
+use App\Models\UnidadIndividual;
+use App\Models\UnidadMedida;
+use App\Models\Usuario;
+use App\Policies\PoliticaAtributoCatalogo;
+use App\Policies\PoliticaAtributoCategoria;
+use App\Policies\PoliticaCategoria;
+use App\Policies\PoliticaCorreccionInventario;
+use App\Policies\PoliticaDevolucionHerramienta;
+use App\Policies\PoliticaDocumentoInventario;
+use App\Policies\PoliticaEntregaMaterial;
+use App\Policies\PoliticaPrestamoHerramienta;
+use App\Policies\PoliticaProducto;
+use App\Policies\PoliticaRegistroAuditoriaAdministrativa;
+use App\Policies\PoliticaRol;
+use App\Policies\PoliticaTrabajador;
+use App\Policies\PoliticaUbicacion;
+use App\Policies\PoliticaUbicacionProducto;
+use App\Policies\PoliticaUnidadIndividual;
+use App\Policies\PoliticaUnidadMedida;
+use App\Policies\PoliticaUsuario;
+use App\Support\CatalogoPermisos;
 use App\Support\TestingDatabaseGuard;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -58,26 +59,28 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::policy(InventoryCorrection::class, InventoryCorrectionPolicy::class);
-        foreach ([MaterialDelivery::class => MaterialDeliveryPolicy::class, ToolLoan::class => ToolLoanPolicy::class, ToolReturn::class => ToolReturnPolicy::class] as $model => $policy) {
+        Paginator::defaultView('pagination.simple');
+
+        Gate::policy(CorreccionInventario::class, PoliticaCorreccionInventario::class);
+        foreach ([EntregaMaterial::class => PoliticaEntregaMaterial::class, PrestamoHerramienta::class => PoliticaPrestamoHerramienta::class, DevolucionHerramienta::class => PoliticaDevolucionHerramienta::class] as $model => $policy) {
             Gate::policy($model, $policy);
         }
-        Gate::policy(InventoryDocument::class, InventoryDocumentPolicy::class);
-        Gate::policy(IndividualUnit::class, IndividualUnitPolicy::class);
-        Gate::policy(Product::class, ProductPolicy::class);
-        Gate::policy(ProductLocation::class, ProductLocationPolicy::class);
-        Gate::policy(User::class, UserPolicy::class);
-        Gate::policy(Worker::class, WorkerPolicy::class);
-        Gate::policy(Role::class, RolePolicy::class);
-        Gate::policy(AdministrativeAuditLog::class, AdministrativeAuditLogPolicy::class);
-        Gate::policy(Category::class, CategoryPolicy::class);
-        Gate::policy(CatalogAttribute::class, CatalogAttributePolicy::class);
-        Gate::policy(CategoryAttribute::class, CategoryAttributePolicy::class);
-        Gate::policy(MeasurementUnit::class, MeasurementUnitPolicy::class);
-        Gate::policy(Location::class, LocationPolicy::class);
-        Gate::define('access-panel', fn (User $user) => $user->hasPermission('panel.view'));
-        foreach (array_keys(PermissionCatalog::LABELS) as $code) {
-            Gate::define($code, fn (User $user) => $user->hasPermission($code));
+        Gate::policy(DocumentoInventario::class, PoliticaDocumentoInventario::class);
+        Gate::policy(UnidadIndividual::class, PoliticaUnidadIndividual::class);
+        Gate::policy(Producto::class, PoliticaProducto::class);
+        Gate::policy(UbicacionProducto::class, PoliticaUbicacionProducto::class);
+        Gate::policy(Usuario::class, PoliticaUsuario::class);
+        Gate::policy(Trabajador::class, PoliticaTrabajador::class);
+        Gate::policy(Rol::class, PoliticaRol::class);
+        Gate::policy(RegistroAuditoriaAdministrativa::class, PoliticaRegistroAuditoriaAdministrativa::class);
+        Gate::policy(Categoria::class, PoliticaCategoria::class);
+        Gate::policy(AtributoCatalogo::class, PoliticaAtributoCatalogo::class);
+        Gate::policy(AtributoCategoria::class, PoliticaAtributoCategoria::class);
+        Gate::policy(UnidadMedida::class, PoliticaUnidadMedida::class);
+        Gate::policy(Ubicacion::class, PoliticaUbicacion::class);
+        Gate::define('access-panel', fn (Usuario $usuario) => $usuario->tienePermiso('panel.view'));
+        foreach (array_keys(CatalogoPermisos::LABELS) as $codigo) {
+            Gate::define($codigo, fn (Usuario $usuario) => $usuario->tienePermiso($codigo));
         }
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-use App\Actions\Loans\ConfirmLoan;
-use App\Actions\Loans\SaveLoan;
-use App\Actions\Returns\ConfirmReturn;
-use App\Actions\Returns\SaveReturn;
-use App\Models\Worker;
+use App\Actions\Devoluciones\ConfirmarDevolucion;
+use App\Actions\Devoluciones\GuardarDevolucion;
+use App\Actions\Prestamos\ConfirmarPrestamo;
+use App\Actions\Prestamos\GuardarPrestamo;
+use App\Models\Trabajador;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -20,10 +20,10 @@ require dirname(__DIR__).'/bootstrap.php';
 $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 $db = DB::connection();
-if (! $app->environment('testing') || $db->selectOne('SELECT DATABASE() AS name')->name !== 'sga_rio_grande_testing') {
+if (! $app->environment('testing') || $db->selectOne('SELECT DATABASE() AS nombre')->nombre !== 'sga_rio_grande_testing') {
     throw new RuntimeException('Isolation rejected');
 }
-if ($db->table('migrations')->count() !== 35 || $db->table('users')->count() !== 0 || $db->table('products')->count() !== 0) {
+if ($db->table('migrations')->count() !== 35 || $db->table('usuarios')->count() !== 0 || $db->table('productos')->count() !== 0) {
     throw new RuntimeException('Rehearsal requires the empty S4 testing schema');
 }
 $fixtures = new class
@@ -35,31 +35,31 @@ $fixtures = new class
         return $this->inventoryContext($mode);
     }
 
-    public function post(array $c, string $kind, string $quantity): void
+    public function post(array $c, string $clase, string $cantidad): void
     {
-        $this->postInventory($c, $kind, $quantity);
+        $this->postInventory($c, $clase, $cantidad);
     }
 };
 
 $contexts = [];
-$worker = null;
+$trabajador = null;
 try {
-    $contexts[] = $q = $fixtures->context('quantity');
+    $contexts[] = $q = $fixtures->context('cantidad');
     $fixtures->post($q, 'receipt', '7');
     $contexts[] = $c = $fixtures->context('individual');
-    $c['product']->update(['is_loanable' => true]);
+    $c['producto']->update(['prestable' => true]);
     $fixtures->post($c, 'receipt', '1');
-    $worker = Worker::factory()->create();
-    $makeLoan = function () use ($c, $worker) {
-        $d = app(SaveLoan::class)->handle($c['actor'], null, ['worker_id' => $worker->id, 'document_date' => '2026-10-20', 'expected_line_count' => 1, 'lines' => [['individual_unit_id' => $c['unit']->id, 'location_id' => $c['location']->id]]]);
+    $trabajador = Trabajador::factory()->create();
+    $makeLoan = function () use ($c, $trabajador) {
+        $d = app(GuardarPrestamo::class)->handle($c['actor'], null, ['trabajador_id' => $trabajador->id, 'fecha_documento' => '2026-10-20', 'expected_line_count' => 1, 'lineas' => [['unidad_individual_id' => $c['unidad']->id, 'ubicacion_id' => $c['ubicacion']->id]]]);
 
-        return app(ConfirmLoan::class)->handle($c['actor'], $d, 1);
+        return app(ConfirmarPrestamo::class)->handle($c['actor'], $d, 1);
     };
-    $loan = $makeLoan();
-    $ret = app(SaveReturn::class)->handle($c['actor'], null, ['loan_id' => $loan->id, 'document_date' => '2026-10-20', 'expected_line_count' => 1, 'lines' => [['loan_item_id' => $loan->lines()->first()->id, 'location_id' => $c['location']->id]]]);
-    app(ConfirmReturn::class)->handle($c['actor'], $ret, 1);
+    $prestamo = $makeLoan();
+    $ret = app(GuardarDevolucion::class)->handle($c['actor'], null, ['prestamo_id' => $prestamo->id, 'fecha_documento' => '2026-10-20', 'expected_line_count' => 1, 'lineas' => [['item_prestamo_id' => $prestamo->lineas()->first()->id, 'ubicacion_id' => $c['ubicacion']->id]]]);
+    app(ConfirmarDevolucion::class)->handle($c['actor'], $ret, 1);
     $pending = $makeLoan();
-    $tables = ['inventory_documents', 'inventory_document_lines', 'inventory_document_line_units', 'inventory_movements', 'stock_positions', 'individual_unit_positions', 'tool_loans', 'tool_loan_items', 'tool_returns', 'tool_return_items', 'individual_unit_custodies', 'loan_item_settlements'];
+    $tables = ['documentos_inventario', 'lineas_documento_inventario', 'unidades_linea_documento', 'movimientos_inventario', 'existencias_ubicacion', 'posiciones_unidad_individual', 'prestamos_herramientas', 'items_prestamo_herramienta', 'devoluciones_herramientas', 'items_devolucion_herramienta', 'custodias_unidad_individual', 'cierres_item_prestamo'];
     $before = [];
     foreach ($tables as $t) {
         $before[$t] = $db->table($t)->orderByRaw('1')->get()->map(fn ($r) => (array) $r)->all();
@@ -77,48 +77,48 @@ try {
             throw new RuntimeException('Historical columns changed: '.$t);
         }
     }
-    if ($db->table('loan_custody_cycles')->count() !== 2 || $db->table('loan_cycle_closures')->count() !== 1 || $db->table('individual_unit_custodies')->whereNotNull('current_cycle_id')->count() !== 1) {
+    if ($db->table('ciclos_custodia_prestamo')->count() !== 2 || $db->table('cierres_ciclo_prestamo')->count() !== 1 || $db->table('custodias_unidad_individual')->whereNotNull('ciclo_actual_id')->count() !== 1) {
         throw new RuntimeException('Historical cycle projection mismatch');
     }
     echo json_encode(['database' => 'sga_rio_grande_testing', 'migrations_before' => 35, 'migrations_after' => $db->table('migrations')->count(), 'historical_rows_preserved' => array_map('count', $before), 'cycles' => 2, 'closures' => 1, 'success' => true], JSON_PRETTY_PRINT).PHP_EOL;
 } finally {
-    $products = array_map(fn ($c) => $c['product']->id, $contexts);
+    $productos = array_map(fn ($c) => $c['producto']->id, $contexts);
     $actors = array_map(fn ($c) => $c['actor']->id, $contexts);
-    if ($products) {
-        $loans = $db->table('tool_loans')->whereIn('created_by', $actors)->pluck('id');
-        $items = $db->table('tool_loan_items')->whereIn('loan_id', $loans)->pluck('id');
-        $returns = $db->table('tool_returns')->whereIn('created_by', $actors)->pluck('id');
-        if (Schema::hasTable('loan_custody_cycles')) {
-            $cycles = $db->table('loan_custody_cycles')->whereIn('product_id', $products)->pluck('id');
-            $db->table('individual_unit_custodies')->whereIn('product_id', $products)->delete();
-            $db->table('tool_return_items')->whereIn('return_id', $returns)->update(['custody_cycle_id' => null]);
-            $db->table('loan_cycle_closures')->whereIn('cycle_id', $cycles)->delete();
-            $db->table('loan_custody_cycles')->whereIn('id', $cycles)->delete();
+    if ($productos) {
+        $loans = $db->table('prestamos_herramientas')->whereIn('creado_por', $actors)->pluck('id');
+        $items = $db->table('items_prestamo_herramienta')->whereIn('prestamo_id', $loans)->pluck('id');
+        $returns = $db->table('devoluciones_herramientas')->whereIn('creado_por', $actors)->pluck('id');
+        if (Schema::hasTable('ciclos_custodia_prestamo')) {
+            $cycles = $db->table('ciclos_custodia_prestamo')->whereIn('producto_id', $productos)->pluck('id');
+            $db->table('custodias_unidad_individual')->whereIn('producto_id', $productos)->delete();
+            $db->table('items_devolucion_herramienta')->whereIn('devolucion_id', $returns)->update(['ciclo_custodia_id' => null]);
+            $db->table('cierres_ciclo_prestamo')->whereIn('ciclo_id', $cycles)->delete();
+            $db->table('ciclos_custodia_prestamo')->whereIn('id', $cycles)->delete();
         } else {
-            $db->table('individual_unit_custodies')->whereIn('product_id', $products)->delete();
+            $db->table('custodias_unidad_individual')->whereIn('producto_id', $productos)->delete();
         }
-        $db->table('individual_unit_positions')->whereIn('product_id', $products)->delete();
-        $db->table('loan_item_settlements')->whereIn('loan_item_id', $items)->delete();
-        $db->table('inventory_movements')->whereIn('product_id', $products)->delete();
-        $db->table('tool_return_items')->whereIn('return_id', $returns)->delete();
-        $db->table('tool_returns')->whereIn('id', $returns)->delete();
-        $db->table('tool_loan_items')->whereIn('id', $items)->delete();
-        $db->table('tool_loans')->whereIn('id', $loans)->delete();
-        $docs = $db->table('inventory_documents')->whereIn('created_by', $actors)->pluck('id');
-        $lines = $db->table('inventory_document_lines')->whereIn('document_id', $docs)->pluck('id');
-        $db->table('inventory_document_line_units')->whereIn('document_line_id', $lines)->delete();
-        $db->table('inventory_document_lines')->whereIn('id', $lines)->delete();
-        $db->table('inventory_documents')->whereIn('id', $docs)->delete();
-        $db->table('stock_positions')->whereIn('product_id', $products)->delete();
-        $db->table('individual_units')->whereIn('product_id', $products)->delete();
-        $db->table('product_locations')->whereIn('product_id', $products)->delete();
-        $db->table('products')->whereIn('id', $products)->delete();
+        $db->table('posiciones_unidad_individual')->whereIn('producto_id', $productos)->delete();
+        $db->table('cierres_item_prestamo')->whereIn('item_prestamo_id', $items)->delete();
+        $db->table('movimientos_inventario')->whereIn('producto_id', $productos)->delete();
+        $db->table('items_devolucion_herramienta')->whereIn('devolucion_id', $returns)->delete();
+        $db->table('devoluciones_herramientas')->whereIn('id', $returns)->delete();
+        $db->table('items_prestamo_herramienta')->whereIn('id', $items)->delete();
+        $db->table('prestamos_herramientas')->whereIn('id', $loans)->delete();
+        $docs = $db->table('documentos_inventario')->whereIn('creado_por', $actors)->pluck('id');
+        $lineas = $db->table('lineas_documento_inventario')->whereIn('documento_id', $docs)->pluck('id');
+        $db->table('unidades_linea_documento')->whereIn('linea_documento_id', $lineas)->delete();
+        $db->table('lineas_documento_inventario')->whereIn('id', $lineas)->delete();
+        $db->table('documentos_inventario')->whereIn('id', $docs)->delete();
+        $db->table('existencias_ubicacion')->whereIn('producto_id', $productos)->delete();
+        $db->table('unidades_individuales')->whereIn('producto_id', $productos)->delete();
+        $db->table('ubicaciones_producto')->whereIn('producto_id', $productos)->delete();
+        $db->table('productos')->whereIn('id', $productos)->delete();
         foreach ($contexts as $ctx) {
-            $db->table('locations')->where('id', $ctx['location']->id)->delete();
-            $db->table('categories')->where('id', $ctx['product']->category_id)->delete();
-            $db->table('measurement_units')->where('id', $ctx['product']->measurement_unit_id)->delete();
-        }$db->table('users')->whereIn('id', $actors)->delete();
-    }if ($worker) {
-        $db->table('workers')->where('id', $worker->id)->delete();
+            $db->table('ubicaciones')->where('id', $ctx['ubicacion']->id)->delete();
+            $db->table('categorias')->where('id', $ctx['producto']->categoria_id)->delete();
+            $db->table('unidades_medida')->where('id', $ctx['producto']->unidad_medida_id)->delete();
+        }$db->table('usuarios')->whereIn('id', $actors)->delete();
+    }if ($trabajador) {
+        $db->table('trabajadores')->where('id', $trabajador->id)->delete();
     }
 }

@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Permission;
-use App\Support\PermissionCatalog;
+use App\Models\Permiso;
+use App\Support\CatalogoPermisos;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (PermissionCatalog::LABELS as $code => $name) {
-            Permission::firstOrCreate(['code' => $code], ['name' => $name, 'description' => $name.'.']);
+        foreach (CatalogoPermisos::LABELS as $codigo => $nombre) {
+            Permiso::firstOrCreate(['codigo' => $codigo], ['nombre' => $nombre, 'descripcion' => $nombre.'.']);
         }
     }
 }

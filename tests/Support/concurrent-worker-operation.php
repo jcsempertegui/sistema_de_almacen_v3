@@ -1,20 +1,20 @@
 <?php
 
-use App\Actions\Catalog\SaveIndividualUnit;
-use App\Actions\Deliveries\ConfirmDelivery;
-use App\Actions\Loans\ConfirmLoan;
-use App\Actions\Returns\ConfirmReturn;
-use App\Actions\Roles\SaveRole;
-use App\Actions\Workers\SaveWorker;
-use App\Models\IndividualUnit;
-use App\Models\Permission;
-use App\Models\ReturnRegularizationAuthorization;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Worker;
-use App\Services\ReturnRegularization;
+use App\Actions\Catalogo\GuardarUnidadIndividual;
+use App\Actions\Devoluciones\ConfirmarDevolucion;
+use App\Actions\Entregas\ConfirmarEntrega;
+use App\Actions\Prestamos\ConfirmarPrestamo;
+use App\Actions\Roles\GuardarRol;
+use App\Actions\Trabajadores\GuardarTrabajador;
+use App\Models\AutorizacionRegularizacionDevolucion;
+use App\Models\Permiso;
+use App\Models\Rol;
+use App\Models\Trabajador;
+use App\Models\UnidadIndividual;
+use App\Models\Usuario;
+use App\Services\RegularizacionDevolucion;
 use App\Support\TestingDatabaseGuard;
-use App\Support\WorkerOperationTypes;
+use App\Support\TiposOperacionTrabajador;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
@@ -26,14 +26,14 @@ $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $job = json_decode($argv[1], true, flags: JSON_THROW_ON_ERROR);
-$actor = User::with('role')->findOrFail($job['actor']);
+$actor = Usuario::with('rol')->findOrFail($job['actor']);
 DB::beginTransaction();
-DB::table('stock_positions')->get();
-$class = WorkerOperationTypes::MODELS[$job['kind']];
-$doc = $class::findOrFail($job['document']);
+DB::table('existencias_ubicacion')->get();
+$class = TiposOperacionTrabajador::MODELS[$job['tipo']];
+$doc = $class::findOrFail($job['documento']);
 $wait = 0;
 DB::listen(function ($query) use ($job, &$wait) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+    if (str_contains($query->sql, '`permisos`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
         $wait = max($wait, $query->time);
         echo "LOCKED\n";
         flush();
@@ -51,16 +51,16 @@ echo "GO_RECEIVED\n";
 flush();
 try {
     if ($job['operation'] === 'revoke') {
-        app(SaveRole::class)->handle($actor, Role::findOrFail($job['role']), ['permissions' => Permission::where('code', '<>', $job['kind'].'.confirm')->pluck('id')->all()]);
+        app(GuardarRol::class)->handle($actor, Rol::findOrFail($job['rol']), ['permisos' => Permiso::where('codigo', '<>', $job['tipo'].'.confirm')->pluck('id')->all()]);
     } elseif ($job['operation'] === 'disable_worker') {
-        app(SaveWorker::class)->handle($actor, Worker::findOrFail($doc->worker_id), ['is_active' => false], true);
+        app(GuardarTrabajador::class)->handle($actor, Trabajador::findOrFail($doc->trabajador_id), ['activo' => false], true);
     } elseif ($job['operation'] === 'disable_unit') {
-        app(SaveIndividualUnit::class)->handle($actor, IndividualUnit::findOrFail($doc->lines()->first()->individual_unit_id), ['is_active' => false, 'lock_version' => 1], true);
+        app(GuardarUnidadIndividual::class)->handle($actor, UnidadIndividual::findOrFail($doc->lineas()->first()->unidad_individual_id), ['activo' => false, 'version_bloqueo' => 1], true);
     } elseif ($job['operation'] === 'revoke_regularization') {
-        app(ReturnRegularization::class)->decide($actor, ReturnRegularizationAuthorization::findOrFail($job['authorization']), false, 'Revocación concurrente');
+        app(RegularizacionDevolucion::class)->decide($actor, AutorizacionRegularizacionDevolucion::findOrFail($job['authorization']), false, 'Revocación concurrente');
     } else {
-        $action = ['deliveries' => ConfirmDelivery::class, 'loans' => ConfirmLoan::class, 'returns' => ConfirmReturn::class][$job['kind']];
-        app($action)->handle($actor, $doc, 1);
+        $accion = ['deliveries' => ConfirmarEntrega::class, 'loans' => ConfirmarPrestamo::class, 'returns' => ConfirmarDevolucion::class][$job['tipo']];
+        app($accion)->handle($actor, $doc, 1);
     }
     DB::commit();
     echo "RESULT:changed\n";

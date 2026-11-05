@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\Models\Usuario;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Support\Facades\Artisan;
@@ -17,26 +17,26 @@ class TestingDatabaseIsolationTest extends TestCase
     public function test_factories_and_artisan_share_only_the_verified_testing_connection(): void
     {
         $this->assertSame([TestingDatabaseGuard::CONNECTION], array_keys(config('database.connections')));
-        $user = User::factory()->create();
+        $user = Usuario::factory()->create();
         $this->assertSame(TestingDatabaseGuard::CONNECTION, $user->getConnection()->getName());
-        $this->assertTrue(DB::table('users')->where('id', $user->id)->exists());
+        $this->assertTrue(DB::table('usuarios')->where('id', $user->id)->exists());
         $this->assertSame(0, Artisan::call('migrate:status'));
     }
 
     public function test_a_factory_cannot_reuse_the_old_mysql_alias_even_if_it_points_to_testing(): void
     {
-        $before = DB::table('users')->count();
+        $before = DB::table('usuarios')->count();
         $config = config('database.connections.'.TestingDatabaseGuard::CONNECTION);
         $config['name'] = 'mysql';
         config(['database.connections.mysql' => $config]);
         try {
             for ($attempt = 0; $attempt < 2; $attempt++) {
                 try {
-                    User::factory()->connection('mysql')->create();
+                    Usuario::factory()->connection('mysql')->create();
                     $this->fail('Se permitió reutilizar el alias histórico.');
                 } catch (RuntimeException $exception) {
                     $this->assertStringContainsString('Aislamiento', $exception->getMessage());
-                    $this->assertSame($before, DB::table('users')->count());
+                    $this->assertSame($before, DB::table('usuarios')->count());
                 }
                 // If a regression accepts the retry, it can only touch the test transaction.
                 DB::getConnections()['mysql']->setPdo(DB::connection()->getPdo());

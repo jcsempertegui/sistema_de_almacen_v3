@@ -26,7 +26,7 @@
         if (!mobile.matches || !document.body.classList.contains('nav-open')) return;
         if (event.key === 'Escape') { setOpen(false, true); return; }
         if (event.key !== 'Tab') return;
-        const elements = [...sidebar.querySelectorAll('a, button:not([disabled])')].filter(element => element.getClientRects().length);
+        const elements = [...sidebar.querySelectorAll('a, summary, button:not([disabled])')].filter(element => element.getClientRects().length);
         const first = elements[0], last = elements[elements.length - 1];
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
@@ -34,3 +34,12 @@
     mobile.addEventListener('change', () => setOpen(false));
     setOpen(false);
 })();
+
+// Validation errors must stay visible even inside a collapsed optional section.
+document.addEventListener('invalid', event => {
+    let parent = event.target.parentElement;
+    while (parent) {
+        if (parent.tagName === 'DETAILS') parent.open = true;
+        parent = parent.parentElement;
+    }
+}, true);

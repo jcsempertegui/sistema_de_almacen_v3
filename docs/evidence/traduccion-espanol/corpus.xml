@@ -1,0 +1,1169 @@
+<?xml version="1.0"?>
+<testSuite xmlns="https://xml.phpunit.de/testSuite">
+ <tests>
+  <testClass name="Tests\Unit\ExampleTest" file="C:\laragon\www\sga_espanol_revision\tests\Unit\ExampleTest.php">
+   <testMethod id="Tests\Unit\ExampleTest::test_that_true_is_true" name="test_that_true_is_true"/>
+  </testClass>
+  <testClass name="Tests\Unit\TechnicalDecimalTest" file="C:\laragon\www\sga_espanol_revision\tests\Unit\TechnicalDecimalTest.php">
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#0" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#1" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#2" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#3" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#4" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#5" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#6" name="test_comparisons_preserve_sign_and_last_digit"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_zero_and_trailing_zeros_are_normalized_without_floats" name="test_zero_and_trailing_zeros_are_normalized_without_floats"/>
+   <testMethod id="Tests\Unit\TechnicalDecimalTest::test_significant_precision_is_not_rounded_to_fit_the_unit" name="test_significant_precision_is_not_rounded_to_fit_the_unit"/>
+  </testClass>
+  <testClass name="Tests\Feature\AdministrativeAuditTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\AdministrativeAuditTest.php">
+   <testMethod id="Tests\Feature\AdministrativeAuditTest::test_user_audit_captures_actor_before_after_and_password_flag_without_secrets" name="test_user_audit_captures_actor_before_after_and_password_flag_without_secrets"/>
+   <testMethod id="Tests\Feature\AdministrativeAuditTest::test_audit_access_is_read_only_and_permission_controlled" name="test_audit_access_is_read_only_and_permission_controlled"/>
+   <testMethod id="Tests\Feature\AdministrativeAuditTest::test_audit_model_cannot_be_updated" name="test_audit_model_cannot_be_updated"/>
+   <testMethod id="Tests\Feature\AdministrativeAuditTest::test_audit_model_cannot_be_deleted" name="test_audit_model_cannot_be_deleted"/>
+  </testClass>
+  <testClass name="Tests\Feature\AdministrativeConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\AdministrativeConcurrencyTest.php">
+   <testMethod id="Tests\Feature\AdministrativeConcurrencyTest::test_simultaneous_deactivation_keeps_one_full_administrator" name="test_simultaneous_deactivation_keeps_one_full_administrator"/>
+   <testMethod id="Tests\Feature\AdministrativeConcurrencyTest::test_simultaneous_role_revocation_keeps_one_full_administrator" name="test_simultaneous_role_revocation_keeps_one_full_administrator"/>
+  </testClass>
+  <testClass name="Tests\Feature\AnnualPlantScenarioTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\AnnualPlantScenarioTest.php">
+   <testMethod id="Tests\Feature\AnnualPlantScenarioTest::test_full_year_preserves_admin_permissions_and_reconciles_stock_and_custody" name="test_full_year_preserves_admin_permissions_and_reconciles_stock_and_custody"/>
+   <testMethod id="Tests\Feature\AnnualPlantScenarioTest::test_wrong_identity_is_rejected_before_any_insert" name="test_wrong_identity_is_rejected_before_any_insert"/>
+   <testMethod id="Tests\Feature\AnnualPlantScenarioTest::test_failure_during_generation_rolls_back_all_scenario_records_and_restores_clock" name="test_failure_during_generation_rolls_back_all_scenario_records_and_restores_clock"/>
+  </testClass>
+  <testClass name="Tests\Feature\AuthenticationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\AuthenticationTest.php">
+   <testMethod id="Tests\Feature\AuthenticationTest::test_guests_see_login_and_cannot_open_the_panel" name="test_guests_see_login_and_cannot_open_the_panel"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_valid_credentials_regenerate_the_session_and_open_the_panel" name="test_valid_credentials_regenerate_the_session_and_open_the_panel"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_invalid_credentials_and_inactive_accounts_are_rejected" name="test_invalid_credentials_and_inactive_accounts_are_rejected"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_login_validates_input_and_never_flashes_passwords" name="test_login_validates_input_and_never_flashes_passwords"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_login_is_limited_by_normalized_email_and_ip" name="test_login_is_limited_by_normalized_email_and_ip"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_logout_invalidates_session_and_csrf_token" name="test_logout_invalidates_session_and_csrf_token"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_inactive_or_revoked_sessions_are_rejected" name="test_inactive_or_revoked_sessions_are_rejected"/>
+   <testMethod id="Tests\Feature\AuthenticationTest::test_login_requires_a_csrf_token" name="test_login_requires_a_csrf_token"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\AttributePermissionInitializationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\AttributePermissionInitializationTest.php">
+   <testMethod id="Tests\Feature\Catalog\AttributePermissionInitializationTest::test_initial_roles_receive_approved_capabilities_and_auditor_only_reads" name="test_initial_roles_receive_approved_capabilities_and_auditor_only_reads"/>
+   <testMethod id="Tests\Feature\Catalog\AttributePermissionInitializationTest::test_reinitialization_preserves_revoked_old_and_new_permissions_unknown_roles_and_users" name="test_reinitialization_preserves_revoked_old_and_new_permissions_unknown_roles_and_users"/>
+   <testMethod id="Tests\Feature\Catalog\AttributePermissionInitializationTest::test_new_links_invalidate_affected_sessions_and_preserve_existing_records_and_permissions" name="test_new_links_invalidate_affected_sessions_and_preserve_existing_records_and_permissions"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\CatalogAuthorizationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\CatalogAuthorizationTest.php">
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_auditor_has_read_access_but_all_direct_mutations_are_forbidden" name="test_auditor_has_read_access_but_all_direct_mutations_are_forbidden"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_guests_and_inactive_accounts_cannot_access_the_catalog" name="test_guests_and_inactive_accounts_cannot_access_the_catalog"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_permissions_control_independent_actions_and_role_names_do_not_grant_access" name="test_permissions_control_independent_actions_and_role_names_do_not_grant_access"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_status_permission_does_not_allow_editing_other_fields" name="test_status_permission_does_not_allow_editing_other_fields"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_revocation_invalidates_session_and_rejects_catalog_writes_in_flight" name="test_revocation_invalidates_session_and_rejects_catalog_writes_in_flight"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_catalog_post_requires_csrf" name="test_catalog_post_requires_csrf"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_permissions_are_visible_and_editable_through_existing_role_management" name="test_permissions_are_visible_and_editable_through_existing_role_management"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\CatalogIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\CatalogIntegrityTest.php">
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria author FK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria editor FK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria state CHECK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad author FK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad precision CHECK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad dimension CHECK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad state CHECK" name="test_mariadb_rejects_invalid_catalog_rows"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_enforces_unique_category_codes" name="test_mariadb_enforces_unique_category_codes"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_enforces_unique_category_names" name="test_mariadb_enforces_unique_category_names"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_enforces_unique_unit_codes" name="test_mariadb_enforces_unique_unit_codes"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_exact_duplicate_symbols_are_rejected_in_mariadb" name="test_exact_duplicate_symbols_are_rejected_in_mariadb"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_binary_collation_distinguishes_symbols_and_precision_defaults_to_zero" name="test_binary_collation_distinguishes_symbols_and_precision_defaults_to_zero"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_referenced_authors_cannot_be_deleted" name="test_referenced_authors_cannot_be_deleted"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogIntegrityTest::test_scope_does_not_create_future_tables_and_catalogs_start_empty" name="test_scope_does_not_create_future_tables_and_catalogs_start_empty"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\CatalogPermissionInitializationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\CatalogPermissionInitializationTest.php">
+   <testMethod id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_initial_role_capabilities_include_only_the_approved_catalog_permissions" name="test_initial_role_capabilities_include_only_the_approved_catalog_permissions"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_users_and_audit" name="test_repeat_initialization_preserves_revocations_unknown_roles_users_and_audit"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_initialization_of_missing_links_versions_and_audits_only_changed_roles" name="test_initialization_of_missing_links_versions_and_audits_only_changed_roles"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_new_grants_invalidate_existing_sessions_without_touching_other_roles" name="test_new_grants_invalidate_existing_sessions_without_touching_other_roles"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\CatalogUniqueConflictTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\CatalogUniqueConflictTest.php">
+   <testMethod id="Tests\Feature\Catalog\CatalogUniqueConflictTest::test_category_database_collisions_are_translated_and_rolled_back" name="test_category_database_collisions_are_translated_and_rolled_back"/>
+   <testMethod id="Tests\Feature\Catalog\CatalogUniqueConflictTest::test_unit_database_collisions_are_translated_and_rolled_back" name="test_unit_database_collisions_are_translated_and_rolled_back"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\CategoryAttributeManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\CategoryAttributeManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_admin_and_manager_associate_edit_and_toggle_without_changing_identity_or_authors" name="test_admin_and_manager_associate_edit_and_toggle_without_changing_identity_or_authors"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_duplicate_associations_are_rejected_even_when_inactive_and_picker_excludes_them" name="test_duplicate_associations_are_rejected_even_when_inactive_and_picker_excludes_them"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_wrong_parent_returns_404_for_edit_update_and_state_and_parent_input_is_prohibited" name="test_wrong_parent_returns_404_for_edit_update_and_state_and_parent_input_is_prohibited"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_required_flags_order_and_attribute_references_are_validated" name="test_required_flags_order_and_attribute_references_are_validated"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_decimal_format_range_and_order_are_exact_and_do_not_round_invalid_values" name="test_decimal_format_range_and_order_are_exact_and_do_not_round_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_unit_precision_zero_accepts_padded_integers_but_rejects_significant_fraction" name="test_unit_precision_zero_accepts_padded_integers_but_rejects_significant_fraction"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_non_decimal_types_reject_any_bound_including_zero" name="test_non_decimal_types_reject_any_bound_including_zero"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_inactive_category_attribute_or_unit_prevents_new_or_reactivated_associations" name="test_inactive_category_attribute_or_unit_prevents_new_or_reactivated_associations"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_historical_impact_guards_with_simulated_future_dependencies_rollback_all_changes" name="test_historical_impact_guards_with_simulated_future_dependencies_rollback_all_changes"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_list_is_scoped_ordered_filtered_and_preserves_inactive_configuration" name="test_list_is_scoped_ordered_filtered_and_preserves_inactive_configuration"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\CategoryManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\CategoryManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_administrator_and_manager_can_register_edit_and_change_status" name="test_administrator_and_manager_can_register_edit_and_change_status"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_category_fields_are_required_and_lengths_and_state_are_validated_in_spanish" name="test_category_fields_are_required_and_lengths_and_state_are_validated_in_spanish"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_duplicate_codes_and_names_are_rejected_even_when_inactive" name="test_duplicate_codes_and_names_are_rejected_even_when_inactive"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_editing_ignores_own_unique_fields_and_preserves_creator" name="test_editing_ignores_own_unique_fields_and_preserves_creator"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_search_filter_and_pagination_keep_filters_and_treat_wildcards_literally" name="test_search_filter_and_pagination_keep_filters_and_treat_wildcards_literally"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_deactivation_dependency_guard_blocks_both_endpoints_and_keeps_data" name="test_deactivation_dependency_guard_blocks_both_endpoints_and_keeps_data"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_without_future_tables_deactivation_is_allowed_and_records_are_retained" name="test_without_future_tables_deactivation_is_allowed_and_records_are_retained"/>
+   <testMethod id="Tests\Feature\Catalog\CategoryManagementTest::test_category_html_is_escaped" name="test_category_html_is_escaped"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\IndividualUnitAuthorizationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\IndividualUnitAuthorizationTest.php">
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_auditor_reads_and_direct_mutations_are_forbidden" name="test_auditor_reads_and_direct_mutations_are_forbidden"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_custom_role_names_grant_nothing_and_update_does_not_grant_status" name="test_custom_role_names_grant_nothing_and_update_does_not_grant_status"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_revocation_invalidates_sessions_and_stale_action_actor" name="test_revocation_invalidates_sessions_and_stale_action_actor"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_guests_inactive_accounts_and_csrf_are_protected" name="test_guests_inactive_accounts_and_csrf_are_protected"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\IndividualUnitConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\IndividualUnitConcurrencyTest.php">
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#identificador collision" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#serial collision" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#stale edits" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable producto first" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before producto disable" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable link first" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before link disable" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable ubicacion first" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before ubicacion disable" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#revoke first" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before revoke" name="test_writers_use_current_references_and_permissions_after_waiting"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\IndividualUnitHistoryTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\IndividualUnitHistoryTest.php">
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitHistoryTest::test_real_units_protect_product_structure_and_active_units_prevent_both_deactivation_endpoints" name="test_real_units_protect_product_structure_and_active_units_prevent_both_deactivation_endpoints"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitHistoryTest::test_real_assigned_units_even_inactive_prevent_link_and_location_history_changes" name="test_real_assigned_units_even_inactive_prevent_link_and_location_history_changes"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitHistoryTest::test_failed_association_validation_rolls_back_metadata_and_version" name="test_failed_association_validation_rolls_back_metadata_and_version"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\IndividualUnitIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\IndividualUnitIntegrityTest.php">
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#blank id" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#state" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#version" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#blank series" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#producto" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#ubicacion" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#author" name="test_sql_constraints_reject_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_composite_fk_rejects_cross_product_association_on_insert_and_update" name="test_composite_fk_rejects_cross_product_association_on_insert_and_update"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_unique_keys_and_restrict_preserve_identity_and_assigned_pair" name="test_sql_unique_keys_and_restrict_preserve_identity_and_assigned_pair"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\IndividualUnitManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\IndividualUnitManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_managers_register_search_edit_and_toggle_without_stock_side_effects" name="test_managers_register_search_edit_and_toggle_without_stock_side_effects"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_required_fields_types_lengths_and_product_mode_are_enforced" name="test_required_fields_types_lengths_and_product_mode_are_enforced"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_series_are_optional_case_sensitive_unique_per_product_and_zero_is_not_empty" name="test_series_are_optional_case_sensitive_unique_per_product_and_zero_is_not_empty"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_initial_location_requires_active_storable_location_and_matching_active_link" name="test_initial_location_requires_active_storable_location_and_matching_active_link"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_identity_product_and_initial_location_are_fixed_and_stale_edits_fail" name="test_identity_product_and_initial_location_are_fixed_and_stale_edits_fail"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\IndividualUnitPermissionInitializationTest.php">
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role" name="test_initial_capabilities_are_only_those_approved_for_each_role"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people" name="test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people"/>
+   <testMethod id="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data" name="test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\LocationAuthorizationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\LocationAuthorizationTest.php">
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_auditor_can_read_index_and_tree_but_all_direct_mutations_are_forbidden" name="test_auditor_can_read_index_and_tree_but_all_direct_mutations_are_forbidden"/>
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_guests_and_inactive_users_cannot_access_locations" name="test_guests_and_inactive_users_cannot_access_locations"/>
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_each_action_requires_its_permission_even_with_an_administrator_role_name" name="test_each_action_requires_its_permission_even_with_an_administrator_role_name"/>
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_create_status_and_metadata_permissions_are_independent" name="test_create_status_and_metadata_permissions_are_independent"/>
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_revocation_invalidates_sessions_and_rejects_an_in_flight_action" name="test_revocation_invalidates_sessions_and_rejects_an_in_flight_action"/>
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_forms_require_csrf_and_new_permissions_are_configurable_with_existing_roles" name="test_forms_require_csrf_and_new_permissions_are_configurable_with_existing_roles"/>
+   <testMethod id="Tests\Feature\Catalog\LocationAuthorizationTest::test_editor_preserves_creator_and_server_sets_updated_by" name="test_editor_preserves_creator_and_server_sets_updated_by"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\LocationConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\LocationConcurrencyTest.php">
+   <testMethod id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-04 crossed parents" name="test_concurrent_mutations_keep_an_acyclic_active_hierarchy"/>
+   <testMethod id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-04 crossed parents with earlier snapshot" name="test_concurrent_mutations_keep_an_acyclic_active_hierarchy"/>
+   <testMethod id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-05 child creation versus padre deactivation" name="test_concurrent_mutations_keep_an_acyclic_active_hierarchy"/>
+   <testMethod id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-05 child activation versus padre deactivation" name="test_concurrent_mutations_keep_an_acyclic_active_hierarchy"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\LocationIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\LocationIntegrityTest.php">
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#tipo" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#tipo case" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#active flag" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#storable flag" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#padre FK" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#author FK" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#editor FK" name="test_mariadb_rejects_invalid_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_unique_code_is_case_insensitive_even_for_inactive_rows" name="test_unique_code_is_case_insensitive_even_for_inactive_rows"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_parent_and_authors_are_restricted_against_deletion_and_key_updates" name="test_parent_and_authors_are_restricted_against_deletion_and_key_updates"/>
+   <testMethod id="Tests\Feature\Catalog\LocationIntegrityTest::test_schema_defaults_and_scope_are_correct" name="test_schema_defaults_and_scope_are_correct"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\LocationManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\LocationManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_administrator_and_manager_create_edit_and_toggle_with_server_authors" name="test_administrator_and_manager_create_edit_and_toggle_with_server_authors"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_three_types_hierarchy_and_non_storable_parent_are_supported" name="test_three_types_hierarchy_and_non_storable_parent_are_supported"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_fields_types_flags_and_lengths_are_validated_in_spanish" name="test_fields_types_flags_and_lengths_are_validated_in_spanish"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_inactive_code_is_not_reused_but_names_may_repeat" name="test_inactive_code_is_not_reused_but_names_may_repeat"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_self_and_descendants_including_inactive_nodes_are_rejected_without_partial_edits" name="test_self_and_descendants_including_inactive_nodes_are_rejected_without_partial_edits"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_inactive_parents_ancestors_and_reactivation_are_checked_with_historical_exception" name="test_inactive_parents_ancestors_and_reactivation_are_checked_with_historical_exception"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_active_children_block_both_deactivation_endpoints_and_inactive_links_are_kept" name="test_active_children_block_both_deactivation_endpoints_and_inactive_links_are_kept"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_parent_options_exclude_self_and_descendants_and_omit_inactive_locations" name="test_parent_options_exclude_self_and_descendants_and_omit_inactive_locations"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_real_inactive_units_protect_location_and_subtree_history" name="test_real_inactive_units_protect_location_and_subtree_history"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_search_filters_pagination_literal_wildcards_and_html_escape" name="test_search_filters_pagination_literal_wildcards_and_html_escape"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_stale_action_inputs_are_rechecked_and_duplicate_collision_is_translated" name="test_stale_action_inputs_are_rechecked_and_duplicate_collision_is_translated"/>
+   <testMethod id="Tests\Feature\Catalog\LocationManagementTest::test_existing_cycle_is_reported_without_infinite_traversal_or_partial_write" name="test_existing_cycle_is_reported_without_infinite_traversal_or_partial_write"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\LocationPermissionInitializationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\LocationPermissionInitializationTest.php">
+   <testMethod id="Tests\Feature\Catalog\LocationPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role" name="test_initial_capabilities_are_only_those_approved_for_each_role"/>
+   <testMethod id="Tests\Feature\Catalog\LocationPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people" name="test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people"/>
+   <testMethod id="Tests\Feature\Catalog\LocationPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data" name="test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\MeasurementUnitManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\MeasurementUnitManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_initial_examples_can_be_registered_by_administrator_and_manager" name="test_initial_examples_can_be_registered_by_administrator_and_manager"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_required_fields_precision_dimensions_and_lengths_are_validated" name="test_required_fields_precision_dimensions_and_lengths_are_validated"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_all_six_dimensions_are_accepted_without_conversions" name="test_all_six_dimensions_are_accepted_without_conversions"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_symbols_are_case_sensitive_trimmed_and_exact_duplicates_are_rejected" name="test_symbols_are_case_sensitive_trimmed_and_exact_duplicates_are_rejected"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_unit_can_be_edited_without_references_and_creator_is_preserved" name="test_unit_can_be_edited_without_references_and_creator_is_preserved"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_used_unit_cannot_change_code_symbol_dimension_or_precision_but_name_can_change" name="test_used_unit_cannot_change_code_symbol_dimension_or_precision_but_name_can_change"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_active_references_block_status_patch_and_form_deactivation" name="test_active_references_block_status_patch_and_form_deactivation"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_units_are_deactivated_reactivated_and_never_deleted_or_reused" name="test_units_are_deactivated_reactivated_and_never_deleted_or_reused"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_unit_search_status_and_pagination_are_consistent" name="test_unit_search_status_and_pagination_are_consistent"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_duplicate_unit_updates_are_rejected_without_partial_changes" name="test_duplicate_unit_updates_are_rejected_without_partial_changes"/>
+   <testMethod id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_unit_names_and_symbols_are_escaped_in_blade" name="test_unit_names_and_symbols_are_escaped_in_blade"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductAttributeValueTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductAttributeValueTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductAttributeValueTest::test_all_four_types_zero_false_negative_decimal_and_dates_are_saved_exactly" name="test_all_four_types_zero_false_negative_decimal_and_dates_are_saved_exactly"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAttributeValueTest::test_required_types_ranges_precision_and_category_membership_are_enforced" name="test_required_types_ranges_precision_and_category_membership_are_enforced"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAttributeValueTest::test_invalid_boolean_text_and_calendar_dates_are_rejected" name="test_invalid_boolean_text_and_calendar_dates_are_rejected"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAttributeValueTest::test_inactive_definitions_cannot_be_written_and_required_values_are_checked_on_reactivation" name="test_inactive_definitions_cannot_be_written_and_required_values_are_checked_on_reactivation"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductAuthorizationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductAuthorizationTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductAuthorizationTest::test_auditor_reads_but_direct_writes_are_forbidden" name="test_auditor_reads_but_direct_writes_are_forbidden"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAuthorizationTest::test_custom_role_names_do_not_grant_capabilities_and_status_requires_its_own_permission" name="test_custom_role_names_do_not_grant_capabilities_and_status_requires_its_own_permission"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAuthorizationTest::test_initial_links_cannot_bypass_location_permission_and_atomic_save_is_preserved" name="test_initial_links_cannot_bypass_location_permission_and_atomic_save_is_preserved"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAuthorizationTest::test_permission_changes_invalidate_sessions_and_stale_action_operators" name="test_permission_changes_invalidate_sessions_and_stale_action_operators"/>
+   <testMethod id="Tests\Feature\Catalog\ProductAuthorizationTest::test_guests_and_csrf_are_checked_on_product_and_location_mutations" name="test_guests_and_csrf_are_checked_on_product_and_location_mutations"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductConcurrencyTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#same codigo" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#stale edit" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#disable versus link" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#link versus disable" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#required versus producto" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#producto versus required" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+   <testMethod id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#revocation versus producto" name="test_concurrent_writers_revalidate_current_state_after_the_mutex"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductDuplicateTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductDuplicateTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductDuplicateTest::test_browser_form_round_trip_reviews_false_decimal_and_date_identity_without_merging" name="test_browser_form_round_trip_reviews_false_decimal_and_date_identity_without_merging"/>
+   <testMethod id="Tests\Feature\Catalog\ProductDuplicateTest::test_equivalent_identity_warns_including_inactive_candidates_and_requires_review_of_current_payload" name="test_equivalent_identity_warns_including_inactive_candidates_and_requires_review_of_current_payload"/>
+   <testMethod id="Tests\Feature\Catalog\ProductDuplicateTest::test_text_identity_is_case_sensitive_and_empty_identity_never_claims_equivalence" name="test_text_identity_is_case_sensitive_and_empty_identity_never_claims_equivalence"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductHistoryTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductHistoryTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductHistoryTest::test_edit_clear_and_reactivate_preserve_all_revisions_and_one_value_identity" name="test_edit_clear_and_reactivate_preserve_all_revisions_and_one_value_identity"/>
+   <testMethod id="Tests\Feature\Catalog\ProductHistoryTest::test_failure_after_first_value_and_revision_rolls_back_the_entire_product" name="test_failure_after_first_value_and_revision_rolls_back_the_entire_product"/>
+   <testMethod id="Tests\Feature\Catalog\ProductHistoryTest::test_historical_configuration_and_product_structure_cannot_be_reinterpreted" name="test_historical_configuration_and_product_structure_cannot_be_reinterpreted"/>
+   <testMethod id="Tests\Feature\Catalog\ProductHistoryTest::test_required_association_reactivation_is_checked_on_both_endpoints" name="test_required_association_reactivation_is_checked_on_both_endpoints"/>
+   <testMethod id="Tests\Feature\Catalog\ProductHistoryTest::test_existing_category_and_unit_guards_now_detect_real_product_references" name="test_existing_category_and_unit_guards_now_detect_real_product_references"/>
+   <testMethod id="Tests\Feature\Catalog\ProductHistoryTest::test_revisions_have_no_update_or_delete_application_path" name="test_revisions_have_no_update_or_delete_application_path"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductIntegrityTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_revision_constraints_and_parent_restriction_preserve_snapshots" name="test_revision_constraints_and_parent_restriction_preserve_snapshots"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#mode" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#case" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#prestamo" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#active" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#prestamo flag" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#version" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#categoria" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#unidad" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#author" name="test_mariadb_rejects_invalid_products"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#none" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#two" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#boolean" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#state" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#precision overflow" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#missing producto" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#missing association" name="test_mariadb_rejects_invalid_values"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_both_composite_keys_reject_cross_category_values_even_with_valid_individual_ids" name="test_both_composite_keys_reject_cross_category_values_even_with_valid_individual_ids"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_unique_codes_values_links_and_restrict_rules_preserve_inactive_history" name="test_unique_codes_values_links_and_restrict_rules_preserve_inactive_history"/>
+   <testMethod id="Tests\Feature\Catalog\ProductIntegrityTest::test_schema_types_engines_foreign_keys_and_excluded_scope" name="test_schema_types_engines_foreign_keys_and_excluded_scope"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductLocationManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductLocationManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductLocationManagementTest::test_multiple_locations_are_registered_toggled_and_searched_without_quantities" name="test_multiple_locations_are_registered_toggled_and_searched_without_quantities"/>
+   <testMethod id="Tests\Feature\Catalog\ProductLocationManagementTest::test_inactive_non_storable_and_duplicate_associations_are_rejected" name="test_inactive_non_storable_and_duplicate_associations_are_rejected"/>
+   <testMethod id="Tests\Feature\Catalog\ProductLocationManagementTest::test_failure_of_an_initial_association_rolls_back_the_new_product_and_prior_links" name="test_failure_of_an_initial_association_rolls_back_the_new_product_and_prior_links"/>
+   <testMethod id="Tests\Feature\Catalog\ProductLocationManagementTest::test_location_deactivation_is_blocked_until_links_are_inactive_and_history_remains" name="test_location_deactivation_is_blocked_until_links_are_inactive_and_history_remains"/>
+   <testMethod id="Tests\Feature\Catalog\ProductLocationManagementTest::test_nested_ownership_stale_versions_and_assigned_unit_guard_are_enforced" name="test_nested_ownership_stale_versions_and_assigned_unit_guard_are_enforced"/>
+   <testMethod id="Tests\Feature\Catalog\ProductLocationManagementTest::test_inactive_product_cannot_receive_active_location_links_and_link_history_freezes_structure" name="test_inactive_product_cannot_receive_active_location_links_and_link_history_freezes_structure"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductManagementTest::test_validation_after_review_returns_to_a_get_form_with_input_and_errors" name="test_validation_after_review_returns_to_a_get_form_with_input_and_errors"/>
+   <testMethod id="Tests\Feature\Catalog\ProductManagementTest::test_managers_register_edit_search_toggle_and_render_all_product_screens" name="test_managers_register_edit_search_toggle_and_render_all_product_screens"/>
+   <testMethod id="Tests\Feature\Catalog\ProductManagementTest::test_required_fields_lengths_flags_references_and_loan_mode_are_validated" name="test_required_fields_lengths_flags_references_and_loan_mode_are_validated"/>
+   <testMethod id="Tests\Feature\Catalog\ProductManagementTest::test_codes_remain_reserved_and_immutable_and_stale_edits_are_rejected" name="test_codes_remain_reserved_and_immutable_and_stale_edits_are_rejected"/>
+   <testMethod id="Tests\Feature\Catalog\ProductManagementTest::test_inactive_catalog_references_are_rejected_without_creating_products" name="test_inactive_catalog_references_are_rejected_without_creating_products"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\ProductPermissionInitializationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\ProductPermissionInitializationTest.php">
+   <testMethod id="Tests\Feature\Catalog\ProductPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role" name="test_initial_capabilities_are_only_those_approved_for_each_role"/>
+   <testMethod id="Tests\Feature\Catalog\ProductPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people" name="test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people"/>
+   <testMethod id="Tests\Feature\Catalog\ProductPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data" name="test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\TechnicalAttributeAuthorizationTest.php">
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_auditor_can_read_but_cannot_mutate_either_entity_through_direct_requests" name="test_auditor_can_read_but_cannot_mutate_either_entity_through_direct_requests"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_guests_and_inactive_accounts_cannot_read_or_write" name="test_guests_and_inactive_accounts_cannot_read_or_write"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_custom_permissions_are_independent_and_role_name_does_not_grant_privileges" name="test_custom_permissions_are_independent_and_role_name_does_not_grant_privileges"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_create_and_status_permissions_do_not_grant_metadata_editing" name="test_create_and_status_permissions_do_not_grant_metadata_editing"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_revocation_invalidates_sessions_and_rejects_in_flight_mutations_for_both_entities" name="test_revocation_invalidates_sessions_and_rejects_in_flight_mutations_for_both_entities"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_actions_recheck_current_parent_state_and_parent_ownership" name="test_actions_recheck_current_parent_state_and_parent_ownership"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_both_forms_require_csrf" name="test_both_forms_require_csrf"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_new_permissions_are_configurable_through_existing_role_form_and_navigation" name="test_new_permissions_are_configurable_through_existing_role_form_and_navigation"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\TechnicalAttributeIntegrityTest.php">
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#invalid tipo" name="test_mariadb_enforces_attribute_checks_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#case-sensitive tipo" name="test_mariadb_enforces_attribute_checks_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#state check" name="test_mariadb_enforces_attribute_checks_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#unidad foreign key" name="test_mariadb_enforces_attribute_checks_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#author foreign key" name="test_mariadb_enforces_attribute_checks_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#editor foreign key" name="test_mariadb_enforces_attribute_checks_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_rejects_unit_on_non_decimal_definition" name="test_mariadb_rejects_unit_on_non_decimal_definition"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#categoria foreign key" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#atributo foreign key" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#author foreign key" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#editor foreign key" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#required check" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#identity check" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#active check" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#bound check" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#unsigned order" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#order overflow" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#decimal overflow" name="test_mariadb_enforces_association_checks_types_and_foreign_keys"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_codes_and_pairs_remain_unique_even_for_inactive_rows" name="test_codes_and_pairs_remain_unique_even_for_inactive_rows"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_all_referenced_entities_and_authors_are_restricted_against_deletion" name="test_all_referenced_entities_and_authors_are_restricted_against_deletion"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_schema_is_innodb_decimal_is_exact_and_future_modules_are_absent" name="test_schema_is_innodb_decimal_is_exact_and_future_modules_are_absent"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\TechnicalAttributeManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\TechnicalAttributeManagementTest.php">
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_admin_and_manager_create_edit_and_change_state_with_server_authors" name="test_admin_and_manager_create_edit_and_change_state_with_server_authors"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_all_four_types_are_accepted_and_only_decimal_may_have_a_unit" name="test_all_four_types_are_accepted_and_only_decimal_may_have_a_unit"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_required_lengths_type_unit_and_state_are_validated_in_spanish" name="test_required_lengths_type_unit_and_state_are_validated_in_spanish"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_duplicate_codes_are_rejected_even_when_inactive_but_names_may_repeat" name="test_duplicate_codes_are_rejected_even_when_inactive_but_names_may_repeat"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_type_and_unit_can_change_before_association_and_creator_is_preserved" name="test_type_and_unit_can_change_before_association_and_creator_is_preserved"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_any_association_freezes_type_and_unit_even_if_inactive_and_rollback_preserves_metadata" name="test_any_association_freezes_type_and_unit_even_if_inactive_and_rollback_preserves_metadata"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_active_association_blocks_global_deactivation_from_both_endpoints" name="test_active_association_blocks_global_deactivation_from_both_endpoints"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_inactive_unit_blocks_new_attributes_and_activation_but_allows_historical_name_correction" name="test_inactive_unit_blocks_new_attributes_and_activation_but_allows_historical_name_correction"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_actual_attribute_references_protect_unit_state_and_semantics" name="test_actual_attribute_references_protect_unit_state_and_semantics"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_search_type_state_pagination_wildcards_and_escaped_help" name="test_search_type_state_pagination_wildcards_and_escaped_help"/>
+  </testClass>
+  <testClass name="Tests\Feature\Catalog\TechnicalAttributeTransactionTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Catalog\TechnicalAttributeTransactionTest.php">
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_duplicate_definitions_and_associations_are_translated_when_collision_reaches_the_action" name="test_duplicate_definitions_and_associations_are_translated_when_collision_reaches_the_action"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_action_rechecks_associations_added_after_the_attribute_was_loaded" name="test_action_rechecks_associations_added_after_the_attribute_was_loaded"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_action_rechecks_unit_state_after_validation_and_does_not_create_partial_data" name="test_action_rechecks_unit_state_after_validation_and_does_not_create_partial_data"/>
+   <testMethod id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_action_rejects_raw_decimal_overprecision_before_eloquent_can_round" name="test_action_rejects_raw_decimal_overprecision_before_eloquent_can_round"/>
+  </testClass>
+  <testClass name="Tests\Feature\CompatibilidadFirmasHistoricasTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\CompatibilidadFirmasHistoricasTest.php">
+   <testMethod id="Tests\Feature\CompatibilidadFirmasHistoricasTest::test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma#cantidad" name="test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma"/>
+   <testMethod id="Tests\Feature\CompatibilidadFirmasHistoricasTest::test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma#individual" name="test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma"/>
+   <testMethod id="Tests\Feature\CompatibilidadFirmasHistoricasTest::test_la_regularizacion_conserva_el_contrato_de_firma_anterior_y_no_reactiva_la_herramienta" name="test_la_regularizacion_conserva_el_contrato_de_firma_anterior_y_no_reactiva_la_herramienta"/>
+  </testClass>
+  <testClass name="Tests\Feature\DashboardChartsTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\DashboardChartsTest.php">
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_empty_charts_show_real_zeroes_and_no_division_errors" name="test_empty_charts_show_real_zeroes_and_no_division_errors"/>
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_movement_charts_count_confirmed_rows_instead_of_quantities_or_drafts" name="test_movement_charts_count_confirmed_rows_instead_of_quantities_or_drafts"/>
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_days_use_bolivia_time_instead_of_utc_midnight" name="test_days_use_bolivia_time_instead_of_utc_midnight"/>
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_thirty_day_window_has_inclusive_local_start_and_excludes_future_rows" name="test_thirty_day_window_has_inclusive_local_start_and_excludes_future_rows"/>
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_without_permissions_the_server_does_not_query_or_render_chart_data" name="test_without_permissions_the_server_does_not_query_or_render_chart_data"/>
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_pending_tools_follow_current_custody_after_return_and_reopening" name="test_pending_tools_follow_current_custody_after_return_and_reopening"/>
+   <testMethod id="Tests\Feature\DashboardChartsTest::test_top_workers_keep_remaining_tools_in_an_other_group_and_escape_names" name="test_top_workers_keep_remaining_tools_in_an_other_group_and_escape_names"/>
+  </testClass>
+  <testClass name="Tests\Feature\DashboardOperationsTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\DashboardOperationsTest.php">
+   <testMethod id="Tests\Feature\DashboardOperationsTest::test_empty_dashboard_has_real_zeroes_and_actionable_empty_states" name="test_empty_dashboard_has_real_zeroes_and_actionable_empty_states"/>
+   <testMethod id="Tests\Feature\DashboardOperationsTest::test_stock_counts_distinct_active_products_and_drafts_never_count_as_stock" name="test_stock_counts_distinct_active_products_and_drafts_never_count_as_stock"/>
+   <testMethod id="Tests\Feature\DashboardOperationsTest::test_restricted_modules_are_neither_queried_nor_returned_and_openings_are_separate" name="test_restricted_modules_are_neither_queried_nor_returned_and_openings_are_separate"/>
+   <testMethod id="Tests\Feature\DashboardOperationsTest::test_recent_movements_are_limited_ordered_and_product_names_are_escaped" name="test_recent_movements_are_limited_ordered_and_product_names_are_escaped"/>
+   <testMethod id="Tests\Feature\DashboardOperationsTest::test_due_dates_use_bolivia_day_and_returns_remove_current_obligations" name="test_due_dates_use_bolivia_day_and_returns_remove_current_obligations"/>
+  </testClass>
+  <testClass name="Tests\Feature\DetailedReportsTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\DetailedReportsTest.php">
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_delivery_details_keep_historical_worker_and_line_units_with_named_filters" name="test_delivery_details_keep_historical_worker_and_line_units_with_named_filters"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_multiple_identifiers_do_not_multiply_document_quantities" name="test_multiple_identifiers_do_not_multiply_document_quantities"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_kardex_preserves_opening_balance_before_local_date_filter" name="test_kardex_preserves_opening_balance_before_local_date_filter"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_pending_reports_follow_reopened_custody_after_a_compensated_return" name="test_pending_reports_follow_reopened_custody_after_a_compensated_return"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_print_and_csv_include_the_full_filtered_result_instead_of_the_first_page" name="test_print_and_csv_include_the_full_filtered_result_instead_of_the_first_page"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_group_navigation_uses_first_allowed_report_and_denies_other_tabs_and_exports" name="test_group_navigation_uses_first_allowed_report_and_denies_other_tabs_and_exports"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_empty_csv_has_spanish_headers_and_unsafe_values_remain_escaped" name="test_empty_csv_has_spanish_headers_and_unsafe_values_remain_escaped"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_category_and_type_filters_preserve_document_numbers_and_distinct_summary" name="test_category_and_type_filters_preserve_document_numbers_and_distinct_summary"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_report_access_does_not_grant_document_access_or_display_a_forbidden_link" name="test_report_access_does_not_grant_document_access_or_display_a_forbidden_link"/>
+   <testMethod id="Tests\Feature\DetailedReportsTest::test_two_document_lines_keep_their_own_quantities_and_count_the_document_once" name="test_two_document_lines_keep_their_own_quantities_and_count_the_document_once"/>
+  </testClass>
+  <testClass name="Tests\Feature\ExampleTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\ExampleTest.php">
+   <testMethod id="Tests\Feature\ExampleTest::test_the_application_returns_a_successful_response" name="test_the_application_returns_a_successful_response"/>
+  </testClass>
+  <testClass name="Tests\Feature\ExpiredRequestPageTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\ExpiredRequestPageTest.php">
+   <testMethod id="Tests\Feature\ExpiredRequestPageTest::test_guest_csrf_failure_uses_the_spanish_page_and_keeps_status_419" name="test_guest_csrf_failure_uses_the_spanish_page_and_keeps_status_419"/>
+   <testMethod id="Tests\Feature\ExpiredRequestPageTest::test_authenticated_invalid_token_cannot_create_a_category" name="test_authenticated_invalid_token_cannot_create_a_category"/>
+   <testMethod id="Tests\Feature\ExpiredRequestPageTest::test_json_csrf_failure_keeps_the_native_json_response" name="test_json_csrf_failure_keeps_the_native_json_response"/>
+   <testMethod id="Tests\Feature\ExpiredRequestPageTest::test_valid_csrf_token_still_allows_a_normal_login" name="test_valid_csrf_token_still_allows_a_normal_login"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\ControlHttpTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\ControlHttpTest.php">
+   <testMethod id="Tests\Feature\Inventory\ControlHttpTest::test_control_pages_reports_and_exports_respect_permissions" name="test_control_pages_reports_and_exports_respect_permissions"/>
+   <testMethod id="Tests\Feature\Inventory\ControlHttpTest::test_http_adjustment_workflow_and_invalid_nested_form" name="test_http_adjustment_workflow_and_invalid_nested_form"/>
+   <testMethod id="Tests\Feature\Inventory\ControlHttpTest::test_csv_neutralizes_formulas_and_filters_cutoff_without_writing" name="test_csv_neutralizes_formulas_and_filters_cutoff_without_writing"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\ControlIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\ControlIntegrityTest.php">
+   <testMethod id="Tests\Feature\Inventory\ControlIntegrityTest::test_permissions_initialization_preserves_revocations_people_and_unknown_roles" name="test_permissions_initialization_preserves_revocations_people_and_unknown_roles"/>
+   <testMethod id="Tests\Feature\Inventory\ControlIntegrityTest::test_sql_rejects_fifth_source_without_matching_metadata_and_wrong_product_units" name="test_sql_rejects_fifth_source_without_matching_metadata_and_wrong_product_units"/>
+   <testMethod id="Tests\Feature\Inventory\ControlIntegrityTest::test_revoked_control_permission_invalidates_session" name="test_revoked_control_permission_invalidates_session"/>
+   <testMethod id="Tests\Feature\Inventory\ControlIntegrityTest::test_new_write_routes_keep_csrf_protection" name="test_new_write_routes_keep_csrf_protection"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\CorrectionConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\CorrectionConcurrencyTest.php">
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#competing counts" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#idempotent retry" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#duplicate compensation" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#revocation first" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#execution first" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#permiso revoked" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#authorizer rol disabled" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#return compensation first" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+   <testMethod id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#new prestamo first" name="test_real_wait_revalidates_balance_authorization_and_custody"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\DatabaseBackupsTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\DatabaseBackupsTest.php">
+   <testMethod id="Tests\Feature\Inventory\DatabaseBackupsTest::test_private_generation_integrity_download_and_rehearsal_approval_are_distinct" name="test_private_generation_integrity_download_and_rehearsal_approval_are_distinct"/>
+   <testMethod id="Tests\Feature\Inventory\DatabaseBackupsTest::test_tampering_and_failure_do_not_produce_a_verified_backup_or_keep_credentials" name="test_tampering_and_failure_do_not_produce_a_verified_backup_or_keep_credentials"/>
+   <testMethod id="Tests\Feature\Inventory\DatabaseBackupsTest::test_download_and_generation_reject_a_read_only_profile" name="test_download_and_generation_reject_a_read_only_profile"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\DeliveryManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\DeliveryManagementTest.php">
+   <testMethod id="Tests\Feature\Inventory\DeliveryManagementTest::test_delivery_draft_edit_confirm_retry_and_historical_worker" name="test_delivery_draft_edit_confirm_retry_and_historical_worker"/>
+   <testMethod id="Tests\Feature\Inventory\DeliveryManagementTest::test_individual_delivery_records_only_one_physical_outgoing_and_source" name="test_individual_delivery_records_only_one_physical_outgoing_and_source"/>
+   <testMethod id="Tests\Feature\Inventory\DeliveryManagementTest::test_insufficient_stock_rolls_back_and_loanables_are_rejected" name="test_insufficient_stock_rolls_back_and_loanables_are_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\DeliveryManagementTest::test_failure_after_posting_rolls_back_stock_and_movement" name="test_failure_after_posting_rolls_back_stock_and_movement"/>
+   <testMethod id="Tests\Feature\Inventory\DeliveryManagementTest::test_revoked_permission_is_checked_inside_confirmation" name="test_revoked_permission_is_checked_inside_confirmation"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\InitialStockCsvBoundaryTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\InitialStockCsvBoundaryTest.php">
+   <testMethod id="Tests\Feature\Inventory\InitialStockCsvBoundaryTest::test_exact_byte_and_pair_limits" name="test_exact_byte_and_pair_limits"/>
+   <testMethod id="Tests\Feature\Inventory\InitialStockCsvBoundaryTest::test_exact_row_limit_for_individuals_and_repetition_across_locations" name="test_exact_row_limit_for_individuals_and_repetition_across_locations"/>
+   <testMethod id="Tests\Feature\Inventory\InitialStockCsvBoundaryTest::test_encoding_structure_and_decimal_boundaries" name="test_encoding_structure_and_decimal_boundaries"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\InitialStockImportTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\InitialStockImportTest.php">
+   <testMethod id="Tests\Feature\Inventory\InitialStockImportTest::test_csv_preview_is_read_only_and_save_only_creates_a_draft" name="test_csv_preview_is_read_only_and_save_only_creates_a_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InitialStockImportTest::test_import_rejects_unknown_catalog_formulas_duplicates_and_changed_catalog" name="test_import_rejects_unknown_catalog_formulas_duplicates_and_changed_catalog"/>
+   <testMethod id="Tests\Feature\Inventory\InitialStockImportTest::test_import_token_rejects_tampering_expiration_and_another_operator" name="test_import_token_rejects_tampering_expiration_and_another_operator"/>
+   <testMethod id="Tests\Feature\Inventory\InitialStockImportTest::test_individual_import_aggregates_existing_identifiers_and_rejects_repeated_identity" name="test_individual_import_aggregates_existing_identifiers_and_rejects_repeated_identity"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\InventoryConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\InventoryConcurrencyTest.php">
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#idempotent retry" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#competing issues" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#opening once" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#same individual twice" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects individual" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#individual disable blocks receipt" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects producto" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#producto disable blocks receipt" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects pair" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#pair disable blocks receipt" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#revocation blocks receipt" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#confirmation protects cancellation" name="test_current_locked_reads_and_atomic_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#cancellation blocks confirmation" name="test_current_locked_reads_and_atomic_confirmation"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\InventoryCorrectionsTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\InventoryCorrectionsTest.php">
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_adjustment_requires_different_authorizer_and_posts_once" name="test_adjustment_requires_different_authorizer_and_posts_once"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_changed_count_revocation_expiration_and_rollback_are_effective" name="test_changed_count_revocation_expiration_and_rollback_are_effective"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_compensation_preserves_original_and_rejects_duplicate_or_negative_balance" name="test_compensation_preserves_original_and_rejects_duplicate_or_negative_balance"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_return_compensation_reopens_cycle_and_second_return_preserves_first_closure" name="test_return_compensation_reopens_cycle_and_second_return_preserves_first_closure"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_insufficient_stock_rolls_back_an_authorized_compensation" name="test_insufficient_stock_rolls_back_an_authorized_compensation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_loan_compensation_receives_tool_and_closes_custody_without_fabricating_return" name="test_loan_compensation_receives_tool_and_closes_custody_without_fabricating_return"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_permission_loss_of_authorizer_blocks_execution_even_after_operator_relogin" name="test_permission_loss_of_authorizer_blocks_execution_even_after_operator_relogin"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_regranting_authorization_permission_does_not_revive_an_old_approval" name="test_regranting_authorization_permission_does_not_revive_an_old_approval"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_editing_invalidates_approval_and_cancellation_never_changes_stock" name="test_editing_invalidates_approval_and_cancellation_never_changes_stock"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\InventoryIntegrityTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\InventoryIntegrityTest.php">
+   <testMethod id="Tests\Feature\Inventory\InventoryIntegrityTest::test_sql_constraints_reject_negative_stock_duplicate_movements_and_wrong_unit_membership" name="test_sql_constraints_reject_negative_stock_duplicate_movements_and_wrong_unit_membership"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryIntegrityTest::test_confirmed_document_and_movement_models_are_immutable" name="test_confirmed_document_and_movement_models_are_immutable"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryIntegrityTest::test_new_permissions_preserve_revocations_unknown_roles_and_initial_configuration" name="test_new_permissions_preserve_revocations_unknown_roles_and_initial_configuration"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryIntegrityTest::test_csrf_rejects_confirmation_without_a_token" name="test_csrf_rejects_confirmation_without_a_token"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\InventoryManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\InventoryManagementTest.php">
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_http_draft_edit_confirm_retry_and_queries" name="test_http_draft_edit_confirm_retry_and_queries"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_issue_insufficient_stock_and_exact_decimal_arithmetic" name="test_issue_insufficient_stock_and_exact_decimal_arithmetic"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#0" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#1" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#2" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#3" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#4" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#5" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#6" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#7" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#8" name="test_invalid_quantities_never_create_a_partial_draft"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_missing_pair_inactive_product_and_precision_are_revalidated_at_confirmation" name="test_missing_pair_inactive_product_and_precision_are_revalidated_at_confirmation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_failure_after_posting_a_line_rolls_back_every_effect_including_opening_marker" name="test_failure_after_posting_a_line_rolls_back_every_effect_including_opening_marker"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_individual_catalog_is_not_stock_and_units_can_exit_and_reenter" name="test_individual_catalog_is_not_stock_and_units_can_exit_and_reenter"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_wrong_unit_product_duplicate_selection_and_count_are_rejected" name="test_wrong_unit_product_duplicate_selection_and_count_are_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_opening_is_once_per_product_even_after_full_issue_and_prior_movements_block_it" name="test_opening_is_once_per_product_even_after_full_issue_and_prior_movements_block_it"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_external_reference_is_optional_and_matches_warn_without_blocking" name="test_external_reference_is_optional_and_matches_warn_without_blocking"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_cancelled_draft_has_no_stock_and_cannot_confirm" name="test_cancelled_draft_has_no_stock_and_cannot_confirm"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_direct_actions_and_http_respect_permissions_and_revocation" name="test_direct_actions_and_http_respect_permissions_and_revocation"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_stock_protects_catalog_product_pair_and_individual_identity" name="test_stock_protects_catalog_product_pair_and_individual_identity"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_required_header_fields_duplicate_pairs_and_truncated_forms_are_rejected" name="test_required_header_fields_duplicate_pairs_and_truncated_forms_are_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_decimal_capacity_overflow_does_not_add_a_movement" name="test_decimal_capacity_overflow_does_not_add_a_movement"/>
+   <testMethod id="Tests\Feature\Inventory\InventoryManagementTest::test_opening_spans_multiple_locations_with_one_product_marker" name="test_opening_spans_multiple_locations_with_one_product_marker"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\LoanManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\LoanManagementTest.php">
+   <testMethod id="Tests\Feature\Inventory\LoanManagementTest::test_loan_claims_custody_once_and_blocks_external_reentry" name="test_loan_claims_custody_once_and_blocks_external_reentry"/>
+   <testMethod id="Tests\Feature\Inventory\LoanManagementTest::test_nonloanable_and_inactive_worker_are_rejected" name="test_nonloanable_and_inactive_worker_are_rejected"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\ReturnManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\ReturnManagementTest.php">
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_partial_then_final_return_with_inactive_worker_and_different_destination" name="test_partial_then_final_return_with_inactive_worker_and_different_destination"/>
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_sql_rejects_closure_without_movement_and_competing_draft_cannot_return_twice" name="test_sql_rejects_closure_without_movement_and_competing_draft_cannot_return_twice"/>
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_exceptional_return_requires_specific_approval_and_never_reactivates_catalog" name="test_exceptional_return_requires_specific_approval_and_never_reactivates_catalog"/>
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_revocation_expiration_and_content_changes_invalidate_exception" name="test_revocation_expiration_and_content_changes_invalidate_exception"/>
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_injected_failure_rolls_back_return_custody_closure_and_authorization" name="test_injected_failure_rolls_back_return_custody_closure_and_authorization"/>
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_inactive_existing_pair_can_be_authorized_but_inactive_destination_cannot" name="test_inactive_existing_pair_can_be_authorized_but_inactive_destination_cannot"/>
+   <testMethod id="Tests\Feature\Inventory\ReturnManagementTest::test_editing_draft_revokes_approval_without_erasing_its_history" name="test_editing_draft_revokes_approval_without_erasing_its_history"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\SqlBackupClientConfigurationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\SqlBackupClientConfigurationTest.php">
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_an_explicit_directory_with_spaces_accepts_compatible_patch_versions" name="test_an_explicit_directory_with_spaces_accepts_compatible_patch_versions"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#0" name="test_other_vendors_series_and_unrecognized_output_are_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#1" name="test_other_vendors_series_and_unrecognized_output_are_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#2" name="test_other_vendors_series_and_unrecognized_output_are_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_an_invalid_explicit_directory_does_not_fall_back_to_another_installation" name="test_an_invalid_explicit_directory_does_not_fall_back_to_another_installation"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_a_directory_without_clients_is_rejected" name="test_a_directory_without_clients_is_rejected"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_a_process_failure_is_reported_without_exposing_process_details" name="test_a_process_failure_is_reported_without_exposing_process_details"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_restoration_to_primary_or_testing_is_rejected_before_opening_any_file" name="test_restoration_to_primary_or_testing_is_rejected_before_opening_any_file"/>
+   <testMethod id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_the_diagnostic_command_uses_only_inspection" name="test_the_diagnostic_command_uses_only_inspection"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\WorkerOperationConcurrencyTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\WorkerOperationConcurrencyTest.php">
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#competing deliveries" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#exclusive custody" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#prestamo retry" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#competing returns" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#return retry" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#permiso revocation" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#trabajador deactivation" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#authorization revoked first" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#return protects used approval" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#inactive identity blocks ordinary return" name="test_atomic_current_state_under_real_sql_wait"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#received identity blocks deactivation" name="test_atomic_current_state_under_real_sql_wait"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\WorkerOperationHttpTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\WorkerOperationHttpTest.php">
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_invalid_nested_input_can_be_redisplayed_without_a_server_error" name="test_invalid_nested_input_can_be_redisplayed_without_a_server_error"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_delivery_forms_validation_edit_cancel_confirmation_history_and_availability" name="test_delivery_forms_validation_edit_cancel_confirmation_history_and_availability"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_auditor_and_revoked_permissions_block_direct_requests" name="test_auditor_and_revoked_permissions_block_direct_requests"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_loan_return_forms_http_and_source_history" name="test_loan_return_forms_http_and_source_history"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_csrf_rejects_worker_confirmation_without_token" name="test_csrf_rejects_worker_confirmation_without_token"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_manager_can_request_and_receive_but_only_admin_approves_regularization" name="test_manager_can_request_and_receive_but_only_admin_approves_regularization"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\WorkerOperationPermissionTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\WorkerOperationPermissionTest.php">
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationPermissionTest::test_defaults_and_repeat_migration_preserve_revocations_unknown_roles_and_people" name="test_defaults_and_repeat_migration_preserve_revocations_unknown_roles_and_people"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationPermissionTest::test_revocation_invalidates_worker_operation_session" name="test_revocation_invalidates_worker_operation_session"/>
+  </testClass>
+  <testClass name="Tests\Feature\Inventory\WorkerOperationSchemaTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\Inventory\WorkerOperationSchemaTest.php">
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationSchemaTest::test_position_rejects_multiple_sources_and_missing_source" name="test_position_rejects_multiple_sources_and_missing_source"/>
+   <testMethod id="Tests\Feature\Inventory\WorkerOperationSchemaTest::test_sources_are_exclusive_unique_and_directional_with_composite_membership" name="test_sources_are_exclusive_unique_and_directional_with_composite_membership"/>
+  </testClass>
+  <testClass name="Tests\Feature\PaginationPresentationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\PaginationPresentationTest.php">
+   <testMethod id="Tests\Feature\PaginationPresentationTest::test_default_pagination_has_compact_arrows_and_correct_page_boundaries" name="test_default_pagination_has_compact_arrows_and_correct_page_boundaries"/>
+   <testMethod id="Tests\Feature\PaginationPresentationTest::test_pagination_preserves_search_filters_and_independent_page_parameter" name="test_pagination_preserves_search_filters_and_independent_page_parameter"/>
+   <testMethod id="Tests\Feature\PaginationPresentationTest::test_single_page_has_no_pagination_controls" name="test_single_page_has_no_pagination_controls"/>
+  </testClass>
+  <testClass name="Tests\Feature\PermissionAuthorizationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\PermissionAuthorizationTest.php">
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_worker_permissions_are_independent_for_read_create_edit_and_status" name="test_worker_permissions_are_independent_for_read_create_edit_and_status"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_user_edit_permission_does_not_allow_role_status_or_password_changes" name="test_user_edit_permission_does_not_allow_role_status_or_password_changes"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_partial_admin_cannot_grant_or_assign_permissions_it_does_not_have" name="test_partial_admin_cannot_grant_or_assign_permissions_it_does_not_have"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_role_editing_does_not_implicitly_allow_permission_or_status_changes" name="test_role_editing_does_not_implicitly_allow_permission_or_status_changes"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_revocation_invalidates_all_previous_role_sessions_and_fresh_login_uses_new_permissions" name="test_revocation_invalidates_all_previous_role_sessions_and_fresh_login_uses_new_permissions"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_grants_also_invalidate_old_sessions_and_missing_session_version_is_denied" name="test_grants_also_invalidate_old_sessions_and_missing_session_version_is_denied"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_inactive_roles_cannot_login_and_old_sessions_do_not_return_after_reactivation" name="test_inactive_roles_cannot_login_and_old_sessions_do_not_return_after_reactivation"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_permission_change_mid_request_is_rechecked_under_lock" name="test_permission_change_mid_request_is_rechecked_under_lock"/>
+   <testMethod id="Tests\Feature\PermissionAuthorizationTest::test_worker_mutations_recheck_revocation_during_request" name="test_worker_mutations_recheck_revocation_during_request"/>
+  </testClass>
+  <testClass name="Tests\Feature\RbacManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\RbacManagementTest.php">
+   <testMethod id="Tests\Feature\RbacManagementTest::test_role_creation_editing_and_author_are_audited" name="test_role_creation_editing_and_author_are_audited"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_permissions_are_granted_revoked_and_links_preserved" name="test_permissions_are_granted_revoked_and_links_preserved"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_invalid_roles_and_permissions_have_spanish_messages" name="test_invalid_roles_and_permissions_have_spanish_messages"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_role_status_and_search_preserve_accounts" name="test_role_status_and_search_preserve_accounts"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_last_full_administrative_role_cannot_be_disabled_or_lose_any_core_permission" name="test_last_full_administrative_role_cannot_be_disabled_or_lose_any_core_permission"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_two_administrators_in_same_role_do_not_bypass_last_role_guard" name="test_two_administrators_in_same_role_do_not_bypass_last_role_guard"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_full_access_in_custom_role_counts_as_administrator_and_can_take_over" name="test_full_access_in_custom_role_counts_as_administrator_and_can_take_over"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_user_can_be_assigned_a_custom_role_but_cannot_be_activated_under_inactive_role" name="test_user_can_be_assigned_a_custom_role_but_cannot_be_activated_under_inactive_role"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_role_names_have_no_authorization_effect" name="test_role_names_have_no_authorization_effect"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_unprivileged_roles_cannot_use_any_role_mutation_endpoint" name="test_unprivileged_roles_cannot_use_any_role_mutation_endpoint"/>
+   <testMethod id="Tests\Feature\RbacManagementTest::test_audit_failure_rolls_back_the_administrative_change" name="test_audit_failure_rolls_back_the_administrative_change"/>
+  </testClass>
+  <testClass name="Tests\Feature\RbacSchemaTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\RbacSchemaTest.php">
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_initial_catalog_and_role_ids_are_preserved" name="test_initial_catalog_and_role_ids_are_preserved"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_initialization_preserves_unknown_roles_users_workers_and_revocations" name="test_initialization_preserves_unknown_roles_users_workers_and_revocations"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_duplicate_permission_codes_are_rejected_by_mariadb" name="test_duplicate_permission_codes_are_rejected_by_mariadb"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_duplicate_role_permission_links_are_rejected" name="test_duplicate_role_permission_links_are_rejected"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_unknown_permission_foreign_keys_are_rejected" name="test_unknown_permission_foreign_keys_are_rejected"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_audit_requires_exactly_one_existing_subject" name="test_audit_requires_exactly_one_existing_subject"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_unknown_role_permission_foreign_keys_are_rejected" name="test_unknown_role_permission_foreign_keys_are_rejected"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_permissions_with_history_cannot_be_deleted" name="test_permissions_with_history_cannot_be_deleted"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_audit_rejects_unknown_subject_foreign_keys" name="test_audit_rejects_unknown_subject_foreign_keys"/>
+   <testMethod id="Tests\Feature\RbacSchemaTest::test_audit_rejects_two_subjects" name="test_audit_rejects_two_subjects"/>
+  </testClass>
+  <testClass name="Tests\Feature\RolesTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\RolesTest.php">
+   <testMethod id="Tests\Feature\RolesTest::test_initial_catalog_and_seeding_do_not_create_users" name="test_initial_catalog_and_seeding_do_not_create_users"/>
+   <testMethod id="Tests\Feature\RolesTest::test_each_active_role_can_open_panel_but_only_admin_manages_users" name="test_each_active_role_can_open_panel_but_only_admin_manages_users"/>
+   <testMethod id="Tests\Feature\RolesTest::test_inactive_administrator_has_no_permissions" name="test_inactive_administrator_has_no_permissions"/>
+   <testMethod id="Tests\Feature\RolesTest::test_non_catalog_role_is_denied_panel_access" name="test_non_catalog_role_is_denied_panel_access"/>
+   <testMethod id="Tests\Feature\RolesTest::test_database_rejects_unknown_role_ids" name="test_database_rejects_unknown_role_ids"/>
+  </testClass>
+  <testClass name="Tests\Feature\SimplifiedInterfaceTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\SimplifiedInterfaceTest.php">
+   <testMethod id="Tests\Feature\SimplifiedInterfaceTest::test_nine_sections_and_four_daily_actions_keep_secondary_options_collapsed" name="test_nine_sections_and_four_daily_actions_keep_secondary_options_collapsed"/>
+   <testMethod id="Tests\Feature\SimplifiedInterfaceTest::test_active_tools_section_opens_and_read_only_users_cannot_see_creation_shortcuts" name="test_active_tools_section_opens_and_read_only_users_cannot_see_creation_shortcuts"/>
+   <testMethod id="Tests\Feature\SimplifiedInterfaceTest::test_secondary_report_filters_preserve_values_and_open_when_applied" name="test_secondary_report_filters_preserve_values_and_open_when_applied"/>
+   <testMethod id="Tests\Feature\SimplifiedInterfaceTest::test_product_form_keeps_optional_inputs_and_reopens_on_validation_errors" name="test_product_form_keeps_optional_inputs_and_reopens_on_validation_errors"/>
+   <testMethod id="Tests\Feature\SimplifiedInterfaceTest::test_return_shortcut_selects_only_pending_confirmed_loan_without_writing" name="test_return_shortcut_selects_only_pending_confirmed_loan_without_writing"/>
+  </testClass>
+  <testClass name="Tests\Feature\TestingDatabaseIsolationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\TestingDatabaseIsolationTest.php">
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_factories_and_artisan_share_only_the_verified_testing_connection" name="test_factories_and_artisan_share_only_the_verified_testing_connection"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_a_factory_cannot_reuse_the_old_mysql_alias_even_if_it_points_to_testing" name="test_a_factory_cannot_reuse_the_old_mysql_alias_even_if_it_points_to_testing"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_a_primary_configuration_is_rejected_without_opening_its_pdo" name="test_a_primary_configuration_is_rejected_without_opening_its_pdo"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#0" name="test_unsafe_sql_is_rejected_before_being_sent_to_the_server"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#1" name="test_unsafe_sql_is_rejected_before_being_sent_to_the_server"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#2" name="test_unsafe_sql_is_rejected_before_being_sent_to_the_server"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#3" name="test_unsafe_sql_is_rejected_before_being_sent_to_the_server"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_the_query_hook_blocks_a_harmless_reference_to_the_primary" name="test_the_query_hook_blocks_a_harmless_reference_to_the_primary"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#0" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#1" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#2" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#3" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#4" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#5" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#6" name="test_each_worker_rejects_a_wrong_database_before_loading_jobs"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#0" name="test_subprocesses_reject_endpoint_and_server_identity_drift"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#1" name="test_subprocesses_reject_endpoint_and_server_identity_drift"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#2" name="test_subprocesses_reject_endpoint_and_server_identity_drift"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#3" name="test_subprocesses_reject_endpoint_and_server_identity_drift"/>
+   <testMethod id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#4" name="test_subprocesses_reject_endpoint_and_server_identity_drift"/>
+  </testClass>
+  <testClass name="Tests\Feature\TraduccionEsquemaTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\TraduccionEsquemaTest.php">
+   <testMethod id="Tests\Feature\TraduccionEsquemaTest::test_el_diccionario_coincide_con_las_tablas_y_columnas_reales" name="test_el_diccionario_coincide_con_las_tablas_y_columnas_reales"/>
+   <testMethod id="Tests\Feature\TraduccionEsquemaTest::test_la_migracion_rechaza_una_conexion_principal_antes_de_abrir_pdo" name="test_la_migracion_rechaza_una_conexion_principal_antes_de_abrir_pdo"/>
+   <testMethod id="Tests\Feature\TraduccionEsquemaTest::test_las_claves_historicas_se_leen_en_espanol_sin_reescribir_el_original" name="test_las_claves_historicas_se_leen_en_espanol_sin_reescribir_el_original"/>
+   <testMethod id="Tests\Feature\TraduccionEsquemaTest::test_la_traduccion_conserva_espacios_en_la_contrasena" name="test_la_traduccion_conserva_espacios_en_la_contrasena"/>
+   <testMethod id="Tests\Feature\TraduccionEsquemaTest::test_el_archivo_del_cliente_mariadb_conserva_sus_claves_obligatorias" name="test_el_archivo_del_cliente_mariadb_conserva_sus_claves_obligatorias"/>
+  </testClass>
+  <testClass name="Tests\Feature\UserManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\UserManagementTest.php">
+   <testMethod id="Tests\Feature\UserManagementTest::test_administrator_can_create_users_and_password_is_hashed" name="test_administrator_can_create_users_and_password_is_hashed"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_non_administrators_cannot_access_any_user_operation" name="test_non_administrators_cannot_access_any_user_operation"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_validation_rejects_duplicate_email_unknown_roles_and_weak_passwords" name="test_validation_rejects_duplicate_email_unknown_roles_and_weak_passwords"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_update_preserves_blank_password_and_revokes_access_when_role_changes" name="test_update_preserves_blank_password_and_revokes_access_when_role_changes"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_password_change_invalidates_previous_password_and_sessions" name="test_password_change_invalidates_previous_password_and_sessions"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_accounts_are_deactivated_and_reactivated_without_deleting_them" name="test_accounts_are_deactivated_and_reactivated_without_deleting_them"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_last_active_administrator_cannot_be_disabled_or_demoted" name="test_last_active_administrator_cannot_be_disabled_or_demoted"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_an_administrator_can_be_disabled_when_another_remains_active" name="test_an_administrator_can_be_disabled_when_another_remains_active"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_user_list_filters_and_paginates_without_losing_filters" name="test_user_list_filters_and_paginates_without_losing_filters"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_user_names_are_escaped_and_delete_route_is_absent" name="test_user_names_are_escaped_and_delete_route_is_absent"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_bootstrap_command_creates_an_administrator_and_refuses_a_second_run" name="test_bootstrap_command_creates_an_administrator_and_refuses_a_second_run"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_bootstrap_command_rejects_weak_credentials" name="test_bootstrap_command_rejects_weak_credentials"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_permission_changes_during_a_request_are_rechecked_before_mutation" name="test_permission_changes_during_a_request_are_rechecked_before_mutation"/>
+   <testMethod id="Tests\Feature\UserManagementTest::test_name_only_changes_preserve_access_and_duplicate_updates_are_rejected" name="test_name_only_changes_preserve_access_and_duplicate_updates_are_rejected"/>
+  </testClass>
+  <testClass name="Tests\Feature\VisualNavigationTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\VisualNavigationTest.php">
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_login_keeps_its_post_csrf_and_autocomplete_contract_without_private_navigation" name="test_login_keeps_its_post_csrf_and_autocomplete_contract_without_private_navigation"/>
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#administrador" name="test_navigation_preserves_role_permissions_and_post_logout"/>
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#encargado" name="test_navigation_preserves_role_permissions_and_post_logout"/>
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#auditor" name="test_navigation_preserves_role_permissions_and_post_logout"/>
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_revoked_permission_hides_the_link_and_the_server_still_denies_access" name="test_revoked_permission_hides_the_link_and_the_server_still_denies_access"/>
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_only_the_matching_parameterized_menu_item_is_active#0" name="test_only_the_matching_parameterized_menu_item_is_active"/>
+   <testMethod id="Tests\Feature\VisualNavigationTest::test_only_the_matching_parameterized_menu_item_is_active#1" name="test_only_the_matching_parameterized_menu_item_is_active"/>
+  </testClass>
+  <testClass name="Tests\Feature\WorkerManagementTest" file="C:\laragon\www\sga_espanol_revision\tests\Feature\WorkerManagementTest.php">
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_workers_are_registered_without_accounts_and_author_is_server_controlled" name="test_workers_are_registered_without_accounts_and_author_is_server_controlled"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_auditor_can_read_but_cannot_change_workers" name="test_auditor_can_read_but_cannot_change_workers"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_worker_validation_rejects_duplicates_and_invalid_fields" name="test_worker_validation_rejects_duplicates_and_invalid_fields"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_edits_preserve_creator_and_record_the_actual_editor" name="test_edits_preserve_creator_and_record_the_actual_editor"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_workers_can_be_disabled_and_reenabled_without_deletion" name="test_workers_can_be_disabled_and_reenabled_without_deletion"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_lists_search_and_paginate_and_escape_worker_names" name="test_lists_search_and_paginate_and_escape_worker_names"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_guests_and_inactive_accounts_cannot_read_or_write_workers" name="test_guests_and_inactive_accounts_cannot_read_or_write_workers"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_mariadb_enforces_unique_worker_codes" name="test_mariadb_enforces_unique_worker_codes"/>
+   <testMethod id="Tests\Feature\WorkerManagementTest::test_worker_documents_are_optional_but_unique_when_present" name="test_worker_documents_are_optional_but_unique_when_present"/>
+  </testClass>
+ </tests>
+ <groups>
+  <group name="concurrency">
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#identificador collision"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#serial collision"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#stale edits"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable producto first"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before producto disable"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable link first"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before link disable"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#disable ubicacion first"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before ubicacion disable"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#revoke first"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitConcurrencyTest::test_writers_use_current_references_and_permissions_after_waiting#create before revoke"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#same codigo"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#stale edit"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#disable versus link"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#link versus disable"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#required versus producto"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#producto versus required"/>
+   <test id="Tests\Feature\Catalog\ProductConcurrencyTest::test_concurrent_writers_revalidate_current_state_after_the_mutex#revocation versus producto"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#competing counts"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#idempotent retry"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#duplicate compensation"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#revocation first"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#execution first"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#permiso revoked"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#authorizer rol disabled"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#return compensation first"/>
+   <test id="Tests\Feature\Inventory\CorrectionConcurrencyTest::test_real_wait_revalidates_balance_authorization_and_custody#new prestamo first"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#idempotent retry"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#competing issues"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#opening once"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#same individual twice"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects individual"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#individual disable blocks receipt"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects producto"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#producto disable blocks receipt"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#receipt protects pair"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#pair disable blocks receipt"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#revocation blocks receipt"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#confirmation protects cancellation"/>
+   <test id="Tests\Feature\Inventory\InventoryConcurrencyTest::test_current_locked_reads_and_atomic_confirmation#cancellation blocks confirmation"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#competing deliveries"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#exclusive custody"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#prestamo retry"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#competing returns"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#return retry"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#permiso revocation"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#trabajador deactivation"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#authorization revoked first"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#return protects used approval"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#inactive identity blocks ordinary return"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationConcurrencyTest::test_atomic_current_state_under_real_sql_wait#received identity blocks deactivation"/>
+  </group>
+  <group name="default">
+   <test id="Tests\Unit\ExampleTest::test_that_true_is_true"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#0"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#1"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#2"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#3"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#4"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#5"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_comparisons_preserve_sign_and_last_digit#6"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_zero_and_trailing_zeros_are_normalized_without_floats"/>
+   <test id="Tests\Unit\TechnicalDecimalTest::test_significant_precision_is_not_rounded_to_fit_the_unit"/>
+   <test id="Tests\Feature\AdministrativeAuditTest::test_user_audit_captures_actor_before_after_and_password_flag_without_secrets"/>
+   <test id="Tests\Feature\AdministrativeAuditTest::test_audit_access_is_read_only_and_permission_controlled"/>
+   <test id="Tests\Feature\AdministrativeAuditTest::test_audit_model_cannot_be_updated"/>
+   <test id="Tests\Feature\AdministrativeAuditTest::test_audit_model_cannot_be_deleted"/>
+   <test id="Tests\Feature\AdministrativeConcurrencyTest::test_simultaneous_deactivation_keeps_one_full_administrator"/>
+   <test id="Tests\Feature\AdministrativeConcurrencyTest::test_simultaneous_role_revocation_keeps_one_full_administrator"/>
+   <test id="Tests\Feature\AnnualPlantScenarioTest::test_full_year_preserves_admin_permissions_and_reconciles_stock_and_custody"/>
+   <test id="Tests\Feature\AnnualPlantScenarioTest::test_wrong_identity_is_rejected_before_any_insert"/>
+   <test id="Tests\Feature\AnnualPlantScenarioTest::test_failure_during_generation_rolls_back_all_scenario_records_and_restores_clock"/>
+   <test id="Tests\Feature\AuthenticationTest::test_guests_see_login_and_cannot_open_the_panel"/>
+   <test id="Tests\Feature\AuthenticationTest::test_valid_credentials_regenerate_the_session_and_open_the_panel"/>
+   <test id="Tests\Feature\AuthenticationTest::test_invalid_credentials_and_inactive_accounts_are_rejected"/>
+   <test id="Tests\Feature\AuthenticationTest::test_login_validates_input_and_never_flashes_passwords"/>
+   <test id="Tests\Feature\AuthenticationTest::test_login_is_limited_by_normalized_email_and_ip"/>
+   <test id="Tests\Feature\AuthenticationTest::test_logout_invalidates_session_and_csrf_token"/>
+   <test id="Tests\Feature\AuthenticationTest::test_inactive_or_revoked_sessions_are_rejected"/>
+   <test id="Tests\Feature\AuthenticationTest::test_login_requires_a_csrf_token"/>
+   <test id="Tests\Feature\Catalog\AttributePermissionInitializationTest::test_initial_roles_receive_approved_capabilities_and_auditor_only_reads"/>
+   <test id="Tests\Feature\Catalog\AttributePermissionInitializationTest::test_reinitialization_preserves_revoked_old_and_new_permissions_unknown_roles_and_users"/>
+   <test id="Tests\Feature\Catalog\AttributePermissionInitializationTest::test_new_links_invalidate_affected_sessions_and_preserve_existing_records_and_permissions"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_auditor_has_read_access_but_all_direct_mutations_are_forbidden"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_guests_and_inactive_accounts_cannot_access_the_catalog"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_permissions_control_independent_actions_and_role_names_do_not_grant_access"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_status_permission_does_not_allow_editing_other_fields"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_revocation_invalidates_session_and_rejects_catalog_writes_in_flight"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_catalog_post_requires_csrf"/>
+   <test id="Tests\Feature\Catalog\CatalogAuthorizationTest::test_permissions_are_visible_and_editable_through_existing_role_management"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria author FK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria editor FK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#categoria state CHECK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad author FK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad precision CHECK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad dimension CHECK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_rejects_invalid_catalog_rows#unidad state CHECK"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_enforces_unique_category_codes"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_enforces_unique_category_names"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_mariadb_enforces_unique_unit_codes"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_exact_duplicate_symbols_are_rejected_in_mariadb"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_binary_collation_distinguishes_symbols_and_precision_defaults_to_zero"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_referenced_authors_cannot_be_deleted"/>
+   <test id="Tests\Feature\Catalog\CatalogIntegrityTest::test_scope_does_not_create_future_tables_and_catalogs_start_empty"/>
+   <test id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_initial_role_capabilities_include_only_the_approved_catalog_permissions"/>
+   <test id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_users_and_audit"/>
+   <test id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_initialization_of_missing_links_versions_and_audits_only_changed_roles"/>
+   <test id="Tests\Feature\Catalog\CatalogPermissionInitializationTest::test_new_grants_invalidate_existing_sessions_without_touching_other_roles"/>
+   <test id="Tests\Feature\Catalog\CatalogUniqueConflictTest::test_category_database_collisions_are_translated_and_rolled_back"/>
+   <test id="Tests\Feature\Catalog\CatalogUniqueConflictTest::test_unit_database_collisions_are_translated_and_rolled_back"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_admin_and_manager_associate_edit_and_toggle_without_changing_identity_or_authors"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_duplicate_associations_are_rejected_even_when_inactive_and_picker_excludes_them"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_wrong_parent_returns_404_for_edit_update_and_state_and_parent_input_is_prohibited"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_required_flags_order_and_attribute_references_are_validated"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_decimal_format_range_and_order_are_exact_and_do_not_round_invalid_values"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_unit_precision_zero_accepts_padded_integers_but_rejects_significant_fraction"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_non_decimal_types_reject_any_bound_including_zero"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_inactive_category_attribute_or_unit_prevents_new_or_reactivated_associations"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_historical_impact_guards_with_simulated_future_dependencies_rollback_all_changes"/>
+   <test id="Tests\Feature\Catalog\CategoryAttributeManagementTest::test_list_is_scoped_ordered_filtered_and_preserves_inactive_configuration"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_administrator_and_manager_can_register_edit_and_change_status"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_category_fields_are_required_and_lengths_and_state_are_validated_in_spanish"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_duplicate_codes_and_names_are_rejected_even_when_inactive"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_editing_ignores_own_unique_fields_and_preserves_creator"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_search_filter_and_pagination_keep_filters_and_treat_wildcards_literally"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_deactivation_dependency_guard_blocks_both_endpoints_and_keeps_data"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_without_future_tables_deactivation_is_allowed_and_records_are_retained"/>
+   <test id="Tests\Feature\Catalog\CategoryManagementTest::test_category_html_is_escaped"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_auditor_reads_and_direct_mutations_are_forbidden"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_custom_role_names_grant_nothing_and_update_does_not_grant_status"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_revocation_invalidates_sessions_and_stale_action_actor"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitAuthorizationTest::test_guests_inactive_accounts_and_csrf_are_protected"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitHistoryTest::test_real_units_protect_product_structure_and_active_units_prevent_both_deactivation_endpoints"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitHistoryTest::test_real_assigned_units_even_inactive_prevent_link_and_location_history_changes"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitHistoryTest::test_failed_association_validation_rolls_back_metadata_and_version"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#blank id"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#state"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#version"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#blank series"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#producto"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#ubicacion"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_constraints_reject_invalid_rows#author"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_composite_fk_rejects_cross_product_association_on_insert_and_update"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitIntegrityTest::test_sql_unique_keys_and_restrict_preserve_identity_and_assigned_pair"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_managers_register_search_edit_and_toggle_without_stock_side_effects"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_required_fields_types_lengths_and_product_mode_are_enforced"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_series_are_optional_case_sensitive_unique_per_product_and_zero_is_not_empty"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_initial_location_requires_active_storable_location_and_matching_active_link"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitManagementTest::test_identity_product_and_initial_location_are_fixed_and_stale_edits_fail"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people"/>
+   <test id="Tests\Feature\Catalog\IndividualUnitPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_auditor_can_read_index_and_tree_but_all_direct_mutations_are_forbidden"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_guests_and_inactive_users_cannot_access_locations"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_each_action_requires_its_permission_even_with_an_administrator_role_name"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_create_status_and_metadata_permissions_are_independent"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_revocation_invalidates_sessions_and_rejects_an_in_flight_action"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_forms_require_csrf_and_new_permissions_are_configurable_with_existing_roles"/>
+   <test id="Tests\Feature\Catalog\LocationAuthorizationTest::test_editor_preserves_creator_and_server_sets_updated_by"/>
+   <test id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-04 crossed parents"/>
+   <test id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-04 crossed parents with earlier snapshot"/>
+   <test id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-05 child creation versus padre deactivation"/>
+   <test id="Tests\Feature\Catalog\LocationConcurrencyTest::test_concurrent_mutations_keep_an_acyclic_active_hierarchy#LOC-05 child activation versus padre deactivation"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#tipo"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#tipo case"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#active flag"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#storable flag"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#padre FK"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#author FK"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_mariadb_rejects_invalid_rows#editor FK"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_unique_code_is_case_insensitive_even_for_inactive_rows"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_parent_and_authors_are_restricted_against_deletion_and_key_updates"/>
+   <test id="Tests\Feature\Catalog\LocationIntegrityTest::test_schema_defaults_and_scope_are_correct"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_administrator_and_manager_create_edit_and_toggle_with_server_authors"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_three_types_hierarchy_and_non_storable_parent_are_supported"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_fields_types_flags_and_lengths_are_validated_in_spanish"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_inactive_code_is_not_reused_but_names_may_repeat"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_self_and_descendants_including_inactive_nodes_are_rejected_without_partial_edits"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_inactive_parents_ancestors_and_reactivation_are_checked_with_historical_exception"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_active_children_block_both_deactivation_endpoints_and_inactive_links_are_kept"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_parent_options_exclude_self_and_descendants_and_omit_inactive_locations"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_real_inactive_units_protect_location_and_subtree_history"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_search_filters_pagination_literal_wildcards_and_html_escape"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_stale_action_inputs_are_rechecked_and_duplicate_collision_is_translated"/>
+   <test id="Tests\Feature\Catalog\LocationManagementTest::test_existing_cycle_is_reported_without_infinite_traversal_or_partial_write"/>
+   <test id="Tests\Feature\Catalog\LocationPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role"/>
+   <test id="Tests\Feature\Catalog\LocationPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people"/>
+   <test id="Tests\Feature\Catalog\LocationPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_initial_examples_can_be_registered_by_administrator_and_manager"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_required_fields_precision_dimensions_and_lengths_are_validated"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_all_six_dimensions_are_accepted_without_conversions"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_symbols_are_case_sensitive_trimmed_and_exact_duplicates_are_rejected"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_unit_can_be_edited_without_references_and_creator_is_preserved"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_used_unit_cannot_change_code_symbol_dimension_or_precision_but_name_can_change"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_active_references_block_status_patch_and_form_deactivation"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_units_are_deactivated_reactivated_and_never_deleted_or_reused"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_unit_search_status_and_pagination_are_consistent"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_duplicate_unit_updates_are_rejected_without_partial_changes"/>
+   <test id="Tests\Feature\Catalog\MeasurementUnitManagementTest::test_unit_names_and_symbols_are_escaped_in_blade"/>
+   <test id="Tests\Feature\Catalog\ProductAttributeValueTest::test_all_four_types_zero_false_negative_decimal_and_dates_are_saved_exactly"/>
+   <test id="Tests\Feature\Catalog\ProductAttributeValueTest::test_required_types_ranges_precision_and_category_membership_are_enforced"/>
+   <test id="Tests\Feature\Catalog\ProductAttributeValueTest::test_invalid_boolean_text_and_calendar_dates_are_rejected"/>
+   <test id="Tests\Feature\Catalog\ProductAttributeValueTest::test_inactive_definitions_cannot_be_written_and_required_values_are_checked_on_reactivation"/>
+   <test id="Tests\Feature\Catalog\ProductAuthorizationTest::test_auditor_reads_but_direct_writes_are_forbidden"/>
+   <test id="Tests\Feature\Catalog\ProductAuthorizationTest::test_custom_role_names_do_not_grant_capabilities_and_status_requires_its_own_permission"/>
+   <test id="Tests\Feature\Catalog\ProductAuthorizationTest::test_initial_links_cannot_bypass_location_permission_and_atomic_save_is_preserved"/>
+   <test id="Tests\Feature\Catalog\ProductAuthorizationTest::test_permission_changes_invalidate_sessions_and_stale_action_operators"/>
+   <test id="Tests\Feature\Catalog\ProductAuthorizationTest::test_guests_and_csrf_are_checked_on_product_and_location_mutations"/>
+   <test id="Tests\Feature\Catalog\ProductDuplicateTest::test_browser_form_round_trip_reviews_false_decimal_and_date_identity_without_merging"/>
+   <test id="Tests\Feature\Catalog\ProductDuplicateTest::test_equivalent_identity_warns_including_inactive_candidates_and_requires_review_of_current_payload"/>
+   <test id="Tests\Feature\Catalog\ProductDuplicateTest::test_text_identity_is_case_sensitive_and_empty_identity_never_claims_equivalence"/>
+   <test id="Tests\Feature\Catalog\ProductHistoryTest::test_edit_clear_and_reactivate_preserve_all_revisions_and_one_value_identity"/>
+   <test id="Tests\Feature\Catalog\ProductHistoryTest::test_failure_after_first_value_and_revision_rolls_back_the_entire_product"/>
+   <test id="Tests\Feature\Catalog\ProductHistoryTest::test_historical_configuration_and_product_structure_cannot_be_reinterpreted"/>
+   <test id="Tests\Feature\Catalog\ProductHistoryTest::test_required_association_reactivation_is_checked_on_both_endpoints"/>
+   <test id="Tests\Feature\Catalog\ProductHistoryTest::test_existing_category_and_unit_guards_now_detect_real_product_references"/>
+   <test id="Tests\Feature\Catalog\ProductHistoryTest::test_revisions_have_no_update_or_delete_application_path"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_revision_constraints_and_parent_restriction_preserve_snapshots"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#mode"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#case"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#prestamo"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#active"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#prestamo flag"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#version"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#categoria"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#unidad"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_products#author"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#none"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#two"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#boolean"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#state"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#precision overflow"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#missing producto"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_mariadb_rejects_invalid_values#missing association"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_both_composite_keys_reject_cross_category_values_even_with_valid_individual_ids"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_unique_codes_values_links_and_restrict_rules_preserve_inactive_history"/>
+   <test id="Tests\Feature\Catalog\ProductIntegrityTest::test_schema_types_engines_foreign_keys_and_excluded_scope"/>
+   <test id="Tests\Feature\Catalog\ProductLocationManagementTest::test_multiple_locations_are_registered_toggled_and_searched_without_quantities"/>
+   <test id="Tests\Feature\Catalog\ProductLocationManagementTest::test_inactive_non_storable_and_duplicate_associations_are_rejected"/>
+   <test id="Tests\Feature\Catalog\ProductLocationManagementTest::test_failure_of_an_initial_association_rolls_back_the_new_product_and_prior_links"/>
+   <test id="Tests\Feature\Catalog\ProductLocationManagementTest::test_location_deactivation_is_blocked_until_links_are_inactive_and_history_remains"/>
+   <test id="Tests\Feature\Catalog\ProductLocationManagementTest::test_nested_ownership_stale_versions_and_assigned_unit_guard_are_enforced"/>
+   <test id="Tests\Feature\Catalog\ProductLocationManagementTest::test_inactive_product_cannot_receive_active_location_links_and_link_history_freezes_structure"/>
+   <test id="Tests\Feature\Catalog\ProductManagementTest::test_validation_after_review_returns_to_a_get_form_with_input_and_errors"/>
+   <test id="Tests\Feature\Catalog\ProductManagementTest::test_managers_register_edit_search_toggle_and_render_all_product_screens"/>
+   <test id="Tests\Feature\Catalog\ProductManagementTest::test_required_fields_lengths_flags_references_and_loan_mode_are_validated"/>
+   <test id="Tests\Feature\Catalog\ProductManagementTest::test_codes_remain_reserved_and_immutable_and_stale_edits_are_rejected"/>
+   <test id="Tests\Feature\Catalog\ProductManagementTest::test_inactive_catalog_references_are_rejected_without_creating_products"/>
+   <test id="Tests\Feature\Catalog\ProductPermissionInitializationTest::test_initial_capabilities_are_only_those_approved_for_each_role"/>
+   <test id="Tests\Feature\Catalog\ProductPermissionInitializationTest::test_repeat_initialization_preserves_revocations_unknown_roles_and_existing_people"/>
+   <test id="Tests\Feature\Catalog\ProductPermissionInitializationTest::test_only_missing_grants_change_versions_audit_and_sessions_without_modifying_prior_data"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_auditor_can_read_but_cannot_mutate_either_entity_through_direct_requests"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_guests_and_inactive_accounts_cannot_read_or_write"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_custom_permissions_are_independent_and_role_name_does_not_grant_privileges"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_create_and_status_permissions_do_not_grant_metadata_editing"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_revocation_invalidates_sessions_and_rejects_in_flight_mutations_for_both_entities"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_actions_recheck_current_parent_state_and_parent_ownership"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_both_forms_require_csrf"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeAuthorizationTest::test_new_permissions_are_configurable_through_existing_role_form_and_navigation"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#invalid tipo"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#case-sensitive tipo"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#state check"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#unidad foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#author foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_attribute_checks_and_foreign_keys#editor foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_rejects_unit_on_non_decimal_definition"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#categoria foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#atributo foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#author foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#editor foreign key"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#required check"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#identity check"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#active check"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#bound check"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#unsigned order"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#order overflow"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_mariadb_enforces_association_checks_types_and_foreign_keys#decimal overflow"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_codes_and_pairs_remain_unique_even_for_inactive_rows"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_all_referenced_entities_and_authors_are_restricted_against_deletion"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeIntegrityTest::test_schema_is_innodb_decimal_is_exact_and_future_modules_are_absent"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_admin_and_manager_create_edit_and_change_state_with_server_authors"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_all_four_types_are_accepted_and_only_decimal_may_have_a_unit"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_required_lengths_type_unit_and_state_are_validated_in_spanish"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_duplicate_codes_are_rejected_even_when_inactive_but_names_may_repeat"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_type_and_unit_can_change_before_association_and_creator_is_preserved"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_any_association_freezes_type_and_unit_even_if_inactive_and_rollback_preserves_metadata"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_active_association_blocks_global_deactivation_from_both_endpoints"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_inactive_unit_blocks_new_attributes_and_activation_but_allows_historical_name_correction"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_actual_attribute_references_protect_unit_state_and_semantics"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeManagementTest::test_search_type_state_pagination_wildcards_and_escaped_help"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_duplicate_definitions_and_associations_are_translated_when_collision_reaches_the_action"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_action_rechecks_associations_added_after_the_attribute_was_loaded"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_action_rechecks_unit_state_after_validation_and_does_not_create_partial_data"/>
+   <test id="Tests\Feature\Catalog\TechnicalAttributeTransactionTest::test_action_rejects_raw_decimal_overprecision_before_eloquent_can_round"/>
+   <test id="Tests\Feature\CompatibilidadFirmasHistoricasTest::test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma#cantidad"/>
+   <test id="Tests\Feature\CompatibilidadFirmasHistoricasTest::test_un_ajuste_solicitado_con_el_contrato_anterior_se_autoriza_y_ejecuta_sin_reescribir_su_firma#individual"/>
+   <test id="Tests\Feature\CompatibilidadFirmasHistoricasTest::test_la_regularizacion_conserva_el_contrato_de_firma_anterior_y_no_reactiva_la_herramienta"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_empty_charts_show_real_zeroes_and_no_division_errors"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_movement_charts_count_confirmed_rows_instead_of_quantities_or_drafts"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_days_use_bolivia_time_instead_of_utc_midnight"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_thirty_day_window_has_inclusive_local_start_and_excludes_future_rows"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_without_permissions_the_server_does_not_query_or_render_chart_data"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_pending_tools_follow_current_custody_after_return_and_reopening"/>
+   <test id="Tests\Feature\DashboardChartsTest::test_top_workers_keep_remaining_tools_in_an_other_group_and_escape_names"/>
+   <test id="Tests\Feature\DashboardOperationsTest::test_empty_dashboard_has_real_zeroes_and_actionable_empty_states"/>
+   <test id="Tests\Feature\DashboardOperationsTest::test_stock_counts_distinct_active_products_and_drafts_never_count_as_stock"/>
+   <test id="Tests\Feature\DashboardOperationsTest::test_restricted_modules_are_neither_queried_nor_returned_and_openings_are_separate"/>
+   <test id="Tests\Feature\DashboardOperationsTest::test_recent_movements_are_limited_ordered_and_product_names_are_escaped"/>
+   <test id="Tests\Feature\DashboardOperationsTest::test_due_dates_use_bolivia_day_and_returns_remove_current_obligations"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_delivery_details_keep_historical_worker_and_line_units_with_named_filters"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_multiple_identifiers_do_not_multiply_document_quantities"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_kardex_preserves_opening_balance_before_local_date_filter"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_pending_reports_follow_reopened_custody_after_a_compensated_return"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_print_and_csv_include_the_full_filtered_result_instead_of_the_first_page"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_group_navigation_uses_first_allowed_report_and_denies_other_tabs_and_exports"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_empty_csv_has_spanish_headers_and_unsafe_values_remain_escaped"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_category_and_type_filters_preserve_document_numbers_and_distinct_summary"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_report_access_does_not_grant_document_access_or_display_a_forbidden_link"/>
+   <test id="Tests\Feature\DetailedReportsTest::test_two_document_lines_keep_their_own_quantities_and_count_the_document_once"/>
+   <test id="Tests\Feature\ExampleTest::test_the_application_returns_a_successful_response"/>
+   <test id="Tests\Feature\ExpiredRequestPageTest::test_guest_csrf_failure_uses_the_spanish_page_and_keeps_status_419"/>
+   <test id="Tests\Feature\ExpiredRequestPageTest::test_authenticated_invalid_token_cannot_create_a_category"/>
+   <test id="Tests\Feature\ExpiredRequestPageTest::test_json_csrf_failure_keeps_the_native_json_response"/>
+   <test id="Tests\Feature\ExpiredRequestPageTest::test_valid_csrf_token_still_allows_a_normal_login"/>
+   <test id="Tests\Feature\Inventory\ControlHttpTest::test_control_pages_reports_and_exports_respect_permissions"/>
+   <test id="Tests\Feature\Inventory\ControlHttpTest::test_http_adjustment_workflow_and_invalid_nested_form"/>
+   <test id="Tests\Feature\Inventory\ControlHttpTest::test_csv_neutralizes_formulas_and_filters_cutoff_without_writing"/>
+   <test id="Tests\Feature\Inventory\ControlIntegrityTest::test_permissions_initialization_preserves_revocations_people_and_unknown_roles"/>
+   <test id="Tests\Feature\Inventory\ControlIntegrityTest::test_sql_rejects_fifth_source_without_matching_metadata_and_wrong_product_units"/>
+   <test id="Tests\Feature\Inventory\ControlIntegrityTest::test_revoked_control_permission_invalidates_session"/>
+   <test id="Tests\Feature\Inventory\ControlIntegrityTest::test_new_write_routes_keep_csrf_protection"/>
+   <test id="Tests\Feature\Inventory\DatabaseBackupsTest::test_private_generation_integrity_download_and_rehearsal_approval_are_distinct"/>
+   <test id="Tests\Feature\Inventory\DatabaseBackupsTest::test_tampering_and_failure_do_not_produce_a_verified_backup_or_keep_credentials"/>
+   <test id="Tests\Feature\Inventory\DatabaseBackupsTest::test_download_and_generation_reject_a_read_only_profile"/>
+   <test id="Tests\Feature\Inventory\DeliveryManagementTest::test_delivery_draft_edit_confirm_retry_and_historical_worker"/>
+   <test id="Tests\Feature\Inventory\DeliveryManagementTest::test_individual_delivery_records_only_one_physical_outgoing_and_source"/>
+   <test id="Tests\Feature\Inventory\DeliveryManagementTest::test_insufficient_stock_rolls_back_and_loanables_are_rejected"/>
+   <test id="Tests\Feature\Inventory\DeliveryManagementTest::test_failure_after_posting_rolls_back_stock_and_movement"/>
+   <test id="Tests\Feature\Inventory\DeliveryManagementTest::test_revoked_permission_is_checked_inside_confirmation"/>
+   <test id="Tests\Feature\Inventory\InitialStockCsvBoundaryTest::test_exact_byte_and_pair_limits"/>
+   <test id="Tests\Feature\Inventory\InitialStockCsvBoundaryTest::test_exact_row_limit_for_individuals_and_repetition_across_locations"/>
+   <test id="Tests\Feature\Inventory\InitialStockCsvBoundaryTest::test_encoding_structure_and_decimal_boundaries"/>
+   <test id="Tests\Feature\Inventory\InitialStockImportTest::test_csv_preview_is_read_only_and_save_only_creates_a_draft"/>
+   <test id="Tests\Feature\Inventory\InitialStockImportTest::test_import_rejects_unknown_catalog_formulas_duplicates_and_changed_catalog"/>
+   <test id="Tests\Feature\Inventory\InitialStockImportTest::test_import_token_rejects_tampering_expiration_and_another_operator"/>
+   <test id="Tests\Feature\Inventory\InitialStockImportTest::test_individual_import_aggregates_existing_identifiers_and_rejects_repeated_identity"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_adjustment_requires_different_authorizer_and_posts_once"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_changed_count_revocation_expiration_and_rollback_are_effective"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_compensation_preserves_original_and_rejects_duplicate_or_negative_balance"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_return_compensation_reopens_cycle_and_second_return_preserves_first_closure"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_insufficient_stock_rolls_back_an_authorized_compensation"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_loan_compensation_receives_tool_and_closes_custody_without_fabricating_return"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_permission_loss_of_authorizer_blocks_execution_even_after_operator_relogin"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_regranting_authorization_permission_does_not_revive_an_old_approval"/>
+   <test id="Tests\Feature\Inventory\InventoryCorrectionsTest::test_editing_invalidates_approval_and_cancellation_never_changes_stock"/>
+   <test id="Tests\Feature\Inventory\InventoryIntegrityTest::test_sql_constraints_reject_negative_stock_duplicate_movements_and_wrong_unit_membership"/>
+   <test id="Tests\Feature\Inventory\InventoryIntegrityTest::test_confirmed_document_and_movement_models_are_immutable"/>
+   <test id="Tests\Feature\Inventory\InventoryIntegrityTest::test_new_permissions_preserve_revocations_unknown_roles_and_initial_configuration"/>
+   <test id="Tests\Feature\Inventory\InventoryIntegrityTest::test_csrf_rejects_confirmation_without_a_token"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_http_draft_edit_confirm_retry_and_queries"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_issue_insufficient_stock_and_exact_decimal_arithmetic"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#0"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#1"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#2"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#3"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#4"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#5"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#6"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#7"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_invalid_quantities_never_create_a_partial_draft#8"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_missing_pair_inactive_product_and_precision_are_revalidated_at_confirmation"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_failure_after_posting_a_line_rolls_back_every_effect_including_opening_marker"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_individual_catalog_is_not_stock_and_units_can_exit_and_reenter"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_wrong_unit_product_duplicate_selection_and_count_are_rejected"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_opening_is_once_per_product_even_after_full_issue_and_prior_movements_block_it"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_external_reference_is_optional_and_matches_warn_without_blocking"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_cancelled_draft_has_no_stock_and_cannot_confirm"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_direct_actions_and_http_respect_permissions_and_revocation"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_stock_protects_catalog_product_pair_and_individual_identity"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_required_header_fields_duplicate_pairs_and_truncated_forms_are_rejected"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_decimal_capacity_overflow_does_not_add_a_movement"/>
+   <test id="Tests\Feature\Inventory\InventoryManagementTest::test_opening_spans_multiple_locations_with_one_product_marker"/>
+   <test id="Tests\Feature\Inventory\LoanManagementTest::test_loan_claims_custody_once_and_blocks_external_reentry"/>
+   <test id="Tests\Feature\Inventory\LoanManagementTest::test_nonloanable_and_inactive_worker_are_rejected"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_partial_then_final_return_with_inactive_worker_and_different_destination"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_sql_rejects_closure_without_movement_and_competing_draft_cannot_return_twice"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_exceptional_return_requires_specific_approval_and_never_reactivates_catalog"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_revocation_expiration_and_content_changes_invalidate_exception"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_injected_failure_rolls_back_return_custody_closure_and_authorization"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_inactive_existing_pair_can_be_authorized_but_inactive_destination_cannot"/>
+   <test id="Tests\Feature\Inventory\ReturnManagementTest::test_editing_draft_revokes_approval_without_erasing_its_history"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_an_explicit_directory_with_spaces_accepts_compatible_patch_versions"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#0"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#1"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_other_vendors_series_and_unrecognized_output_are_rejected#2"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_an_invalid_explicit_directory_does_not_fall_back_to_another_installation"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_a_directory_without_clients_is_rejected"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_a_process_failure_is_reported_without_exposing_process_details"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_restoration_to_primary_or_testing_is_rejected_before_opening_any_file"/>
+   <test id="Tests\Feature\Inventory\SqlBackupClientConfigurationTest::test_the_diagnostic_command_uses_only_inspection"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_invalid_nested_input_can_be_redisplayed_without_a_server_error"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_delivery_forms_validation_edit_cancel_confirmation_history_and_availability"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_auditor_and_revoked_permissions_block_direct_requests"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_loan_return_forms_http_and_source_history"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_csrf_rejects_worker_confirmation_without_token"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationHttpTest::test_manager_can_request_and_receive_but_only_admin_approves_regularization"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationPermissionTest::test_defaults_and_repeat_migration_preserve_revocations_unknown_roles_and_people"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationPermissionTest::test_revocation_invalidates_worker_operation_session"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationSchemaTest::test_position_rejects_multiple_sources_and_missing_source"/>
+   <test id="Tests\Feature\Inventory\WorkerOperationSchemaTest::test_sources_are_exclusive_unique_and_directional_with_composite_membership"/>
+   <test id="Tests\Feature\PaginationPresentationTest::test_default_pagination_has_compact_arrows_and_correct_page_boundaries"/>
+   <test id="Tests\Feature\PaginationPresentationTest::test_pagination_preserves_search_filters_and_independent_page_parameter"/>
+   <test id="Tests\Feature\PaginationPresentationTest::test_single_page_has_no_pagination_controls"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_worker_permissions_are_independent_for_read_create_edit_and_status"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_user_edit_permission_does_not_allow_role_status_or_password_changes"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_partial_admin_cannot_grant_or_assign_permissions_it_does_not_have"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_role_editing_does_not_implicitly_allow_permission_or_status_changes"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_revocation_invalidates_all_previous_role_sessions_and_fresh_login_uses_new_permissions"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_grants_also_invalidate_old_sessions_and_missing_session_version_is_denied"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_inactive_roles_cannot_login_and_old_sessions_do_not_return_after_reactivation"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_permission_change_mid_request_is_rechecked_under_lock"/>
+   <test id="Tests\Feature\PermissionAuthorizationTest::test_worker_mutations_recheck_revocation_during_request"/>
+   <test id="Tests\Feature\RbacManagementTest::test_role_creation_editing_and_author_are_audited"/>
+   <test id="Tests\Feature\RbacManagementTest::test_permissions_are_granted_revoked_and_links_preserved"/>
+   <test id="Tests\Feature\RbacManagementTest::test_invalid_roles_and_permissions_have_spanish_messages"/>
+   <test id="Tests\Feature\RbacManagementTest::test_role_status_and_search_preserve_accounts"/>
+   <test id="Tests\Feature\RbacManagementTest::test_last_full_administrative_role_cannot_be_disabled_or_lose_any_core_permission"/>
+   <test id="Tests\Feature\RbacManagementTest::test_two_administrators_in_same_role_do_not_bypass_last_role_guard"/>
+   <test id="Tests\Feature\RbacManagementTest::test_full_access_in_custom_role_counts_as_administrator_and_can_take_over"/>
+   <test id="Tests\Feature\RbacManagementTest::test_user_can_be_assigned_a_custom_role_but_cannot_be_activated_under_inactive_role"/>
+   <test id="Tests\Feature\RbacManagementTest::test_role_names_have_no_authorization_effect"/>
+   <test id="Tests\Feature\RbacManagementTest::test_unprivileged_roles_cannot_use_any_role_mutation_endpoint"/>
+   <test id="Tests\Feature\RbacManagementTest::test_audit_failure_rolls_back_the_administrative_change"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_initial_catalog_and_role_ids_are_preserved"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_initialization_preserves_unknown_roles_users_workers_and_revocations"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_duplicate_permission_codes_are_rejected_by_mariadb"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_duplicate_role_permission_links_are_rejected"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_unknown_permission_foreign_keys_are_rejected"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_audit_requires_exactly_one_existing_subject"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_unknown_role_permission_foreign_keys_are_rejected"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_permissions_with_history_cannot_be_deleted"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_audit_rejects_unknown_subject_foreign_keys"/>
+   <test id="Tests\Feature\RbacSchemaTest::test_audit_rejects_two_subjects"/>
+   <test id="Tests\Feature\RolesTest::test_initial_catalog_and_seeding_do_not_create_users"/>
+   <test id="Tests\Feature\RolesTest::test_each_active_role_can_open_panel_but_only_admin_manages_users"/>
+   <test id="Tests\Feature\RolesTest::test_inactive_administrator_has_no_permissions"/>
+   <test id="Tests\Feature\RolesTest::test_non_catalog_role_is_denied_panel_access"/>
+   <test id="Tests\Feature\RolesTest::test_database_rejects_unknown_role_ids"/>
+   <test id="Tests\Feature\SimplifiedInterfaceTest::test_nine_sections_and_four_daily_actions_keep_secondary_options_collapsed"/>
+   <test id="Tests\Feature\SimplifiedInterfaceTest::test_active_tools_section_opens_and_read_only_users_cannot_see_creation_shortcuts"/>
+   <test id="Tests\Feature\SimplifiedInterfaceTest::test_secondary_report_filters_preserve_values_and_open_when_applied"/>
+   <test id="Tests\Feature\SimplifiedInterfaceTest::test_product_form_keeps_optional_inputs_and_reopens_on_validation_errors"/>
+   <test id="Tests\Feature\SimplifiedInterfaceTest::test_return_shortcut_selects_only_pending_confirmed_loan_without_writing"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_factories_and_artisan_share_only_the_verified_testing_connection"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_a_factory_cannot_reuse_the_old_mysql_alias_even_if_it_points_to_testing"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_a_primary_configuration_is_rejected_without_opening_its_pdo"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#0"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#1"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#2"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_unsafe_sql_is_rejected_before_being_sent_to_the_server#3"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_the_query_hook_blocks_a_harmless_reference_to_the_primary"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#0"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#1"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#2"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#3"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#4"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#5"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_each_worker_rejects_a_wrong_database_before_loading_jobs#6"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#0"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#1"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#2"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#3"/>
+   <test id="Tests\Feature\TestingDatabaseIsolationTest::test_subprocesses_reject_endpoint_and_server_identity_drift#4"/>
+   <test id="Tests\Feature\TraduccionEsquemaTest::test_el_diccionario_coincide_con_las_tablas_y_columnas_reales"/>
+   <test id="Tests\Feature\TraduccionEsquemaTest::test_la_migracion_rechaza_una_conexion_principal_antes_de_abrir_pdo"/>
+   <test id="Tests\Feature\TraduccionEsquemaTest::test_las_claves_historicas_se_leen_en_espanol_sin_reescribir_el_original"/>
+   <test id="Tests\Feature\TraduccionEsquemaTest::test_la_traduccion_conserva_espacios_en_la_contrasena"/>
+   <test id="Tests\Feature\TraduccionEsquemaTest::test_el_archivo_del_cliente_mariadb_conserva_sus_claves_obligatorias"/>
+   <test id="Tests\Feature\UserManagementTest::test_administrator_can_create_users_and_password_is_hashed"/>
+   <test id="Tests\Feature\UserManagementTest::test_non_administrators_cannot_access_any_user_operation"/>
+   <test id="Tests\Feature\UserManagementTest::test_validation_rejects_duplicate_email_unknown_roles_and_weak_passwords"/>
+   <test id="Tests\Feature\UserManagementTest::test_update_preserves_blank_password_and_revokes_access_when_role_changes"/>
+   <test id="Tests\Feature\UserManagementTest::test_password_change_invalidates_previous_password_and_sessions"/>
+   <test id="Tests\Feature\UserManagementTest::test_accounts_are_deactivated_and_reactivated_without_deleting_them"/>
+   <test id="Tests\Feature\UserManagementTest::test_last_active_administrator_cannot_be_disabled_or_demoted"/>
+   <test id="Tests\Feature\UserManagementTest::test_an_administrator_can_be_disabled_when_another_remains_active"/>
+   <test id="Tests\Feature\UserManagementTest::test_user_list_filters_and_paginates_without_losing_filters"/>
+   <test id="Tests\Feature\UserManagementTest::test_user_names_are_escaped_and_delete_route_is_absent"/>
+   <test id="Tests\Feature\UserManagementTest::test_bootstrap_command_creates_an_administrator_and_refuses_a_second_run"/>
+   <test id="Tests\Feature\UserManagementTest::test_bootstrap_command_rejects_weak_credentials"/>
+   <test id="Tests\Feature\UserManagementTest::test_permission_changes_during_a_request_are_rechecked_before_mutation"/>
+   <test id="Tests\Feature\UserManagementTest::test_name_only_changes_preserve_access_and_duplicate_updates_are_rejected"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_login_keeps_its_post_csrf_and_autocomplete_contract_without_private_navigation"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#administrador"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#encargado"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_navigation_preserves_role_permissions_and_post_logout#auditor"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_revoked_permission_hides_the_link_and_the_server_still_denies_access"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_only_the_matching_parameterized_menu_item_is_active#0"/>
+   <test id="Tests\Feature\VisualNavigationTest::test_only_the_matching_parameterized_menu_item_is_active#1"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_workers_are_registered_without_accounts_and_author_is_server_controlled"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_auditor_can_read_but_cannot_change_workers"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_worker_validation_rejects_duplicates_and_invalid_fields"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_edits_preserve_creator_and_record_the_actual_editor"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_workers_can_be_disabled_and_reenabled_without_deletion"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_lists_search_and_paginate_and_escape_worker_names"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_guests_and_inactive_accounts_cannot_read_or_write_workers"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_mariadb_enforces_unique_worker_codes"/>
+   <test id="Tests\Feature\WorkerManagementTest::test_worker_documents_are_optional_but_unique_when_present"/>
+  </group>
+ </groups>
+</testSuite>

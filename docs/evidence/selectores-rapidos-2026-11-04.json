@@ -1,0 +1,47 @@
+{
+  "fecha": "2026-11-04T21:41:07.632253-04:00",
+  "alcance": "Selectores con busqueda y correccion de scripts dinamicos; cambios previos conservados.",
+  "phpunit": {
+    "base": "sga_rio_grande_testing",
+    "casos_distintos": 11,
+    "aserciones_mas_recientes": 80,
+    "fallos": 0,
+    "informes": {
+      "phpunit.xml": "04b24a5ed1d957eeb97ad41bb4aa33e3fe0212d69a4896a52374e69e42eca507",
+      "phpunit-selectores-final.xml": "eeaa2303a1f0b2f022307652933979c9af09356ca8fc111af8d4d8de80e54653"
+    }
+  },
+  "navegador": {
+    "escenarios": 5,
+    "comprobaciones": 53,
+    "fallos": 0,
+    "anchos_interiores_reales": [
+      500,
+      1424
+    ],
+    "resultado_sha256": "f7bccde419758a2dcdaa7d029dbc2b4ca6ca5ef49430a7bec9b45635884e9fe9",
+    "aceptacion_humana": false
+  },
+  "recurso_http_coincide_con_archivo": true,
+  "protegidos_anteriores_sin_cambios": true,
+  "migraciones_ejecutadas_principal": false,
+  "datos_operativos_modificados": false,
+  "paquetes_instalados": false,
+  "git_publicado": false,
+  "archivos": {
+    "public/js/sga-selectores.js": "d4a5b2ec23bc8f4a1140348897222075e69b665946c1f4cd225e70e4ca9bd975",
+    "public/js/sga-ui.js": "02041566fbd6f6d4dab9ce3fc3ad47d4db27f3f1f01057077f7a389593460733",
+    "public/css/sga.css": "6b6d333f8c1ad3f15f630f152e976e4ae2c5350891e0531c0c53b5c528b90e4d",
+    "resources/views/layouts/app.blade.php": "d6509703cf15d9c11df959b2ce736ece0ec92bba2e36c9c35d8b0ad9aa5417ee",
+    "resources/views/operaciones-trabajadores/form.blade.php": "2d78704e33dd496e366519ba5f0cf296f8aef731aa8f2c06a77ea2647da2b19f",
+    "resources/views/inventario/documents/form.blade.php": "ce670b653ef8da8dd0076ebe16d10e27d95e483122cd81e6767561ce3eca1d05",
+    "resources/views/inventario/documents/line.blade.php": "b2ce0f31b51dc1835541da7dfd21fa61684b09014cad3f1b0567664ba385bc63",
+    "resources/views/catalogo/unidades-individuales/form.blade.php": "ec7b624185dfaeeb08d89f53bb0f696a0c3ac5ef3c8dd2e4b0f960cb07ee0eb3",
+    "resources/views/control/corrections/form.blade.php": "8ee8a0c93dc0c62315f91131b34b725f5ffbc974cfd5dd2c3b1b8aba0fa0ffe4",
+    "tests/Feature/SearchableSelectorsTest.php": "caa26845128eaa98efbaea107e13a495fee6f671cbd55a5587517c775331f985",
+    "tests/Browser/selectores.js": "fa78445756752b5bc9ae757aedd2d3307f9b8dcdb448872f4b53fe9355708ea5",
+    "tests/Browser/verificar-selectores.php": "4950fc04bc8aba2e2c697e6631151c2c45857e5bab5d1dc277bd2861b1a06377",
+    "README.md": "43323e97a72fc4a6fcf98b99990da608cd283616999cf88890e3ecfc667dd904",
+    "docs/selectores-rapidos-2026-11-04.md": "66b263d380d95f37a6b52ae6ade8e89d41bcbf9183b79569a5e02e60c0185a97"
+  }
+}

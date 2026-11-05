@@ -2,7 +2,21 @@
 
 Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora de Líquidos Río Grande.
 
-## Estado actual — 31 de octubre de 2026
+## Selección rápida — 4 de noviembre de 2026
+
+Los formularios y filtros incorporan [búsqueda por fragmentos y selección con sugerencias](docs/selectores-rapidos-2026-11-04.md) para trabajadores, artículos, ubicaciones y otras referencias. Incluye teclado y etiquetas para seleccionar varios elementos. Verificación: 11 pruebas distintas/80 aserciones y 53 comprobaciones de navegador, sin cambios de base de datos.
+
+## Versión local en español — 2 de noviembre de 2026
+
+La traducción y el reemplazo de datos fueron autorizados por el propietario. La base local conserva **53 tablas y 44 migraciones aplicadas, ninguna pendiente**, con 123 permisos y 260 asignaciones. El nuevo escenario ficticio de un año contiene **24 trabajadores, 116 productos y 192 unidades individualizadas**. Se conserva el acceso del administrador y la configuración de roles y permisos; `.env`, dependencias y las 43 migraciones anteriores permanecen intactos.
+
+Consulta el [informe de renovación y despliegue](docs/renovacion-espanol-2026-11-02.md), el [diccionario de las 53 tablas](docs/diccionario-datos-espanol.md), los [diagramas](docs/modelo-datos-espanol.md) y la [equivalencia de 183 clases](docs/correspondencia-clases-espanol.md). Esta etapa aprobó **86 casos y 546 aserciones** en dos lotes aislados. La cobertura consolidada con la fase anterior reúne 510 casos y 3.890 aserciones por lotes; no es una ejecución única ni aceptación humana. Los informes fechados anteriores conservan sus resultados históricos. No ejecutar otra vez la traducción ni la renovación sobre esta base ya actualizada.
+
+## Propuesta local de simplificación — 1 de noviembre de 2026
+
+En la rama `mejora/navegacion-simplificada` se implementó una [interfaz más sencilla para la operación diaria](docs/simplified-interface-2026-11-01.md), conservando funcionalidades, datos y permisos. La regresión seleccionada aprobó 48 pruebas y 451 aserciones exclusivamente en testing. La versión publicada de referencia es `bd89c97`; la aceptación y publicación de esta propuesta quedan pendientes de revisión.
+
+## Referencia histórica — 31 de octubre de 2026
 
 Los cinco sprints están implementados. El proyecto se sincronizó nuevamente en `C:\laragon\www\sistema_de_almacen_v3`, conservando la base local: **53 tablas, 43 migraciones y ninguna pendiente**, con 123 permisos y 260 relaciones rol–permiso. No se repitieron migraciones al volver a este PC.
 

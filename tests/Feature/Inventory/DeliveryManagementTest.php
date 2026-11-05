@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Inventory;
 
-use App\Actions\Deliveries\ConfirmDelivery;
-use App\Actions\Deliveries\SaveDelivery;
-use App\Models\Worker;
+use App\Actions\Entregas\ConfirmarEntrega;
+use App\Actions\Entregas\GuardarEntrega;
+use App\Models\Trabajador;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
@@ -16,9 +16,9 @@ class DeliveryManagementTest extends TestCase
 {
     use CreatesInventory;
 
-    private function data(array $c, string $quantity = '2'): array
+    private function data(array $c, string $cantidad = '2'): array
     {
-        return ['worker_id' => Worker::factory()->create()->id, 'document_date' => '2026-10-19', 'expected_line_count' => 1, 'lines' => [['product_id' => $c['product']->id, 'location_id' => $c['location']->id, 'quantity' => $quantity, 'unit_ids' => $c['unit'] ? [$c['unit']->id] : []]]];
+        return ['trabajador_id' => Trabajador::factory()->create()->id, 'fecha_documento' => '2026-10-19', 'expected_line_count' => 1, 'lineas' => [['producto_id' => $c['producto']->id, 'ubicacion_id' => $c['ubicacion']->id, 'cantidad' => $cantidad, 'unit_ids' => $c['unidad'] ? [$c['unidad']->id] : []]]];
     }
 
     public function test_delivery_draft_edit_confirm_retry_and_historical_worker(): void
@@ -26,74 +26,74 @@ class DeliveryManagementTest extends TestCase
         $c = $this->inventoryContext();
         $this->postInventory($c, 'receipt', '5');
         $data = $this->data($c);
-        $doc = app(SaveDelivery::class)->handle($c['actor'], null, $data);
-        $this->assertDatabaseCount('inventory_movements', 1);
-        $data['lock_version'] = 1;
-        $data['lines'][0]['quantity'] = '3';
-        $doc = app(SaveDelivery::class)->handle($c['actor'], $doc, $data);
-        $this->assertSame(2, $doc->lock_version);
-        $doc = app(ConfirmDelivery::class)->handle($c['actor'], $doc, 2);
-        app(ConfirmDelivery::class)->handle($c['actor'], $doc, 1);
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '2.000000']);
-        $this->assertDatabaseCount('inventory_movements', 2);
-        $snapshot = $doc->worker_snapshot;
-        Worker::findOrFail($data['worker_id'])->update(['nombres' => 'Otro']);
-        $this->assertSame($snapshot, $doc->fresh()->worker_snapshot);
+        $doc = app(GuardarEntrega::class)->handle($c['actor'], null, $data);
+        $this->assertDatabaseCount('movimientos_inventario', 1);
+        $data['version_bloqueo'] = 1;
+        $data['lineas'][0]['cantidad'] = '3';
+        $doc = app(GuardarEntrega::class)->handle($c['actor'], $doc, $data);
+        $this->assertSame(2, $doc->version_bloqueo);
+        $doc = app(ConfirmarEntrega::class)->handle($c['actor'], $doc, 2);
+        app(ConfirmarEntrega::class)->handle($c['actor'], $doc, 1);
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '2.000000']);
+        $this->assertDatabaseCount('movimientos_inventario', 2);
+        $snapshot = $doc->datos_historicos_trabajador;
+        Trabajador::findOrFail($data['trabajador_id'])->update(['nombres' => 'Otro']);
+        $this->assertSame($snapshot, $doc->fresh()->datos_historicos_trabajador);
     }
 
     public function test_individual_delivery_records_only_one_physical_outgoing_and_source(): void
     {
         $c = $this->inventoryContext('individual');
         $this->postInventory($c, 'receipt', '1');
-        $doc = app(SaveDelivery::class)->handle($c['actor'], null, $this->data($c, '1'));
-        app(ConfirmDelivery::class)->handle($c['actor'], $doc, 1);
-        $this->assertDatabaseHas('individual_unit_positions', ['individual_unit_id' => $c['unit']->id, 'is_present' => 0, 'last_document_line_id' => null, 'last_delivery_line_id' => $doc->lines()->first()->id]);
-        $this->assertDatabaseCount('inventory_documents', 1);
-        $this->assertDatabaseCount('inventory_movements', 2);
+        $doc = app(GuardarEntrega::class)->handle($c['actor'], null, $this->data($c, '1'));
+        app(ConfirmarEntrega::class)->handle($c['actor'], $doc, 1);
+        $this->assertDatabaseHas('posiciones_unidad_individual', ['unidad_individual_id' => $c['unidad']->id, 'presente' => 0, 'ultima_linea_documento_id' => null, 'ultima_linea_entrega_id' => $doc->lineas()->first()->id]);
+        $this->assertDatabaseCount('documentos_inventario', 1);
+        $this->assertDatabaseCount('movimientos_inventario', 2);
     }
 
     public function test_insufficient_stock_rolls_back_and_loanables_are_rejected(): void
     {
         $c = $this->inventoryContext();
-        $doc = app(SaveDelivery::class)->handle($c['actor'], null, $this->data($c));
+        $doc = app(GuardarEntrega::class)->handle($c['actor'], null, $this->data($c));
         try {
-            app(ConfirmDelivery::class)->handle($c['actor'], $doc, 1);
+            app(ConfirmarEntrega::class)->handle($c['actor'], $doc, 1);
             $this->fail('Missing stock accepted');
         } catch (ValidationException) {
-            $this->assertDatabaseCount('stock_positions', 0);
+            $this->assertDatabaseCount('existencias_ubicacion', 0);
         }
-        $this->assertSame('draft', $doc->fresh()->status);
+        $this->assertSame('draft', $doc->fresh()->estado);
         $i = $this->inventoryContext('individual');
-        $i['product']->update(['is_loanable' => true]);
+        $i['producto']->update(['prestable' => true]);
         $this->expectException(ValidationException::class);
-        app(SaveDelivery::class)->handle($i['actor'], null, $this->data($i, '1'));
+        app(GuardarEntrega::class)->handle($i['actor'], null, $this->data($i, '1'));
     }
 
     public function test_failure_after_posting_rolls_back_stock_and_movement(): void
     {
         $c = $this->inventoryContext();
         $this->postInventory($c, 'receipt', '5');
-        $doc = app(SaveDelivery::class)->handle($c['actor'], null, $this->data($c));
-        Event::listen('worker_operation.line_posted', fn () => throw new \RuntimeException('Injected failure'));
+        $doc = app(GuardarEntrega::class)->handle($c['actor'], null, $this->data($c));
+        Event::listen('worker_operation.line_posted', fn () => throw new \RuntimeException('Injected fallo'));
         try {
-            app(ConfirmDelivery::class)->handle($c['actor'], $doc, 1);
-            $this->fail('Expected failure');
+            app(ConfirmarEntrega::class)->handle($c['actor'], $doc, 1);
+            $this->fail('Expected fallo');
         } catch (\RuntimeException $e) {
-            $this->assertSame('Injected failure', $e->getMessage());
+            $this->assertSame('Injected fallo', $e->getMessage());
         }
-        $this->assertDatabaseCount('inventory_movements', 1);
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '5.000000']);
-        $this->assertSame('draft', $doc->fresh()->status);
+        $this->assertDatabaseCount('movimientos_inventario', 1);
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '5.000000']);
+        $this->assertSame('draft', $doc->fresh()->estado);
     }
 
     public function test_revoked_permission_is_checked_inside_confirmation(): void
     {
         $c = $this->inventoryContext();
         $this->postInventory($c, 'receipt', '5');
-        $doc = app(SaveDelivery::class)->handle($c['actor'], null, $this->data($c));
-        $id = DB::table('permissions')->where('code', 'deliveries.confirm')->value('id');
-        DB::table('permission_role')->where('role_id', 1)->where('permission_id', $id)->update(['is_active' => false]);
+        $doc = app(GuardarEntrega::class)->handle($c['actor'], null, $this->data($c));
+        $id = DB::table('permisos')->where('codigo', 'deliveries.confirm')->value('id');
+        DB::table('permiso_rol')->where('rol_id', 1)->where('permiso_id', $id)->update(['activo' => false]);
         $this->expectException(AuthorizationException::class);
-        app(ConfirmDelivery::class)->handle($c['actor'], $doc, 1);
+        app(ConfirmarEntrega::class)->handle($c['actor'], $doc, 1);
     }
 }

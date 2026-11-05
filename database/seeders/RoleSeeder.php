@@ -2,15 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Models\Rol;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (Role::LABELS as $code => $name) {
-            Role::firstOrCreate(['code' => $code], ['name' => $name]);
+        foreach (Rol::LABELS as $codigo => $nombre) {
+            Rol::firstOrCreate(['codigo' => $codigo], ['nombre' => $nombre]);
         }
     }
 }

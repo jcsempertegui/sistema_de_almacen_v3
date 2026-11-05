@@ -1,17 +1,17 @@
 <?php
 
-use App\Actions\Catalog\SaveCategoryAttribute;
-use App\Actions\Catalog\SaveLocation;
-use App\Actions\Catalog\SaveProduct;
-use App\Actions\Catalog\SaveProductLocation;
-use App\Actions\Roles\SaveRole;
-use App\Models\Category;
-use App\Models\CategoryAttribute;
-use App\Models\Location;
-use App\Models\Permission;
-use App\Models\Product;
-use App\Models\Role;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarAtributoCategoria;
+use App\Actions\Catalogo\GuardarProducto;
+use App\Actions\Catalogo\GuardarUbicacion;
+use App\Actions\Catalogo\GuardarUbicacionProducto;
+use App\Actions\Roles\GuardarRol;
+use App\Models\AtributoCategoria;
+use App\Models\Categoria;
+use App\Models\Permiso;
+use App\Models\Producto;
+use App\Models\Rol;
+use App\Models\Ubicacion;
+use App\Models\Usuario;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Console\Kernel;
@@ -24,13 +24,13 @@ $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $job = json_decode($argv[1], true, flags: JSON_THROW_ON_ERROR);
-$actor = User::with('role')->findOrFail($job['actor']);
+$actor = Usuario::with('rol')->findOrFail($job['actor']);
 DB::beginTransaction();
-Product::orderBy('id')->get(); // Deliberately retain a read view from BEFORE the winner commits.
-$target = $job['product'] ? Product::findOrFail($job['product']) : null;
+Producto::orderBy('id')->get(); // Deliberately retain a read view from BEFORE the winner commits.
+$target = $job['producto'] ? Producto::findOrFail($job['producto']) : null;
 $wait = 0;
 DB::listen(function ($query) use (&$wait, $job) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+    if (str_contains($query->sql, '`permisos`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
         $wait = max($wait, $query->time);
         echo "LOCKED\n";
         flush();
@@ -50,23 +50,23 @@ flush();
 try {
     switch ($job['operation']) {
         case 'create':
-            app(SaveProduct::class)->handle($actor, null, ['internal_code' => $job['code'], 'name' => 'Producto concurrente', 'category_id' => $job['category'], 'measurement_unit_id' => $job['unit'], 'control_mode' => 'quantity', 'is_loanable' => false, 'is_active' => true, 'values' => []]);
+            app(GuardarProducto::class)->handle($actor, null, ['codigo_interno' => $job['codigo'], 'nombre' => 'Producto concurrente', 'categoria_id' => $job['categoria'], 'unidad_medida_id' => $job['unidad'], 'modo_control' => 'quantity', 'prestable' => false, 'activo' => true, 'values' => []]);
             break;
         case 'edit':
-            app(SaveProduct::class)->handle($actor, $target, ['name' => 'Editado por '.$job['index'], 'lock_version' => 1]);
+            app(GuardarProducto::class)->handle($actor, $target, ['nombre' => 'Editado por '.$job['index'], 'version_bloqueo' => 1]);
             break;
         case 'disable':
-            app(SaveLocation::class)->handle($actor, Location::findOrFail($job['location']), ['is_active' => false], statusOnly: true);
+            app(GuardarUbicacion::class)->handle($actor, Ubicacion::findOrFail($job['ubicacion']), ['activo' => false], statusOnly: true);
             break;
         case 'link':
-            app(SaveProductLocation::class)->handle($actor, $target, null, ['location_id' => $job['location'], 'is_active' => true, 'lock_version' => 1]);
+            app(GuardarUbicacionProducto::class)->handle($actor, $target, null, ['ubicacion_id' => $job['ubicacion'], 'activo' => true, 'version_bloqueo' => 1]);
             break;
         case 'required':
-            app(SaveCategoryAttribute::class)->handle($actor, Category::findOrFail($job['category']), CategoryAttribute::findOrFail($job['association']), ['is_required' => true]);
+            app(GuardarAtributoCategoria::class)->handle($actor, Categoria::findOrFail($job['categoria']), AtributoCategoria::findOrFail($job['association']), ['obligatorio' => true]);
             break;
         case 'revoke':
-            $role = Role::findOrFail($job['other_role']);
-            app(SaveRole::class)->handle($actor, $role, ['permissions' => Permission::where('code', '<>', 'products.create')->pluck('id')->all()]);
+            $rol = Rol::findOrFail($job['other_role']);
+            app(GuardarRol::class)->handle($actor, $rol, ['permisos' => Permiso::where('codigo', '<>', 'products.create')->pluck('id')->all()]);
             break;
         default: throw new RuntimeException('Operación de prueba desconocida.');
     }

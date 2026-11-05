@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Inventory;
 
-use App\Services\SqlBackupClient;
+use App\Services\ClienteRespaldoSql;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\DataProvider;
 use RuntimeException;
@@ -33,14 +33,14 @@ class SqlBackupClientConfigurationTest extends TestCase
         parent::tearDown();
     }
 
-    private function client(string $directory, string $version): SqlBackupClient
+    private function client(string $directory, string $version): ClienteRespaldoSql
     {
-        foreach (['mysqldump', 'mysql'] as $name) {
-            touch($directory.'/'.$name.(PHP_OS_FAMILY === 'Windows' ? '.exe' : ''));
+        foreach (['mysqldump', 'mysql'] as $nombre) {
+            touch($directory.'/'.$nombre.(PHP_OS_FAMILY === 'Windows' ? '.exe' : ''));
         }
         config(['sga.mariadb_bin' => $directory, 'sga.mariadb_version' => '10.4']);
 
-        return new class($version) extends SqlBackupClient
+        return new class($version) extends ClienteRespaldoSql
         {
             public function __construct(private string $version) {}
 
@@ -85,14 +85,14 @@ class SqlBackupClientConfigurationTest extends TestCase
     {
         config(['sga.mariadb_bin' => $this->directory().'/missing']);
         $this->expectExceptionMessage('directorio MariaDB configurado');
-        (new SqlBackupClient)->inspect();
+        (new ClienteRespaldoSql)->inspect();
     }
 
     public function test_a_directory_without_clients_is_rejected(): void
     {
         config(['sga.mariadb_bin' => $this->directory()]);
         $this->expectExceptionMessage('No se encontró el cliente');
-        (new SqlBackupClient)->inspect();
+        (new ClienteRespaldoSql)->inspect();
     }
 
     public function test_a_process_failure_is_reported_without_exposing_process_details(): void
@@ -101,7 +101,7 @@ class SqlBackupClientConfigurationTest extends TestCase
         $this->client($directory, 'unused');
         $process = \Mockery::mock(Process::class);
         $process->shouldReceive('mustRun')->once()->andThrow(new RuntimeException('private-process-details'));
-        $client = new class($process) extends SqlBackupClient
+        $client = new class($process) extends ClienteRespaldoSql
         {
             public function __construct(private Process $process) {}
 
@@ -123,7 +123,7 @@ class SqlBackupClientConfigurationTest extends TestCase
     {
         foreach (['sga_rio_grande', 'sga_rio_grande_testing', 'other_database'] as $database) {
             try {
-                (new SqlBackupClient)->restore('does-not-exist', 'does-not-exist', $database, 'does-not-exist');
+                (new ClienteRespaldoSql)->restore('does-not-exist', 'does-not-exist', $database, 'does-not-exist');
                 $this->fail('Se permitió restaurar fuera de un ensayo.');
             } catch (RuntimeException $exception) {
                 $this->assertStringContainsString('destino nuevo de ensayo', $exception->getMessage());
@@ -134,8 +134,8 @@ class SqlBackupClientConfigurationTest extends TestCase
     public function test_the_diagnostic_command_uses_only_inspection(): void
     {
         $client = $this->client($this->directory(), 'mysql Ver 15.1 Distrib 10.4.32-MariaDB');
-        $this->app->instance(SqlBackupClient::class, $client);
+        $this->app->instance(ClienteRespaldoSql::class, $client);
         $this->artisan('sga:check-backup-client')->expectsOutputToContain('MariaDB 10.4.32')->assertSuccessful();
-        $this->assertSame(0, DB::table('backup_runs')->count());
+        $this->assertSame(0, DB::table('ejecuciones_respaldo')->count());
     }
 }

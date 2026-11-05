@@ -14,10 +14,10 @@ require dirname(__DIR__).'/bootstrap.php';
 $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 $db = DB::connection();
-if (! $app->environment('testing') || $db->selectOne('SELECT DATABASE() AS name')->name !== 'sga_rio_grande_testing') {
+if (! $app->environment('testing') || $db->selectOne('SELECT DATABASE() AS nombre')->nombre !== 'sga_rio_grande_testing') {
     throw new RuntimeException('Isolation rejected');
 }
-if ($db->table('migrations')->count() !== 29 || $db->table('users')->count() !== 0 || $db->table('products')->count() !== 0) {
+if ($db->table('migrations')->count() !== 29 || $db->table('usuarios')->count() !== 0 || $db->table('productos')->count() !== 0) {
     throw new RuntimeException('Rehearsal requires the empty S3 testing schema');
 }
 $fixtures = new class
@@ -29,23 +29,23 @@ $fixtures = new class
         return $this->inventoryContext($mode);
     }
 
-    public function post(array $c, string $kind, string $quantity): void
+    public function post(array $c, string $clase, string $cantidad): void
     {
-        $this->postInventory($c, $kind, $quantity);
+        $this->postInventory($c, $clase, $cantidad);
     }
 };
 $contexts = [];
 try {
-    $contexts[] = $q = $fixtures->context('quantity');
+    $contexts[] = $q = $fixtures->context('cantidad');
     $fixtures->post($q, 'receipt', '5');
     $fixtures->post($q, 'issue', '2');
     $contexts[] = $i = $fixtures->context('individual');
     $fixtures->post($i, 'receipt', '1');
     $fixtures->post($i, 'issue', '1');
     $fixtures->post($i, 'receipt', '1');
-    $contexts[] = $o = $fixtures->context('quantity');
+    $contexts[] = $o = $fixtures->context('cantidad');
     $fixtures->post($o, 'opening', '2');
-    $tables = ['inventory_documents', 'inventory_document_lines', 'inventory_document_line_units', 'inventory_movements', 'stock_positions', 'individual_unit_positions', 'initial_stock_products'];
+    $tables = ['documentos_inventario', 'lineas_documento_inventario', 'unidades_linea_documento', 'movimientos_inventario', 'existencias_ubicacion', 'posiciones_unidad_individual', 'productos_existencia_inicial'];
     $before = [];
     foreach ($tables as $t) {
         $before[$t] = $db->table($t)->get()->map(fn ($r) => (array) $r)->all();
@@ -66,28 +66,28 @@ try {
             }
         }
     }
-    $result = ['database' => 'sga_rio_grande_testing', 'applied_migrations' => $db->table('migrations')->count(), 'historical_rows_preserved' => array_map('count', $before), 'new_tables' => $db->selectOne("SELECT COUNT(*) AS n FROM information_schema.tables WHERE TABLE_SCHEMA=DATABASE() AND TABLE_TYPE='BASE TABLE'")->n, 'permissions' => $db->table('permissions')->count(), 'success' => true];
-    echo json_encode($result, JSON_PRETTY_PRINT).PHP_EOL;
+    $resultado = ['database' => 'sga_rio_grande_testing', 'applied_migrations' => $db->table('migrations')->count(), 'historical_rows_preserved' => array_map('count', $before), 'new_tables' => $db->selectOne("SELECT COUNT(*) AS n FROM information_schema.tables WHERE TABLE_SCHEMA=DATABASE() AND TABLE_TYPE='BASE TABLE'")->n, 'permisos' => $db->table('permisos')->count(), 'success' => true];
+    echo json_encode($resultado, JSON_PRETTY_PRINT).PHP_EOL;
 } finally {
-    // Only test records created above; preserve schema, permissions and migration audit.
-    $products = array_map(fn ($c) => $c['product']->id, $contexts);
+    // Only test records created above; preserve schema, permisos and migration audit.
+    $productos = array_map(fn ($c) => $c['producto']->id, $contexts);
     $actors = array_map(fn ($c) => $c['actor']->id, $contexts);
-    $documents = $db->table('inventory_documents')->whereIn('created_by', $actors)->pluck('id');
-    $lines = $db->table('inventory_document_lines')->whereIn('document_id', $documents)->pluck('id');
-    $db->table('individual_unit_positions')->whereIn('product_id', $products)->delete();
-    $db->table('initial_stock_products')->whereIn('product_id', $products)->delete();
-    $db->table('inventory_movements')->whereIn('document_line_id', $lines)->delete();
-    $db->table('inventory_document_line_units')->whereIn('document_line_id', $lines)->delete();
-    $db->table('inventory_document_lines')->whereIn('id', $lines)->delete();
-    $db->table('inventory_documents')->whereIn('id', $documents)->delete();
-    $db->table('stock_positions')->whereIn('product_id', $products)->delete();
-    $db->table('individual_units')->whereIn('product_id', $products)->delete();
-    $db->table('product_locations')->whereIn('product_id', $products)->delete();
-    $db->table('products')->whereIn('id', $products)->delete();
+    $documents = $db->table('documentos_inventario')->whereIn('creado_por', $actors)->pluck('id');
+    $lineas = $db->table('lineas_documento_inventario')->whereIn('documento_id', $documents)->pluck('id');
+    $db->table('posiciones_unidad_individual')->whereIn('producto_id', $productos)->delete();
+    $db->table('productos_existencia_inicial')->whereIn('producto_id', $productos)->delete();
+    $db->table('movimientos_inventario')->whereIn('linea_documento_id', $lineas)->delete();
+    $db->table('unidades_linea_documento')->whereIn('linea_documento_id', $lineas)->delete();
+    $db->table('lineas_documento_inventario')->whereIn('id', $lineas)->delete();
+    $db->table('documentos_inventario')->whereIn('id', $documents)->delete();
+    $db->table('existencias_ubicacion')->whereIn('producto_id', $productos)->delete();
+    $db->table('unidades_individuales')->whereIn('producto_id', $productos)->delete();
+    $db->table('ubicaciones_producto')->whereIn('producto_id', $productos)->delete();
+    $db->table('productos')->whereIn('id', $productos)->delete();
     foreach ($contexts as $c) {
-        $db->table('locations')->where('id', $c['location']->id)->delete();
-        $db->table('categories')->where('id', $c['product']->category_id)->delete();
-        $db->table('measurement_units')->where('id', $c['product']->measurement_unit_id)->delete();
+        $db->table('ubicaciones')->where('id', $c['ubicacion']->id)->delete();
+        $db->table('categorias')->where('id', $c['producto']->categoria_id)->delete();
+        $db->table('unidades_medida')->where('id', $c['producto']->unidad_medida_id)->delete();
     }
-    $db->table('users')->whereIn('id', $actors)->delete();
+    $db->table('usuarios')->whereIn('id', $actors)->delete();
 }

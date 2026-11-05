@@ -16,15 +16,15 @@ class IndividualUnitConcurrencyTest extends TestCase
     public static function races(): array
     {
         return [
-            'identifier collision' => [['create', 'create'], ['changed', 'protected'], false],
+            'identificador collision' => [['create', 'create'], ['changed', 'protected'], false],
             'serial collision' => [['create', 'create'], ['changed', 'protected'], true],
             'stale edits' => [['edit', 'edit'], ['changed', 'protected'], false],
-            'disable product first' => [['disable_product', 'create'], ['changed', 'protected'], false],
-            'create before product disable' => [['create', 'disable_product'], ['changed', 'protected'], false],
+            'disable producto first' => [['disable_product', 'create'], ['changed', 'protected'], false],
+            'create before producto disable' => [['create', 'disable_product'], ['changed', 'protected'], false],
             'disable link first' => [['disable_link', 'create'], ['changed', 'protected'], false],
             'create before link disable' => [['create', 'disable_link'], ['changed', 'protected'], false],
-            'disable location first' => [['disable_location', 'create'], ['protected', 'changed'], false],
-            'create before location disable' => [['create', 'disable_location'], ['changed', 'protected'], false],
+            'disable ubicacion first' => [['disable_location', 'create'], ['protected', 'changed'], false],
+            'create before ubicacion disable' => [['create', 'disable_location'], ['changed', 'protected'], false],
             'revoke first' => [['revoke', 'create'], ['changed', 'protected'], false],
             'create before revoke' => [['create', 'revoke'], ['changed', 'changed'], false],
         ];
@@ -38,8 +38,8 @@ class IndividualUnitConcurrencyTest extends TestCase
         $this->assertSame('sga_rio_grande_testing', $pdo->query('SELECT DATABASE()')->fetchColumn());
         $this->assertSame('REPEATABLE-READ', $pdo->query('SELECT @@tx_isolation')->fetchColumn());
         $nonce = bin2hex(random_bytes(7));
-        $code = 'RACE-I-'.strtoupper($nonce);
-        $ids = $roles = $users = $processes = $streams = [];
+        $codigo = 'RACE-I-'.strtoupper($nonce);
+        $ids = $roles = $usuarios = $processes = $streams = [];
         $insert = function (string $sql, array $values) use ($pdo): int {
             $q = $pdo->prepare($sql);
             $q->execute($values);
@@ -48,27 +48,27 @@ class IndividualUnitConcurrencyTest extends TestCase
         };
         try {
             for ($i = 0; $i < 2; $i++) {
-                $roles[] = $role = $insert('INSERT INTO roles (code,name,is_active,permissions_version) VALUES (?,?,1,1)', ['individual_race_'.$nonce.'_'.$i, 'Prueba']);
-                $q = $pdo->prepare('INSERT INTO permission_role (role_id,permission_id,is_active) SELECT ?,id,1 FROM permissions');
-                $q->execute([$role]);
-                $users[] = $insert('INSERT INTO users (name,email,password,role_id,is_active,session_version) VALUES (?,?,?,?,1,1)', ['Prueba', $nonce.'_'.$i.'@example.test', password_hash('Prueba2026!', PASSWORD_BCRYPT, ['cost' => 4]), $role]);
+                $roles[] = $rol = $insert('INSERT INTO roles (codigo,nombre,activo,version_permisos) VALUES (?,?,1,1)', ['individual_race_'.$nonce.'_'.$i, 'Prueba']);
+                $q = $pdo->prepare('INSERT INTO permiso_rol (rol_id,permiso_id,activo) SELECT ?,id,1 FROM permisos');
+                $q->execute([$rol]);
+                $usuarios[] = $insert('INSERT INTO usuarios (nombre,correo,contrasena,rol_id,activo,version_sesion) VALUES (?,?,?,?,1,1)', ['Prueba', $nonce.'_'.$i.'@example.test', password_hash('Prueba2026!', PASSWORD_BCRYPT, ['cost' => 4]), $rol]);
             }
-            $ids['category'] = $insert('INSERT INTO categories (code,name,is_active) VALUES (?,?,1)', [$code, $code]);
-            $ids['measurement'] = $insert("INSERT INTO measurement_units (code,name,symbol,dimension,decimal_places,is_active) VALUES (?,?,?,'count',0,1)", [$code, 'Unidad', $nonce]);
-            $ids['location'] = $insert("INSERT INTO locations (code,name,type,is_active,is_storable) VALUES (?,?,'sector',1,1)", [$code, 'Ubicación']);
-            $ids['product'] = $insert("INSERT INTO products (internal_code,name,category_id,measurement_unit_id,control_mode,is_active) VALUES (?,?,?,?,'individual',1)", [$code, 'Base', $ids['category'], $ids['measurement']]);
-            $ids['link'] = $insert('INSERT INTO product_locations (product_id,location_id,is_active) VALUES (?,?,1)', [$ids['product'], $ids['location']]);
+            $ids['categoria'] = $insert('INSERT INTO categorias (codigo,nombre,activo) VALUES (?,?,1)', [$codigo, $codigo]);
+            $ids['measurement'] = $insert("INSERT INTO unidades_medida (codigo,nombre,simbolo,dimension,decimales,activo) VALUES (?,?,?,'count',0,1)", [$codigo, 'Unidad', $nonce]);
+            $ids['ubicacion'] = $insert("INSERT INTO ubicaciones (codigo,nombre,tipo,activo,permite_almacenar) VALUES (?,?,'sector',1,1)", [$codigo, 'Ubicación']);
+            $ids['producto'] = $insert("INSERT INTO productos (codigo_interno,nombre,categoria_id,unidad_medida_id,modo_control,activo) VALUES (?,?,?,?,'individual',1)", [$codigo, 'Base', $ids['categoria'], $ids['measurement']]);
+            $ids['link'] = $insert('INSERT INTO ubicaciones_producto (producto_id,ubicacion_id,activo) VALUES (?,?,1)', [$ids['producto'], $ids['ubicacion']]);
             $ids['individual'] = null;
             if (in_array('edit', $operations, true)) {
-                $ids['individual'] = $insert('INSERT INTO individual_units (identifier,product_id,location_id,is_active) VALUES (?,?,?,1)', [$code.'-BASE', $ids['product'], $ids['location']]);
+                $ids['individual'] = $insert('INSERT INTO unidades_individuales (identificador,producto_id,ubicacion_id,activo) VALUES (?,?,?,1)', [$codigo.'-BASE', $ids['producto'], $ids['ubicacion']]);
             }
             $env = ['APP_ENV' => 'testing', 'APP_KEY' => $_ENV['APP_KEY'], 'DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'sga_rio_grande_testing', 'DB_URL' => '', 'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'LOG_CHANNEL' => 'null'];
             $env = array_replace($env, TestingDatabaseGuard::processEnvironment());
-            foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $name) {
-                $env[$name] = $_ENV[$name];
+            foreach (['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_PASSWORD'] as $nombre) {
+                $env[$nombre] = $_ENV[$nombre];
             }
             foreach ($operations as $i => $operation) {
-                $job = $ids + ['actor' => $users[$i], 'index' => $i, 'operation' => $operation, 'other_role' => $roles[1 - $i], 'identifier' => $code.($sameSerial ? '-'.$i : '-NEW'), 'serial' => $sameSerial ? 'SERIAL-'.$nonce : null];
+                $job = $ids + ['actor' => $usuarios[$i], 'index' => $i, 'operation' => $operation, 'other_role' => $roles[1 - $i], 'identificador' => $codigo.($sameSerial ? '-'.$i : '-NEW'), 'serial' => $sameSerial ? 'SERIAL-'.$nonce : null];
                 $stream = new InputStream;
                 $process = new Process([PHP_BINARY, base_path('tests/Support/concurrent-individual-unit.php'), json_encode($job, JSON_THROW_ON_ERROR)], base_path(), $env, $stream, 120);
                 $process->start();
@@ -120,19 +120,19 @@ class IndividualUnitConcurrencyTest extends TestCase
             foreach ($operations as $i => $operation) {
                 $created += (int) ($operation === 'create' && $expected[$i] === 'changed');
             }
-            $q = $pdo->prepare('SELECT COUNT(*) FROM individual_units WHERE product_id=?');
-            $q->execute([$ids['product']]);
+            $q = $pdo->prepare('SELECT COUNT(*) FROM unidades_individuales WHERE producto_id=?');
+            $q->execute([$ids['producto']]);
             $this->assertSame($created + (int) ($ids['individual'] !== null), (int) $q->fetchColumn());
             if ($ids['individual']) {
-                $q = $pdo->prepare('SELECT notes,lock_version FROM individual_units WHERE id=?');
+                $q = $pdo->prepare('SELECT observaciones,version_bloqueo FROM unidades_individuales WHERE id=?');
                 $q->execute([$ids['individual']]);
                 $row = $q->fetch(PDO::FETCH_ASSOC);
-                $this->assertSame('Editado por 0', $row['notes']);
-                $this->assertSame(2, (int) $row['lock_version']);
+                $this->assertSame('Editado por 0', $row['observaciones']);
+                $this->assertSame(2, (int) $row['version_bloqueo']);
             }
-            foreach (['disable_product' => ['products', $ids['product']], 'disable_link' => ['product_locations', $ids['link']], 'disable_location' => ['locations', $ids['location']]] as $op => [$table, $id]) {
+            foreach (['disable_product' => ['productos', $ids['producto']], 'disable_link' => ['ubicaciones_producto', $ids['link']], 'disable_location' => ['ubicaciones', $ids['ubicacion']]] as $op => [$table, $id]) {
                 if (in_array($op, $operations, true)) {
-                    $q = $pdo->prepare('SELECT is_active FROM '.$table.' WHERE id=?');
+                    $q = $pdo->prepare('SELECT activo FROM '.$table.' WHERE id=?');
                     $q->execute([$id]);
                     $this->assertSame($expected[array_search($op, $operations, true)] === 'changed' ? 0 : 1, (int) $q->fetchColumn());
                 }
@@ -144,32 +144,32 @@ class IndividualUnitConcurrencyTest extends TestCase
                 }
             }
             // Only fixtures owned by this nonce, in the verified testing database.
-            if (isset($ids['product'])) {
-                foreach (['individual_units', 'product_locations'] as $table) {
-                    $q = $pdo->prepare('DELETE FROM '.$table.' WHERE product_id=?');
-                    $q->execute([$ids['product']]);
+            if (isset($ids['producto'])) {
+                foreach (['unidades_individuales', 'ubicaciones_producto'] as $table) {
+                    $q = $pdo->prepare('DELETE FROM '.$table.' WHERE producto_id=?');
+                    $q->execute([$ids['producto']]);
                 }
             }
-            foreach (['product' => 'products', 'location' => 'locations', 'category' => 'categories', 'measurement' => 'measurement_units'] as $key => $table) {
+            foreach (['producto' => 'productos', 'ubicacion' => 'ubicaciones', 'categoria' => 'categorias', 'measurement' => 'unidades_medida'] as $key => $table) {
                 if (isset($ids[$key])) {
                     $q = $pdo->prepare('DELETE FROM '.$table.' WHERE id=?');
                     $q->execute([$ids[$key]]);
                 }
             }
-            foreach ($roles as $role) {
-                $q = $pdo->prepare('DELETE FROM administrative_audit_logs WHERE role_id=?');
-                $q->execute([$role]);
-                $q = $pdo->prepare('UPDATE roles SET created_by=NULL,updated_by=NULL WHERE id=?');
-                $q->execute([$role]);
+            foreach ($roles as $rol) {
+                $q = $pdo->prepare('DELETE FROM registros_auditoria_administrativa WHERE rol_id=?');
+                $q->execute([$rol]);
+                $q = $pdo->prepare('UPDATE roles SET creado_por=NULL,modificado_por=NULL WHERE id=?');
+                $q->execute([$rol]);
             }
-            foreach ($users as $id) {
-                $q = $pdo->prepare('DELETE FROM users WHERE id=?');
+            foreach ($usuarios as $id) {
+                $q = $pdo->prepare('DELETE FROM usuarios WHERE id=?');
                 $q->execute([$id]);
             }
-            foreach ($roles as $role) {
-                foreach (['permission_role' => 'role_id', 'roles' => 'id'] as $table => $key) {
+            foreach ($roles as $rol) {
+                foreach (['permiso_rol' => 'rol_id', 'roles' => 'id'] as $table => $key) {
                     $q = $pdo->prepare('DELETE FROM '.$table.' WHERE '.$key.'=?');
-                    $q->execute([$role]);
+                    $q->execute([$rol]);
                 }
             }
         }

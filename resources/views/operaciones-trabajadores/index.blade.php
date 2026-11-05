@@ -1,0 +1,12 @@
+@extends('layouts.app')
+@section('title', $label)
+@section('content')
+@if(in_array($clase, ['loans', 'returns']))@include('operaciones-trabajadores.tabs')@endif
+<h1>{{ $clase === 'loans' ? 'Herramientas prestadas' : $label }}</h1>
+@can($clase.'.create')<a class="button" href="{{ route('operaciones-trabajadores.create',$clase) }}">Registrar borrador</a>@endcan
+<form method="GET" class="card"><label>Trabajador (código o nombre)<input name="q" value="{{ request('q') }}" maxlength="100"></label><label>Estado<select name="estado"><option value="">Todos</option>@foreach(['draft'=>'Borrador','confirmed'=>'Confirmado','cancelled'=>'Cancelado'] as $key=>$text)<option value="{{ $key }}" @selected(request('estado')===$key)>{{ $text }}</option>@endforeach</select></label>@if($clase==='loans')<label><input type="checkbox" name="pending" value="1" @checked(request('pending'))> Solo obligaciones pendientes</label>@endif<button>Buscar</button></form>
+<div class="card table-wrap"><table><thead><tr><th>Documento</th><th>Fecha</th><th>Trabajador</th><th>Estado</th>@if($clase==='loans')<th>Responsabilidad / devolución</th>@endif</tr></thead><tbody>
+@forelse($documents as $doc)<tr><td><a href="{{ route('operaciones-trabajadores.show',[$clase,$doc->id]) }}">{{ $doc->codigo }}</a></td><td>{{ $doc->fecha_documento->format('Y-m-d') }}</td><td>{{ $doc->datos_historicos_trabajador['codigo'] ?? $doc->trabajador->codigo }} · {{ $doc->datos_historicos_trabajador['nombres'] ?? $doc->trabajador->nombres }} {{ $doc->datos_historicos_trabajador['apellidos'] ?? $doc->trabajador->apellidos }}</td><td>{{ ['draft'=>'Borrador','confirmed'=>'Confirmado','cancelled'=>'Cancelado'][$doc->estado] }}</td>@if($clase==='loans')<td>{{ ['pending'=>'Pendiente','partial'=>'Parcialmente devuelto','returned'=>'Devuelto','draft'=>'Borrador','cancelled'=>'Cancelado','compensated'=>'Compensado'][$doc->estado_responsabilidad] }}
+@if(in_array($doc->estado_responsabilidad, ['pending', 'partial']))@can('returns.create')<a href="{{ route('operaciones-trabajadores.create', ['clase' => 'returns', 'prestamo_id' => $doc->id]) }}">Registrar devolución</a>@endcan @endif</td>@endif</tr>@empty<tr><td colspan="5">Sin documentos para estos filtros.</td></tr>@endforelse
+</tbody></table>{{ $documents->links() }}</div>
+@endsection

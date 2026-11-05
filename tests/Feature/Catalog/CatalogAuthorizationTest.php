@@ -2,14 +2,14 @@
 
 namespace Tests\Feature\Catalog;
 
-use App\Actions\Catalog\SaveCategory;
-use App\Actions\Catalog\SaveMeasurementUnit;
-use App\Actions\Roles\SaveRole;
-use App\Models\Category;
-use App\Models\MeasurementUnit;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarCategoria;
+use App\Actions\Catalogo\GuardarUnidadMedida;
+use App\Actions\Roles\GuardarRol;
+use App\Models\Categoria;
+use App\Models\Permiso;
+use App\Models\Rol;
+use App\Models\UnidadMedida;
+use App\Models\Usuario;
 use Illuminate\Auth\Access\AuthorizationException;
 use Tests\TestCase;
 
@@ -17,71 +17,71 @@ class CatalogAuthorizationTest extends TestCase
 {
     private function resources(): array
     {
-        $category = Category::factory()->create();
-        $unit = MeasurementUnit::factory()->create();
+        $categoria = Categoria::factory()->create();
+        $unidad = UnidadMedida::factory()->create();
 
         return [
-            ['categories', 'categories', $category, $category->only(['code', 'name', 'description', 'is_active'])],
-            ['measurement_units', 'measurement-units', $unit, $unit->only(['code', 'name', 'symbol', 'dimension', 'decimal_places', 'is_active'])],
+            ['categories', 'categorias', $categoria, $categoria->only(['codigo', 'nombre', 'descripcion', 'activo'])],
+            ['measurement_units', 'unidades-medida', $unidad, $unidad->only(['codigo', 'nombre', 'simbolo', 'dimension', 'decimales', 'activo'])],
         ];
     }
 
-    private function customUser(array $codes): User
+    private function customUser(array $codes): Usuario
     {
-        $role = Role::create(['code' => 'custom_'.bin2hex(random_bytes(4)), 'name' => 'Administrador']);
-        $role->permissions()->attach(Permission::whereIn('code', $codes)->pluck('id')->all(), ['is_active' => true]);
+        $rol = Rol::create(['codigo' => 'custom_'.bin2hex(random_bytes(4)), 'nombre' => 'Administrador']);
+        $rol->permisos()->attach(Permiso::whereIn('codigo', $codes)->pluck('id')->all(), ['activo' => true]);
 
-        return User::factory()->create(['role_id' => $role->id]);
+        return Usuario::factory()->create(['rol_id' => $rol->id]);
     }
 
     public function test_auditor_has_read_access_but_all_direct_mutations_are_forbidden(): void
     {
-        $this->signIn(User::factory()->create(['role_id' => 3]));
-        foreach ($this->resources() as [$permission, $route, $target, $data]) {
+        $this->signIn(Usuario::factory()->create(['rol_id' => 3]));
+        foreach ($this->resources() as [$permiso, $route, $target, $data]) {
             $this->get(route($route.'.index'))->assertOk()->assertDontSee('Editar')->assertDontSee('Desactivar');
             $this->get(route($route.'.create'))->assertForbidden();
             $this->get(route($route.'.edit', $target))->assertForbidden();
             $this->post(route($route.'.store'), $data)->assertForbidden();
             $this->put(route($route.'.update', $target), $data)->assertForbidden();
-            $this->patch(route($route.'.status', $target), ['is_active' => 0])->assertForbidden();
-            $this->assertTrue($target->fresh()->is_active);
+            $this->patch(route($route.'.estado', $target), ['activo' => 0])->assertForbidden();
+            $this->assertTrue($target->fresh()->activo);
         }
     }
 
     public function test_guests_and_inactive_accounts_cannot_access_the_catalog(): void
     {
-        foreach ($this->resources() as [$permission, $route, $target, $data]) {
+        foreach ($this->resources() as [$permiso, $route, $target, $data]) {
             $this->get(route($route.'.index'))->assertRedirect(route('login'));
             $this->post(route($route.'.store'), $data)->assertRedirect(route('login'));
         }
-        $inactive = User::factory()->create(['role_id' => 1, 'is_active' => false]);
-        foreach (['categories.index', 'measurement-units.index'] as $route) {
+        $inactive = Usuario::factory()->create(['rol_id' => 1, 'activo' => false]);
+        foreach (['categorias.index', 'unidades-medida.index'] as $route) {
             $this->signIn($inactive)->getJson(route($route))->assertUnauthorized();
         }
     }
 
     public function test_permissions_control_independent_actions_and_role_names_do_not_grant_access(): void
     {
-        foreach ($this->resources() as [$permission, $route, $target, $data]) {
-            $actor = $this->customUser([$permission.'.view', $permission.'.update']);
+        foreach ($this->resources() as [$permiso, $route, $target, $data]) {
+            $actor = $this->customUser([$permiso.'.view', $permiso.'.update']);
             $this->signIn($actor)->get(route($route.'.index'))->assertOk()->assertSee('Editar')->assertDontSee('Desactivar');
             $this->get(route($route.'.edit', $target))->assertOk();
-            $this->put(route($route.'.update', $target), array_replace($data, ['name' => 'Edición permitida']))->assertRedirect();
+            $this->put(route($route.'.update', $target), array_replace($data, ['nombre' => 'Edición permitida']))->assertRedirect();
             $this->post(route($route.'.store'), $data)->assertForbidden();
-            $this->patch(route($route.'.status', $target), ['is_active' => 0])->assertForbidden();
-            $this->put(route($route.'.update', $target), array_replace($data, ['is_active' => 0]))->assertForbidden();
-            $this->assertTrue($target->fresh()->is_active);
+            $this->patch(route($route.'.estado', $target), ['activo' => 0])->assertForbidden();
+            $this->put(route($route.'.update', $target), array_replace($data, ['activo' => 0]))->assertForbidden();
+            $this->assertTrue($target->fresh()->activo);
         }
-        $this->signIn($this->customUser([]))->get(route('categories.index'))->assertForbidden();
-        $this->get(route('measurement-units.index'))->assertForbidden();
+        $this->signIn($this->customUser([]))->get(route('categorias.index'))->assertForbidden();
+        $this->get(route('unidades-medida.index'))->assertForbidden();
     }
 
     public function test_status_permission_does_not_allow_editing_other_fields(): void
     {
-        foreach ($this->resources() as [$permission, $route, $target, $data]) {
-            $this->signIn($this->customUser([$permission.'.view', $permission.'.change_status']));
-            $this->patch(route($route.'.status', $target), ['is_active' => 0, 'name' => 'Manipulado'])->assertRedirect();
-            $this->assertSame($data['name'], $target->fresh()->name);
+        foreach ($this->resources() as [$permiso, $route, $target, $data]) {
+            $this->signIn($this->customUser([$permiso.'.view', $permiso.'.change_status']));
+            $this->patch(route($route.'.estado', $target), ['activo' => 0, 'nombre' => 'Manipulado'])->assertRedirect();
+            $this->assertSame($data['nombre'], $target->fresh()->nombre);
             $this->put(route($route.'.update', $target), $data)->assertForbidden();
             $this->get(route($route.'.edit', $target))->assertForbidden();
         }
@@ -89,43 +89,43 @@ class CatalogAuthorizationTest extends TestCase
 
     public function test_revocation_invalidates_session_and_rejects_catalog_writes_in_flight(): void
     {
-        $admin = User::factory()->create(['role_id' => 1]);
-        $actor = User::factory()->create(['role_id' => 2]);
-        $actor->load('role');
+        $admin = Usuario::factory()->create(['rol_id' => 1]);
+        $actor = Usuario::factory()->create(['rol_id' => 2]);
+        $actor->load('rol');
         $this->signIn($actor);
-        $category = Category::factory()->create();
-        $unit = MeasurementUnit::factory()->create();
-        $codes = array_diff($actor->role->assignedPermissionCodes(), ['categories.change_status', 'measurement_units.change_status']);
-        app(SaveRole::class)->handle($admin, $actor->role, ['permissions' => Permission::whereIn('code', $codes)->pluck('id')->all()]);
-        $this->patchJson(route('categories.status', $category), ['is_active' => 0])->assertUnauthorized();
-        foreach ([fn () => app(SaveCategory::class)->handle($actor, $category, ['is_active' => false], statusOnly: true), fn () => app(SaveMeasurementUnit::class)->handle($actor, $unit, ['is_active' => false], statusOnly: true)] as $operation) {
+        $categoria = Categoria::factory()->create();
+        $unidad = UnidadMedida::factory()->create();
+        $codes = array_diff($actor->rol->codigosPermisosAsignados(), ['categories.change_status', 'measurement_units.change_status']);
+        app(GuardarRol::class)->handle($admin, $actor->rol, ['permisos' => Permiso::whereIn('codigo', $codes)->pluck('id')->all()]);
+        $this->patchJson(route('categorias.estado', $categoria), ['activo' => 0])->assertUnauthorized();
+        foreach ([fn () => app(GuardarCategoria::class)->handle($actor, $categoria, ['activo' => false], statusOnly: true), fn () => app(GuardarUnidadMedida::class)->handle($actor, $unidad, ['activo' => false], statusOnly: true)] as $operation) {
             try {
                 $operation();
                 $this->fail('La escritura con acceso revocado debe rechazarse.');
             } catch (AuthorizationException) {
-                $this->assertTrue($category->fresh()->is_active);
-                $this->assertTrue($unit->fresh()->is_active);
+                $this->assertTrue($categoria->fresh()->activo);
+                $this->assertTrue($unidad->fresh()->activo);
             }
         }
-        $this->signIn($actor->fresh())->patch(route('measurement-units.status', $unit), ['is_active' => 0])->assertForbidden();
+        $this->signIn($actor->fresh())->patch(route('unidades-medida.estado', $unidad), ['activo' => 0])->assertForbidden();
     }
 
     public function test_catalog_post_requires_csrf(): void
     {
-        $this->signIn(User::factory()->create(['role_id' => 1]));
+        $this->signIn(Usuario::factory()->create(['rol_id' => 1]));
         $this->app->instance('env', 'local');
-        $this->post(route('categories.store'), ['code' => 'SIN-CSRF', 'name' => 'Sin token', 'is_active' => 1])->assertStatus(419);
-        $this->post(route('measurement-units.store'), ['code' => 'SIN-CSRF', 'name' => 'Sin token', 'symbol' => 'x', 'dimension' => 'count', 'decimal_places' => 0, 'is_active' => 1])->assertStatus(419);
+        $this->post(route('categorias.store'), ['codigo' => 'SIN-CSRF', 'nombre' => 'Sin token', 'activo' => 1])->assertStatus(419);
+        $this->post(route('unidades-medida.store'), ['codigo' => 'SIN-CSRF', 'nombre' => 'Sin token', 'simbolo' => 'x', 'dimension' => 'count', 'decimales' => 0, 'activo' => 1])->assertStatus(419);
     }
 
     public function test_permissions_are_visible_and_editable_through_existing_role_management(): void
     {
-        $actor = User::factory()->create(['role_id' => 1]);
+        $actor = Usuario::factory()->create(['rol_id' => 1]);
         $target = $this->customUser([]);
-        $this->signIn($actor)->get(route('roles.edit', $target->role))->assertOk()->assertSee('Categorías')->assertSee('Unidades de medida');
-        $this->put(route('roles.update', $target->role), ['permissions' => Permission::whereIn('code', ['panel.view', 'categories.view', 'measurement_units.create'])->pluck('id')->all()])->assertRedirect();
-        $this->signIn($target->fresh())->get(route('categories.index'))->assertOk();
-        $this->get(route('measurement-units.create'))->assertOk();
-        $this->get(route('measurement-units.index'))->assertForbidden();
+        $this->signIn($actor)->get(route('roles.edit', $target->rol))->assertOk()->assertSee('Categorías')->assertSee('Unidades de medida');
+        $this->put(route('roles.update', $target->rol), ['permisos' => Permiso::whereIn('codigo', ['panel.view', 'categories.view', 'measurement_units.create'])->pluck('id')->all()])->assertRedirect();
+        $this->signIn($target->fresh())->get(route('categorias.index'))->assertOk();
+        $this->get(route('unidades-medida.create'))->assertOk();
+        $this->get(route('unidades-medida.index'))->assertForbidden();
     }
 }

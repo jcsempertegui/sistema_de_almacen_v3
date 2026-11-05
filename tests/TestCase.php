@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Models\User;
+use App\Models\Usuario;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
         $app = parent::createApplication();
         $connection = $app->make('db')->connection();
         TestingDatabaseGuard::assertConnection($connection);
-        if (! $app->environment('testing') || $connection->getDatabaseName() !== 'sga_rio_grande_testing' || $connection->selectOne('SELECT DATABASE() AS name')->name !== 'sga_rio_grande_testing') {
+        if (! $app->environment('testing') || $connection->getDatabaseName() !== 'sga_rio_grande_testing' || $connection->selectOne('SELECT DATABASE() AS nombre')->nombre !== 'sga_rio_grande_testing') {
             throw new \RuntimeException('Se bloqueó el acceso a una base ajena a las pruebas.');
         }
         if (! self::$schemaPrepared) {
@@ -32,8 +32,8 @@ abstract class TestCase extends BaseTestCase
         return $app;
     }
 
-    protected function signIn(User $user): static
+    protected function signIn(Usuario $usuario): static
     {
-        return $this->actingAs($user)->withSession(['auth_version' => $user->session_version, 'auth_role_id' => $user->role_id, 'auth_role_version' => $user->role->permissions_version]);
+        return $this->actingAs($usuario)->withSession(['auth_version' => $usuario->version_sesion, 'auth_role_id' => $usuario->rol_id, 'auth_role_version' => $usuario->rol->version_permisos]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\RateLimiter;
 use Tests\TestCase;
 
@@ -17,49 +17,49 @@ class AuthenticationTest extends TestCase
 
     public function test_valid_credentials_regenerate_the_session_and_open_the_panel(): void
     {
-        $user = User::factory()->create(['email' => 'operador@example.com']);
+        $usuario = Usuario::factory()->create(['correo' => 'operador@example.com']);
         $this->withSession(['marker' => 'preserved']);
         $previousId = session()->getId();
-        $this->post('/login', ['email' => ' OPERADOR@EXAMPLE.COM ', 'password' => 'password'])
+        $this->post('/login', ['correo' => ' OPERADOR@EXAMPLE.COM ', 'contrasena' => 'contrasena'])
             ->assertRedirect(route('dashboard'))->assertSessionHas('marker', 'preserved')->assertSessionHas('auth_version', 1);
-        $this->assertAuthenticatedAs($user);
+        $this->assertAuthenticatedAs($usuario);
         $this->assertNotSame($previousId, session()->getId());
         $this->get('/panel')->assertOk();
     }
 
     public function test_invalid_credentials_and_inactive_accounts_are_rejected(): void
     {
-        $user = User::factory()->create(['is_active' => false]);
-        foreach (['wrong', 'password'] as $password) {
-            $this->post('/login', ['email' => $user->email, 'password' => $password])->assertSessionHasErrors('email');
+        $usuario = Usuario::factory()->create(['activo' => false]);
+        foreach (['wrong', 'contrasena'] as $contrasena) {
+            $this->post('/login', ['correo' => $usuario->correo, 'contrasena' => $contrasena])->assertSessionHasErrors('correo');
             $this->assertGuest();
         }
     }
 
     public function test_login_validates_input_and_never_flashes_passwords(): void
     {
-        $this->post('/login', ['email' => 'invalid', 'password' => 'sensitive'])->assertSessionHasErrors('email')->assertSessionMissing('_old_input.password');
+        $this->post('/login', ['correo' => 'invalid', 'contrasena' => 'sensitive'])->assertSessionHasErrors('correo')->assertSessionMissing('_old_input.contrasena');
     }
 
     public function test_login_is_limited_by_normalized_email_and_ip(): void
     {
-        $user = User::factory()->create();
-        $key = hash('sha256', $user->email.'|127.0.0.1');
+        $usuario = Usuario::factory()->create();
+        $key = hash('sha256', $usuario->correo.'|127.0.0.1');
         RateLimiter::clear($key);
         for ($i = 0; $i < 5; $i++) {
-            $this->post('/login', ['email' => $user->email, 'password' => 'wrong'])->assertSessionHasErrors('email');
+            $this->post('/login', ['correo' => $usuario->correo, 'contrasena' => 'wrong'])->assertSessionHasErrors('correo');
         }
-        $this->post('/login', ['email' => strtoupper($user->email), 'password' => 'password'])->assertSessionHasErrors('email');
+        $this->post('/login', ['correo' => strtoupper($usuario->correo), 'contrasena' => 'contrasena'])->assertSessionHasErrors('correo');
         $this->assertGuest();
         $this->travel(61)->seconds();
-        $this->post('/login', ['email' => $user->email, 'password' => 'password'])->assertRedirect(route('dashboard'));
-        $this->assertAuthenticatedAs($user);
+        $this->post('/login', ['correo' => $usuario->correo, 'contrasena' => 'contrasena'])->assertRedirect(route('dashboard'));
+        $this->assertAuthenticatedAs($usuario);
     }
 
     public function test_logout_invalidates_session_and_csrf_token(): void
     {
-        $user = User::factory()->create();
-        $this->signIn($user)->withSession(['marker' => 'removed']);
+        $usuario = Usuario::factory()->create();
+        $this->signIn($usuario)->withSession(['marker' => 'removed']);
         $previousToken = session()->token();
         $this->post('/logout')->assertRedirect(route('login'))->assertSessionMissing('marker');
         $this->assertGuest();
@@ -69,14 +69,14 @@ class AuthenticationTest extends TestCase
 
     public function test_inactive_or_revoked_sessions_are_rejected(): void
     {
-        $user = User::factory()->create();
-        $this->signIn($user);
-        $user->forceFill(['is_active' => false])->save();
+        $usuario = Usuario::factory()->create();
+        $this->signIn($usuario);
+        $usuario->forceFill(['activo' => false])->save();
         $this->get('/panel')->assertRedirect(route('login'));
         $this->assertGuest();
-        $user->forceFill(['is_active' => true])->save();
-        $this->signIn($user);
-        $user->increment('session_version');
+        $usuario->forceFill(['activo' => true])->save();
+        $this->signIn($usuario);
+        $usuario->increment('version_sesion');
         $this->getJson('/panel')->assertUnauthorized();
         $this->assertGuest();
     }
@@ -84,6 +84,6 @@ class AuthenticationTest extends TestCase
     public function test_login_requires_a_csrf_token(): void
     {
         $this->app->instance('env', 'local');
-        $this->post('/login', ['email' => 'test@example.com', 'password' => 'password'])->assertStatus(419);
+        $this->post('/login', ['correo' => 'test@example.com', 'contrasena' => 'contrasena'])->assertStatus(419);
     }
 }

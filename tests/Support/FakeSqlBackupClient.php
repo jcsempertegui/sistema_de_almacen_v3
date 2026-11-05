@@ -2,21 +2,21 @@
 
 namespace Tests\Support;
 
-use App\Services\SqlBackupClient;
+use App\Services\ClienteRespaldoSql;
 use Illuminate\Support\Facades\DB;
 
 // Orchestration fixture, not evidence that a real MariaDB client was executed.
-class FakeSqlBackupClient extends SqlBackupClient
+class FakeSqlBackupClient extends ClienteRespaldoSql
 {
     public bool $fail = false;
 
     public function dump(string $options, string $sql, string $database, string $logs): void
     {
-        if ($database !== 'sga_rio_grande_testing' || DB::selectOne('SELECT DATABASE() AS name')->name !== $database) {
+        if ($database !== 'sga_rio_grande_testing' || DB::selectOne('SELECT DATABASE() AS nombre')->nombre !== $database) {
             throw new \RuntimeException('Isolation rejected');
         }
         if ($this->fail) {
-            throw new \RuntimeException('Injected dump failure');
+            throw new \RuntimeException('Injected dump fallo');
         }$out = '';
         foreach (DB::select("SHOW FULL TABLES WHERE Table_type='BASE TABLE'") as $row) {
             $table = array_values((array) $row)[0];

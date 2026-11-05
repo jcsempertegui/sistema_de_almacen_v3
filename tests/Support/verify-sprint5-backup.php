@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
-use App\Services\DatabaseBackups;
+use App\Models\Usuario;
+use App\Services\RespaldosBaseDatos;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 use Tests\Support\CreatesInventory;
@@ -19,10 +19,10 @@ require dirname(__DIR__).'/bootstrap.php';
 $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 $db = DB::connection();
-if (! $app->environment('testing') || $db->selectOne('SELECT DATABASE() AS name')->name !== 'sga_rio_grande_testing') {
+if (! $app->environment('testing') || $db->selectOne('SELECT DATABASE() AS nombre')->nombre !== 'sga_rio_grande_testing') {
     throw new RuntimeException('Isolation rejected');
 }
-if ($db->table('migrations')->count() !== 43 || $db->table('users')->count() !== 0 || $db->table('products')->count() !== 0) {
+if ($db->table('migrations')->count() !== 43 || $db->table('usuarios')->count() !== 0 || $db->table('productos')->count() !== 0) {
     throw new RuntimeException('Rehearsal requires the empty S5 testing schema');
 }
 $fixtures = new class
@@ -34,28 +34,28 @@ $fixtures = new class
         return $this->inventoryContext($mode);
     }
 
-    public function post(array $c, string $kind, string $quantity): void
+    public function post(array $c, string $clase, string $cantidad): void
     {
-        $this->postInventory($c, $kind, $quantity);
+        $this->postInventory($c, $clase, $cantidad);
     }
 };
 
 $actor = null;
 $run = null;
 try {
-    $actor = User::factory()->create(['role_id' => 1]);
-    $service = app(DatabaseBackups::class);
+    $actor = Usuario::factory()->create(['rol_id' => 1]);
+    $service = app(RespaldosBaseDatos::class);
     $run = $service->request($actor);
     $run = $service->generate($actor, $run);
     $run = $service->verify($actor, $run);
     $path = $service->download($actor, $run);
-    echo json_encode(['database' => $db->selectOne('SELECT DATABASE() AS name')->name, 'real_mariadb_dump_executed' => true, 'size_bytes' => filesize($path), 'sha256' => hash_file('sha256', $path), 'tables' => count($run->manifest['tables']), 'integrity' => $run->manifest['integrity'], 'source_manifest_matches' => true, 'credentials_removed' => glob(dirname($path).'/*.cnf') === [], 'real_restore_executed' => false, 'main_touched' => false, 'fixtures_cleaned_afterward' => true], JSON_PRETTY_PRINT).PHP_EOL;
+    echo json_encode(['database' => $db->selectOne('SELECT DATABASE() AS nombre')->nombre, 'real_mariadb_dump_executed' => true, 'tamano_bytes' => filesize($path), 'sha256' => hash_file('sha256', $path), 'tables' => count($run->manifiesto['tables']), 'integrity' => $run->manifiesto['integrity'], 'source_manifest_matches' => true, 'credentials_removed' => glob(dirname($path).'/*.cnf') === [], 'real_restore_executed' => false, 'main_touched' => false, 'fixtures_cleaned_afterward' => true], JSON_PRETTY_PRINT).PHP_EOL;
 } finally {
     if ($run) {
-        $db->table('critical_operation_events')->where('backup_run_id', $run->id)->delete();
-        $db->table('backup_runs')->where('id', $run->id)->delete();
+        $db->table('eventos_operacion_critica')->where('ejecucion_respaldo_id', $run->id)->delete();
+        $db->table('ejecuciones_respaldo')->where('id', $run->id)->delete();
     }
     if ($actor) {
-        $db->table('users')->where('id', $actor->id)->delete();
+        $db->table('usuarios')->where('id', $actor->id)->delete();
     }
 }

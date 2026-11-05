@@ -2,15 +2,15 @@
 
 namespace Tests\Feature\Inventory;
 
-use App\Actions\Catalog\SaveIndividualUnit;
-use App\Actions\Catalog\SaveProduct;
-use App\Actions\Catalog\SaveProductLocation;
-use App\Actions\Inventory\ConfirmInventoryDocument;
-use App\Actions\Inventory\SaveInventoryDocument;
-use App\Models\InventoryDocument;
-use App\Models\Location;
-use App\Models\ProductLocation;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarProducto;
+use App\Actions\Catalogo\GuardarUbicacionProducto;
+use App\Actions\Catalogo\GuardarUnidadIndividual;
+use App\Actions\Inventario\ConfirmarDocumentoInventario;
+use App\Actions\Inventario\GuardarDocumentoInventario;
+use App\Models\DocumentoInventario;
+use App\Models\Ubicacion;
+use App\Models\UbicacionProducto;
+use App\Models\Usuario;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
@@ -27,50 +27,50 @@ class InventoryManagementTest extends TestCase
     {
         $c = $this->inventoryContext();
         $data = $this->inventoryData($c);
-        $this->signIn($c['actor'])->get(route('inventory-documents.create', ['kind' => 'receipt']))->assertOk()->assertSee('Guardar borrador');
-        $this->post(route('inventory-documents.store'), $data + ['created_by' => 999999, 'status' => 'confirmed'])->assertSessionHasNoErrors()->assertRedirect();
-        $document = InventoryDocument::firstOrFail();
-        $this->assertSame('draft', $document->status);
-        $this->assertSame($c['actor']->id, $document->created_by);
-        $this->assertDatabaseCount('stock_positions', 0);
-        $this->get(route('inventory-documents.edit', $document))->assertOk();
-        $data['lines'][0]['quantity'] = '5';
-        $data['lock_version'] = $document->lock_version;
-        $this->put(route('inventory-documents.update', $document), $data)->assertSessionHasNoErrors();
-        $this->put(route('inventory-documents.update', $document), $data)->assertConflict();
-        $version = $document->fresh()->lock_version;
+        $this->signIn($c['actor'])->get(route('documentos-inventario.create', ['tipo' => 'receipt']))->assertOk()->assertSee('Guardar borrador');
+        $this->post(route('documentos-inventario.store'), $data + ['creado_por' => 999999, 'estado' => 'confirmed'])->assertSessionHasNoErrors()->assertRedirect();
+        $documento = DocumentoInventario::firstOrFail();
+        $this->assertSame('draft', $documento->estado);
+        $this->assertSame($c['actor']->id, $documento->creado_por);
+        $this->assertDatabaseCount('existencias_ubicacion', 0);
+        $this->get(route('documentos-inventario.edit', $documento))->assertOk();
+        $data['lineas'][0]['cantidad'] = '5';
+        $data['version_bloqueo'] = $documento->version_bloqueo;
+        $this->put(route('documentos-inventario.update', $documento), $data)->assertSessionHasNoErrors();
+        $this->put(route('documentos-inventario.update', $documento), $data)->assertConflict();
+        $version = $documento->fresh()->version_bloqueo;
         foreach ([1, 2] as $retry) {
-            $this->post(route('inventory-documents.confirm', $document), ['lock_version' => $version])->assertSessionHasNoErrors()->assertRedirect();
+            $this->post(route('documentos-inventario.confirm', $documento), ['version_bloqueo' => $version])->assertSessionHasNoErrors()->assertRedirect();
         }
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '5.000000']);
-        $this->assertDatabaseCount('inventory_movements', 1);
-        $this->get(route('inventory-documents.show', $document))->assertOk()->assertSee('Confirmado');
-        $this->get(route('inventory-documents.index', ['q' => 'Contraparte']))->assertOk()->assertSee($document->code);
-        $this->get(route('inventory-documents.index', ['q' => $document->code]))->assertOk()->assertSee($document->code);
-        $this->get(route('stock.index', ['product_id' => $c['product']->id]))->assertOk()->assertSee('5.000000');
-        $this->get(route('movements.index', ['location_id' => $c['location']->id]))->assertOk()->assertSee('5.000000');
-        $this->get(route('inventory-documents.edit', $document))->assertForbidden();
-        $this->post(route('inventory-documents.cancel', $document), ['lock_version' => $version, 'reason' => 'No permitido'])->assertForbidden();
-        $this->delete(route('inventory-documents.show', $document))->assertStatus(405);
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '5.000000']);
+        $this->assertDatabaseCount('movimientos_inventario', 1);
+        $this->get(route('documentos-inventario.show', $documento))->assertOk()->assertSee('Confirmado');
+        $this->get(route('documentos-inventario.index', ['q' => 'Contraparte']))->assertOk()->assertSee($documento->codigo);
+        $this->get(route('documentos-inventario.index', ['q' => $documento->codigo]))->assertOk()->assertSee($documento->codigo);
+        $this->get(route('stock.index', ['producto_id' => $c['producto']->id]))->assertOk()->assertSee('5.000000');
+        $this->get(route('movements.index', ['ubicacion_id' => $c['ubicacion']->id]))->assertOk()->assertSee('5.000000');
+        $this->get(route('documentos-inventario.edit', $documento))->assertForbidden();
+        $this->post(route('documentos-inventario.cancel', $documento), ['version_bloqueo' => $version, 'motivo' => 'No permitido'])->assertForbidden();
+        $this->delete(route('documentos-inventario.show', $documento))->assertStatus(405);
     }
 
     public function test_issue_insufficient_stock_and_exact_decimal_arithmetic(): void
     {
         $c = $this->inventoryContext();
-        $c['product']->measurementUnit->update(['decimal_places' => 6]);
-        $this->postInventory($c, quantity: '0.300001');
+        $c['producto']->unidadMedida->update(['decimales' => 6]);
+        $this->postInventory($c, cantidad: '0.300001');
         $this->postInventory($c, 'issue', '0.1');
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '0.200001']);
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '0.200001']);
         $bad = $this->inventoryDraft($c, 'issue', '0.200002');
         try {
-            app(ConfirmInventoryDocument::class)->handle($c['actor'], $bad, 1);
+            app(ConfirmarDocumentoInventario::class)->handle($c['actor'], $bad, 1);
             $this->fail('Insufficient stock accepted');
         } catch (ValidationException $e) {
-            $this->assertArrayHasKey('lines', $e->errors());
+            $this->assertArrayHasKey('lineas', $e->errors());
         }
-        $this->assertSame('draft', $bad->fresh()->status);
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '0.200001']);
-        $this->assertDatabaseCount('inventory_movements', 2);
+        $this->assertSame('draft', $bad->fresh()->estado);
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '0.200001']);
+        $this->assertDatabaseCount('movimientos_inventario', 2);
     }
 
     public static function invalidQuantities(): array
@@ -79,16 +79,16 @@ class InventoryManagementTest extends TestCase
     }
 
     #[DataProvider('invalidQuantities')]
-    public function test_invalid_quantities_never_create_a_partial_draft(mixed $quantity): void
+    public function test_invalid_quantities_never_create_a_partial_draft(mixed $cantidad): void
     {
         $c = $this->inventoryContext();
         $data = $this->inventoryData($c);
-        $data['lines'][0]['quantity'] = $quantity;
+        $data['lineas'][0]['cantidad'] = $cantidad;
         try {
-            app(SaveInventoryDocument::class)->handle($c['actor'], null, $data);
-            $this->fail('Invalid quantity accepted');
+            app(GuardarDocumentoInventario::class)->handle($c['actor'], null, $data);
+            $this->fail('Invalid cantidad accepted');
         } catch (ValidationException) {
-            $this->assertDatabaseCount('inventory_documents', 0);
+            $this->assertDatabaseCount('documentos_inventario', 0);
         }
     }
 
@@ -96,12 +96,12 @@ class InventoryManagementTest extends TestCase
     {
         $c = $this->inventoryContext();
         $doc = $this->inventoryDraft($c);
-        ProductLocation::where('product_id', $c['product']->id)->update(['is_active' => false]);
-        $this->signIn($c['actor'])->post(route('inventory-documents.confirm', $doc), ['lock_version' => 1])->assertSessionHasErrors('lines.1');
-        ProductLocation::where('product_id', $c['product']->id)->update(['is_active' => true]);
-        $c['product']->update(['is_active' => false]);
-        $this->post(route('inventory-documents.confirm', $doc), ['lock_version' => 1])->assertSessionHasErrors('lines.1');
-        $this->assertDatabaseCount('inventory_movements', 0);
+        UbicacionProducto::where('producto_id', $c['producto']->id)->update(['activo' => false]);
+        $this->signIn($c['actor'])->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 1])->assertSessionHasErrors('lineas.1');
+        UbicacionProducto::where('producto_id', $c['producto']->id)->update(['activo' => true]);
+        $c['producto']->update(['activo' => false]);
+        $this->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 1])->assertSessionHasErrors('lineas.1');
+        $this->assertDatabaseCount('movimientos_inventario', 0);
     }
 
     public function test_failure_after_posting_a_line_rolls_back_every_effect_including_opening_marker(): void
@@ -110,48 +110,48 @@ class InventoryManagementTest extends TestCase
         $doc = $this->inventoryDraft($c, 'opening', '1');
         Event::listen('inventory.line_posted', fn () => throw new \RuntimeException('Injected rollback'));
         try {
-            app(ConfirmInventoryDocument::class)->handle($c['actor'], $doc, 1);
-            $this->fail('Expected injected failure');
+            app(ConfirmarDocumentoInventario::class)->handle($c['actor'], $doc, 1);
+            $this->fail('Expected injected fallo');
         } catch (\RuntimeException $e) {
             $this->assertSame('Injected rollback', $e->getMessage());
         } finally {
             Event::forget('inventory.line_posted');
         }
-        foreach (['stock_positions', 'inventory_movements', 'individual_unit_positions', 'initial_stock_products'] as $table) {
+        foreach (['existencias_ubicacion', 'movimientos_inventario', 'posiciones_unidad_individual', 'productos_existencia_inicial'] as $table) {
             $this->assertDatabaseCount($table, 0);
         }
-        $this->assertSame('draft', $doc->fresh()->status);
-        app(ConfirmInventoryDocument::class)->handle($c['actor'], $doc, 1);
-        $this->assertSame('confirmed', $doc->fresh()->status);
+        $this->assertSame('draft', $doc->fresh()->estado);
+        app(ConfirmarDocumentoInventario::class)->handle($c['actor'], $doc, 1);
+        $this->assertSame('confirmed', $doc->fresh()->estado);
     }
 
     public function test_individual_catalog_is_not_stock_and_units_can_exit_and_reenter(): void
     {
         $c = $this->inventoryContext('individual');
-        $this->assertDatabaseCount('individual_unit_positions', 0);
-        $this->postInventory($c, quantity: '1');
-        $duplicate = $this->inventoryDraft($c, quantity: '1');
-        $this->signIn($c['actor'])->post(route('inventory-documents.confirm', $duplicate), ['lock_version' => 1])->assertSessionHasErrors('lines');
-        $this->assertDatabaseCount('inventory_movements', 1);
+        $this->assertDatabaseCount('posiciones_unidad_individual', 0);
+        $this->postInventory($c, cantidad: '1');
+        $duplicate = $this->inventoryDraft($c, cantidad: '1');
+        $this->signIn($c['actor'])->post(route('documentos-inventario.confirm', $duplicate), ['version_bloqueo' => 1])->assertSessionHasErrors('lineas');
+        $this->assertDatabaseCount('movimientos_inventario', 1);
         $this->postInventory($c, 'issue', '1');
-        $this->assertDatabaseHas('individual_unit_positions', ['is_present' => false, 'location_id' => null]);
-        $this->postInventory($c, quantity: '1');
-        $this->assertDatabaseHas('individual_unit_positions', ['is_present' => true, 'location_id' => $c['location']->id]);
-        $this->assertNull($c['unit']->fresh()->location_id);
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '1.000000']);
-        $this->get(route('stock.index'))->assertOk()->assertSee($c['unit']->identifier);
+        $this->assertDatabaseHas('posiciones_unidad_individual', ['presente' => false, 'ubicacion_id' => null]);
+        $this->postInventory($c, cantidad: '1');
+        $this->assertDatabaseHas('posiciones_unidad_individual', ['presente' => true, 'ubicacion_id' => $c['ubicacion']->id]);
+        $this->assertNull($c['unidad']->fresh()->ubicacion_id);
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '1.000000']);
+        $this->get(route('stock.index'))->assertOk()->assertSee($c['unidad']->identificador);
     }
 
     public function test_wrong_unit_product_duplicate_selection_and_count_are_rejected(): void
     {
         $c = $this->inventoryContext('individual');
         $other = $this->inventoryContext('individual');
-        foreach ([[$other['unit']->id], [$c['unit']->id, $c['unit']->id], []] as $ids) {
-            $data = $this->inventoryData($c, quantity: '1');
-            $data['lines'][0]['unit_ids'] = $ids;
-            $this->signIn($c['actor'])->post(route('inventory-documents.store'), $data)->assertSessionHasErrors();
+        foreach ([[$other['unidad']->id], [$c['unidad']->id, $c['unidad']->id], []] as $ids) {
+            $data = $this->inventoryData($c, cantidad: '1');
+            $data['lineas'][0]['unit_ids'] = $ids;
+            $this->signIn($c['actor'])->post(route('documentos-inventario.store'), $data)->assertSessionHasErrors();
         }
-        $this->assertDatabaseCount('inventory_documents', 0);
+        $this->assertDatabaseCount('documentos_inventario', 0);
     }
 
     public function test_opening_is_once_per_product_even_after_full_issue_and_prior_movements_block_it(): void
@@ -160,56 +160,56 @@ class InventoryManagementTest extends TestCase
         $this->postInventory($c, 'opening', '3');
         $this->postInventory($c, 'issue', '3');
         $doc = $this->inventoryDraft($c, 'opening', '1');
-        $this->signIn($c['actor'])->post(route('inventory-documents.confirm', $doc), ['lock_version' => 1])->assertSessionHasErrors('lines');
-        $this->assertDatabaseCount('initial_stock_products', 1);
+        $this->signIn($c['actor'])->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 1])->assertSessionHasErrors('lineas');
+        $this->assertDatabaseCount('productos_existencia_inicial', 1);
         $other = $this->inventoryContext();
         $this->postInventory($other);
         $doc = $this->inventoryDraft($other, 'opening');
-        $this->signIn($other['actor'])->post(route('inventory-documents.confirm', $doc), ['lock_version' => 1])->assertSessionHasErrors('lines');
+        $this->signIn($other['actor'])->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 1])->assertSessionHasErrors('lineas');
     }
 
     public function test_external_reference_is_optional_and_matches_warn_without_blocking(): void
     {
         $c = $this->inventoryContext();
         $data = $this->inventoryData($c);
-        $data['external_reference'] = 'EXT-REPEAT';
-        $one = app(SaveInventoryDocument::class)->handle($c['actor'], null, $data);
-        $two = app(SaveInventoryDocument::class)->handle($c['actor'], null, $data);
-        $this->signIn($c['actor'])->get(route('inventory-documents.show', $two))->assertOk()->assertSee('Posible coincidencia documental')->assertSee($one->code);
-        $this->post(route('inventory-documents.confirm', $two), ['lock_version' => 1])->assertSessionHasNoErrors();
+        $data['referencia_externa'] = 'EXT-REPEAT';
+        $one = app(GuardarDocumentoInventario::class)->handle($c['actor'], null, $data);
+        $two = app(GuardarDocumentoInventario::class)->handle($c['actor'], null, $data);
+        $this->signIn($c['actor'])->get(route('documentos-inventario.show', $two))->assertOk()->assertSee('Posible coincidencia documental')->assertSee($one->codigo);
+        $this->post(route('documentos-inventario.confirm', $two), ['version_bloqueo' => 1])->assertSessionHasNoErrors();
     }
 
     public function test_cancelled_draft_has_no_stock_and_cannot_confirm(): void
     {
         $c = $this->inventoryContext();
         $doc = $this->inventoryDraft($c);
-        $this->signIn($c['actor'])->post(route('inventory-documents.cancel', $doc), ['lock_version' => 1])->assertSessionHasErrors('reason');
-        $this->post(route('inventory-documents.cancel', $doc), ['lock_version' => 1, 'reason' => 'Error de digitación'])->assertSessionHasNoErrors();
-        $this->assertSame('cancelled', $doc->fresh()->status);
-        $this->post(route('inventory-documents.confirm', $doc), ['lock_version' => 2])->assertForbidden();
-        $this->assertDatabaseCount('inventory_movements', 0);
+        $this->signIn($c['actor'])->post(route('documentos-inventario.cancel', $doc), ['version_bloqueo' => 1])->assertSessionHasErrors('motivo');
+        $this->post(route('documentos-inventario.cancel', $doc), ['version_bloqueo' => 1, 'motivo' => 'Error de digitación'])->assertSessionHasNoErrors();
+        $this->assertSame('cancelled', $doc->fresh()->estado);
+        $this->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 2])->assertForbidden();
+        $this->assertDatabaseCount('movimientos_inventario', 0);
     }
 
     public function test_direct_actions_and_http_respect_permissions_and_revocation(): void
     {
         $c = $this->inventoryContext();
         $doc = $this->inventoryDraft($c);
-        $auditor = User::factory()->create(['role_id' => 3]);
+        $auditor = Usuario::factory()->create(['rol_id' => 3]);
         $this->signIn($auditor)->get(route('stock.index'))->assertOk();
-        $this->post(route('inventory-documents.confirm', $doc), ['lock_version' => 1])->assertForbidden();
-        $this->post(route('inventory-documents.store'), $this->inventoryData($c))->assertForbidden();
-        $manager = User::factory()->create(['role_id' => 2]);
+        $this->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 1])->assertForbidden();
+        $this->post(route('documentos-inventario.store'), $this->inventoryData($c))->assertForbidden();
+        $manager = Usuario::factory()->create(['rol_id' => 2]);
         $opening = $this->inventoryDraft($c, 'opening');
-        $this->signIn($manager)->post(route('inventory-documents.confirm', $opening), ['lock_version' => 1])->assertForbidden();
+        $this->signIn($manager)->post(route('documentos-inventario.confirm', $opening), ['version_bloqueo' => 1])->assertForbidden();
         $actor = $c['actor'];
-        $actor->load('role');
-        DB::table('permission_role')->where('role_id', 1)->where('permission_id', DB::table('permissions')->where('code', 'remittances.confirm_receipt')->value('id'))->update(['is_active' => false]);
-        DB::table('roles')->where('id', 1)->increment('permissions_version');
+        $actor->load('rol');
+        DB::table('permiso_rol')->where('rol_id', 1)->where('permiso_id', DB::table('permisos')->where('codigo', 'remittances.confirm_receipt')->value('id'))->update(['activo' => false]);
+        DB::table('roles')->where('id', 1)->increment('version_permisos');
         try {
-            app(ConfirmInventoryDocument::class)->handle($actor, $doc, 1);
+            app(ConfirmarDocumentoInventario::class)->handle($actor, $doc, 1);
             $this->fail('Revoked operator accepted');
         } catch (AuthorizationException) {
-            $this->assertDatabaseCount('inventory_movements', 0);
+            $this->assertDatabaseCount('movimientos_inventario', 0);
         }
         $this->signIn($actor)->get(route('stock.index'))->assertRedirect(route('login'));
     }
@@ -217,26 +217,26 @@ class InventoryManagementTest extends TestCase
     public function test_stock_protects_catalog_product_pair_and_individual_identity(): void
     {
         $c = $this->inventoryContext('individual');
-        $this->postInventory($c, quantity: '1');
+        $this->postInventory($c, cantidad: '1');
         try {
-            app(SaveIndividualUnit::class)->handle($c['actor'], $c['unit'], ['is_active' => false, 'lock_version' => 1], true);
-            $this->fail('Present unit deactivated');
+            app(GuardarUnidadIndividual::class)->handle($c['actor'], $c['unidad'], ['activo' => false, 'version_bloqueo' => 1], true);
+            $this->fail('Present unidad deactivated');
         } catch (ValidationException $e) {
-            $this->assertArrayHasKey('is_active', $e->errors());
+            $this->assertArrayHasKey('activo', $e->errors());
         }
         $q = $this->inventoryContext();
         $this->postInventory($q);
         try {
-            app(SaveProduct::class)->handle($q['actor'], $q['product'], ['is_active' => false, 'lock_version' => 1], true);
-            $this->fail('Product with stock deactivated');
+            app(GuardarProducto::class)->handle($q['actor'], $q['producto'], ['activo' => false, 'version_bloqueo' => 1], true);
+            $this->fail('Producto with stock deactivated');
         } catch (ValidationException $e) {
-            $this->assertArrayHasKey('is_active', $e->errors());
+            $this->assertArrayHasKey('activo', $e->errors());
         }
         try {
-            app(SaveProductLocation::class)->handle($q['actor'], $q['product'], ProductLocation::where('product_id', $q['product']->id)->firstOrFail(), ['is_active' => false, 'lock_version' => 1]);
+            app(GuardarUbicacionProducto::class)->handle($q['actor'], $q['producto'], UbicacionProducto::where('producto_id', $q['producto']->id)->firstOrFail(), ['activo' => false, 'version_bloqueo' => 1]);
             $this->fail('Pair with stock deactivated');
         } catch (ValidationException $e) {
-            $this->assertArrayHasKey('is_active', $e->errors());
+            $this->assertArrayHasKey('activo', $e->errors());
         }
     }
 
@@ -244,45 +244,45 @@ class InventoryManagementTest extends TestCase
     {
         $c = $this->inventoryContext();
         $this->signIn($c['actor']);
-        foreach (['document_date', 'counterparty_id', 'counterparty_name'] as $field) {
+        foreach (['fecha_documento', 'identificacion_contraparte', 'nombre_contraparte'] as $field) {
             $data = $this->inventoryData($c);
             unset($data[$field]);
-            $this->post(route('inventory-documents.store'), $data)->assertSessionHasErrors($field);
+            $this->post(route('documentos-inventario.store'), $data)->assertSessionHasErrors($field);
         }
         $data = $this->inventoryData($c, 'opening');
-        unset($data['cutoff_date']);
-        $this->post(route('inventory-documents.store'), $data)->assertSessionHasErrors('cutoff_date');
+        unset($data['fecha_corte']);
+        $this->post(route('documentos-inventario.store'), $data)->assertSessionHasErrors('fecha_corte');
         $data = $this->inventoryData($c);
         $data['expected_line_count'] = 2;
-        $this->post(route('inventory-documents.store'), $data)->assertSessionHasErrors('lines');
-        $data['lines'][] = $data['lines'][0];
-        $this->post(route('inventory-documents.store'), $data)->assertSessionHasErrors('lines');
-        $this->assertDatabaseCount('inventory_documents', 0);
+        $this->post(route('documentos-inventario.store'), $data)->assertSessionHasErrors('lineas');
+        $data['lineas'][] = $data['lineas'][0];
+        $this->post(route('documentos-inventario.store'), $data)->assertSessionHasErrors('lineas');
+        $this->assertDatabaseCount('documentos_inventario', 0);
     }
 
     public function test_decimal_capacity_overflow_does_not_add_a_movement(): void
     {
         $c = $this->inventoryContext();
-        $c['product']->measurementUnit->update(['decimal_places' => 6]);
-        $this->postInventory($c, quantity: '999999999999.999999');
-        $doc = $this->inventoryDraft($c, quantity: '0.000001');
-        $this->signIn($c['actor'])->post(route('inventory-documents.confirm', $doc), ['lock_version' => 1])->assertSessionHasErrors('lines');
-        $this->assertDatabaseHas('stock_positions', ['quantity' => '999999999999.999999']);
-        $this->assertDatabaseCount('inventory_movements', 1);
+        $c['producto']->unidadMedida->update(['decimales' => 6]);
+        $this->postInventory($c, cantidad: '999999999999.999999');
+        $doc = $this->inventoryDraft($c, cantidad: '0.000001');
+        $this->signIn($c['actor'])->post(route('documentos-inventario.confirm', $doc), ['version_bloqueo' => 1])->assertSessionHasErrors('lineas');
+        $this->assertDatabaseHas('existencias_ubicacion', ['cantidad' => '999999999999.999999']);
+        $this->assertDatabaseCount('movimientos_inventario', 1);
     }
 
     public function test_opening_spans_multiple_locations_with_one_product_marker(): void
     {
         $c = $this->inventoryContext();
-        $location = Location::factory()->create();
-        ProductLocation::factory()->create(['product_id' => $c['product']->id, 'location_id' => $location->id]);
+        $ubicacion = Ubicacion::factory()->create();
+        UbicacionProducto::factory()->create(['producto_id' => $c['producto']->id, 'ubicacion_id' => $ubicacion->id]);
         $data = $this->inventoryData($c, 'opening');
-        $data['lines'][] = array_replace($data['lines'][0], ['location_id' => $location->id, 'quantity' => '2']);
-        $doc = app(SaveInventoryDocument::class)->handle($c['actor'], null, $data);
-        app(ConfirmInventoryDocument::class)->handle($c['actor'], $doc, 1);
-        $this->assertDatabaseCount('initial_stock_products', 1);
-        $this->assertDatabaseCount('stock_positions', 2);
-        $this->assertDatabaseCount('inventory_movements', 2);
-        $this->assertSame('5.000000', DB::table('stock_positions')->sum('quantity'));
+        $data['lineas'][] = array_replace($data['lineas'][0], ['ubicacion_id' => $ubicacion->id, 'cantidad' => '2']);
+        $doc = app(GuardarDocumentoInventario::class)->handle($c['actor'], null, $data);
+        app(ConfirmarDocumentoInventario::class)->handle($c['actor'], $doc, 1);
+        $this->assertDatabaseCount('productos_existencia_inicial', 1);
+        $this->assertDatabaseCount('existencias_ubicacion', 2);
+        $this->assertDatabaseCount('movimientos_inventario', 2);
+        $this->assertSame('5.000000', DB::table('existencias_ubicacion')->sum('cantidad'));
     }
 }

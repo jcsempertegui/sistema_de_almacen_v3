@@ -2,173 +2,173 @@
 
 namespace Tests\Feature;
 
-use App\Actions\Roles\SaveRole;
-use App\Actions\Users\UpdateUser;
-use App\Actions\Workers\SaveWorker;
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Worker;
+use App\Actions\Roles\GuardarRol;
+use App\Actions\Trabajadores\GuardarTrabajador;
+use App\Actions\Usuarios\ActualizarUsuario;
+use App\Models\Permiso;
+use App\Models\Rol;
+use App\Models\Trabajador;
+use App\Models\Usuario;
 use Illuminate\Auth\Access\AuthorizationException;
 use Tests\TestCase;
 
 class PermissionAuthorizationTest extends TestCase
 {
-    private function admin(): User
+    private function admin(): Usuario
     {
-        return User::factory()->create(['role_id' => 1]);
+        return Usuario::factory()->create(['rol_id' => 1]);
     }
 
-    private function role(array $codes): Role
+    private function rol(array $codes): Rol
     {
-        return app(SaveRole::class)->handle($this->admin(), null, ['code' => 'delegado_'.bin2hex(random_bytes(4)), 'name' => 'Delegado', 'is_active' => true, 'permissions' => $this->ids($codes)]);
+        return app(GuardarRol::class)->handle($this->admin(), null, ['codigo' => 'delegado_'.bin2hex(random_bytes(4)), 'nombre' => 'Delegado', 'activo' => true, 'permisos' => $this->ids($codes)]);
     }
 
     private function ids(array $codes): array
     {
-        return Permission::whereIn('code', $codes)->pluck('id')->all();
+        return Permiso::whereIn('codigo', $codes)->pluck('id')->all();
     }
 
     public function test_worker_permissions_are_independent_for_read_create_edit_and_status(): void
     {
-        $role = $this->role(['panel.view', 'workers.view', 'workers.update']);
-        $user = User::factory()->create(['role_id' => $role->id]);
-        $worker = Worker::factory()->create();
-        $payload = $worker->only(['codigo', 'nombres', 'apellidos', 'documento_identidad', 'cargo', 'area', 'is_active']);
-        $this->signIn($user)->get(route('workers.index'))->assertOk()->assertDontSee('Nuevo trabajador')->assertDontSee('Desactivar');
-        $this->get(route('workers.create'))->assertForbidden();
-        $this->post(route('workers.store'), $payload)->assertForbidden();
-        $this->get(route('workers.edit', $worker))->assertOk();
-        $this->put(route('workers.update', $worker), array_replace($payload, ['nombres' => 'Nombre autorizado']))->assertRedirect();
-        $this->patch(route('workers.status', $worker), ['is_active' => 0])->assertForbidden();
-        $this->put(route('workers.update', $worker), array_replace($payload, ['is_active' => 0]))->assertForbidden();
-        $this->assertTrue($worker->fresh()->is_active);
-        $this->assertSame('Nombre autorizado', $worker->fresh()->nombres);
+        $rol = $this->rol(['panel.view', 'workers.view', 'workers.update']);
+        $usuario = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $trabajador = Trabajador::factory()->create();
+        $detalle = $trabajador->only(['codigo', 'nombres', 'apellidos', 'documento_identidad', 'cargo', 'area', 'activo']);
+        $this->signIn($usuario)->get(route('trabajadores.index'))->assertOk()->assertDontSee('Nuevo trabajador')->assertDontSee('Desactivar');
+        $this->get(route('trabajadores.create'))->assertForbidden();
+        $this->post(route('trabajadores.store'), $detalle)->assertForbidden();
+        $this->get(route('trabajadores.edit', $trabajador))->assertOk();
+        $this->put(route('trabajadores.update', $trabajador), array_replace($detalle, ['nombres' => 'Nombre autorizado']))->assertRedirect();
+        $this->patch(route('trabajadores.estado', $trabajador), ['activo' => 0])->assertForbidden();
+        $this->put(route('trabajadores.update', $trabajador), array_replace($detalle, ['activo' => 0]))->assertForbidden();
+        $this->assertTrue($trabajador->fresh()->activo);
+        $this->assertSame('Nombre autorizado', $trabajador->fresh()->nombres);
     }
 
     public function test_user_edit_permission_does_not_allow_role_status_or_password_changes(): void
     {
-        $role = $this->role(['panel.view', 'users.view', 'users.update']);
-        $actor = User::factory()->create(['role_id' => $role->id]);
-        $target = User::factory()->create(['role_id' => $this->role(['panel.view'])->id]);
-        $payload = ['name' => 'Nombre autorizado', 'email' => $target->email, 'role_id' => $target->role_id, 'is_active' => 1];
-        $this->signIn($actor)->get(route('users.index'))->assertOk()->assertDontSee('Nuevo usuario')->assertDontSee('Desactivar');
-        $this->get(route('users.edit', $target))->assertOk()->assertDontSee('name="password"', false);
-        $this->put(route('users.update', $target), $payload)->assertRedirect();
-        $this->put(route('users.update', $target), array_replace($payload, ['role_id' => 3]))->assertForbidden();
-        $this->put(route('users.update', $target), array_replace($payload, ['is_active' => 0]))->assertForbidden();
-        $this->put(route('users.update', $target), array_replace($payload, ['password' => 'ClaveSegura2026!', 'password_confirmation' => 'ClaveSegura2026!']))->assertForbidden();
-        $this->patch(route('users.status', $target), ['is_active' => 0])->assertForbidden();
-        $this->assertSame('Nombre autorizado', $target->fresh()->name);
-        $this->assertTrue($target->fresh()->is_active);
-        $this->assertSame(1, $target->fresh()->session_version);
+        $rol = $this->rol(['panel.view', 'users.view', 'users.update']);
+        $actor = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $target = Usuario::factory()->create(['rol_id' => $this->rol(['panel.view'])->id]);
+        $detalle = ['nombre' => 'Nombre autorizado', 'correo' => $target->correo, 'rol_id' => $target->rol_id, 'activo' => 1];
+        $this->signIn($actor)->get(route('usuarios.index'))->assertOk()->assertDontSee('Nuevo usuario')->assertDontSee('Desactivar');
+        $this->get(route('usuarios.edit', $target))->assertOk()->assertDontSee('name="contrasena"', false);
+        $this->put(route('usuarios.update', $target), $detalle)->assertRedirect();
+        $this->put(route('usuarios.update', $target), array_replace($detalle, ['rol_id' => 3]))->assertForbidden();
+        $this->put(route('usuarios.update', $target), array_replace($detalle, ['activo' => 0]))->assertForbidden();
+        $this->put(route('usuarios.update', $target), array_replace($detalle, ['contrasena' => 'ClaveSegura2026!', 'contrasena_confirmation' => 'ClaveSegura2026!']))->assertForbidden();
+        $this->patch(route('usuarios.estado', $target), ['activo' => 0])->assertForbidden();
+        $this->assertSame('Nombre autorizado', $target->fresh()->nombre);
+        $this->assertTrue($target->fresh()->activo);
+        $this->assertSame(1, $target->fresh()->version_sesion);
     }
 
     public function test_partial_admin_cannot_grant_or_assign_permissions_it_does_not_have(): void
     {
-        $role = $this->role(['panel.view', 'roles.view', 'roles.create', 'roles.update', 'roles.assign_permissions', 'users.view', 'users.update', 'users.create', 'users.assign_role', 'users.change_status', 'users.change_password']);
-        $actor = User::factory()->create(['role_id' => $role->id]);
-        $targetRole = $this->role(['panel.view']);
-        $target = User::factory()->create(['role_id' => $targetRole->id]);
+        $rol = $this->rol(['panel.view', 'roles.view', 'roles.create', 'roles.update', 'roles.assign_permissions', 'users.view', 'users.update', 'users.create', 'users.assign_role', 'users.change_status', 'users.change_password']);
+        $actor = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $targetRole = $this->rol(['panel.view']);
+        $target = Usuario::factory()->create(['rol_id' => $targetRole->id]);
         $higher = $this->admin();
         $this->signIn($actor);
-        $this->put(route('roles.update', $targetRole), ['permissions' => $this->ids(['workers.create'])])->assertForbidden();
-        $this->post(route('roles.store'), ['code' => 'escalada', 'name' => 'Escalada', 'is_active' => 1, 'permissions' => $this->ids(['workers.create'])])->assertForbidden();
-        $this->put(route('users.update', $target), ['name' => $target->name, 'email' => $target->email, 'is_active' => 1, 'role_id' => 1])->assertForbidden();
-        $this->get(route('users.edit', $higher))->assertForbidden();
-        $this->patch(route('users.status', $higher), ['is_active' => 0])->assertForbidden();
-        $this->get(route('roles.edit', $higher->role))->assertForbidden();
-        $this->assertDatabaseMissing('roles', ['code' => 'escalada']);
-        $this->assertSame(['panel.view'], $targetRole->fresh()->assignedPermissionCodes());
-        $this->assertSame($targetRole->id, $target->fresh()->role_id);
+        $this->put(route('roles.update', $targetRole), ['permisos' => $this->ids(['workers.create'])])->assertForbidden();
+        $this->post(route('roles.store'), ['codigo' => 'escalada', 'nombre' => 'Escalada', 'activo' => 1, 'permisos' => $this->ids(['workers.create'])])->assertForbidden();
+        $this->put(route('usuarios.update', $target), ['nombre' => $target->nombre, 'correo' => $target->correo, 'activo' => 1, 'rol_id' => 1])->assertForbidden();
+        $this->get(route('usuarios.edit', $higher))->assertForbidden();
+        $this->patch(route('usuarios.estado', $higher), ['activo' => 0])->assertForbidden();
+        $this->get(route('roles.edit', $higher->rol))->assertForbidden();
+        $this->assertDatabaseMissing('roles', ['codigo' => 'escalada']);
+        $this->assertSame(['panel.view'], $targetRole->fresh()->codigosPermisosAsignados());
+        $this->assertSame($targetRole->id, $target->fresh()->rol_id);
     }
 
     public function test_role_editing_does_not_implicitly_allow_permission_or_status_changes(): void
     {
-        $role = $this->role(['panel.view', 'roles.view', 'roles.update']);
-        $actor = User::factory()->create(['role_id' => $role->id]);
-        $target = $this->role(['panel.view']);
-        $this->signIn($actor)->put(route('roles.update', $target), ['name' => 'Nombre válido'])->assertRedirect();
-        $this->put(route('roles.update', $target), ['permissions' => []])->assertForbidden();
-        $this->put(route('roles.update', $target), ['is_active' => 0])->assertForbidden();
-        $this->patch(route('roles.status', $target), ['is_active' => 0])->assertForbidden();
-        $this->assertTrue($target->fresh()->is_active);
-        $this->assertSame(['panel.view'], $target->fresh()->assignedPermissionCodes());
+        $rol = $this->rol(['panel.view', 'roles.view', 'roles.update']);
+        $actor = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $target = $this->rol(['panel.view']);
+        $this->signIn($actor)->put(route('roles.update', $target), ['nombre' => 'Nombre válido'])->assertRedirect();
+        $this->put(route('roles.update', $target), ['permisos' => []])->assertForbidden();
+        $this->put(route('roles.update', $target), ['activo' => 0])->assertForbidden();
+        $this->patch(route('roles.estado', $target), ['activo' => 0])->assertForbidden();
+        $this->assertTrue($target->fresh()->activo);
+        $this->assertSame(['panel.view'], $target->fresh()->codigosPermisosAsignados());
     }
 
     public function test_revocation_invalidates_all_previous_role_sessions_and_fresh_login_uses_new_permissions(): void
     {
-        $role = $this->role(['panel.view', 'workers.view', 'workers.create']);
-        $first = User::factory()->create(['role_id' => $role->id, 'password' => 'ClaveSegura2026!']);
-        $second = User::factory()->create(['role_id' => $role->id]);
-        $oldVersion = $role->permissions_version;
-        // The instances intentionally keep their previously loaded role.
-        $first->load('role');
-        $second->load('role');
-        app(SaveRole::class)->handle($this->admin(), $role, ['permissions' => $this->ids(['panel.view', 'workers.view'])]);
-        foreach ([$first, $second] as $user) {
-            $this->actingAs($user)->withSession(['auth_version' => 1, 'auth_role_id' => $role->id, 'auth_role_version' => $oldVersion])->getJson(route('workers.create'))->assertUnauthorized();
+        $rol = $this->rol(['panel.view', 'workers.view', 'workers.create']);
+        $first = Usuario::factory()->create(['rol_id' => $rol->id, 'contrasena' => 'ClaveSegura2026!']);
+        $second = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $oldVersion = $rol->version_permisos;
+        // The instances intentionally keep their previously loaded rol.
+        $first->load('rol');
+        $second->load('rol');
+        app(GuardarRol::class)->handle($this->admin(), $rol, ['permisos' => $this->ids(['panel.view', 'workers.view'])]);
+        foreach ([$first, $second] as $usuario) {
+            $this->actingAs($usuario)->withSession(['auth_version' => 1, 'auth_role_id' => $rol->id, 'auth_role_version' => $oldVersion])->getJson(route('trabajadores.create'))->assertUnauthorized();
             $this->assertGuest();
         }
-        $this->post(route('login.store'), ['email' => $first->email, 'password' => 'ClaveSegura2026!'])->assertRedirect(route('dashboard'));
-        $this->get(route('workers.index'))->assertOk();
-        $this->get(route('workers.create'))->assertForbidden();
+        $this->post(route('login.store'), ['correo' => $first->correo, 'contrasena' => 'ClaveSegura2026!'])->assertRedirect(route('dashboard'));
+        $this->get(route('trabajadores.index'))->assertOk();
+        $this->get(route('trabajadores.create'))->assertForbidden();
     }
 
     public function test_grants_also_invalidate_old_sessions_and_missing_session_version_is_denied(): void
     {
-        $role = $this->role(['panel.view']);
-        $user = User::factory()->create(['role_id' => $role->id]);
-        $this->signIn($user);
-        app(SaveRole::class)->handle($this->admin(), $role, ['permissions' => $this->ids(['panel.view', 'workers.view'])]);
+        $rol = $this->rol(['panel.view']);
+        $usuario = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $this->signIn($usuario);
+        app(GuardarRol::class)->handle($this->admin(), $rol, ['permisos' => $this->ids(['panel.view', 'workers.view'])]);
         $this->get(route('dashboard'))->assertRedirect(route('login'));
-        $this->actingAs($user->fresh())->withSession(['auth_version' => 1, 'auth_role_id' => $role->id, 'auth_role_version' => null])->getJson(route('dashboard'))->assertUnauthorized();
-        $this->signIn($user->fresh())->get(route('workers.index'))->assertOk();
+        $this->actingAs($usuario->fresh())->withSession(['auth_version' => 1, 'auth_role_id' => $rol->id, 'auth_role_version' => null])->getJson(route('dashboard'))->assertUnauthorized();
+        $this->signIn($usuario->fresh())->get(route('trabajadores.index'))->assertOk();
     }
 
     public function test_inactive_roles_cannot_login_and_old_sessions_do_not_return_after_reactivation(): void
     {
-        $role = $this->role(['panel.view']);
-        $user = User::factory()->create(['role_id' => $role->id, 'password' => 'ClaveSegura2026!']);
+        $rol = $this->rol(['panel.view']);
+        $usuario = Usuario::factory()->create(['rol_id' => $rol->id, 'contrasena' => 'ClaveSegura2026!']);
         $admin = $this->admin();
-        app(SaveRole::class)->handle($admin, $role, ['is_active' => false]);
-        $this->post(route('login.store'), ['email' => $user->email, 'password' => 'ClaveSegura2026!'])->assertSessionHasErrors('email');
+        app(GuardarRol::class)->handle($admin, $rol, ['activo' => false]);
+        $this->post(route('login.store'), ['correo' => $usuario->correo, 'contrasena' => 'ClaveSegura2026!'])->assertSessionHasErrors('correo');
         $this->assertGuest();
-        app(SaveRole::class)->handle($admin, $role, ['is_active' => true]);
-        $this->actingAs($user)->withSession(['auth_version' => 1, 'auth_role_id' => $role->id, 'auth_role_version' => 1])->getJson(route('dashboard'))->assertUnauthorized();
+        app(GuardarRol::class)->handle($admin, $rol, ['activo' => true]);
+        $this->actingAs($usuario)->withSession(['auth_version' => 1, 'auth_role_id' => $rol->id, 'auth_role_version' => 1])->getJson(route('dashboard'))->assertUnauthorized();
     }
 
     public function test_permission_change_mid_request_is_rechecked_under_lock(): void
     {
-        $role = $this->role(['panel.view', 'roles.update', 'users.update', 'users.change_status']);
-        $actor = User::factory()->create(['role_id' => $role->id]);
-        $actor->load('role');
-        $target = User::factory()->create(['role_id' => $this->role(['panel.view'])->id]);
-        $targetRole = $this->role(['panel.view']);
-        app(SaveRole::class)->handle($this->admin(), $role, ['permissions' => $this->ids(['panel.view'])]);
-        foreach ([fn () => app(UpdateUser::class)->handle($actor, $target, ['is_active' => false]), fn () => app(SaveRole::class)->handle($actor, $targetRole, ['name' => 'Cambio prohibido'])] as $operation) {
+        $rol = $this->rol(['panel.view', 'roles.update', 'users.update', 'users.change_status']);
+        $actor = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $actor->load('rol');
+        $target = Usuario::factory()->create(['rol_id' => $this->rol(['panel.view'])->id]);
+        $targetRole = $this->rol(['panel.view']);
+        app(GuardarRol::class)->handle($this->admin(), $rol, ['permisos' => $this->ids(['panel.view'])]);
+        foreach ([fn () => app(ActualizarUsuario::class)->handle($actor, $target, ['activo' => false]), fn () => app(GuardarRol::class)->handle($actor, $targetRole, ['nombre' => 'Cambio prohibido'])] as $operation) {
             try {
                 $operation();
                 $this->fail('Una autorización revocada no permite escribir.');
             } catch (AuthorizationException) {
-                $this->assertTrue($target->fresh()->is_active);
+                $this->assertTrue($target->fresh()->activo);
             }
         }
-        $this->assertSame('Delegado', $targetRole->fresh()->name);
+        $this->assertSame('Delegado', $targetRole->fresh()->nombre);
     }
 
     public function test_worker_mutations_recheck_revocation_during_request(): void
     {
-        $role = $this->role(['panel.view', 'workers.view', 'workers.create', 'workers.update', 'workers.change_status']);
-        $actor = User::factory()->create(['role_id' => $role->id]);
-        $actor->load('role');
-        $worker = Worker::factory()->create();
-        app(SaveRole::class)->handle($this->admin(), $role, ['permissions' => $this->ids(['panel.view', 'workers.view'])]);
+        $rol = $this->rol(['panel.view', 'workers.view', 'workers.create', 'workers.update', 'workers.change_status']);
+        $actor = Usuario::factory()->create(['rol_id' => $rol->id]);
+        $actor->load('rol');
+        $trabajador = Trabajador::factory()->create();
+        app(GuardarRol::class)->handle($this->admin(), $rol, ['permisos' => $this->ids(['panel.view', 'workers.view'])]);
         try {
-            app(SaveWorker::class)->handle($actor, $worker, ['is_active' => false], statusOnly: true);
+            app(GuardarTrabajador::class)->handle($actor, $trabajador, ['activo' => false], statusOnly: true);
             $this->fail('Un permiso revocado no puede modificar trabajadores.');
         } catch (AuthorizationException) {
-            $this->assertTrue($worker->fresh()->is_active);
+            $this->assertTrue($trabajador->fresh()->activo);
         }
     }
 }

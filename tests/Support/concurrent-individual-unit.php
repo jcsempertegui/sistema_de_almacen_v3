@@ -1,17 +1,17 @@
 <?php
 
-use App\Actions\Catalog\SaveIndividualUnit;
-use App\Actions\Catalog\SaveLocation;
-use App\Actions\Catalog\SaveProduct;
-use App\Actions\Catalog\SaveProductLocation;
-use App\Actions\Roles\SaveRole;
-use App\Models\IndividualUnit;
-use App\Models\Location;
-use App\Models\Permission;
-use App\Models\Product;
-use App\Models\ProductLocation;
-use App\Models\Role;
-use App\Models\User;
+use App\Actions\Catalogo\GuardarProducto;
+use App\Actions\Catalogo\GuardarUbicacion;
+use App\Actions\Catalogo\GuardarUbicacionProducto;
+use App\Actions\Catalogo\GuardarUnidadIndividual;
+use App\Actions\Roles\GuardarRol;
+use App\Models\Permiso;
+use App\Models\Producto;
+use App\Models\Rol;
+use App\Models\Ubicacion;
+use App\Models\UbicacionProducto;
+use App\Models\UnidadIndividual;
+use App\Models\Usuario;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Console\Kernel;
@@ -24,14 +24,14 @@ $app = require dirname(__DIR__, 2).'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 TestingDatabaseGuard::assertConnection($app->make('db')->connection());
 $job = json_decode($argv[1], true, flags: JSON_THROW_ON_ERROR);
-$actor = User::with('role')->findOrFail($job['actor']);
+$actor = Usuario::with('rol')->findOrFail($job['actor']);
 DB::beginTransaction();
-IndividualUnit::orderBy('id')->get(); // Retain an old REPEATABLE READ snapshot before either writer commits.
-$product = Product::findOrFail($job['product']);
-$unit = $job['individual'] ? IndividualUnit::findOrFail($job['individual']) : null;
+UnidadIndividual::orderBy('id')->get(); // Retain an old REPEATABLE READ snapshot before either writer commits.
+$producto = Producto::findOrFail($job['producto']);
+$unidad = $job['individual'] ? UnidadIndividual::findOrFail($job['individual']) : null;
 $wait = 0;
 DB::listen(function ($query) use (&$wait, $job) {
-    if (str_contains($query->sql, '`permissions`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
+    if (str_contains($query->sql, '`permisos`') && str_contains($query->sql, 'for update') && str_contains($query->sql, 'limit 1')) {
         $wait = max($wait, $query->time);
         echo "LOCKED\n";
         flush();
@@ -49,23 +49,23 @@ if (trim((string) fgets(STDIN)) !== 'GO') {
 try {
     switch ($job['operation']) {
         case 'create':
-            app(SaveIndividualUnit::class)->handle($actor, null, ['identifier' => $job['identifier'], 'product_id' => $job['product'], 'location_id' => $job['location'], 'serial_number' => $job['serial'], 'notes' => null, 'is_active' => true]);
+            app(GuardarUnidadIndividual::class)->handle($actor, null, ['identificador' => $job['identificador'], 'producto_id' => $job['producto'], 'ubicacion_id' => $job['ubicacion'], 'numero_serie' => $job['serial'], 'observaciones' => null, 'activo' => true]);
             break;
         case 'edit':
-            $data = array_intersect_key($unit->getAttributes(), array_flip($unit->getFillable()));
-            app(SaveIndividualUnit::class)->handle($actor, $unit, array_replace($data, ['notes' => 'Editado por '.$job['index'], 'lock_version' => 1]));
+            $data = array_intersect_key($unidad->getAttributes(), array_flip($unidad->getFillable()));
+            app(GuardarUnidadIndividual::class)->handle($actor, $unidad, array_replace($data, ['observaciones' => 'Editado por '.$job['index'], 'version_bloqueo' => 1]));
             break;
         case 'disable_product':
-            app(SaveProduct::class)->handle($actor, $product, ['is_active' => false, 'lock_version' => 1], statusOnly: true);
+            app(GuardarProducto::class)->handle($actor, $producto, ['activo' => false, 'version_bloqueo' => 1], statusOnly: true);
             break;
         case 'disable_location':
-            app(SaveLocation::class)->handle($actor, Location::findOrFail($job['location']), ['is_active' => false], statusOnly: true);
+            app(GuardarUbicacion::class)->handle($actor, Ubicacion::findOrFail($job['ubicacion']), ['activo' => false], statusOnly: true);
             break;
         case 'disable_link':
-            app(SaveProductLocation::class)->handle($actor, $product, ProductLocation::findOrFail($job['link']), ['is_active' => false, 'lock_version' => 1]);
+            app(GuardarUbicacionProducto::class)->handle($actor, $producto, UbicacionProducto::findOrFail($job['link']), ['activo' => false, 'version_bloqueo' => 1]);
             break;
         case 'revoke':
-            app(SaveRole::class)->handle($actor, Role::findOrFail($job['other_role']), ['permissions' => Permission::where('code', '<>', 'individual_units.create')->pluck('id')->all()]);
+            app(GuardarRol::class)->handle($actor, Rol::findOrFail($job['other_role']), ['permisos' => Permiso::where('codigo', '<>', 'individual_units.create')->pluck('id')->all()]);
             break;
         default: throw new RuntimeException('Operación de prueba desconocida.');
     }

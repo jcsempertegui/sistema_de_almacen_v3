@@ -1,0 +1,190 @@
+{
+  "fecha_local": "2026-11-02T20:06:12.481435-04:00",
+  "rama": "refactor/sga-en-espanol",
+  "estado": "implementacion_verificada_solo_testing_sin_despliegue_principal",
+  "php": "8.3.10",
+  "laravel": "13.35.0",
+  "mariadb": "10.4.32-MariaDB",
+  "alcance": {
+    "tablas_documentadas": 53,
+    "tablas_renombradas": 50,
+    "columnas_renombradas": 414,
+    "clases_renombradas_documentadas": 183,
+    "migracion_nueva": "2026_11_01_000001_traducir_esquema_del_sga.php"
+  },
+  "regresion": {
+    "fecha": "2026-11-03T00:00:48.539554+00:00",
+    "modalidad": "Consolidaci?n por caso de siete lotes; no representa una ejecuci?n ?nica aprobada. Se conserva el resultado m?s reciente y la procedencia de cada caso. Los espacios de nombres de pruebas se normalizan a su denominaci?n final compatible con PSR-4; no se alteran los originales.",
+    "corpus": 506,
+    "aprobados": 506,
+    "errores_finales": 0,
+    "fallos_finales": 0,
+    "lotes": [
+      {
+        "archivo": "regresion-completa-1.xml",
+        "sha256": "74cf04c680e6a205fc42e4a255f050a527bb9f047cebc6a9b7a7a38a82179dcf",
+        "casos": 503,
+        "errores": 28,
+        "fallos": 106,
+        "aserciones": 2811,
+        "resultado": "fallido"
+      },
+      {
+        "archivo": "regresion-sin-concurrencia-2.xml",
+        "sha256": "c43a6c7986a522943bba1ec5024563ccd7d0913e1841eb30ca1cf769b6a98c31",
+        "casos": 452,
+        "errores": 2,
+        "fallos": 5,
+        "aserciones": 3068,
+        "resultado": "fallido"
+      },
+      {
+        "archivo": "verificacion-final-3.xml",
+        "sha256": "6acc0332f76436fedb03e18b2d7ca51429a535c6dbfdd85195d22acc0d308d62",
+        "casos": 93,
+        "errores": 1,
+        "fallos": 7,
+        "aserciones": 1169,
+        "resultado": "fallido"
+      },
+      {
+        "archivo": "recuperacion-final-4.xml",
+        "sha256": "77f964febe42cdbe256a309a810513c3afcf615f0e6fd4bcfd2f24906c0eea14",
+        "casos": 16,
+        "errores": 0,
+        "fallos": 0,
+        "aserciones": 239,
+        "resultado": "aprobado"
+      },
+      {
+        "archivo": "firmas-historicas-5.xml",
+        "sha256": "546582facd64e12eb6532e50c46b1bef937fb855a9a7a332d6dcef5d96f5eed6",
+        "casos": 3,
+        "errores": 0,
+        "fallos": 1,
+        "aserciones": 9,
+        "resultado": "fallido"
+      },
+      {
+        "archivo": "firmas-regresion-6.xml",
+        "sha256": "a82c511d06d450ed964bf9696ff9e6e1b4039e36633eb6f8e7c9c4a7671db2e2",
+        "casos": 35,
+        "errores": 0,
+        "fallos": 0,
+        "aserciones": 409,
+        "resultado": "aprobado"
+      },
+      {
+        "archivo": "devoluciones-backup-7.xml",
+        "sha256": "459717b7621d88f0305ae9735e45a462660bc28d33554a7a0eb88998da701ec5",
+        "casos": 15,
+        "errores": 0,
+        "fallos": 0,
+        "aserciones": 126,
+        "resultado": "aprobado"
+      }
+    ],
+    "aserciones_consolidadas": 3867
+  },
+  "principal": {
+    "identidad": {
+      "database_name": "sga_rio_grande",
+      "server": "DESKTOP-U7NQKIM",
+      "port": 3306,
+      "data_directory": "C:\\xampp\\mysql\\data\\",
+      "version": "10.4.32-MariaDB"
+    },
+    "tablas": 53,
+    "migraciones": 43,
+    "permisos": 123,
+    "relaciones_rol_permiso": 260,
+    "huellas_de_datos_y_ddl_identicas": 53,
+    "pendientes_version_operativa": [],
+    "pendientes_rama_traduccion": [
+      "2026_11_01_000001_traducir_esquema_del_sga"
+    ],
+    "modificada": false,
+    "nuevo_respaldo_sql_creado": false,
+    "ensayo_con_copia_operativa_completa_realizado": false
+  },
+  "testing": {
+    "identidad": {
+      "base": "sga_rio_grande_testing",
+      "servidor": "DESKTOP-U7NQKIM",
+      "puerto": 3306,
+      "directorio": "C:\\xampp\\mysql\\data\\",
+      "fk": 1,
+      "ck": 1
+    },
+    "version": "10.4.32-MariaDB",
+    "tablas": 53,
+    "migraciones": 44,
+    "permisos": 123,
+    "relaciones_rol_permiso": 260,
+    "usuarios": 0,
+    "huellas_canonicas_iguales": 52,
+    "integridad": {
+      "foreign_keys": 166,
+      "checks": 103,
+      "unique_indexes": 143,
+      "orphans": 0,
+      "check_violations": 0,
+      "duplicate_groups": 0
+    }
+  },
+  "archivos_protegidos_identicos": {
+    ".env": true,
+    "composer.json": true,
+    "composer.lock": true,
+    "package.json": true
+  },
+  "migraciones_anteriores_identicas": 43,
+  "guardian_aislamiento_identico": true,
+  "bootstrap_testing_identico": true,
+  "sintaxis": {
+    "archivos": 350,
+    "errores": []
+  },
+  "formato": {
+    "archivos": 303,
+    "resultado": "aprobado",
+    "herramienta": "Laravel Pint --test"
+  },
+  "contratos_historicos": {
+    "identidad": {
+      "base": "sga_rio_grande",
+      "servidor": "DESKTOP-U7NQKIM",
+      "puerto": 3306,
+      "directorio": "C:\\xampp\\mysql\\data\\"
+    },
+    "correcciones": [
+      {
+        "kind": "adjustment",
+        "status": "requested",
+        "cantidad": 1
+      }
+    ],
+    "autorizaciones_correccion": [
+      {
+        "status": "requested",
+        "cantidad": 1
+      }
+    ],
+    "autorizaciones_devolucion": [],
+    "respaldos": [
+      {
+        "status": "requested",
+        "cantidad": 1
+      }
+    ]
+  },
+  "aceptacion_humana_realizada": false,
+  "commit_realizado": false,
+  "push_realizado": false,
+  "pendiente": "Respaldo nuevo autorizado, ensayo con copia operativa completa y revisi?n de habilitaci?n antes de solicitar despliegue principal.",
+  "artefactos": {
+    "cobertura.json": "e9690922285fd54abecd9597374c426d6f52556f2609e18f63e7cd7339e69cab",
+    "corpus.xml": "172f9e724106da2c4e8682c95c4def910aa0bf693f2c22294a8e527c3f42ae6a",
+    "regresion-consolidada.xml": "075725238a40a5029705c32091d3135ee2417ff4c61052c7f91214420cb6b2d6"
+  }
+}
