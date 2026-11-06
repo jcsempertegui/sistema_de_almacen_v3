@@ -1,0 +1,338 @@
+{
+    "fecha":  "2026-11-05",
+    "tipo":  "Regresión seleccionada consolidada por caso; no ejecución única ni aceptación humana",
+    "base":  "sga_rio_grande_testing",
+    "pruebas_distintas":  51,
+    "aserciones":  546,
+    "fallos_sin_resolver":  0,
+    "casos":  [
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_guests_see_login_and_cannot_open_the_panel",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_inactive_or_revoked_sessions_are_rejected",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_invalid_credentials_and_inactive_accounts_are_rejected",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_login_is_limited_by_normalized_email_and_ip",
+                      "aserciones":  18,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_login_requires_a_csrf_token",
+                      "aserciones":  1,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_login_validates_input_and_never_flashes_passwords",
+                      "aserciones":  3,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_logout_invalidates_session_and_csrf_token",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.AuthenticationTest::test_valid_credentials_regenerate_the_session_and_open_the_panel",
+                      "aserciones":  9,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Catalog.ProductLocationManagementTest::test_failure_of_an_initial_association_rolls_back_the_new_product_and_prior_links",
+                      "aserciones":  4,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Catalog.ProductLocationManagementTest::test_inactive_non_storable_and_duplicate_associations_are_rejected",
+                      "aserciones":  10,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Catalog.ProductLocationManagementTest::test_inactive_product_cannot_receive_active_location_links_and_link_history_freezes_structure",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Catalog.ProductLocationManagementTest::test_location_deactivation_is_blocked_until_links_are_inactive_and_history_remains",
+                      "aserciones":  7,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Catalog.ProductLocationManagementTest::test_multiple_locations_are_registered_toggled_and_searched_without_quantities",
+                      "aserciones":  12,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Catalog.ProductLocationManagementTest::test_nested_ownership_stale_versions_and_assigned_unit_guard_are_enforced",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_category_and_type_filters_preserve_document_numbers_and_distinct_summary",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_delivery_details_keep_historical_worker_and_line_units_with_named_filters",
+                      "aserciones":  17,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_empty_csv_has_spanish_headers_and_unsafe_values_remain_escaped",
+                      "aserciones":  8,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_group_navigation_uses_first_allowed_report_and_denies_other_tabs_and_exports",
+                      "aserciones":  7,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_kardex_preserves_opening_balance_before_local_date_filter",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_multiple_identifiers_do_not_multiply_document_quantities",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_pending_reports_follow_reopened_custody_after_a_compensated_return",
+                      "aserciones":  31,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_print_and_csv_include_the_full_filtered_result_instead_of_the_first_page",
+                      "aserciones":  9,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_report_access_does_not_grant_document_access_or_display_a_forbidden_link",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.DetailedReportsTest::test_two_document_lines_keep_their_own_quantities_and_count_the_document_once",
+                      "aserciones":  3,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ExpiredRequestPageTest::test_authenticated_invalid_token_cannot_create_a_category",
+                      "aserciones":  4,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ExpiredRequestPageTest::test_guest_csrf_failure_uses_the_spanish_page_and_keeps_status_419",
+                      "aserciones":  10,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ExpiredRequestPageTest::test_json_csrf_failure_keeps_the_native_json_response",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ExpiredRequestPageTest::test_valid_csrf_token_still_allows_a_normal_login",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.ControlHttpTest::test_control_pages_reports_and_exports_respect_permissions",
+                      "aserciones":  59,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.ControlHttpTest::test_csv_neutralizes_formulas_and_filters_cutoff_without_writing",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.ControlHttpTest::test_http_adjustment_workflow_and_invalid_nested_form",
+                      "aserciones":  11,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.WorkerOperationHttpTest::test_auditor_and_revoked_permissions_block_direct_requests",
+                      "aserciones":  11,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.WorkerOperationHttpTest::test_csrf_rejects_worker_confirmation_without_token",
+                      "aserciones":  2,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.WorkerOperationHttpTest::test_delivery_forms_validation_edit_cancel_confirmation_history_and_availability",
+                      "aserciones":  17,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.WorkerOperationHttpTest::test_invalid_nested_input_can_be_redisplayed_without_a_server_error",
+                      "aserciones":  9,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.WorkerOperationHttpTest::test_loan_return_forms_http_and_source_history",
+                      "aserciones":  11,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.Inventory.WorkerOperationHttpTest::test_manager_can_request_and_receive_but_only_admin_approves_regularization",
+                      "aserciones":  10,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.NavegacionEspanolTest::test_el_generador_conserva_firmas_y_no_traduce_texto_libre",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.NavegacionEspanolTest::test_el_menu_lateral_es_la_unica_navegacion_entre_operaciones",
+                      "aserciones":  32,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.NavegacionEspanolTest::test_las_rutas_generadas_utilizan_caminos_en_espanol",
+                      "aserciones":  42,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.NavegacionEspanolTest::test_las_rutas_traducidas_conservan_validaciones_y_permisos",
+                      "aserciones":  18,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.NavegacionEspanolTest::test_los_enlaces_antiguos_redirigen_sin_perder_filtros",
+                      "aserciones":  16,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.NavegacionEspanolTest::test_los_filtros_y_la_paginacion_tambien_se_muestran_en_espanol",
+                      "aserciones":  18,
+                      "fallos":  0,
+                      "fuente":  "navegacion-correccion.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ReadQueryPerformanceTest::test_nested_mutations_recheck_permissions_and_the_read_scope_is_released_on_exceptions",
+                      "aserciones":  4,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ReadQueryPerformanceTest::test_permission_revocation_invalidates_the_next_request_and_cannot_reuse_a_previous_response",
+                      "aserciones":  4,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.ReadQueryPerformanceTest::test_read_pages_keep_results_while_recording_query_counts",
+                      "aserciones":  18,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.SimplifiedInterfaceTest::test_active_tools_section_opens_and_read_only_users_cannot_see_creation_shortcuts",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.SimplifiedInterfaceTest::test_nine_sections_and_four_daily_actions_keep_secondary_options_collapsed",
+                      "aserciones":  7,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.SimplifiedInterfaceTest::test_product_form_keeps_optional_inputs_and_reopens_on_validation_errors",
+                      "aserciones":  6,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.SimplifiedInterfaceTest::test_return_shortcut_selects_only_pending_confirmed_loan_without_writing",
+                      "aserciones":  10,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  },
+                  {
+                      "caso":  "Tests.Feature.SimplifiedInterfaceTest::test_secondary_report_filters_preserve_values_and_open_when_applied",
+                      "aserciones":  5,
+                      "fallos":  0,
+                      "fuente":  "navegacion-final.xml"
+                  }
+              ],
+    "fuentes":  [
+                    {
+                        "sha256":  "718A5D58996FB0C99C64D68EDA4CE2BB66B211E3DCD09F0F127611C0CDD0420C",
+                        "archivo":  "navegacion-final.xml"
+                    },
+                    {
+                        "sha256":  "EA5E69BFC19446F0DC0750BF98738AD88EA4A9CD68B4390902DC4A4C1D2DB02E",
+                        "archivo":  "navegacion-correccion.xml"
+                    }
+                ],
+    "incidencias_resueltas":  [
+                                  "Dos casos de CSV concatenaban filtros en inglés; se actualizaron para utilizar el generador de rutas y se verificó por separado la redirección de URL antiguas."
+                              ],
+    "http_real_sin_autenticacion":  [
+                                        "/login: 302 hacia /ingresar",
+                                        "/operaciones/loans?pending=1: 302 hacia /operaciones/prestamos?pendientes=1",
+                                        "/reportes/stock: 302 hacia /reportes/existencias",
+                                        "/ingresar: 200"
+                                    ],
+    "cambios_base_principal":  false,
+    "env_sin_cambios":  true,
+    "publicado":  false
+}

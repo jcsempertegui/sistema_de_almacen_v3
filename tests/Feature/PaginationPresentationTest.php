@@ -35,7 +35,7 @@ class PaginationPresentationTest extends TestCase
         $xpath = new DOMXPath($dom);
         foreach (['prev' => 1, 'next' => 3] as $rel => $page) {
             parse_str(parse_url($xpath->query('//a[@rel="'.$rel.'"]')->item(0)->getAttribute('href'), PHP_URL_QUERY), $query);
-            $this->assertSame(['q' => 'guantes', 'ubicacion_id' => '8', 'page' => '4', 'units_page' => (string) $page], $query);
+            $this->assertSame(['buscar' => 'guantes', 'ubicacion_id' => '8', 'pagina' => '4', 'pagina_unidades' => (string) $page], $query);
         }
     }
 

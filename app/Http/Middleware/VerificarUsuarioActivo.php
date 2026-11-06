@@ -29,6 +29,10 @@ class VerificarUsuarioActivo
 
         Auth::guard('web')->setUser($usuario);
 
+        if (in_array($request->method(), ['GET', 'HEAD'], true)) {
+            return $usuario->rol->duranteConsulta(fn () => $next($request));
+        }
+
         return $next($request);
     }
 }

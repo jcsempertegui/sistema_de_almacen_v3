@@ -1,5 +1,7 @@
 # Guion de aceptación funcional final — preparado, no ejecutado
 
+> Actualización de cierre, 5 de noviembre: usar el [manual de usuario](manual-usuario.md), el [guion de defensa](guion-defensa.md) y el [registro de aceptación](acta-aceptacion-final.md). El recorrido siguiente sigue pendiente de evidencia humana; sus restricciones de aislamiento no se sustituyen por los resultados de PHPUnit. El estado de la instalación actual está en [el informe de cierre](cierre-proyecto.md).
+
 Fecha: 25 de octubre de 2026, America/La_Paz. Alcance: los cinco sprints implementados. Este documento no concede aprobación visual ni autoriza datos ficticios en la principal, nuevas bases, respaldos o restauraciones reales.
 
 ## Preparación y separación

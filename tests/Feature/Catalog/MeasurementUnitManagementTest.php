@@ -125,7 +125,7 @@ class MeasurementUnitManagementTest extends TestCase
     {
         UnidadMedida::factory()->count(22)->create(['nombre' => 'Coincidencia', 'activo' => false]);
         $this->signIn(Usuario::factory()->create(['rol_id' => 3]));
-        $this->get(route('unidades-medida.index', ['q' => 'Coincidencia', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactive', false);
+        $this->get(route('unidades-medida.index', ['q' => 'Coincidencia', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactivo', false);
         $this->get(route('unidades-medida.index', ['estado' => 'active']))->assertSee('No se encontraron unidades de medida.');
         $unidad = UnidadMedida::factory()->create(['nombre' => 'Identidad única', 'simbolo' => 'LIT']);
         foreach ([$unidad->codigo, $unidad->nombre, $unidad->simbolo] as $search) {

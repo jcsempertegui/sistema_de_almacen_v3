@@ -10,7 +10,7 @@ class AuthenticationTest extends TestCase
 {
     public function test_guests_see_login_and_cannot_open_the_panel(): void
     {
-        $this->get('/login')->assertOk()->assertSee('Iniciar sesión')->assertDontSee('@vite');
+        $this->get(route('login'))->assertOk()->assertSee('Iniciar sesión')->assertDontSee('@vite');
         $this->get('/panel')->assertRedirect(route('login'));
         $this->get('/register')->assertNotFound();
     }
@@ -64,7 +64,7 @@ class AuthenticationTest extends TestCase
         $this->post('/logout')->assertRedirect(route('login'))->assertSessionMissing('marker');
         $this->assertGuest();
         $this->assertNotSame($previousToken, session()->token());
-        $this->get('/logout')->assertStatus(405);
+        $this->get(route('logout'))->assertStatus(405);
     }
 
     public function test_inactive_or_revoked_sessions_are_rejected(): void

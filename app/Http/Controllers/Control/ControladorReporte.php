@@ -62,13 +62,20 @@ class ControladorReporte extends Controller
             }, 'sga-'.$clase.'-'.now('America/La_Paz')->format('Ymd-His').'.csv', ['Content-Type' => 'text/csv; charset=UTF-8', 'Cache-Control' => 'private, no-store']);
         }
 
-        $summary = ['Registros' => (clone $query)->count()];
+        $agregados = DB::query()->fromSub((clone $query)->reorder(), 'summary')->selectRaw('COUNT(*) AS total');
+        $distintos = [];
         foreach (['documento' => 'Documentos', 'producto' => 'Artículos', 'trabajador_codigo' => 'Trabajadores'] as $column => $label) {
             if (isset($columns[$column])) {
-                $summary[$label] = DB::query()->fromSub((clone $query)->reorder(), 'summary')->distinct()->count($column);
+                $agregados->selectRaw('COUNT(DISTINCT `'.$column.'`) AS `'.$column.'`');
+                $distintos[$column] = $label;
             }
         }
-        $rows = $format === 'print' ? (clone $query)->limit(5001)->get() : $query->paginate(30)->withQueryString();
+        $conteos = $agregados->first();
+        $summary = ['Registros' => (int) $conteos->total];
+        foreach ($distintos as $column => $label) {
+            $summary[$label] = (int) $conteos->$column;
+        }
+        $rows = $format === 'print' ? (clone $query)->limit(5001)->get() : $query->paginate(30, ['*'], 'page', null, $summary['Registros'])->withQueryString();
         abort_if($format === 'print' && $rows->count() > 5000, 422, 'La impresión admite hasta 5000 líneas. Acota los filtros o descarga el CSV completo.');
         $availableFilters = $catalog->filters($clase);
         $data = [

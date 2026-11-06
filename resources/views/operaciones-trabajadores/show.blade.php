@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', $documento->codigo)
 @section('content')
-@if(in_array($clase, ['loans', 'returns']))@include('operaciones-trabajadores.tabs')@endif
 <h1>{{ $label }} · {{ $documento->codigo }}</h1>
 @include('control.compensation-reference')
 <p>Estado: {{ ['draft'=>'Borrador','confirmed'=>'Confirmado','cancelled'=>'Cancelado'][$documento->estado] }} · Fecha: {{ $documento->fecha_documento->format('Y-m-d') }}</p>

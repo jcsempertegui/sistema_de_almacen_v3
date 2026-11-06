@@ -1,0 +1,30 @@
+{
+  "fecha": "2026-11-04",
+  "base_publicada": "192e0a51a89096166a1e6e615c86d9e148b645f8",
+  "rama_local": "optimizacion/consultas-lectura",
+  "alcance": "Primera etapa: permisos por respuesta de lectura y conteos del panel y reportes",
+  "entorno": {"php": "8.3.10", "laravel": "13.35.0", "mariadb": "10.4.32", "base_pruebas": "sga_rio_grande_testing"},
+  "consultas": {
+    "panel": {"antes": 83, "despues": 14, "permisos_antes": 66, "permisos_despues": 1},
+    "productos": {"antes": 53, "despues": 9, "permisos_antes": 45, "permisos_despues": 1},
+    "reporte_existencias": {"antes": 52, "despues": 8, "permisos_antes": 43, "permisos_despues": 1}
+  },
+  "escenario": "Un producto por cantidad y una recepción confirmada, únicamente en testing; SQL registrado por Laravel durante cada GET, sin incluir los controles PDO internos de aislamiento",
+  "regresion_seleccionada": [
+    {"lote": "lectura, reportes, seguridad y navegación", "pruebas": 60, "aserciones": 470, "fallos": 0, "errores": 0, "omitidas": 0, "junit_sha256": "031897D960B554160D95130996691A85C549EAA208422508D72ED84DD2280356"},
+    {"lote": "RbacManagementTest y UserManagementTest", "pruebas": 25, "aserciones": 202, "fallos": 0, "errores": 0, "omitidas": 0, "junit_sha256": "F07747FF3B687E8E761F4A927DBA895EC6E8E81688E142787F950EED49CB6983"}
+  ],
+  "total_pruebas_distintas": 85,
+  "total_aserciones": 672,
+  "pint": "aprobado para los cinco archivos PHP modificados",
+  "git_diff_check": "aprobado",
+  "evidencia_externa": "C:\\Users\\jcsem\\SGA-evidence\\optimizacion-consultas-20261104",
+  "medicion_antes_sha256": "9C88CDBD10E217421C4B66C8225C6DC10DDFB1AF306BF4BD0F59DFD0BE5F4845",
+  "medicion_despues_sha256": "8583E316120D49E8B73236F68E8225851C4D8D3ABA679A8B17A3878F0024FFE2",
+  "cambios_en_base_principal": false,
+  "migraciones_creadas": false,
+  "env_sha256_sin_cambios": "7614A674F1246E3CD4A2696C6741785F80C2F5B47B55B0D27986BD2AABE88F3F",
+  "dependencias_modificadas": false,
+  "aceptacion_humana": "pendiente",
+  "limites": "Regresión seleccionada, no ejecución completa de los cinco sprints. Los conteos no garantizan una mejora porcentual de latencia. Optimización local aún sin commit ni push."
+}

@@ -3,13 +3,16 @@
 @section('body-class', 'reports-page')
 @section('content')
 <div class="page-intro report-page-intro"><div><span class="panel-eyebrow">INFORMES DEL ALMACÉN</span><h1>{{ $group['label'] }}</h1><p>Consulta el detalle, filtra la información y prepara tus informes.</p></div><span class="site-badge"><x-icon name="chart" /> Río Grande</span></div>
+@php($consultasVisibles = array_filter($group['kinds'], fn ($consulta) => \Illuminate\Support\Facades\Gate::allows(app(\App\Services\ReportesControl::class)->permiso($consulta))))
+@if(count($consultasVisibles) > 1)
 <nav class="report-tabs" aria-label="Consultas de este grupo">
-    @foreach($group['kinds'] as $tab)
+    @foreach($consultasVisibles as $tab)
         @can(app(\App\Services\ReportesControl::class)->permiso($tab))
             <a href="{{ route('reportes-control.index', $tab) }}" @if($clase === $tab) aria-current="page" @endif>{{ \App\Services\ReportesControl::LABELS[$tab] }}</a>
         @endcan
     @endforeach
 </nav>
+@endif
 @if(!$printing)
 <section class="card report-filter-panel" aria-labelledby="report-filter-title">
     <div class="operational-heading"><h2 id="report-filter-title">Personaliza tu consulta</h2><span>Los filtros se aplican también al CSV y a la impresión.</span></div>

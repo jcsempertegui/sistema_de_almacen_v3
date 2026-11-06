@@ -76,7 +76,7 @@ class CategoryManagementTest extends TestCase
     {
         $this->signIn(Usuario::factory()->create(['rol_id' => 3]));
         Categoria::factory()->count(22)->sequence(fn ($sequence) => ['nombre' => 'Filtro categoría '.$sequence->index, 'activo' => false])->create();
-        $this->get(route('categorias.index', ['q' => 'Filtro', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactive', false);
+        $this->get(route('categorias.index', ['q' => 'Filtro', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactivo', false);
         $this->get(route('categorias.index', ['q' => 'Filtro', 'estado' => 'active']))->assertOk()->assertSee('No se encontraron categorías.');
         $categoria = Categoria::factory()->create(['codigo' => 'CAT%_ESPECIAL']);
         $this->get(route('categorias.index', ['q' => '%_']))->assertOk()->assertSee($categoria->nombre)->assertDontSee('Filtro categoría');

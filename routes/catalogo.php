@@ -18,7 +18,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::resource('productos', ControladorProducto::class)->parameters(['productos' => 'producto'])->names('productos')->only(['index', 'create', 'store', 'show', 'edit', 'update']);
     Route::patch('/productos/{producto}/estado', [ControladorProducto::class, 'estado'])->name('productos.estado');
     Route::get('/productos/{producto}/ubicaciones', [ControladorUbicacionProducto::class, 'index'])->name('ubicaciones-producto.index');
-    Route::get('/productos/{producto}/ubicaciones/create', [ControladorUbicacionProducto::class, 'create'])->name('ubicaciones-producto.create');
+    Route::get('/productos/{producto}/ubicaciones/crear', [ControladorUbicacionProducto::class, 'create'])->name('ubicaciones-producto.create');
     Route::post('/productos/{producto}/ubicaciones', [ControladorUbicacionProducto::class, 'store'])->name('ubicaciones-producto.store');
     Route::patch('/productos/{producto}/ubicaciones/{ubicacion_producto}/estado', [ControladorUbicacionProducto::class, 'estado'])->name('ubicaciones-producto.estado')->scopeBindings();
     Route::get('/ubicaciones/arbol', [ControladorUbicacion::class, 'tree'])->name('ubicaciones.tree');

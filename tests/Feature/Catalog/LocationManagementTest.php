@@ -169,7 +169,7 @@ class LocationManagementTest extends TestCase
             Ubicacion::factory()->create(['padre_id' => $padre->id, 'nombre' => 'Filtro '.$i, 'tipo' => 'shelf', 'activo' => false]);
         }
         $this->signIn(Usuario::factory()->create(['rol_id' => 3]));
-        $this->get(route('ubicaciones.index', ['q' => 'Filtro', 'padre_id' => $padre->id, 'tipo' => 'shelf', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('tipo=shelf', false);
+        $this->get(route('ubicaciones.index', ['q' => 'Filtro', 'padre_id' => $padre->id, 'tipo' => 'shelf', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('tipo=estante', false);
         $this->get(route('ubicaciones.index', ['q' => 'Filtro', 'roots_only' => 1]))->assertSee('No se encontraron ubicaciones.');
         foreach ([['tipo' => 'bad'], ['estado' => 'bad'], ['padre_id' => 999999], ['q' => str_repeat('x', 101)], ['roots_only' => 2]] as $query) {
             $this->get(route('ubicaciones.index', $query))->assertSessionHasErrors();

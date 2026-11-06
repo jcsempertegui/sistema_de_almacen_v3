@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', $label)
 @section('content')
-@if(in_array($clase, ['loans', 'returns']))@include('operaciones-trabajadores.tabs')@endif
 <h1>{{ $clase === 'loans' ? 'Herramientas prestadas' : $label }}</h1>
 @can($clase.'.create')<a class="button" href="{{ route('operaciones-trabajadores.create',$clase) }}">Registrar borrador</a>@endcan
 <form method="GET" class="card"><label>Trabajador (código o nombre)<input name="q" value="{{ request('q') }}" maxlength="100"></label><label>Estado<select name="estado"><option value="">Todos</option>@foreach(['draft'=>'Borrador','confirmed'=>'Confirmado','cancelled'=>'Cancelado'] as $key=>$text)<option value="{{ $key }}" @selected(request('estado')===$key)>{{ $text }}</option>@endforeach</select></label>@if($clase==='loans')<label><input type="checkbox" name="pending" value="1" @checked(request('pending'))> Solo obligaciones pendientes</label>@endif<button>Buscar</button></form>

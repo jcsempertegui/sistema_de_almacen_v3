@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', $label)
 @section('content')
-@if(in_array($clase, ['loans', 'returns']))@include('operaciones-trabajadores.tabs')@endif
 <h1>{{ $label }} · {{ $documento->exists ? 'Editar borrador' : 'Registrar borrador' }}</h1>
 <p>Guardar no reserva ni modifica existencias. La confirmación representa la operación física efectiva.</p>
 <form method="POST" action="{{ $documento->exists ? route('operaciones-trabajadores.update',[$clase,$documento->id]) : route('operaciones-trabajadores.store',$clase) }}" id="operation-form" class="card">

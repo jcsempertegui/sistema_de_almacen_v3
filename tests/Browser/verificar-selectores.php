@@ -18,6 +18,7 @@ foreach ([['entrega', 1440, 1000], ['entrega', 500, 844], ['remito', 1440, 1000]
         $chrome, '--headless=new', '--disable-gpu', '--no-first-run', '--allow-file-access-from-files',
         '--user-data-dir='.$directorio.'/perfil-php-'.$nombre,
         '--window-size='.$ancho.','.$alto, '--virtual-time-budget=5000', '--dump-dom',
+        '--screenshot='.$directorio.'/'.$nombre.'.png',
         'file:///'.str_replace('\\', '/', $directorio).'/'.$escenario.'.html',
     ], [0 => ['pipe', 'r'], 1 => ['file', $directorio.'/'.$nombre.'-dom.html', 'w'], 2 => ['file', $directorio.'/'.$nombre.'-chrome.log', 'w']], $pipes);
     if (! is_resource($proceso)) {
@@ -31,6 +32,7 @@ foreach ([['entrega', 1440, 1000], ['entrega', 500, 844], ['remito', 1440, 1000]
     }
     $resultado = json_decode(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), true, flags: JSON_THROW_ON_ERROR);
     $resultado['ejecucion'] = $nombre;
+    $resultado['captura'] = $nombre.'.png';
     $resultados[] = $resultado;
 }
 file_put_contents($directorio.'/navegador-final.json', json_encode($resultados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR));

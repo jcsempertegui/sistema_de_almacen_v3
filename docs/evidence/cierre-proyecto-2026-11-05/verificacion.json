@@ -1,0 +1,106 @@
+{
+    "fecha":  "2026-11-05",
+    "version_base":  "192e0a51a89096166a1e6e615c86d9e148b645f8",
+    "estado":  "Cierre tecnico preparado; aceptacion humana y documento academico por revisar",
+    "regresion":  {
+                      "pendientes":  0,
+                      "casos":  522,
+                      "por_lotes":  true,
+                      "aserciones":  4065,
+                      "fallos_sin_resolver":  0
+                  },
+    "integridad_principal":  {
+                                 "fecha":  "2026-11-05T21:13:47-04:00",
+                                 "php":  "8.3.10",
+                                 "laravel":  "13.35.0",
+                                 "identidad":  {
+                                                   "base":  "sga_rio_grande",
+                                                   "servidor":  "DESKTOP-U7NQKIM",
+                                                   "puerto":  3306,
+                                                   "directorio":  "C:\\xampp\\mysql\\data\\",
+                                                   "version":  "10.4.32-MariaDB"
+                                               },
+                                 "tablas":  53,
+                                 "migraciones":  44,
+                                 "pendientes":  [
+
+                                                ],
+                                 "migraciones_sin_archivo":  [
+
+                                                             ],
+                                 "conteos":  {
+                                                 "usuarios":  5,
+                                                 "trabajadores":  24,
+                                                 "productos":  116,
+                                                 "unidades_individuales":  192,
+                                                 "permisos":  123,
+                                                 "permiso_rol":  260,
+                                                 "movimientos_inventario":  2206,
+                                                 "entregas_materiales":  778,
+                                                 "prestamos_herramientas":  33,
+                                                 "devoluciones_herramientas":  25
+                                             },
+                                 "administracion_activa":  true,
+                                 "integridad_sql":  {
+                                                        "foreign_keys":  166,
+                                                        "checks":  103,
+                                                        "unique_indexes":  143,
+                                                        "orphans":  0,
+                                                        "check_violations":  0,
+                                                        "duplicate_groups":  0
+                                                    },
+                                 "diferencias_saldo_movimientos":  0,
+                                 "saldos_faltantes":  0,
+                                 "existencias_negativas":  0,
+                                 "aceptacion_humana":  "No evaluada por este diagnóstico"
+                             },
+    "conservacion":  {
+                         "tablas_comparadas":  53,
+                         "tablas_con_diferencias":  [
+
+                                                    ],
+                         "archivos_protegidos_con_diferencias":  [
+
+                                                                 ],
+                         "pendientes":  [
+
+                                        ],
+                         "metodo":  "Comparacion de conteos y SHA-256 de filas ordenadas y DDL por tabla; no exportacion de registros"
+                     },
+    "navegador":  {
+                      "escenarios":  5,
+                      "capturas":  {
+                                       "value":  [
+                                                     {
+                                                         "archivo":  "entrega-limpia-1440.png",
+                                                         "ancho":  1440,
+                                                         "alto":  1000,
+                                                         "sha256":  "06df3e12ca57b6ee3de71f73ef527c2a029e16af8549d45d3cf7ed29929eccca"
+                                                     },
+                                                     {
+                                                         "archivo":  "entrega-limpia-500.png",
+                                                         "ancho":  500,
+                                                         "alto":  844,
+                                                         "sha256":  "344f578a4687782c7c6e885289ba790d8f59f199623e7c4628cc3f6dcd64127c"
+                                                     }
+                                                 ],
+                                       "Count":  2
+                                   },
+                      "aceptacion_humana":  false,
+                      "fallos":  0,
+                      "comprobaciones":  53
+                  },
+    "figuras_publicas":  [
+                             "entrega-escritorio.png",
+                             "entrega-movil.png"
+                         ],
+    "plataforma":  "composer --no-plugins --no-scripts check-platform-reqs: aprobado",
+    "enlaces_historicos_reparados":  82,
+    "cambios_env":  false,
+    "cambios_dependencias":  false,
+    "cambios_migraciones":  false,
+    "datos_principales_modificados":  false,
+    "decision_variantes":  "Autor confirma mantener alcance actual y documentar cobertura parcial de variantes",
+    "respaldo_o_restauracion_nuevos":  false,
+    "evidencia_privada":  "C:\\Users\\jcsem\\SGA-evidence\\cierre-proyecto-20261105"
+}

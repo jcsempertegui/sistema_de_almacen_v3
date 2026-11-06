@@ -95,7 +95,7 @@ class WorkerManagementTest extends TestCase
     {
         $this->signIn($this->account(Rol::AUDITOR));
         Trabajador::factory()->count(22)->create(['area' => 'Área de pruebas', 'activo' => false]);
-        $this->get(route('trabajadores.index', ['q' => 'Área de pruebas', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactive', false);
+        $this->get(route('trabajadores.index', ['q' => 'Área de pruebas', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactivo', false);
         $this->get(route('trabajadores.index', ['q' => 'Área de pruebas', 'estado' => 'active']))->assertOk()->assertSee('No se encontraron trabajadores.');
         $trabajador = Trabajador::factory()->create(['nombres' => '<script>alert(1)</script>', 'codigo' => 'ZERO-0']);
         $this->get(route('trabajadores.show', $trabajador))->assertSee('&lt;script&gt;', false)->assertDontSee('<script>alert(1)</script>', false);

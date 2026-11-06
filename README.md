@@ -2,6 +2,28 @@
 
 Sistema Web de Gestión de Almacén para CONFIPETROL S.A.S., Planta Separadora de Líquidos Río Grande.
 
+## Versión de cierre para revisión — 5 de noviembre de 2026
+
+Los cinco sprints están implementados. La principal local conserva **53 tablas, 44 migraciones sin pendientes, 123 permisos y 260 asignaciones**. El [informe de cierre](docs/cierre-proyecto.md) separa la validación técnica de la aceptación humana y del contraste académico. No repetir migraciones ni cargar otra simulación para iniciar el sistema.
+
+Validación de cierre: **522 pruebas distintas/4.065 aserciones por lotes**, sin casos pendientes ni fallos sin resolver; Chrome aprobó 53 comprobaciones en cinco escenarios. Las 53 tablas principales conservan sus huellas de datos y estructuras. Véanse las [evidencias de cierre](docs/evidence/cierre-proyecto-2026-11-05/verificacion.json). Estos resultados no sustituyen la aceptación humana.
+
+- [Manual de usuario](docs/manual-usuario.md): operación diaria y ejemplos de ajustes/compensaciones.
+- [Manual técnico actual](docs/manual-tecnico.md): arranque, aislamiento y recuperación controlada en este PC.
+- [Matriz académica revisable](docs/matriz-academica-cierre.md): objetivos y requisitos de la tesis anterior frente a los cinco sprints.
+- [Guion de defensa](docs/guion-defensa.md) y [registro de aceptación pendiente](docs/acta-aceptacion-final.md).
+- [Diccionario en español](docs/diccionario-datos-espanol.md) y [diagramas](docs/modelo-datos-espanol.md).
+
+Los datos anuales son **ficticios**, no registros operativos reales certificados. La tesis original no se modifica automáticamente y no se atribuyen aprobaciones humanas a las pruebas automatizadas.
+
+## Navegación y direcciones — 5 de noviembre de 2026
+
+La [corrección de navegación](docs/navegacion-espanol-2026-11-05.md) retira las barras que duplicaban el lateral en préstamos, devoluciones y correcciones. Las direcciones de operaciones, reportes, formularios, filtros y paginación se presentan en español, conservando compatibilidad con enlaces anteriores y la autorización existente. No requiere cambios en la base principal.
+
+## Optimización de consultas — 4 de noviembre de 2026
+
+La traducción, navegación simplificada y selección rápida se publicaron en `main`, commit `192e0a5`. La [primera optimización de consultas](docs/optimizacion-consultas-2026-11-04.md), desarrollada en `optimizacion/consultas-lectura`, se integra en la versión de cierre: reduce lecturas repetidas de permisos y agrupa conteos del panel y reportes. No requiere migraciones ni cambios de dependencias. Las mediciones aisladas y las verificaciones de seguridad se documentan por separado de la aceptación humana.
+
 ## Selección rápida — 4 de noviembre de 2026
 
 Los formularios y filtros incorporan [búsqueda por fragmentos y selección con sugerencias](docs/selectores-rapidos-2026-11-04.md) para trabajadores, artículos, ubicaciones y otras referencias. Incluye teclado y etiquetas para seleccionar varios elementos. Verificación: 11 pruebas distintas/80 aserciones y 53 comprobaciones de navegador, sin cambios de base de datos.
@@ -12,9 +34,9 @@ La traducción y el reemplazo de datos fueron autorizados por el propietario. La
 
 Consulta el [informe de renovación y despliegue](docs/renovacion-espanol-2026-11-02.md), el [diccionario de las 53 tablas](docs/diccionario-datos-espanol.md), los [diagramas](docs/modelo-datos-espanol.md) y la [equivalencia de 183 clases](docs/correspondencia-clases-espanol.md). Esta etapa aprobó **86 casos y 546 aserciones** en dos lotes aislados. La cobertura consolidada con la fase anterior reúne 510 casos y 3.890 aserciones por lotes; no es una ejecución única ni aceptación humana. Los informes fechados anteriores conservan sus resultados históricos. No ejecutar otra vez la traducción ni la renovación sobre esta base ya actualizada.
 
-## Propuesta local de simplificación — 1 de noviembre de 2026
+## Simplificación publicada — propuesta del 1 de noviembre de 2026
 
-En la rama `mejora/navegacion-simplificada` se implementó una [interfaz más sencilla para la operación diaria](docs/simplified-interface-2026-11-01.md), conservando funcionalidades, datos y permisos. La regresión seleccionada aprobó 48 pruebas y 451 aserciones exclusivamente en testing. La versión publicada de referencia es `bd89c97`; la aceptación y publicación de esta propuesta quedan pendientes de revisión.
+En la rama `mejora/navegacion-simplificada` se implementó una [interfaz más sencilla para la operación diaria](docs/simplified-interface-2026-11-01.md), conservando funcionalidades, datos y permisos. La regresión seleccionada aprobó 48 pruebas y 451 aserciones exclusivamente en testing. El 4 de noviembre se publicó junto con la traducción y los selectores en `main`, commit `192e0a5`; `bd89c97` es la referencia anterior. La publicación no sustituye la aceptación humana documentada.
 
 ## Referencia histórica — 31 de octubre de 2026
 

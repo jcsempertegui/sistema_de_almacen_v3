@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RedirigirRutasAntiguas;
 use App\Http\Middleware\VerificarUsuarioActivo;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -9,9 +10,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
-        health: '/up',
+        health: '/estado-sistema',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->append(RedirigirRutasAntiguas::class);
         $middleware->trimStrings(except: ['contrasena', 'contrasena_confirmation']);
         $middleware->alias(['active' => VerificarUsuarioActivo::class]);
         $middleware->redirectGuestsTo(fn () => route('login'));

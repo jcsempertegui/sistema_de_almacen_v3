@@ -1,51 +1,53 @@
-# Sprint 4 ? Archivos nuevos y modificados
+# Sprint 4 — Archivos nuevos y modificados
+
+> Revisión de enlaces del 5 de noviembre: los archivos renombrados enlazan al código histórico publicado de esta entrega. Se conservan sus nombres y resultados originales; el esquema/clases vigentes están en la correspondencia en español.
 
 Base: `cd7b4eabc031`. Rama: `feature/sprint-4-worker-operations`. Sin commit, merge o push.
 
-Listado del resultado local. Las seis migraciones son nuevas; las 29 anteriores no se modificaron. Los JUnit y JSON son evidencia de ejecuciones, no aceptaci?n humana.
+Listado del resultado local. Las seis migraciones son nuevas; las 29 anteriores no se modificaron. Los JUnit y JSON son evidencia de ejecuciones, no aceptación humana.
 
 Total: **89 archivos** (24 modificados, 65 nuevos).
 
 | Estado | Archivo |
 |---|---|
 | Modificado | [README.md](../README.md) |
-| Nuevo | [app/Actions/Deliveries/ConfirmDelivery.php](../app/Actions/Deliveries/ConfirmDelivery.php) |
-| Nuevo | [app/Actions/Deliveries/SaveDelivery.php](../app/Actions/Deliveries/SaveDelivery.php) |
-| Modificado | [app/Actions/Inventory/ConfirmInventoryDocument.php](../app/Actions/Inventory/ConfirmInventoryDocument.php) |
-| Nuevo | [app/Actions/Loans/ConfirmLoan.php](../app/Actions/Loans/ConfirmLoan.php) |
-| Nuevo | [app/Actions/Loans/SaveLoan.php](../app/Actions/Loans/SaveLoan.php) |
-| Nuevo | [app/Actions/Returns/ConfirmReturn.php](../app/Actions/Returns/ConfirmReturn.php) |
-| Nuevo | [app/Actions/Returns/SaveReturn.php](../app/Actions/Returns/SaveReturn.php) |
-| Nuevo | [app/Actions/WorkerOperations/CancelWorkerOperation.php](../app/Actions/WorkerOperations/CancelWorkerOperation.php) |
-| Modificado | [app/Http/Controllers/Inventory/InventoryQueryController.php](../app/Http/Controllers/Inventory/InventoryQueryController.php) |
-| Nuevo | [app/Http/Controllers/WorkerOperations/WorkerOperationController.php](../app/Http/Controllers/WorkerOperations/WorkerOperationController.php) |
-| Nuevo | [app/Http/Requests/WorkerOperations/WorkerOperationRequest.php](../app/Http/Requests/WorkerOperations/WorkerOperationRequest.php) |
-| Modificado | [app/Models/InventoryMovement.php](../app/Models/InventoryMovement.php) |
-| Nuevo | [app/Models/LoanItemSettlement.php](../app/Models/LoanItemSettlement.php) |
-| Nuevo | [app/Models/MaterialDelivery.php](../app/Models/MaterialDelivery.php) |
-| Nuevo | [app/Models/MaterialDeliveryLine.php](../app/Models/MaterialDeliveryLine.php) |
-| Nuevo | [app/Models/ReturnRegularizationAuthorization.php](../app/Models/ReturnRegularizationAuthorization.php) |
-| Nuevo | [app/Models/ReturnRegularizationEvent.php](../app/Models/ReturnRegularizationEvent.php) |
-| Nuevo | [app/Models/ToolLoan.php](../app/Models/ToolLoan.php) |
-| Nuevo | [app/Models/ToolLoanItem.php](../app/Models/ToolLoanItem.php) |
-| Nuevo | [app/Models/ToolReturn.php](../app/Models/ToolReturn.php) |
-| Nuevo | [app/Models/ToolReturnItem.php](../app/Models/ToolReturnItem.php) |
-| Nuevo | [app/Models/WorkerOperationDocument.php](../app/Models/WorkerOperationDocument.php) |
-| Nuevo | [app/Policies/MaterialDeliveryPolicy.php](../app/Policies/MaterialDeliveryPolicy.php) |
-| Nuevo | [app/Policies/ToolLoanPolicy.php](../app/Policies/ToolLoanPolicy.php) |
-| Nuevo | [app/Policies/ToolReturnPolicy.php](../app/Policies/ToolReturnPolicy.php) |
-| Nuevo | [app/Policies/WorkerOperationPolicy.php](../app/Policies/WorkerOperationPolicy.php) |
+| Nuevo | [app/Actions/Deliveries/ConfirmDelivery.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Deliveries/ConfirmDelivery.php) |
+| Nuevo | [app/Actions/Deliveries/SaveDelivery.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Deliveries/SaveDelivery.php) |
+| Modificado | [app/Actions/Inventory/ConfirmInventoryDocument.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Inventory/ConfirmInventoryDocument.php) |
+| Nuevo | [app/Actions/Loans/ConfirmLoan.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Loans/ConfirmLoan.php) |
+| Nuevo | [app/Actions/Loans/SaveLoan.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Loans/SaveLoan.php) |
+| Nuevo | [app/Actions/Returns/ConfirmReturn.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Returns/ConfirmReturn.php) |
+| Nuevo | [app/Actions/Returns/SaveReturn.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/Returns/SaveReturn.php) |
+| Nuevo | [app/Actions/WorkerOperations/CancelWorkerOperation.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Actions/WorkerOperations/CancelWorkerOperation.php) |
+| Modificado | [app/Http/Controllers/Inventory/InventoryQueryController.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Http/Controllers/Inventory/InventoryQueryController.php) |
+| Nuevo | [app/Http/Controllers/WorkerOperations/WorkerOperationController.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Http/Controllers/WorkerOperations/WorkerOperationController.php) |
+| Nuevo | [app/Http/Requests/WorkerOperations/WorkerOperationRequest.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Http/Requests/WorkerOperations/WorkerOperationRequest.php) |
+| Modificado | [app/Models/InventoryMovement.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/InventoryMovement.php) |
+| Nuevo | [app/Models/LoanItemSettlement.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/LoanItemSettlement.php) |
+| Nuevo | [app/Models/MaterialDelivery.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/MaterialDelivery.php) |
+| Nuevo | [app/Models/MaterialDeliveryLine.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/MaterialDeliveryLine.php) |
+| Nuevo | [app/Models/ReturnRegularizationAuthorization.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/ReturnRegularizationAuthorization.php) |
+| Nuevo | [app/Models/ReturnRegularizationEvent.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/ReturnRegularizationEvent.php) |
+| Nuevo | [app/Models/ToolLoan.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/ToolLoan.php) |
+| Nuevo | [app/Models/ToolLoanItem.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/ToolLoanItem.php) |
+| Nuevo | [app/Models/ToolReturn.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/ToolReturn.php) |
+| Nuevo | [app/Models/ToolReturnItem.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/ToolReturnItem.php) |
+| Nuevo | [app/Models/WorkerOperationDocument.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Models/WorkerOperationDocument.php) |
+| Nuevo | [app/Policies/MaterialDeliveryPolicy.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Policies/MaterialDeliveryPolicy.php) |
+| Nuevo | [app/Policies/ToolLoanPolicy.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Policies/ToolLoanPolicy.php) |
+| Nuevo | [app/Policies/ToolReturnPolicy.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Policies/ToolReturnPolicy.php) |
+| Nuevo | [app/Policies/WorkerOperationPolicy.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Policies/WorkerOperationPolicy.php) |
 | Modificado | [app/Providers/AppServiceProvider.php](../app/Providers/AppServiceProvider.php) |
-| Modificado | [app/Services/InitialStockCsv.php](../app/Services/InitialStockCsv.php) |
-| Modificado | [app/Services/InventoryReferences.php](../app/Services/InventoryReferences.php) |
-| Nuevo | [app/Services/ReturnEligibility.php](../app/Services/ReturnEligibility.php) |
-| Nuevo | [app/Services/ReturnRegularization.php](../app/Services/ReturnRegularization.php) |
-| Nuevo | [app/Services/WorkerStockPosting.php](../app/Services/WorkerStockPosting.php) |
-| Nuevo | [app/Support/OperationForm.php](../app/Support/OperationForm.php) |
-| Nuevo | [app/Support/OperationValidation.php](../app/Support/OperationValidation.php) |
-| Modificado | [app/Support/PermissionCatalog.php](../app/Support/PermissionCatalog.php) |
-| Nuevo | [app/Support/WorkerOperationPermissions.php](../app/Support/WorkerOperationPermissions.php) |
-| Nuevo | [app/Support/WorkerOperationTypes.php](../app/Support/WorkerOperationTypes.php) |
+| Modificado | [app/Services/InitialStockCsv.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Services/InitialStockCsv.php) |
+| Modificado | [app/Services/InventoryReferences.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Services/InventoryReferences.php) |
+| Nuevo | [app/Services/ReturnEligibility.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Services/ReturnEligibility.php) |
+| Nuevo | [app/Services/ReturnRegularization.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Services/ReturnRegularization.php) |
+| Nuevo | [app/Services/WorkerStockPosting.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Services/WorkerStockPosting.php) |
+| Nuevo | [app/Support/OperationForm.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Support/OperationForm.php) |
+| Nuevo | [app/Support/OperationValidation.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Support/OperationValidation.php) |
+| Modificado | [app/Support/PermissionCatalog.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Support/PermissionCatalog.php) |
+| Nuevo | [app/Support/WorkerOperationPermissions.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Support/WorkerOperationPermissions.php) |
+| Nuevo | [app/Support/WorkerOperationTypes.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/app/Support/WorkerOperationTypes.php) |
 | Nuevo | [database/migrations/2026_10_19_000003_create_worker_operation_documents.php](../database/migrations/2026_10_19_000003_create_worker_operation_documents.php) |
 | Nuevo | [database/migrations/2026_10_19_000004_create_return_regularizations.php](../database/migrations/2026_10_19_000004_create_return_regularizations.php) |
 | Nuevo | [database/migrations/2026_10_19_000005_extend_inventory_movement_sources.php](../database/migrations/2026_10_19_000005_extend_inventory_movement_sources.php) |
@@ -67,16 +69,16 @@ Total: **89 archivos** (24 modificados, 65 nuevos).
 | Nuevo | [docs/sprint-4-operator-guide.md](../docs/sprint-4-operator-guide.md) |
 | Nuevo | [docs/sprint-4-test-matrix.md](../docs/sprint-4-test-matrix.md) |
 | Nuevo | [docs/sprint-4.md](../docs/sprint-4.md) |
-| Modificado | [resources/views/inventory/movements.blade.php](../resources/views/inventory/movements.blade.php) |
-| Modificado | [resources/views/inventory/stock.blade.php](../resources/views/inventory/stock.blade.php) |
+| Modificado | [resources/views/inventory/movements.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/inventory/movements.blade.php) |
+| Modificado | [resources/views/inventory/stock.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/inventory/stock.blade.php) |
 | Modificado | [resources/views/layouts/app.blade.php](../resources/views/layouts/app.blade.php) |
-| Nuevo | [resources/views/worker-operations/availability.blade.php](../resources/views/worker-operations/availability.blade.php) |
-| Nuevo | [resources/views/worker-operations/form.blade.php](../resources/views/worker-operations/form.blade.php) |
-| Nuevo | [resources/views/worker-operations/index.blade.php](../resources/views/worker-operations/index.blade.php) |
-| Nuevo | [resources/views/worker-operations/line.blade.php](../resources/views/worker-operations/line.blade.php) |
-| Nuevo | [resources/views/worker-operations/show.blade.php](../resources/views/worker-operations/show.blade.php) |
+| Nuevo | [resources/views/worker-operations/availability.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/worker-operations/availability.blade.php) |
+| Nuevo | [resources/views/worker-operations/form.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/worker-operations/form.blade.php) |
+| Nuevo | [resources/views/worker-operations/index.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/worker-operations/index.blade.php) |
+| Nuevo | [resources/views/worker-operations/line.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/worker-operations/line.blade.php) |
+| Nuevo | [resources/views/worker-operations/show.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/resources/views/worker-operations/show.blade.php) |
 | Modificado | [routes/web.php](../routes/web.php) |
-| Nuevo | [routes/worker-operations.php](../routes/worker-operations.php) |
+| Nuevo | [routes/worker-operations.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/691d80f7e8af678b7c6ae707d945df365d6380c2/routes/worker-operations.php) |
 | Modificado | [tests/Feature/AdministrativeAuditTest.php](../tests/Feature/AdministrativeAuditTest.php) |
 | Modificado | [tests/Feature/Catalog/AttributePermissionInitializationTest.php](../tests/Feature/Catalog/AttributePermissionInitializationTest.php) |
 | Modificado | [tests/Feature/Catalog/CatalogPermissionInitializationTest.php](../tests/Feature/Catalog/CatalogPermissionInitializationTest.php) |

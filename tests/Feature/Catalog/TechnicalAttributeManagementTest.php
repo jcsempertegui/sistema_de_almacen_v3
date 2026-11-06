@@ -148,7 +148,7 @@ class TechnicalAttributeManagementTest extends TestCase
         for ($i = 0; $i < 22; $i++) {
             $this->technicalAttribute(['nombre' => 'Filtro '.$i, 'tipo_dato' => 'text', 'activo' => false]);
         }
-        $this->get(route('atributos.index', ['q' => 'Filtro', 'tipo_dato' => 'text', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('tipo_dato=text', false);
+        $this->get(route('atributos.index', ['q' => 'Filtro', 'tipo_dato' => 'text', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('tipo_dato=texto', false);
         $this->get(route('atributos.index', ['q' => 'Filtro', 'tipo_dato' => 'date']))->assertSee('No se encontraron atributos.');
         $atributo = $this->technicalAttribute(['codigo' => 'ATTR%_', 'nombre' => '<script>alert(1)</script>', 'texto_ayuda' => '<img src=x onerror=alert(1)>']);
         $this->get(route('atributos.index', ['q' => '%_']))->assertSee($atributo->codigo)->assertSee('&lt;script&gt;', false)->assertDontSee('<img src=x', false)->assertDontSee('Filtro 0');

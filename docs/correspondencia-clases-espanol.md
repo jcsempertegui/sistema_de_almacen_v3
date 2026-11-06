@@ -1,8 +1,8 @@
 # Correspondencia de clases del SGA
 
-Nombres anteriores y actuales de clases propias realmente existentes. Los contratos y clases de Laravel, PHP y dependencias mantienen sus nombres t?cnicos.
+Nombres anteriores y actuales de clases propias realmente existentes. Los contratos y clases de Laravel, PHP y dependencias mantienen sus nombres técnicos.
 
-| Clase anterior | Clase en espa?ol |
+| Clase anterior | Clase en español |
 | --- | --- |
 | `AdministrativeAudit` | `AuditoriaAdministrativa` |
 | `AdministrativeAuditController` | `ControladorAuditoriaAdministrativa` |

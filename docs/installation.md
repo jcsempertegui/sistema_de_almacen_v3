@@ -1,5 +1,7 @@
 # Manual de instalación y operación local
 
+> Antecedente del equipo D, fechado el 25 de octubre. Para este PC utilizar el [manual técnico vigente](manual-tecnico.md): PHP 8.3.10 en C:, MariaDB de XAMPP en C:, 44 migraciones y rutas en español. Las rutas D: y las 43 migraciones que aparecen debajo pertenecen a aquella instalación y no deben ejecutarse literalmente aquí.
+
 Revisión: 25 de octubre de 2026, America/La_Paz. Alcance: continuidad de los cinco sprints; no incorpora funcionalidades de inventario. Véase el [informe actual](environment-stabilization-2026-10-25.md).
 
 ## Distinguir las instalaciones

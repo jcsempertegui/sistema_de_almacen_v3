@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/disponibilidad', [Controller::class, 'availability'])->name('availability.index');
     Route::post('/devoluciones/items/{item}/regularizacion', [Controller::class, 'requestRegularization'])->name('regularizaciones-devolucion.request');
-    Route::post('/devoluciones/regularizaciones/{authorization}/{decision}', [Controller::class, 'decideRegularization'])->where('decision', 'approve|revoke')->name('regularizaciones-devolucion.decide');
-    Route::prefix('/operaciones/{clase}')->where(['clase' => 'deliveries|loans|returns'])->name('operaciones-trabajadores.')->group(function () {
+    Route::post('/devoluciones/regularizaciones/{authorization}/{decision}', [Controller::class, 'decideRegularization'])->where('decision', 'autorizar|revocar|approve|revoke')->name('regularizaciones-devolucion.decide');
+    Route::prefix('/operaciones/{clase}')->where(['clase' => 'entregas|prestamos|devoluciones|deliveries|loans|returns'])->name('operaciones-trabajadores.')->group(function () {
         Route::get('/', [Controller::class, 'index'])->name('index');
         Route::get('/crear', [Controller::class, 'create'])->name('create');
         Route::post('/', [Controller::class, 'store'])->name('store');

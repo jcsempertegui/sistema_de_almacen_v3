@@ -121,7 +121,7 @@ class UserManagementTest extends TestCase
     {
         $this->signIn($this->account());
         Usuario::factory()->count(22)->create(['nombre' => 'Coincidencia', 'activo' => false]);
-        $this->get(route('usuarios.index', ['q' => 'Coincidencia', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactive', false);
+        $this->get(route('usuarios.index', ['q' => 'Coincidencia', 'estado' => 'inactive']))->assertOk()->assertSee('Página 1 de 2')->assertSee('estado=inactivo', false);
         $this->get(route('usuarios.index', ['q' => 'Coincidencia', 'estado' => 'active']))->assertOk()->assertSee('No se encontraron usuarios.');
         $this->get(route('usuarios.index', ['q' => str_repeat('x', 101)]))->assertSessionHasErrors('q');
     }

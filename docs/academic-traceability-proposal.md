@@ -1,5 +1,7 @@
 # Propuesta de matriz académica — pendiente de contraste documental
 
+> Referencia histórica del 25 de octubre. La propuesta vigente para revisión es [la matriz de cierre](matriz-academica-cierre.md), que incorpora los textos e historias históricas confirmados posteriormente por el autor, los nombres actuales de clases y las brechas observadas. Las indicaciones «pendiente de fuente» de este informe describen el estado de aquella fecha, no invalidan la información aportada después. Ninguna de las propuestas acredita aprobación académica externa.
+
 Fecha: 25 de octubre de 2026, America/La_Paz. Base de código: `a6e10b7` más la estabilización local sin publicar. No modifica la tesis, las historias ni el alcance de los cinco sprints.
 
 ## Fuentes y estado

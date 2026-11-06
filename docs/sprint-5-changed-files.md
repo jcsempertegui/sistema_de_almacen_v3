@@ -1,4 +1,6 @@
-# Sprint 5 ? Archivos nuevos y modificados
+# Sprint 5 — Archivos nuevos y modificados
+
+> Revisión de enlaces del 5 de noviembre: los archivos renombrados enlazan al código histórico publicado de esta entrega. Se conservan sus nombres y resultados originales; el esquema/clases vigentes están en la correspondencia en español.
 
 Rama: `feature/sprint-5-control-and-close`. Base: `3d368275383ee472e1e58cdb57ed94b0a6e9cd96`. Inventario de la entrega local anterior al commit, merge y push; la publicación posterior se registra en [seguimiento](sprint-5-publication.md). Las 35 migraciones anteriores y .env permanecen intactos; las ocho nuevas solo se aplicaron en testing. SQL, credenciales y logs privados no se incorporan al repositorio.
 
@@ -7,42 +9,42 @@ Total: **96 archivos** (31 modificados y 65 nuevos).
 | Estado | Archivo |
 |---|---|
 | Modificado | [README.md](../README.md) |
-| Modificado | [app/Actions/Inventory/ConfirmInventoryDocument.php](../app/Actions/Inventory/ConfirmInventoryDocument.php) |
-| Modificado | [app/Actions/Loans/ConfirmLoan.php](../app/Actions/Loans/ConfirmLoan.php) |
-| Modificado | [app/Actions/Returns/ConfirmReturn.php](../app/Actions/Returns/ConfirmReturn.php) |
-| Modificado | [app/Actions/Returns/SaveReturn.php](../app/Actions/Returns/SaveReturn.php) |
-| Nuevo | [app/Console/Commands/GenerateBackup.php](../app/Console/Commands/GenerateBackup.php) |
-| Nuevo | [app/Console/Commands/RestoreBackupRehearsal.php](../app/Console/Commands/RestoreBackupRehearsal.php) |
-| Nuevo | [app/Http/Controllers/Control/BackupController.php](../app/Http/Controllers/Control/BackupController.php) |
-| Nuevo | [app/Http/Controllers/Control/CorrectionController.php](../app/Http/Controllers/Control/CorrectionController.php) |
-| Nuevo | [app/Http/Controllers/Control/ReportController.php](../app/Http/Controllers/Control/ReportController.php) |
-| Modificado | [app/Http/Controllers/WorkerOperations/WorkerOperationController.php](../app/Http/Controllers/WorkerOperations/WorkerOperationController.php) |
-| Nuevo | [app/Http/Requests/CorrectionRequest.php](../app/Http/Requests/CorrectionRequest.php) |
-| Nuevo | [app/Models/BackupRun.php](../app/Models/BackupRun.php) |
-| Nuevo | [app/Models/Concerns/HasCompensation.php](../app/Models/Concerns/HasCompensation.php) |
-| Nuevo | [app/Models/CorrectionAuthorization.php](../app/Models/CorrectionAuthorization.php) |
-| Nuevo | [app/Models/InventoryCorrection.php](../app/Models/InventoryCorrection.php) |
-| Nuevo | [app/Models/InventoryCorrectionLine.php](../app/Models/InventoryCorrectionLine.php) |
-| Modificado | [app/Models/InventoryDocument.php](../app/Models/InventoryDocument.php) |
-| Modificado | [app/Models/InventoryMovement.php](../app/Models/InventoryMovement.php) |
-| Modificado | [app/Models/ToolLoan.php](../app/Models/ToolLoan.php) |
-| Modificado | [app/Models/ToolLoanItem.php](../app/Models/ToolLoanItem.php) |
-| Modificado | [app/Models/WorkerOperationDocument.php](../app/Models/WorkerOperationDocument.php) |
-| Nuevo | [app/Policies/InventoryCorrectionPolicy.php](../app/Policies/InventoryCorrectionPolicy.php) |
+| Modificado | [app/Actions/Inventory/ConfirmInventoryDocument.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Actions/Inventory/ConfirmInventoryDocument.php) |
+| Modificado | [app/Actions/Loans/ConfirmLoan.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Actions/Loans/ConfirmLoan.php) |
+| Modificado | [app/Actions/Returns/ConfirmReturn.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Actions/Returns/ConfirmReturn.php) |
+| Modificado | [app/Actions/Returns/SaveReturn.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Actions/Returns/SaveReturn.php) |
+| Nuevo | [app/Console/Commands/GenerateBackup.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Console/Commands/GenerateBackup.php) |
+| Nuevo | [app/Console/Commands/RestoreBackupRehearsal.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Console/Commands/RestoreBackupRehearsal.php) |
+| Nuevo | [app/Http/Controllers/Control/BackupController.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Http/Controllers/Control/BackupController.php) |
+| Nuevo | [app/Http/Controllers/Control/CorrectionController.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Http/Controllers/Control/CorrectionController.php) |
+| Nuevo | [app/Http/Controllers/Control/ReportController.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Http/Controllers/Control/ReportController.php) |
+| Modificado | [app/Http/Controllers/WorkerOperations/WorkerOperationController.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Http/Controllers/WorkerOperations/WorkerOperationController.php) |
+| Nuevo | [app/Http/Requests/CorrectionRequest.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Http/Requests/CorrectionRequest.php) |
+| Nuevo | [app/Models/BackupRun.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/BackupRun.php) |
+| Nuevo | [app/Models/Concerns/HasCompensation.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/Concerns/HasCompensation.php) |
+| Nuevo | [app/Models/CorrectionAuthorization.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/CorrectionAuthorization.php) |
+| Nuevo | [app/Models/InventoryCorrection.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/InventoryCorrection.php) |
+| Nuevo | [app/Models/InventoryCorrectionLine.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/InventoryCorrectionLine.php) |
+| Modificado | [app/Models/InventoryDocument.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/InventoryDocument.php) |
+| Modificado | [app/Models/InventoryMovement.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/InventoryMovement.php) |
+| Modificado | [app/Models/ToolLoan.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/ToolLoan.php) |
+| Modificado | [app/Models/ToolLoanItem.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/ToolLoanItem.php) |
+| Modificado | [app/Models/WorkerOperationDocument.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Models/WorkerOperationDocument.php) |
+| Nuevo | [app/Policies/InventoryCorrectionPolicy.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Policies/InventoryCorrectionPolicy.php) |
 | Modificado | [app/Providers/AppServiceProvider.php](../app/Providers/AppServiceProvider.php) |
-| Nuevo | [app/Services/ApprovalAccess.php](../app/Services/ApprovalAccess.php) |
-| Nuevo | [app/Services/ControlReports.php](../app/Services/ControlReports.php) |
-| Nuevo | [app/Services/CriticalAudit.php](../app/Services/CriticalAudit.php) |
-| Nuevo | [app/Services/DatabaseBackups.php](../app/Services/DatabaseBackups.php) |
-| Nuevo | [app/Services/DatabaseIntegrity.php](../app/Services/DatabaseIntegrity.php) |
-| Nuevo | [app/Services/InventoryCorrections.php](../app/Services/InventoryCorrections.php) |
-| Modificado | [app/Services/InventoryReferences.php](../app/Services/InventoryReferences.php) |
-| Nuevo | [app/Services/LoanCycles.php](../app/Services/LoanCycles.php) |
-| Modificado | [app/Services/ReturnEligibility.php](../app/Services/ReturnEligibility.php) |
-| Nuevo | [app/Services/SqlBackupClient.php](../app/Services/SqlBackupClient.php) |
-| Modificado | [app/Services/WorkerStockPosting.php](../app/Services/WorkerStockPosting.php) |
-| Nuevo | [app/Support/ControlPermissions.php](../app/Support/ControlPermissions.php) |
-| Modificado | [app/Support/PermissionCatalog.php](../app/Support/PermissionCatalog.php) |
+| Nuevo | [app/Services/ApprovalAccess.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/ApprovalAccess.php) |
+| Nuevo | [app/Services/ControlReports.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/ControlReports.php) |
+| Nuevo | [app/Services/CriticalAudit.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/CriticalAudit.php) |
+| Nuevo | [app/Services/DatabaseBackups.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/DatabaseBackups.php) |
+| Nuevo | [app/Services/DatabaseIntegrity.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/DatabaseIntegrity.php) |
+| Nuevo | [app/Services/InventoryCorrections.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/InventoryCorrections.php) |
+| Modificado | [app/Services/InventoryReferences.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/InventoryReferences.php) |
+| Nuevo | [app/Services/LoanCycles.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/LoanCycles.php) |
+| Modificado | [app/Services/ReturnEligibility.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/ReturnEligibility.php) |
+| Nuevo | [app/Services/SqlBackupClient.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/SqlBackupClient.php) |
+| Modificado | [app/Services/WorkerStockPosting.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Services/WorkerStockPosting.php) |
+| Nuevo | [app/Support/ControlPermissions.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Support/ControlPermissions.php) |
+| Modificado | [app/Support/PermissionCatalog.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/app/Support/PermissionCatalog.php) |
 | Nuevo | [config/sga.php](../config/sga.php) |
 | Nuevo | [database/migrations/2026_10_20_000001_create_inventory_corrections.php](../database/migrations/2026_10_20_000001_create_inventory_corrections.php) |
 | Nuevo | [database/migrations/2026_10_20_000002_extend_correction_movement_sources.php](../database/migrations/2026_10_20_000002_extend_correction_movement_sources.php) |
@@ -78,10 +80,10 @@ Total: **96 archivos** (31 modificados y 65 nuevos).
 | Nuevo | [resources/views/control/corrections/index.blade.php](../resources/views/control/corrections/index.blade.php) |
 | Nuevo | [resources/views/control/corrections/show.blade.php](../resources/views/control/corrections/show.blade.php) |
 | Nuevo | [resources/views/control/reports.blade.php](../resources/views/control/reports.blade.php) |
-| Modificado | [resources/views/inventory/documents/show.blade.php](../resources/views/inventory/documents/show.blade.php) |
-| Modificado | [resources/views/inventory/movements.blade.php](../resources/views/inventory/movements.blade.php) |
+| Modificado | [resources/views/inventory/documents/show.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/resources/views/inventory/documents/show.blade.php) |
+| Modificado | [resources/views/inventory/movements.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/resources/views/inventory/movements.blade.php) |
 | Modificado | [resources/views/layouts/app.blade.php](../resources/views/layouts/app.blade.php) |
-| Modificado | [resources/views/worker-operations/show.blade.php](../resources/views/worker-operations/show.blade.php) |
+| Modificado | [resources/views/worker-operations/show.blade.php](https://github.com/jcsempertegui/sistema_de_almacen_v3/blob/0382ea2dec7088747b1c5898a2f04dcf5b7e368e/resources/views/worker-operations/show.blade.php) |
 | Nuevo | [routes/control.php](../routes/control.php) |
 | Modificado | [routes/web.php](../routes/web.php) |
 | Modificado | [tests/Feature/Catalog/AttributePermissionInitializationTest.php](../tests/Feature/Catalog/AttributePermissionInitializationTest.php) |

@@ -37,9 +37,13 @@ use App\Policies\PoliticaUnidadIndividual;
 use App\Policies\PoliticaUnidadMedida;
 use App\Policies\PoliticaUsuario;
 use App\Support\CatalogoPermisos;
+use App\Support\GeneradorUrlEspanol;
+use App\Support\RutasEspanol;
 use App\Support\TestingDatabaseGuard;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -49,6 +53,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Conserva los extensores de Laravel (sesión, claves y colección de rutas).
+        $this->app->singleton('url', function ($app) {
+            $routes = $app['router']->getRoutes();
+            $app->instance('routes', $routes);
+
+            return new GeneradorUrlEspanol($routes, $app->rebinding('request', function ($app, $request) {
+                $app['url']->setRequest($request);
+            }), $app['config']['app.asset_url']);
+        });
         if ($this->app->environment('testing')) {
             TestingDatabaseGuard::install($this->app);
         }
@@ -59,6 +72,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Route::resourceVerbs(['create' => 'crear', 'edit' => 'editar']);
+        URL::formatPathUsing(fn (string $path) => RutasEspanol::camino($path));
+        Route::bind('clase', fn (string $valor, $ruta) => RutasEspanol::interno($valor, RutasEspanol::mapaClase($ruta->getName() ?? '')));
+        foreach (['accion', 'decision'] as $parametro) {
+            Route::bind($parametro, fn (string $valor) => RutasEspanol::interno($valor, RutasEspanol::ACCIONES));
+        }
         Paginator::defaultView('pagination.simple');
 
         Gate::policy(CorreccionInventario::class, PoliticaCorreccionInventario::class);

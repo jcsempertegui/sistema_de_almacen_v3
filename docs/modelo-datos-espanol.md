@@ -1,6 +1,6 @@
 # Modelo de datos en español
 
-Vista simplificada de las entidades de negocio de la rama de traducción. El detalle de las 53 tablas y todas sus columnas figura en el [diccionario](diccionario-datos-espanol.md). No reemplaza los diagramas históricos de los sprints ni acredita aceptación académica externa.
+Vista simplificada de las entidades de negocio del esquema vigente en español, aplicado el 2 de noviembre de 2026. El detalle de las 53 tablas y todas sus columnas figura en el [diccionario](diccionario-datos-espanol.md). No reemplaza los diagramas históricos de los sprints ni acredita aceptación académica externa.
 
 ## Acceso y catálogo
 

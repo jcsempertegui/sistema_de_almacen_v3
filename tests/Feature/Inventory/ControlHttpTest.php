@@ -29,7 +29,7 @@ class ControlHttpTest extends TestCase
         $this->get(route('reportes-control.index', 'availability'))->assertOk()->assertDontSee('name="from"', false)->assertDontSee('name="to"', false);
         foreach (array_keys(ReportesControl::LABELS) as $clase) {
             $this->get(route('reportes-control.index', $clase))->assertOk();
-            $this->get(route('reportes-control.index', $clase).'?format=csv')->assertOk()->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
+            $this->get(route('reportes-control.index', ['clase' => $clase, 'format' => 'csv']))->assertOk()->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
         }
         $this->signIn($auditor)->get(route('corrections.index', 'adjustment'))->assertOk();
         $this->get(route('corrections.create', 'adjustment'))->assertForbidden();
@@ -66,9 +66,9 @@ class ControlHttpTest extends TestCase
         $c = $this->inventoryContext();
         $this->postInventory($c, 'receipt', '3');
         $this->signIn($c['actor']);
-        $response = $this->get(route('reportes-control.index', 'stock').'?format=csv&to=2020-01-01');
+        $response = $this->get(route('reportes-control.index', ['clase' => 'stock', 'format' => 'csv', 'to' => '2020-01-01']));
         $response->assertOk();
         $this->assertStringNotContainsString('3.000000', $response->streamedContent());
-        $this->getJson(route('reportes-control.index', 'stock').'?to=invalid')->assertUnprocessable();
+        $this->getJson(route('reportes-control.index', ['clase' => 'stock', 'to' => 'invalid']))->assertUnprocessable();
     }
 }
